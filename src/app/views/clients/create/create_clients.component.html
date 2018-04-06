@@ -1,0 +1,183 @@
+<div class="card">
+    <div class="card-body">
+    <h2>Stammdaten</h2>
+    <hr />
+    <form (ngSubmit)="onSubmit()" >
+        <div class="form-group row">
+            <label class="col-sm-2" for="vorname">Vorname</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.vorname" type="text" class="form-control" id="vorname"  placeholder="Vorname" name="vorname">
+            </div>
+            
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="name">Name</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.name" type="text" class="form-control" id="name" placeholder="Name" name="name">
+            </div>
+            
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="email">Email</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.email" type="text" class="form-control" id="email" placeholder="Email" name="email">
+            </div>
+            
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="geburtsdatum">Geburtsdatum</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.geburtsdatum" type="date" class="form-control" id="geburtsdatum" placeholder="Geburtsdatum" name="geburtsdatum">
+            </div>
+            
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="groesse">Grösse in cm</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.groesse" type="text" class="form-control" id="groesse" placeholder="Grösse" name="groesse">
+            </div>
+            
+        </div>
+        <div class="form-group row">
+                <label class="col-sm-2" for="groesse">Geschlecht</label>
+                <div class="col-sm-10">
+                <div class="form-check">
+                    <input [(ngModel)]="patient.geschlecht" class="form-check-input" type="radio" name="geschlecht" id="maennlich" value="m" name="maennlich">
+                    <label class="form-check-label" for="maennlich">
+                        M
+                    </label>
+          
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="patient.geschlecht" class="form-check-input" type="radio" name="geschlecht" id="weiblich" value="w" name="weiblich">
+                    <label class="form-check-label" for="weiblich">
+                        W
+                    </label>
+                </div>
+                </div>
+        </div>
+        <div class="form-group row">
+                <label class="col-sm-2" for="groesse">Sprache</label>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input [(ngModel)]="patient.sprache" class="form-check-input" type="radio" name="sprache" id="deutsch" value="DE" name="deutsch">
+                        <label class="form-check-label" for="deutsch">
+                        DE
+                        </label>
+            
+                    </div>
+                    <div class="form-check">
+                        <input [(ngModel)]="patient.sprache" class="form-check-input" type="radio" name="sprache" id="franzoesisch" value="FR" name="franzoesisch">
+                        <label class="form-check-label" for="franzoesisch">
+                            FR
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input [(ngModel)]="patient.sprache" class="form-check-input" type="radio" name="sprache" id="italienisch" value="IT" name="italienisch">
+                        <label class="form-check-label" for="italienisch">
+                            IT
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input [(ngModel)]="patient.sprache" class="form-check-input" type="radio" name="sprache" id="englisch" value="EN" name="englisch">
+                        <label class="form-check-label" for="englisch">
+                            EN
+                        </label>
+                    </div>
+                </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2" for="telefon">Telefon</label>
+            <div class="col-sm-10">
+                    <input [(ngModel)]="patient.telefon" type="text" class="form-control" id="telefon" placeholder="Telefon" name="telefon">
+            </div>
+            
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="strasse">Strasse + Nr.</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.strasse" type="text" class="form-control" id="strasse" placeholder="Strasse und Hausnummer" name="strasse">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="plz">PLZ</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.plz" type="text" class="form-control" id="plz" placeholder="PLZ" name="plz">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="wohnort">Wohnort</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.wohnort" type="text" class="form-control" id="wohnort" placeholder="Wohnort" name="wohnort">
+            </div>
+        </div>
+        <h2>Diagnosen</h2>
+        <hr />
+        <div class="form-check">
+            <input [(ngModel)]="patient.chronisch_obstruktive_Lungenkrankheit" class="form-check-input" type="checkbox" value="" id="chronisch_obstruktive_Lungenkrankheit" name="chronisch_obstruktive_Lungenkrankheit">
+            <label class="form-check-label" for="chronisch_obstruktive_Lungenkrankheit">
+                Chronisch obstruktive Lungenkrankheit (J40-44; J47)
+            </label>
+        </div>
+        <div class="form-check">
+            <input [(ngModel)]="patient.zystische_fibrose" class="form-check-input" type="checkbox" value="" id="zystische_fibrose" name="zystische_fibrose">
+            <label class="form-check-label" for="zystische_fibrose">
+                Zystische Fibrose (E84)
+            </label>
+        </div>
+        <div class="form-check">
+            <input [(ngModel)]="patient.asthma_bronchiale" class="form-check-input" type="checkbox" value="" id="asthma_bronchiale" name="asthma_bronchiale">
+            <label class="form-check-label" for="asthma_bronchiale">
+                Asthma bronchiale (J45)
+            </label>
+        </div>
+        <div class="form-check">
+            <input [(ngModel)]="patient.interstitielle_lungenkrankheit" class="form-check-input" type="checkbox" value="" id="interstitielle_lungenkrankheit" name="interstitielle_lungenkrankheit">
+            <label class="form-check-label" for="interstitielle_lungenkrankheit">
+                Interstitielle Lungenkrankheit (J60-70; J80-J84)
+            </label>
+        </div>
+        <div class="form-check">
+            <input  [(ngModel)]="patient.thoraxwand_thoraxmuskelerkrankung" class="form-check-input" type="checkbox" value="" id="thoraxwand_thoraxmuskelerkrankung" name="thoraxwand_thoraxmuskelerkrankung">
+            <label class="form-check-label" for="thoraxwand_thoraxmuskelerkrankung">
+                Thoraxwand- und Thoraxmuskelerkrankung (G47; G71/72; M40/41)
+            </label>
+        </div>
+        <div class="form-check">
+            <input [(ngModel)]="patient.andere_lungenkrankheit" class="form-check-input" type="checkbox" value="" id="andere_lungenkrankheit" name="andere_lungenkrankheit">
+            <label class="form-check-label" for="andere_lungenkrankheit">
+                Andere Lungenkrankheit (J96; J98/99)
+            </label>
+        </div>
+        <div class="form-check">
+            <input [(ngModel)]="patient.postoperative_lungenoperation" class="form-check-input" type="checkbox" value="" id="postoperative_lungenoperation" name="postoperative_lungenoperation">
+            <label class="form-check-label" for="postoperative_lungenoperation">
+                Prä- und postoperative Lungenoperation (J95)
+            </label>
+        </div>
+        <div class="form-check">
+            <input [(ngModel)]="patient.funktionelle_atemstoerung" class="form-check-input" type="checkbox" value="" id="funktionelle_atemstoerung" name="funktionelle_atemstoerung">
+            <label class="form-check-label" for="funktionelle_atemstoerung">
+                Funktionelle Atemstörung (F45.33; R05-09)
+            </label>
+        </div>
+
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2" for="diagnose_details">Diagnose (optional)</label>
+            <div class="col-sm-10">
+                <textarea [(ngModel)]="patient.diagnose_details" class="form-control " value ="" id="diagnose_details" rows="3" name="diagnose_details"></textarea>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2" for="bemerkungen">Bemerkungen (optional)</label>
+            <div class="col-sm-10">
+                    <textarea [(ngModel)]="patient.bemerkungen" class="form-control " value ="" id="bemerkungen" rows="3" name="bemerkungen"></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Speichern</button>
+    </form>
+    </div>
+</div>
