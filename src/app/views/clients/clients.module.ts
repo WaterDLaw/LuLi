@@ -4,6 +4,7 @@ import { CreateClientsComponent } from "../clients/create/create_clients.compone
 import { ClientsRoutingModule } from "../clients/clients-routing.module";
 import { FormsModule }   from '@angular/forms';
 import { AuthGuard } from "../../guards/auth.guard";
+import { ClientsService } from "../../services/clients.service";
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { AuthGuard } from "../../guards/auth.guard";
       ClientsComponent,
       CreateClientsComponent
     ],
-  providers:[AuthGuard]
+  providers:[AuthGuard, ClientsService]
 })
 export class ClientsModule { }

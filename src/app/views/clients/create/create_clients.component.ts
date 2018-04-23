@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from "../../../models/Client";
+import { ClientsService } from "../../../services/clients.service";
 
 @Component({
   selector: 'app-create-clients',
@@ -10,7 +11,9 @@ export class CreateClientsComponent implements OnInit {
 
   patient: Client;
 
-  constructor() { }
+  constructor(
+    private _clientsService: ClientsService
+  ) { }
 
   ngOnInit() {
 
@@ -20,6 +23,9 @@ export class CreateClientsComponent implements OnInit {
 
   onSubmit(){
     console.log(this.patient);
+
+    this._clientsService.createClient(this.patient);
+
   }
 
 }
