@@ -1,0 +1,562 @@
+<div class="card">
+    <div class="card-body">
+      <h2>Feedback Fragebogen</h2>
+      <hr />
+
+      <form (ngSubmit)="onSubmit()" #feedbackForm="ngForm" *ngIf="showForm">
+        <!-- Frage 1 -->
+        <div class="form-group">
+          <label for="frage_1"><b>1. Haben Sie rechtzeitig vor Programmbeginn alle für Sie wichtigen Informationen
+              erhalten?</b></label>
+            <div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" [(ngModel)]="feedback.frage_1"   name="frage_1" id="frage_1" [value]="1">
+                  <label class="form-check-label" for="frage_1">ja</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" [(ngModel)]="feedback.frage_1"  name="frage_1" id="frage_1" [value]="0">
+                  <label class="form-check-label" for="frage_1">nein</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="frage_1_bemerkungen">Bemerkungen:</label>
+            <div class="col-sm-12">
+              <textarea [value]="feedback.frage_1_bemerkungen" (input)="feedback.frage_1_bemerkungen = $event.target.value" type="text" class="form-control" value="" id="frage_1_bemerkungen" rows="2" name="frage_1_bemerkungen"></textarea>
+
+            </div>
+        </div>
+        
+        <!-- Frage 2 -->
+        <div class="form-group">
+            <label for="frage_2"><b>2. Waren Sie mit dem Empfang und der Einführung ins Programm am ersten Tag zufrieden?</b></label>
+            <div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" [(ngModel)]="feedback.frage_2" type="radio" name="frage_2" id="frage_2" [value]="3">
+                  <label class="form-check-label" for="frage_2">ja</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input  class="form-check-input" [(ngModel)]="feedback.frage_2" type="radio" name="frage_2" id="frage_2" [value]="2">
+                  <label class="form-check-label" for="frage_2">eher ja</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input  class="form-check-input" [(ngModel)]="feedback.frage_2" type="radio" name="frage_2" id="frage_2" [value]="1">
+                    <label class="form-check-label" for="frage_2">eher nein</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" [(ngModel)]="feedback.frage_2" type="radio" name="frage_2" id="frage_2" [value]="0">
+                    <label class="form-check-label" for="frage_2">nein</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="frage_2_bemerkungen">Bemerkungen:</label>
+            <div class="col-sm-12">
+                    <textarea [value]="feedback.frage_2_bemerkungen" (input)="feedback.frage_2_bemerkungen = $event.target.value" class="form-control " value ="" id="frage_2_bemerkungen" rows="2" name="frage_1_bemerkungen"></textarea>
+            </div>
+        </div>
+       <!-- Frage 3 -->
+       <div class="form-group">
+          <label for="frage_3"><b>3. Der Zeitpunkt des Rehabilitationsprogrammes am Nachmittag war für mich</b></label>
+          <div>
+            <div class="form-check form-check-inline">
+              <input  class="form-check-input" [(ngModel)]="feedback.frage_3" type="radio" name="frage_3" id="frage_3" [value]="2">
+              <label class="form-check-label" for="frage_3">ideal</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input  class="form-check-input" [(ngModel)]="feedback.frage_3"  type="radio" name="frage_3" id="frage_3" [value]="1">
+                <label class="form-check-label" for="frage_3">machbar</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input  class="form-check-input" [(ngModel)]="feedback.frage_3"  type="radio" name="frage_3" id="frage_3" [value]="0">
+                <label class="form-check-label" for="frage_3">schwierig</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="frage_3_bemerkungen">Bemerkungen:</label>
+            <div class="col-sm-12">
+                    <textarea [value]="feedback.frage_3_bemerkungen" (input)="feedback.frage_3_bemerkungen = $event.target.value" class="form-control " value ="" id="frage_3_bemerkungen" rows="2" name="frage_1_bemerkungen"></textarea>
+            </div>
+        </div>
+        <!-- Frage 4-->
+        <div class="form-group">
+            <label for="frage_4"><b>4. Waren Sie mit den folgenden von Ihnen benutzten Einrichtungen zufrieden?</b></label>
+        </div>
+        <!-- frage 4 a-->
+        <div class="form-group row">
+          <label class="col-sm-2" for="frage_4_a">Turnsaal</label>
+          <div class="col-sm-10">
+            <div class="form-check form-check-inline">  
+              <input  class="form-check-input" [(ngModel)]="feedback.frage_4_a" type="radio" name="frage_4_a" id="frage_4_a" [value]="3">
+              <label class="form-check-label" for="frage_4_a">ja</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input  class="form-check-input" [(ngModel)]="feedback.frage_4_a" type="radio" name="frage_4_a" id="frage_4_a" [value]="2">
+                <label class="form-check-label" for="frage_4_a">eher ja</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input  class="form-check-input" [(ngModel)]="feedback.frage_4_a" type="radio" name="frage_4_a" id="frage_4_a" [value]="1">
+                <label class="form-check-label" for="frage_4_a">eher nein</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input  class="form-check-input" [(ngModel)]="feedback.frage_4_a" type="radio" name="frage_4_a" id="frage_4_a" [value]="0">
+                <label class="form-check-label" for="frage_4_a">nein</label>
+            </div>
+          </div>
+        </div>
+         <!-- frage 4 b-->
+         <div class="form-group row">
+            <label class="col-sm-2" for="frage_4_b">Sanitäre Anlagen</label>
+            <div class="col-sm-10">
+              <div class="form-check form-check-inline">  
+                <input  class="form-check-input" [(ngModel)]="feedback.frage_4_b" type="radio" name="frage_4_b" id="frage_4_b" [value]="3">
+                <label class="form-check-label" for="frage_4_b">ja</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input  class="form-check-input" [(ngModel)]="feedback.frage_4_b" type="radio" name="frage_4_b" id="frage_4_b" [value]="2">
+                  <label class="form-check-label" for="frage_4_b">eher ja</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input  class="form-check-input" [(ngModel)]="feedback.frage_4_b" type="radio" name="frage_4_b" id="frage_4_b" [value]="1">
+                  <label class="form-check-label" for="frage_4_b">eher nein</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input  class="form-check-input" [(ngModel)]="feedback.frage_4_b" type="radio" name="frage_4_b" id="frage_4_b" [value]="0">
+                  <label class="form-check-label" for="frage_4_b">nein</label>
+              </div>
+            </div>
+          </div>
+         <!-- frage 4 c-->
+         <div class="form-group row">
+            <label class="col-sm-2" for="frage_4_c">Sauerstoffversorgung</label>
+            <div class="col-sm-10">
+              <div class="form-check form-check-inline">  
+                <input  class="form-check-input" [(ngModel)]="feedback.frage_4_c" type="radio" name="frage_4_c" id="frage_4_c" [value]="3">
+                <label class="form-check-label" for="frage_4_c">ja</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input  class="form-check-input" [(ngModel)]="feedback.frage_4_c" type="radio" name="frage_4_c" id="frage_4_c" [value]="2">
+                  <label class="form-check-label" for="frage_4_c">eher ja</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input  class="form-check-input" [(ngModel)]="feedback.frage_4_c" type="radio" name="frage_4_c" id="frage_4_c" [value]="1">
+                  <label class="form-check-label" for="frage_4_c">eher nein</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input  class="form-check-input" [(ngModel)]="feedback.frage_4_c" type="radio" name="frage_4_c" id="frage_4_c" [value]="0">
+                  <label class="form-check-label" for="frage_4_c">nein</label>
+              </div>
+            </div>
+          </div>
+        <!-- frage 4 d-->
+        <div class="form-group">
+            <label for="frage_4_d">Theorieräume Patient/innen-Schulung:</label>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="frage_4_d">Solothurn</label>
+            <div class="col-sm-10">
+              <div class="form-check form-check-inline">  
+                <input  class="form-check-input" [(ngModel)]="feedback.frage_4_d" type="radio" name="frage_4_d" id="frage_4_d" [value]="3">
+                <label class="form-check-label" for="frage_4_d">ja</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input  class="form-check-input" [(ngModel)]="feedback.frage_4_d" type="radio" name="frage_4_d" id="frage_4_d" [value]="2">
+                  <label class="form-check-label" for="frage_4_d">eher ja</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input  class="form-check-input" [(ngModel)]="feedback.frage_4_d" type="radio" name="frage_4_d" id="frage_4_d" [value]="1">
+                  <label class="form-check-label" for="frage_4_d">eher nein</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input  class="form-check-input" [(ngModel)]="feedback.frage_4_d" type="radio" name="frage_4_d" id="frage_4_d" [value]="0">
+                  <label class="form-check-label" for="frage_4_d">nein</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-sm-2" for="frage_4_e">Olten</label>
+              <div class="col-sm-10">
+                <div class="form-check form-check-inline">  
+                  <input class="form-check-input" [(ngModel)]="feedback.frage_4_e" type="radio" name="frage_4_e" id="frage_4_e" [value]="3">
+                  <label class="form-check-label" for="frage_4_e">ja</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" [(ngModel)]="feedback.frage_4_e" type="radio" name="frage_4_e" id="frage_4_e" [value]="2">
+                    <label class="form-check-label" for="frage_4_e">eher ja</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" [(ngModel)]="feedback.frage_4_e" type="radio" name="frage_4_e" id="frage_4_e" [value]="1">
+                    <label class="form-check-label" for="frage_4_e">eher nein</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" [(ngModel)]="feedback.frage_4_e" type="radio" name="frage_4_e" id="frage_4_e" [value]="0">
+                    <label class="form-check-label" for="frage_4_e">nein</label>
+                </div>
+              </div>
+            </div>
+          <div class="form-group row">
+              <label class="col-sm-2" for="frage_4_bemerkungen">Bemerkungen:</label>
+              <div class="col-sm-12">
+                      <textarea [value]="feedback.frage_4_bemerkungen" (input)="feedback.frage_4_bemerkungen = $event.target.value" class="form-control " value ="" id="frage_4_bemerkungen" rows="2" name="frage_1_bemerkungen"></textarea>
+              </div>
+          </div>
+          <!-- Frage 5-->
+          <div class="form-group">
+              <label for="frage_5"><b>5. Wie empfanden Sie die folgenden Inhalte...<br><br>...des Trainings?</b></label>
+          </div>
+          <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="align-center"scope="col"></th>
+                  <th class="align-center" scope="col">sehr gut</th>
+                  <th class="align-center" scope="col">gut</th>
+                  <th class="align-center" scope="col">mässig</th>
+                  <th class="align-center" scope="col">schlecht</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Ausdauertraining</th>
+                  <td class="align-center"><input class="form-check-input" [(ngModel)]="feedback.frage_5_a" type="radio" name="frage_5_a" id="frage_5_a" [value]="3"></td>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_a" type="radio" name="frage_5_a" id="frage_5_a" [value]="2"></td>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_a" type="radio" name="frage_5_a" id="frage_5_a" [value]="1"></td>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_a" type="radio" name="frage_5_a" id="frage_5_a" [value]="0"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Krafttraining</th>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_b" type="radio" name="frage_5_b" id="frage_5_b" [value]="3"></td>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_b" type="radio" name="frage_5_b" id="frage_5_b" [value]="2"></td>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_b" type="radio" name="frage_5_b" id="frage_5_b" [value]="1"></td>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_b" type="radio" name="frage_5_b" id="frage_5_b" [value]="0"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Gymnastik</th>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_c" type="radio" name="frage_5_c" id="frage_5_c" [value]="3"></td>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_c" type="radio" name="frage_5_c" id="frage_5_c" [value]="2"></td>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_c" type="radio" name="frage_5_c" id="frage_5_c" [value]="1"></td>
+                  <td class="align-center"><input class="form-check-input" [(ngModel)]="feedback.frage_5_c" type="radio" name="frage_5_c" id="frage_5_c" [value]="0"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Entspannung</th>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_d" type="radio" name="frage_5_d" id="frage_5_d" [value]="3"></td>
+                  <td class="align-center"><input class="form-check-input" [(ngModel)]="feedback.frage_5_d" type="radio" name="frage_5_d" id="frage_5_d" [value]="2"></td>
+                  <td class="align-center"><input class="form-check-input" [(ngModel)]="feedback.frage_5_d" type="radio" name="frage_5_d" id="frage_5_d" [value]="1"></td>
+                  <td class="align-center"><input class="form-check-input" [(ngModel)]="feedback.frage_5_d" type="radio" name="frage_5_d" id="frage_5_d" [value]="0"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Betreuung durch Physio</th>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_e" type="radio" name="frage_5_e" id="frage_5_e" [value]="3"></td>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_e" type="radio" name="frage_5_e" id="frage_5_e" [value]="2"></td>
+                  <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_e" type="radio" name="frage_5_e" id="frage_5_e" [value]="1"></td>
+                  <td class="align-center"><input class="form-check-input" [(ngModel)]="feedback.frage_5_e" type="radio" name="frage_5_e" id="frage_5_e" [value]="0"></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="form-group">
+                <label for="frage_5"><b>...der Schulungen?</b></label>
+            </div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th class="align-center"scope="col"></th>
+                    <th class="align-center" scope="col">sehr gut</th>
+                    <th class="align-center" scope="col">gut</th>
+                    <th class="align-center" scope="col">mässig</th>
+                    <th class="align-center" scope="col">schlecht</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Frage 5f + 5g-->
+                  <tr>
+                    <th scope="row">Arzttheorie</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="padding-left" scope="row">Themen</td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_f" type="radio" name="frage_5_f" id="frage_5_f" [value]="3"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_f" type="radio" name="frage_5_f" id="frage_5_f" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_f" type="radio" name="frage_5_f" id="frage_5_f" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_f" type="radio" name="frage_5_f" id="frage_5_f" [value]="0"></td>
+                  </tr>
+                  <tr>
+                    <td class="padding-left" scope="row">Verständlichkeit</td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_g" type="radio" name="frage_5_g" id="frage_5_g" [value]="3"></td>
+                    <td class="align-center"><input class="form-check-input" [(ngModel)]="feedback.frage_5_g" type="radio" name="frage_5_g" id="frage_5_g" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_g" type="radio" name="frage_5_g" id="frage_5_g" [value]="1"></td>
+                    <td class="align-center"><input class="form-check-input" [(ngModel)]="feedback.frage_5_g" type="radio" name="frage_5_g" id="frage_5_g" [value]="0"></td>
+                  </tr>
+                  <!-- Frage 5h + 5i-->
+                  <tr>
+                    <th scope="row">Psychologie</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="padding-left" scope="row">Themen</td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_h" type="radio" name="frage_5_h" id="frage_5_h" [value]="3"></td>
+                    <td class="align-center"><input class="form-check-input" [(ngModel)]="feedback.frage_5_h" type="radio" name="frage_5_h" id="frage_5_h" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_h" type="radio" name="frage_5_h" id="frage_5_h" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_h" type="radio" name="frage_5_h" id="frage_5_h" [value]="0"></td>
+                  </tr>
+                  <tr>
+                    <td class="padding-left" scope="row">Verständlichkeit</td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_i" type="radio" name="frage_5_i" id="frage_5_i" [value]="3"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_i" type="radio" name="frage_5_i" id="frage_5_i" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_i" type="radio" name="frage_5_i" id="frage_5_i" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_i" type="radio" name="frage_5_i" id="frage_5_i" [value]="0"></td>
+                  </tr>
+                  <!-- Frage 5j + 5k-->
+                  <tr>
+                    <th scope="row">Lungenliga</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="padding-left" scope="row">Themen</td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_j" type="radio" name="frage_5_j" id="frage_5_j" [value]="3"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_j" type="radio" name="frage_5_j" id="frage_5_j" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_j" type="radio" name="frage_5_j" id="frage_5_j" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_j" type="radio" name="frage_5_j" id="frage_5_j" [value]="0"></td>
+                  </tr>
+                  <tr>
+                    <td class="padding-left" scope="row">Verständlichkeit</td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_k" type="radio" name="frage_5_k" id="frage_5_k" [value]="3"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_k" type="radio" name="frage_5_k" id="frage_5_k" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_k" type="radio" name="frage_5_k" id="frage_5_k" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_k" type="radio" name="frage_5_k" id="frage_5_k" [value]="0"></td>
+                  </tr>
+                  <!-- Frage 5l + 5m-->
+                  <tr>
+                    <th scope="row">Physiotherapie</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="padding-left" scope="row">Themen</td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_l" type="radio" name="frage_5_l" id="frage_5_l" [value]="3"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_l" type="radio" name="frage_5_l" id="frage_5_l" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_l" type="radio" name="frage_5_l" id="frage_5_l" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_l" type="radio" name="frage_5_l" id="frage_5_l" [value]="0"></td>
+                  </tr>
+                  <tr>
+                    <td class="padding-left" scope="row">Verständlichkeit</td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_m" type="radio" name="frage_5_m" id="frage_5_m" [value]="3"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_m" type="radio" name="frage_5_m" id="frage_5_m" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_m" type="radio" name="frage_5_m" id="frage_5_m" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_m" type="radio" name="frage_5_m" id="frage_5_m" [value]="0"></td>
+                  </tr>
+                  <!-- Frage 5n + 5o-->
+                  <tr>
+                      <th scope="row">Ernährungsberatung</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td class="padding-left" scope="row">Themen</td>
+                      <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_n" type="radio" name="frage_5_n" id="frage_5_n" [value]="3"></td>
+                      <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_n" type="radio" name="frage_5_n" id="frage_5_n" [value]="2"></td>
+                      <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_n" type="radio" name="frage_5_n" id="frage_5_n" [value]="1"></td>
+                      <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_n" type="radio" name="frage_5_n" id="frage_5_n" [value]="0"></td>
+                    </tr>
+                    <tr>
+                      <td class="padding-left" scope="row">Verständlichkeit</td>
+                      <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_o" type="radio" name="frage_5_o" id="frage_5_o" [value]="3"></td>
+                      <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_o" type="radio" name="frage_5_o" id="frage_5_o" [value]="2"></td>
+                      <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_5_o" type="radio" name="frage_5_o" id="frage_5_o" [value]="1"></td>
+                      <td class="align-center"><input class="form-check-input" [(ngModel)]="feedback.frage_5_o" type="radio" name="frage_5_o" id="frage_5_o" [value]="0"></td>
+                    </tr>
+                </tbody>
+              </table>
+              <div class="form-group row">
+                  <label class="col-sm-2" for="frage_5_bemerkungen">Bemerkungen:</label>
+                  <div class="col-sm-12">
+                    <textarea [value]="feedback.frage_5_bemerkungen" (input)="feedback.frage_5_bemerkungen = $event.target.value" class="form-control " value ="" id="frage_5_bemerkungen" rows="2" name="frage_5_bemerkungen"></textarea>
+                  </div>
+              </div>
+              <!-- Frage 6 -->
+              <div class="form-group">
+                <label for="frage_6"><b>6. Wie haben sich <u>durch das Programm</u> folgende Punkte verändert?</b></label>
+              </div>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="align-center"scope="col"></th>
+                    <th class="align-center" scope="col">stark verbessert</th>
+                    <th class="align-center" scope="col">etwas verbessert</th>
+                    <th class="align-center" scope="col">unverändert</th>
+                    <th class="align-center" scope="col">etwas verschlechtert</th>
+                    <th class="align-center" scope="col">stark verschlechtert</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Ihr Wohlbefinden?</th>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_a" type="radio" name="frage_6_a" id="frage_6_a" [value]="4"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_a" type="radio" name="frage_6_a" id="frage_6_a" [value]="3"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_a" type="radio" name="frage_6_a" id="frage_6_a" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_a" type="radio" name="frage_6_a" id="frage_6_a" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_a" type="radio" name="frage_6_a" id="frage_6_a" [value]="0"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Ihre Sicherheit im Umgang mit Ihrer Krankheit?</th>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_b" type="radio" name="frage_6_b" id="frage_6_b" [value]="4"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_b" type="radio" name="frage_6_b" id="frage_6_b" [value]="3"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_b" type="radio" name="frage_6_b" id="frage_6_b" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_b" type="radio" name="frage_6_b" id="frage_6_b" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_b" type="radio" name="frage_6_b" id="frage_6_b" [value]="0"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Ihre Leistungsfähigkeit?</th>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_c" type="radio" name="frage_6_c" id="frage_6_c" [value]="4"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_c" type="radio" name="frage_6_c" id="frage_6_c" [value]="3"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_c" type="radio" name="frage_6_c" id="frage_6_c" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_c" type="radio" name="frage_6_c" id="frage_6_c" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_c" type="radio" name="frage_6_c" id="frage_6_c" [value]="0"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Ihre Atemnot?</th>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_d" type="radio" name="frage_6_d" id="frage_6_d" [value]="4"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_d" type="radio" name="frage_6_d" id="frage_6_d" [value]="3"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_d" type="radio" name="frage_6_d" id="frage_6_d" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_d" type="radio" name="frage_6_d" id="frage_6_d" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_d" type="radio" name="frage_6_d" id="frage_6_d" [value]="0"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Ihr Ernährungsverhalten?</th>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_e" type="radio" name="frage_6_e" id="frage_6_e" [value]="4"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_e" type="radio" name="frage_6_e" id="frage_6_e" [value]="3"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_e" type="radio" name="frage_6_e" id="frage_6_e" [value]="2"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_e" type="radio" name="frage_6_e" id="frage_6_e" [value]="1"></td>
+                    <td class="align-center"><input  class="form-check-input" [(ngModel)]="feedback.frage_6_e" type="radio" name="frage_6_e" id="frage_6_e" [value]="0"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="form-group row">
+                  <label class="col-sm-2" for="frage_6_bemerkungen">Bemerkungen:</label>
+                  <div class="col-sm-12">
+                    <textarea [value]="feedback.frage_6_bemerkungen" (input)="feedback.frage_6_bemerkungen = $event.target.value" class="form-control " value ="" id="frage_6_bemerkungen" rows="2" name="frage_6_bemerkungen"></textarea>
+                  </div>
+              </div>
+              <!-- Frage 7 -->
+              <div class="form-group">
+                  <label for="frage_7"><b>7. Hat das Programm Ihren Erwartungen entsprochen?</b></label>
+                  <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" [(ngModel)]="feedback.frage_7" type="radio" name="frage_7" id="frage_7" [value]="3">
+                        <label class="form-check-label" for="frage_7">ja</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input  class="form-check-input" [(ngModel)]="feedback.frage_7" type="radio" name="frage_7" id="frage_7" [value]="2">
+                        <label class="form-check-label" for="frage_7">eher ja</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input  class="form-check-input" [(ngModel)]="feedback.frage_7" type="radio" name="frage_7" id="frage_7" [value]="1">
+                          <label class="form-check-label" for="frage_7">eher nein</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input  class="form-check-input" [(ngModel)]="feedback.frage_7" type="radio" name="frage_7" id="frage_7" [value]="0">
+                          <label class="form-check-label" for="frage_7">nein</label>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-sm-2" for="frage_7_bemerkungen">Bemerkungen:</label>
+                  <div class="col-sm-12">
+                          <textarea [value]="feedback.frage_7_bemerkungen" (input)="feedback.frage_7_bemerkungen = $event.target.value"class="form-control " value ="" id="frage_7_bemerkungen" rows="2" name="frage_7_bemerkungen"></textarea>
+                  </div>
+              </div>
+              <!-- Frage 8 -->
+              <div class="form-group">
+                  <label for="frage_8"><b>8. Würden Sie die ambulante pulmonale Rehabilitation weiter empfehlen?</b></label>
+                  <div>
+                    <div class="form-check form-check-inline">
+                        <input  class="form-check-input" [(ngModel)]="feedback.frage_8" type="radio" name="frage_8" id="frage_8" [value]="3">
+                        <label class="form-check-label"  for="frage_8">ja</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input  class="form-check-input" [(ngModel)]="feedback.frage_8" type="radio" name="frage_8" id="frage_8" [value]="2">
+                        <label class="form-check-label" for="frage_8">eher ja</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input  class="form-check-input" [(ngModel)]="feedback.frage_8" type="radio" name="frage_8" id="frage_8" [value]="1">
+                          <label class="form-check-label" for="frage_8">eher nein</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" [(ngModel)]="feedback.frage_8" type="radio" name="frage_8" id="frage_8" [value]="0">
+                          <label class="form-check-label"  for="frage_8">nein</label>
+                      </div>
+                  </div>
+              </div>
+              <!-- Frage 9 -->
+              <div class="form-group">
+                <label for="frage_9"><b>9. Gesamtbeurteilung der ambulanten pulmonalen Rehabilitation</b></label>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2" for="frage_9">sehr schlecht</label>
+                <div class="col-sm-10">
+                  <div class="form-check form-check-inline">
+                      <input  class="form-check-input" [(ngModel)]="feedback.frage_9" type="radio" name="frage_9" id="frage_9" [value]="1">
+                      <label class="form-check-label" for="frage_9">1</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input  class="form-check-input" [(ngModel)]="feedback.frage_9" type="radio" name="frage_9" id="frage_9" [value]="2">
+                    <label class="form-check-label" for="frage_9">2</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input  class="form-check-input" [(ngModel)]="feedback.frage_9" type="radio" name="frage_9" id="frage_9" [value]="3">
+                      <label class="form-check-label" for="frage_9">3</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input  class="form-check-input" [(ngModel)]="feedback.frage_9" type="radio" name="frage_9" id="frage_9" [value]="4">
+                      <label class="form-check-label" for="frage_9">4</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input  class="form-check-input" [(ngModel)]="feedback.frage_9" type="radio" name="frage_9" id="frage_9" [value]="5">
+                      <label class="form-check-label" for="frage_9">5</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input  class="form-check-input" [(ngModel)]="feedback.frage_9" type="radio" name="frage_9" id="frage_9" [value]="6">
+                      <label class="form-check-label" for="frage_9">6</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input  class="form-check-input" [(ngModel)]="feedback.frage_9" type="radio" name="frage_9" id="frage_9" [value]="7">
+                      <label class="form-check-label" for="frage_9">7</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input  class="form-check-input" [(ngModel)]="feedback.frage_9" type="radio" name="frage_9" id="frage_9" [value]="8">
+                      <label class="form-check-label" for="frage_9">8</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input  class="form-check-input" [(ngModel)]="feedback.frage_9" type="radio" name="frage_9" id="frage_9" [value]="9">
+                      <label class="form-check-label" for="frage_9">9</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input  class="form-check-input" [(ngModel)]="feedback.frage_9" type="radio" name="frage_9" id="frage_9" [value]="10">
+                      <label class="form-check-label" for="frage_9">10</label>
+                  </div>
+              </div>
+            </div>
+            <!-- allgemein -->
+            <div class="form-group row">
+                <label class="col-sm-2" for="allgemein">
+                    Allgemeine Bemerkungen und Anregungen:</label>
+                <div class="col-sm-12">
+                        <textarea [value]="feedback.allgemein" (input)="feedback.allgemein = $event.target.value" class="form-control " value ="" id="allgemein" rows="3" name="frage_7_bemerkungen"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary"> Speichern</button>
+      </form>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-body">
+    <form>
+      <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="btnGroupAddon2"><i class="icon-magnifier"></i></span>
+        </div>
+        <input type="text" class="form-control" name="searchString" placeholder="Name eingeben" [(ngModel)]="searchString">
+        <a routerLink="create" class="btn btn-primary"><i class="icon-user-follow"></i> Neuer Patient</a>
+      </div>
+    </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Geburtsdatum</th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody *ngFor="let patient of patients | filter : 'name' : searchString;">
+      <tr>
+      
+        <td>{{patient?.vorname}}</td>
+        <td>{{patient?.name}}</td>
+        <td>{{patient?.geburtsdatum}}</td>
+        <td><a routerLink="show/{{patient.id}}"class="btn btn-primary"><i class="icon-eye white"></i></a>
+        <a routerLink="edit/{{patient.id}}"class="btn btn-primary"><i class="icon-pencil white"></i></a>
+        <a class="btn btn-danger"><i class="icon-trash white"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>

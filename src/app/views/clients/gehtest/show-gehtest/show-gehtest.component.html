@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-body">
+      <a class="btn btn-primary" style="float:right;"><i class="icon-doc white"></i></a>
+      <a routerLink="../../edit/{{gehtest?.id}}" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
+      <h2>Gehtest</h2>
+      <hr />
+  
+      <div *ngIf="showForm" >
+        <div class="form-group row">
+            <label class="col-sm-2" for="erstellungsdatum">Erstellungsdatum</label>
+            <div class="col-sm-3">
+                <input [disabled]="true" [(ngModel)]="gehtest.erstellungsdatum" type="date" class="form-control" id="erstellungsdatum" placeholder="Erstellungsdatum" name="erstellungsdatum">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="distanz">Distanz</label>
+            <div class="col-sm-3">
+                <input [disabled]="true" [(ngModel)]="gehtest.distanz" type="text" class="form-control" id="distanz" placeholder="" name="distanz">
+            </div>
+            <label class="col-sm-1" for="distanz">Meter</label>
+        </div>
+
+      </div>
+    </div>
+  </div>

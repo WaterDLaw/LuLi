@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-body">
+      <a class="btn btn-primary" style="float:right;"><i class="icon-doc white"></i></a>
+      <a routerLink="../../edit/{{training.id}}" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
+      <h2>Trainingsinformationen</h2>
+      <hr />
+      <table class="table table-sm">
+        <tbody>
+          <tr>
+            <td>Titel:</td>
+            <td>{{training.title}}</td>
+          </tr>
+          <tr>
+            <td>Ort:</td>
+            <td>{{training.ort}}</td>
+          </tr>
+          <tr>
+            <td>Dauer:</td>
+            <td>{{training.start}} - {{training.end}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>  
+      
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h2>Teilnehmerliste</h2>
+    <hr />
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Geburtsdatum</th>
+            <th></th>
+    
+          </tr>
+        </thead>
+        <tbody *ngFor="let patient of patients">
+          <tr>
+          
+            <td>{{patient?.vorname}}</td>
+            <td>{{patient?.name}}</td>
+            <td>{{patient?.geburtsdatum}}</td>
+            <td><a routerLink="../../../clients/show/{{patient.id}}"class="btn btn-primary"><i class="icon-eye white"></i></a>
+            <a class="btn btn-danger"><i class="icon-trash white"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>  

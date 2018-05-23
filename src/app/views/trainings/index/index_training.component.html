@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-body">
+    <form>
+        <div class="input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text" id="btnGroupAddon2"><i class="icon-magnifier"></i></span>
+          </div>
+          <input type="text" class="form-control" name="searchString" placeholder="Titel eingeben" [(ngModel)]="searchTitleString">
+          <a routerLink="create" class="btn btn-primary"><i class="icon-user-follow"></i> Neues Training</a>
+        </div>
+      </form>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Titel</th>
+          <th>Start</th>
+          <th>Ende</th>
+          <th></th>
+
+        </tr>
+      </thead>
+      <tbody *ngFor="let training of trainings | filter : 'title' : searchTitleString;">
+        <tr>
+        
+          <td>{{training?.title}}</td>
+          <td>{{training?.start}}</td>
+          <td>{{training?.end}}</td>
+          
+          <td><a routerLink="show/{{training.id}}"class="btn btn-primary"><i class="icon-eye white"></i></a>
+          <a routerLink="edit/{{training.id}}"class="btn btn-primary"><i class="icon-pencil white"></i></a>
+          <a class="btn btn-danger"><i class="icon-trash white"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
