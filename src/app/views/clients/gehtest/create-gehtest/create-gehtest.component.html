@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-body">
+    <h2>Gehtest</h2>
+    <hr />
+
+    <form (ngSubmit)="onSubmit()" #gehtestForm="ngForm" >
+      <div class="form-group row">
+          <label class="col-sm-2" for="geburtsdatum">Erstellungsdatum</label>
+          <div class="col-sm-3">
+              <input [(ngModel)]="gehtest.erstellungsdatum" type="date" class="form-control" id="erstellungsdatum" placeholder="Erstellungsdatum" name="erstellungsdatum">
+          </div>
+      </div>
+      <div class="form-group row">
+          <label class="col-sm-2" for="distanz">Distanz</label>
+          <div class="col-sm-3">
+              <input [(ngModel)]="gehtest.distanz" type="text" class="form-control" id="distanz" placeholder="" name="distanz">
+          </div>
+          <label class="col-sm-1" for="distanz">Meter</label>
+      </div>
+      <button type="submit" class="btn btn-primary"> Speichern</button>
+    </form>
+  </div>
+</div>

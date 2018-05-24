@@ -57,8 +57,8 @@ export class AuthService {
                 this.token = token;
 
                 // Speiche Token und User informationen in localStorage damit es auf Page refreshes vorhanden ist
-                localStorage.setItem('currentUser', JSON.stringify({ email: email, token: token }));
-
+                localStorage.setItem('email', email);
+                localStorage.setItem('token', token);
                 // return true wenn das login geklappt hat
                 console.log("sende true");    
                 // Sende den werte True an das BehavourSubject   
@@ -81,11 +81,16 @@ export class AuthService {
       // Setze das token auf null und entferne den User aus dem Localstorage
       this.token = null;
       // remove den User aus dem Localstorage
-      localStorage.removeItem('currentUser');
+      localStorage.removeItem('email');
+      localStorage.removeItem('token');
       // sende false an das Observable
       this.loginStatus.next(false);
       // Route zur Login page
       this.router.navigate(['/login']);
+  }
+
+  getToken(){
+      return localStorage.getItem('token');
   }
 
 }

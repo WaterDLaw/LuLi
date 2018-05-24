@@ -34,7 +34,7 @@ export const navigation = [
     }
   },
   {
-    name: 'Aufgebote & Reports',
+    name: 'Reports',
     url: '/reports',
     icon: 'icon-doc',
     badge: {

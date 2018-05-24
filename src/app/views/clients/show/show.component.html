@@ -1,0 +1,181 @@
+<div class="card">
+    <div class="card-body">
+        <a class="btn btn-primary" style="float:right;"><i class="icon-doc white"></i></a>
+        <a routerLink="../../edit/{{patient.id}}" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
+        <h2>Patienteninformationen</h2>
+        <hr />
+        <table class="table table-sm">
+          <tbody>
+            <tr>
+              <td>Vorname:</td>
+              <td>{{patient.vorname}}</td>
+          
+            </tr>
+            <tr>
+              <td>Name:</td>
+              <td>{{patient.name}}</td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td>{{patient.email}}</td>
+            </tr>
+            <tr>
+              <td>Geburtsdatum:</td>
+              <td>{{patient.geburtsdatum}}</td>
+            </tr>
+            <tr>
+              <td>Groesse:</td>
+              <td>{{patient.groesse}}</td>
+            </tr>
+            <tr>
+              <td>Geschlecht:</td>
+              <td>{{patient.geschlecht}}</td>
+            </tr>
+            <tr>
+              <td>Sprachen:</td>
+              <td>{{patient.sprache}}</td>
+            </tr>
+            <tr>
+              <td>Telefon:</td>
+              <td>{{patient.telefon}}</td>
+            </tr>
+            <tr>
+              <td>Strasse:</td>
+              <td>{{patient.strasse}}</td>
+            </tr>
+            <tr>
+              <td>PLZ:</td>
+              <td>{{patient.plz}}</td>
+            </tr>
+            <tr>
+              <td>Wohnort:</td>
+              <td>{{patient.wohnort}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Diagnosen</h3>
+        <hr />
+        <ul>
+          <li *ngIf="patient.chronisch_obstruktive_Lungenkrankheit">Chronisch obstruktive Lungenkrankheit</li>
+          <li *ngIf="patient.zystische_fibrose">Zystische Fibroseme</li>
+          <li *ngIf="patient.asthma_bronchiale">Asthma Bronchiale</li>
+          <li *ngIf="patient.interstitielle_lungenkrankheit">Interstitielle Lungenkrankheit</li>
+          <li *ngIf="patient.thoraxwand_thoraxmuskelerkrankung">Thoraxwand Thoraxmuskelerkrankung</li>
+          <li *ngIf="patient.andere_lungenkrankheit">Andere Lungenkrankheit</li>
+          <li *ngIf="patient.postoperative_lungenoperation">Postoperative Lungenoperation</li>
+          <li *ngIf="patient.funktionelle_atemstoerung">Funktionelle Atemstoerung</li>
+        </ul>
+        <div *ngIf="patient.diagnose_details !=null">
+          <h3>Diagnose Details</h3>
+          <hr />
+          <p>{{patient.bemerkungen}}</p>
+        </div>
+        <h3>Training</h3>
+        <hr />
+        <div class="row" *ngIf="patient.training_id != null && trainings?.length > 0 ">
+          <div class="col-md-3" >
+            {{getTrainingName(patient?.training_id)}}
+          </div>
+          <div class="col-md-2">
+              <a routerLink="../../../trainings/show/{{patient?.training_id}}" class="btn btn-primary"><i class="icon-eye white"></i></a> 
+              <a (click)="openModal(content)" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+          </div>
+        </div>
+        <div class="row" *ngIf="patient.training_id == null">
+            <a (click)="openModal(content)" class="btn btn-primary">Training zuteilen</a>
+        </div>
+
+        <h3>Fragebögen</h3>
+        <hr />
+        <div class="row margin-bot">
+          <div class="col-md-3">
+            Feedback Fragebogen
+          </div>
+          <div class="col-md-2">
+              <div *ngIf="feedback">
+                  <a routerLink="../../../clients/show/{{patient?.training_id}}/feedback/show/{{feedback[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.training_id}}/feedback/edit/{{feedback[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+              </div>
+              <div *ngIf="!feedback">
+                  <a routerLink="feedback/create" class="btn btn-primary">Erfassen</a>
+              </div>
+          </div>  
+        </div>
+        <div class="row margin-bot">
+          <div class="col-md-3">
+            CRQ-SAS
+          </div>
+          <div class="col-md-2">
+              <div *ngIf="crqsas">
+                  <a routerLink="../../../clients/show/{{patient?.training_id}}/crqsas/show/{{crqsas[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.training_id}}/crqsas/edit/{{crqsas[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+              </div>
+              <div *ngIf="!crqsas">
+                  <a routerLink="crqsas/create" class="btn btn-primary">Erfassen</a>
+              </div>
+          </div>  
+        </div>
+        <div class="row margin-bot">
+          <div class="col-md-3">
+            COPD Assessment Test
+          </div>
+          <div class="col-md-2">
+              <div *ngIf="cat">
+                  <a routerLink="../../../clients/show/{{patient?.training_id}}/cat/show/{{cat?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.training_id}}/cat/edit/{{cat?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+              </div>
+              <div *ngIf="!cat">
+                  <a routerLink="cat/create" class="btn btn-primary">Erfassen</a>
+              </div>
+          </div>  
+        </div>
+        <div class="row margin-bot">
+            <div class="col-md-3">
+              Gehtest
+            </div>
+            <div class="col-md-2">
+                <div *ngIf="gehtest">
+                    <a routerLink="../../../clients/show/{{patient?.training_id}}/gehtest/show/{{gehtest?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                    <a routerLink="../../../clients/show/{{patient?.training_id}}/gehtest/edit/{{gehtest?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                </div>
+                <div *ngIf="!gehtest">
+                    <a routerLink="gehtest/create" class="btn btn-primary">Erfassen</a>
+                </div>
+            </div>  
+          </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Training auswählen</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Titel</th>
+                <th>Start</th>
+                <th>Ende</th>
+                <th></th>
+      
+              </tr>
+            </thead>
+            <tbody *ngFor="let training of trainings">
+              <tr>
+              
+                <td>{{training?.title}}</td>
+                <td>{{training?.start}}</td>
+                <td>{{training?.end}}</td>
+                <td><a (click)="addTraining(training)" class="btn btn-success">Zuteilen</a></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
+  </ng-template>

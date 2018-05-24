@@ -1,18 +1,32 @@
+import { Time } from "@angular/common";
+
+// string instead of time for easy json strings
+
 export interface Training{
     id: number,
-    startdatum: Date,
-    enddatum: Date,
-    sektion: number,
-    typ: string,
-    CRQSAS: number,
-    SF36: number,
-    CRDQ: number,
-    Patientenfragebogen: boolean,
-    sechsMin: boolean,
+    title: string,
     ort: string,
-    wann: string,
-    CAT: number,
-    closed: boolean,
-    statistik: boolean,
-    titel: string
+    start: Date,
+    end: Date,
+    montag_start: string,
+    montag_end: string,
+    dienstag_start: string,
+    dienstag_end: string,
+    mittwoch_start: string,
+    mittwoch_end: string,
+    donnerstag_start: string,
+    donnerstag_end: string,
+    freitag_start: string,
+    freitag_end: string,
+    samstag_start: string,
+    samstag_end: string,
+    sonntag_start: string,
+    sonntag_end: string,
+    CRQ_SAS_bogen: boolean,
+    SF_36_bogen: boolean,
+    CRDQ_bogen: boolean,
+    gehtest_bogen: boolean,
+    feedback_bogen: boolean,
+    COPD_bogen: boolean,
+    belegt: boolean
 }

@@ -1,0 +1,153 @@
+<div class="card">
+  <div class="card-body">
+  <h2>Stammdaten</h2>
+  <hr />
+
+  <form (ngSubmit)="onSubmit()" #trainingForm="ngForm" >
+
+  <div class="form-group row">
+      <label class="col-sm-2" for="title">Titel</label>
+      <div class="col-sm-10">
+        <input [(ngModel)]="training.title" type="text" class="form-control" id="title"  placeholder="Titel" name="title" required>
+      </div>
+  </div>
+
+  <div class="form-group row">
+      <label class="col-sm-2" for="ort">Trainingsort</label>
+      <div class="col-sm-10">
+        <textarea [(ngModel)]="training.ort" class="form-control " value ="" id="ort" rows="3" name="ort"></textarea>
+      </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2" for="kursdauer">Trainingsdauer</label>
+    
+      <div class="col-sm-4">
+          von: 
+          <input [(ngModel)]="training.start" type="date" class="form-control" id="start" name="start_dauer" required>
+          
+      </div>
+        <div class="col-sm-4">
+          bis: 
+            <input [(ngModel)]="training.end" type="date" class="form-control" id="end"  name="end_dauer" required>
+        </div>
+    
+  </div>
+    <!-- Fragebogen -->
+    <h3>Fragebogen</h3>
+    <div class="form-check">
+        <input [(ngModel)]="training.CRQ_SAS_bogen" class="form-check-input" type="checkbox" value="" id="CRQ_SAS_bogen" name="CRQ_SAS_bogen">
+        <label class="form-check-label" for="CRQ_SAS_bogen">
+            Fragebogen zu chonischen Atemwegserkrankungen (CRQ-SAS)
+        </label>
+    </div>
+    <div class="form-check">
+        <input [(ngModel)]="training.SF_36_bogen" class="form-check-input" type="checkbox" value="" id="SF_36_bogen" name="SF_36_bogen">
+        <label class="form-check-label" for="SF_36_bogen">
+            SF 36
+        </label>
+    </div>
+    <div class="form-check">
+        <input [(ngModel)]="training.CRDQ_bogen" class="form-check-input" type="checkbox" value="" id="CRDQ_bogen" name="CRDQ_bogen">
+        <label class="form-check-label" for="CRDQ_bogen">
+            Chronic respiratory Disease Questionaire (CRDQ) nach Gyatt
+        </label>
+    </div>
+    <div class="form-check">
+        <input [(ngModel)]="training.gehtest_bogen" class="form-check-input" type="checkbox" value="" id="gehtest_bogen" name="gehtest_bogen">
+        <label class="form-check-label" for="gehtest_bogen">
+            6 Minuten Gehtest jeweils am Anfang und Ende
+        </label>
+    </div>
+    <div class="form-check">
+        <input [(ngModel)]="training.feedback_bogen" class="form-check-input" type="checkbox" value="" id="feedback_bogen" name="feedback_bogen">
+        <label class="form-check-label" for="feedback_bogen">
+            Feedback-Fragebogen
+        </label>
+    </div>
+    <div class="form-check">
+        <input [(ngModel)]="training.COPD_bogen" class="form-check-input" type="checkbox" value="" id="COPD_bogen" name="COPD_bogen">
+        <label class="form-check-label" for="COPD_bogen">
+            COPD Assessment Test (CAT)-Fragebogen
+        </label>
+    </div>
+  <!-- Time selection form Monday-->
+  <h3>Trainingszeiten</h3>
+
+  <div class="form-group row">
+    <div class="col-sm-2 ver-align">Montag</div>
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="montag_start" name="montag_start"></ngb-timepicker>
+      </div>
+
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="montag_end" name="montag_end"></ngb-timepicker>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2 ver-align">Dienstag</div>
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="dienstag_start" name="dienstag_start"></ngb-timepicker>
+      </div>
+
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="dienstag_end" name="dienstag_end"></ngb-timepicker>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2 ver-align">Mittwoch</div>
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="mittwoch_start" name="mittwoch_end"></ngb-timepicker>
+      </div>
+
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="mittwoch_start" name="mittwoch_end"></ngb-timepicker>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-2 ver-align">Donnerstag</div>
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="donnerstag_start" name="donnerstag_end"></ngb-timepicker>
+      </div>
+
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="donnerstag_start" name="donnerstag_end"></ngb-timepicker>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-2 ver-align">Freitag</div>
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="freitag_start" name="freitag_end"></ngb-timepicker>
+      </div>
+
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="freitag_start" name="freitag_end"></ngb-timepicker>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-2 ver-align">Samstag</div>
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="samstag_start" name="samstag_end"></ngb-timepicker>
+      </div>
+
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="samstag_start" name="samstag_end"></ngb-timepicker>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-2 ver-align">Sonntag</div>
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="sonntag_start" name="sonntag__end"></ngb-timepicker>
+      </div>
+
+      <div class="col-sm-2">
+        <ngb-timepicker size="small" [(ngModel)]="sonntag_start" name="sonntag__end"></ngb-timepicker>
+      </div>
+    </div>
+  
+
+    <button type="submit" class="btn btn-primary" [disabled]="!trainingForm.form.valid">Speichern</button>        
+  </form>
+</div>

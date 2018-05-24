@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from "../../../models/Client";
 import { ClientsService } from "../../../services/clients.service";
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-clients',
   templateUrl: './create_clients.component.html',
@@ -12,7 +12,8 @@ export class CreateClientsComponent implements OnInit {
   patient: Client;
 
   constructor(
-    private _clientsService: ClientsService
+    private _clientsService: ClientsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -24,7 +25,14 @@ export class CreateClientsComponent implements OnInit {
   onSubmit(){
     console.log(this.patient);
 
-    this._clientsService.createClient(this.patient);
+    this._clientsService.createClient(this.patient)
+      .then(
+        data => {
+          this.router.navigate(['clients'])
+        }
+      )
+      .catch(error => console.log(error));
+      
 
   }
 

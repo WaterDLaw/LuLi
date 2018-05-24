@@ -4,6 +4,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 // Import containers
 import {
   FullLayoutComponent,
@@ -17,6 +19,8 @@ const APP_CONTAINERS = [
 
 // Services
 import { AuthService } from "./services/auth.service";
+
+
 
 // Import components
 import {
@@ -70,7 +74,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 
 // Import custom components so
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -79,8 +83,11 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
+    NgbModule.forRoot(),
     ChartsModule,
-    HttpModule
+    HttpModule,
+    CommonModule,
+    HttpClientModule
   ],
   declarations: [
     AppComponent,

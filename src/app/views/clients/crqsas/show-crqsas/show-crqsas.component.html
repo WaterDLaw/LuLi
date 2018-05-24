@@ -1,0 +1,814 @@
+<div class="card">
+    <div class="card-body">
+      <a class="btn btn-primary" style="float:right;"><i class="icon-doc white"></i></a>
+      <a routerLink="../../edit/{{crqsas?.id}}" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
+      <h2>CRQ-SAS Fragebogen</h2>
+      <hr />
+
+      <div *ngIf="showForm">
+          <div class="form-group">
+              <label class="col-sm-2" for="erstellungsdatum">Erstellungsdatum</label>
+              <div class="col-sm-3">
+                  <input [(ngModel)]="crqsas.erstellungsdatum" type="date" class="form-control" id="erstellungsdatum" placeholder="Erstellungsdatum" name="erstellungsdatum">
+              </div>
+          </div>
+          <hr />
+        <table class="table">
+            <thead>
+              <tr>
+                <th class="align-center"scope="col">Tätigkeit</th>
+                <th class="align-center" scope="col">Extreme Kurzatmigkeit</th>
+                <th class="align-center" scope="col">Starke Kurzatmigkeit</th>
+                <th class="align-center" scope="col">Ziemliche Kurzatmigkeit</th>
+                <th class="align-center" scope="col">Mässige Kurzatmigkeit</th>
+                <th class="align-center" scope="col">Leichte Kurzatmigkeit</th>
+                <th class="align-center" scope="col">Sehr leichte Kurzatmigkeit</th>
+                <th class="align-center" scope="col">Gar keine Kurzatmigkeit</th>
+                <th class="align-center" scope="col">Nicht ausgeübt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1. Gefühle wie z.B. Ärger oder Verdruss</th>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="1"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="2"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="3"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="4"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="5"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="6"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="7"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="8"></td>
+              </tr>
+              <tr>
+                <th scope="row">2. Sich um Ihre Grundbedürfnisse kümmern (baden, duschen, essen oder sich anziehen)</th>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="1"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="2"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="3"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="4"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="5"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="6"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="7"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="8"></td>
+              </tr>
+              <tr>
+                <th scope="row">3. Zu Fuss gehen</th>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="1"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="2"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="3"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="4"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="5"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="6"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="7"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="8"></td>
+              </tr>
+              <tr>
+                <th scope="row">4. Aufgaben im Haushalt erledigen (z.B. Hausarbeit, Lebensmittel einkaufen)</th>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="1"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="2"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="3"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="4"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="5"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="6"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="7"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="8"></td>
+              </tr>
+              <tr>
+                <th scope="row">5. Kontakte und Unternehmungen mit anderen Menschen</th>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="1"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="2"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="3"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="4"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="5"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="6"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="7"></td>
+                <td class="align-center"><input [disabled]="true" [(ngModel)]="crqsas.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="8"></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Frage 6 -->
+          <div class="form-group">
+              <label for="frage_6">6. Wie oft fühlten Sie sich während der <b>LETZTEN ZWEI WOCHEN</b> frustriert oder waren ungeduldig?</label>
+          </div>
+          <table class="table">
+            <thead>
+              <th></th>
+              <th></th>
+            </thead>
+            <tbody>
+  
+              <tr>
+                <td>1. Immer</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="1"></td>
+              </tr>
+  
+              <tr>
+                <td>2. Sehr oft</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="2"></td>
+              </tr>
+  
+              <tr>
+                <td>3. Oft</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="3"></td>
+              </tr>
+  
+              <tr>
+                <td>4. Manchmal</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="4"></td>
+              </tr>
+  
+              <tr>
+                <td>5. Selten</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="5"></td>
+              </tr>
+  
+              <tr>
+                <td>6. Fast nie</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="6"></td>
+              </tr>
+                
+              <tr>
+                <td>7. Gar nie</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="7"></td>
+              </tr>
+  
+            </tbody>
+          </table>
+  
+        <!-- Frage 7 -->
+        <div class="form-group">
+            <label for="frage_7">7. Wie oft verspürten Sie in den <b>LETZTEN ZWEI WOCHEN</b> ein Gefühl der Angst oder Panik, wenn Sie Schwierigkeiten mit dem Atmen hatten?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+        <!-- Frage 8 -->
+        <div class="form-group">
+            <label for="frage_8">8. Wie sieht es mit Erschöpfung und Müdigkeit aus? Wie müde haben Sie sich während der
+                <b>LETZTEN ZWEI WOCHEN</b> gefühlt?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+  
+         <!-- Frage 9 -->
+         <div class="form-group">
+            <label for="frage_9">9. Wie oft war es Ihnen in den <b>LETZTEN ZWEI WOCHEN</b> peinlich, weil Sie husten oder schwer atmen mussten?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_9" class="form-check-input" type="radio" name="frage_9" id="frage_9" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_9" class="form-check-input" type="radio" name="frage_9" id="frage_9" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_9" class="form-check-input" type="radio" name="frage_9" id="frage_9" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_9" class="form-check-input" type="radio" name="frage_9" id="frage_9" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_9" class="form-check-input" type="radio" name="frage_9" id="frage_9" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_9" class="form-check-input" type="radio" name="frage_9" id="frage_9" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_9" class="form-check-input" type="radio" name="frage_9" id="frage_9" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+         <!-- Frage 10 -->
+         <div class="form-group">
+            <label for="frage_10">10. Wie oft waren Sie in den <b>LETZTEN ZWEI WOCHEN</b> zuversichtlich und sicher, dass Sie mit Ihrer Krankheit umgehen können?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_10" class="form-check-input" type="radio" name="frage_10" id="frage_10" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_10" class="form-check-input" type="radio" name="frage_10" id="frage_10" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_10" class="form-check-input" type="radio" name="frage_10" id="frage_10" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_10" class="form-check-input" type="radio" name="frage_10" id="frage_10" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_10" class="form-check-input" type="radio" name="frage_10" id="frage_10" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_10" class="form-check-input" type="radio" name="frage_10" id="frage_10" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_10" class="form-check-input" type="radio" name="frage_10" id="frage_10" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+  
+        <!-- Frage 11 -->
+        <div class="form-group">
+            <label for="frage_11">11. Wie viel Energie hatten Sie in den <b>LETZTEN ZWEI WOCHEN</b>?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_11" class="form-check-input" type="radio" name="frage_11" id="frage_11" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_11" class="form-check-input" type="radio" name="frage_11" id="frage_11" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_11" class="form-check-input" type="radio" name="frage_11" id="frage_11" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_11" class="form-check-input" type="radio" name="frage_11" id="frage_11" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_11" class="form-check-input" type="radio" name="frage_11" id="frage_11" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_11" class="form-check-input" type="radio" name="frage_11" id="frage_11" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_11" class="form-check-input" type="radio" name="frage_11" id="frage_11" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+        <!-- Frage 12 -->
+        <div class="form-group">
+            <label for="frage_12">12. Wie oft waren Sie während der <b>LETZTEN ZWEI WOCHEN</b> verärgert, besorgt oder deprimiert?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_12" class="form-check-input" type="radio" name="frage_12" id="frage_12" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_12" class="form-check-input" type="radio" name="frage_12" id="frage_12" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_12" class="form-check-input" type="radio" name="frage_12" id="frage_12" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_12" class="form-check-input" type="radio" name="frage_12" id="frage_12" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_12" class="form-check-input" type="radio" name="frage_12" id="frage_12" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_12" class="form-check-input" type="radio" name="frage_12" id="frage_12" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_12" class="form-check-input" type="radio" name="frage_12" id="frage_12" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+        <!-- Frage 13 -->
+        <div class="form-group">
+            <label for="frage_13">13. Wie oft hatten Sie während der <b>LETZTEN ZWEI WOCHEN</b> das Gefühl, Ihre Atemprobleme vollständig unter Kontrolle zu haben?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_13" class="form-check-input" type="radio" name="frage_13" id="frage_13" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_13" class="form-check-input" type="radio" name="frage_13" id="frage_13" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_13" class="form-check-input" type="radio" name="frage_13" id="frage_13" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_13" class="form-check-input" type="radio" name="frage_13" id="frage_13" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_13" class="form-check-input" type="radio" name="frage_13" id="frage_13" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_13" class="form-check-input" type="radio" name="frage_13" id="frage_13" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_13" class="form-check-input" type="radio" name="frage_13" id="frage_13" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+        <!-- Frage 14 -->
+        <div class="form-group">
+            <label for="frage_14">14. Wie oft waren Sie in den <b>LETZTEN ZWEI WOCHEN</b> locker und entspannt?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_14" class="form-check-input" type="radio" name="frage_14" id="frage_14" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_14" class="form-check-input" type="radio" name="frage_14" id="frage_14" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_14" class="form-check-input" type="radio" name="frage_14" id="frage_14" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_14" class="form-check-input" type="radio" name="frage_14" id="frage_14" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_14" class="form-check-input" type="radio" name="frage_14" id="frage_14" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_14" class="form-check-input" type="radio" name="frage_14" id="frage_14" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_14" class="form-check-input" type="radio" name="frage_14" id="frage_14" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+        <!-- Frage 15 -->
+        <div class="form-group">
+            <label for="frage_15">15. Wie oft hatten Sie in den <b>LETZTEN ZWEI WOCHEN</b> das Gefühl, wenig Energie zu haben?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_15" class="form-check-input" type="radio" name="frage_15" id="frage_15" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_15" class="form-check-input" type="radio" name="frage_15" id="frage_15" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_15" class="form-check-input" type="radio" name="frage_15" id="frage_15" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_15" class="form-check-input" type="radio" name="frage_15" id="frage_15" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_15" class="form-check-input" type="radio" name="frage_15" id="frage_15" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_15" class="form-check-input" type="radio" name="frage_15" id="frage_15" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_15" class="form-check-input" type="radio" name="frage_15" id="frage_15" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+        <!-- Frage 16 -->
+        <div class="form-group">
+            <label for="frage_16">16. Wie oft fühlten Sie sich in den <b>LETZTEN ZWEI WOCHEN</b> im Allgemeinen mutlos oder niedergeschlagen?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_16" class="form-check-input" type="radio" name="frage_16" id="frage_16" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_16" class="form-check-input" type="radio" name="frage_16" id="frage_16" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true"  [(ngModel)]="crqsas.frage_16" class="form-check-input" type="radio" name="frage_16" id="frage_16" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_16" class="form-check-input" type="radio" name="frage_16" id="frage_16" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_16" class="form-check-input" type="radio" name="frage_16" id="frage_16" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_16" class="form-check-input" type="radio" name="frage_16" id="frage_16" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_16" class="form-check-input" type="radio" name="frage_16" id="frage_16" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+         <!-- Frage 17 -->
+         <div class="form-group">
+            <label for="frage_17">17. Wie oft haben Sie sich in den <b>LETZTEN ZWEI WOCHEN</b> erschöpft oder lustlos gefühlt?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_17" class="form-check-input" type="radio" name="frage_17" id="frage_17" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_17" class="form-check-input" type="radio" name="frage_17" id="frage_17" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_17" class="form-check-input" type="radio" name="frage_17" id="frage_17" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_17" class="form-check-input" type="radio" name="frage_17" id="frage_17" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_17" class="form-check-input" type="radio" name="frage_17" id="frage_17" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_17" class="form-check-input" type="radio" name="frage_17" id="frage_17" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_17" class="form-check-input" type="radio" name="frage_17" id="frage_17" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+         <!-- Frage 18 -->
+         <div class="form-group">
+            <label for="frage_18">18. Wie zufrieden waren Sie in den <b>LETZTEN ZWEI WOCHEN</b> mit Ihrem Leben?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Sehr unzufrieden, die meiste Zeit unzufrieden</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_18" class="form-check-input" type="radio" name="frage_18" id="frage_18" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Im Allgemeinen unzufrieden</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_18" class="form-check-input" type="radio" name="frage_18" id="frage_18" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Ein wenig unzufrieden</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_18" class="form-check-input" type="radio" name="frage_18" id="frage_18" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Im Allgemeinen zufrieden</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_18" class="form-check-input" type="radio" name="frage_18" id="frage_18" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Meist zufrieden</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_18" class="form-check-input" type="radio" name="frage_18" id="frage_18" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Meist sehr zufrieden</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_18" class="form-check-input" type="radio" name="frage_18" id="frage_18" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Ausserordentlich zufrieden, ich könnte nicht zufriedener sein</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_18" class="form-check-input" type="radio" name="frage_18" id="frage_18" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+        <!-- Frage 19 -->
+        <div class="form-group">
+          <label for="frage_19">19. Wie oft waren Sie in den <b>LETZTEN ZWEI WOCHEN</b> verstört oder ängstlich, wenn Sie Schwierigkeiten mit dem Atmen hatten?</label>
+        </div>
+        <table class="table">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>1. Immer</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_19" class="form-check-input" type="radio" name="frage_19" id="frage_19" [value]="1"></td>
+            </tr>
+  
+            <tr>
+              <td>2. Sehr oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_19" class="form-check-input" type="radio" name="frage_19" id="frage_19" [value]="2"></td>
+            </tr>
+  
+            <tr>
+              <td>3. Oft</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_19" class="form-check-input" type="radio" name="frage_19" id="frage_19" [value]="3"></td>
+            </tr>
+  
+            <tr>
+              <td>4. Manchmal</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_19" class="form-check-input" type="radio" name="frage_19" id="frage_19" [value]="4"></td>
+            </tr>
+  
+            <tr>
+              <td>5. Selten</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_19" class="form-check-input" type="radio" name="frage_19" id="frage_19" [value]="5"></td>
+            </tr>
+  
+            <tr>
+              <td>6. Fast nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_19" class="form-check-input" type="radio" name="frage_19" id="frage_19" [value]="6"></td>
+            </tr>
+              
+            <tr>
+              <td>7. Gar nie</td>
+              <td><input [disabled]="true" [(ngModel)]="crqsas.frage_19" class="form-check-input" type="radio" name="frage_19" id="frage_19" [value]="7"></td>
+            </tr>
+  
+          </tbody>
+        </table>
+        <!-- Frage 20 -->
+        <div class="form-group">
+            <label for="frage_20">20. Wie oft waren Sie in <b>LETZTEN ZWEI WOCHEN</b> im Allgemeinen ruhelos, angespannt oder nervös?</label>
+          </div>
+          <table class="table">
+            <thead>
+              <th></th>
+              <th></th>
+            </thead>
+            <tbody>
+    
+              <tr>
+                <td>1. Immer</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_20" class="form-check-input" type="radio" name="frage_20" id="frage_20" [value]="1"></td>
+              </tr>
+    
+              <tr>
+                <td>2. Sehr oft</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_20" class="form-check-input" type="radio" name="frage_20" id="frage_20" [value]="2"></td>
+              </tr>
+    
+              <tr>
+                <td>3. Oft</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_20" class="form-check-input" type="radio" name="frage_20" id="frage_20" [value]="3"></td>
+              </tr>
+    
+              <tr>
+                <td>4. Manchmal</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_20" class="form-check-input" type="radio" name="frage_20" id="frage_20" [value]="4"></td>
+              </tr>
+    
+              <tr>
+                <td>5. Selten</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_20" class="form-check-input" type="radio" name="frage_20" id="frage_20" [value]="5"></td>
+              </tr>
+    
+              <tr>
+                <td>6. Fast nie</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_20" class="form-check-input" type="radio" name="frage_20" id="frage_20" [value]="6"></td>
+              </tr>
+                
+              <tr>
+                <td>7. Gar nie</td>
+                <td><input [disabled]="true" [(ngModel)]="crqsas.frage_20" class="form-check-input" type="radio" name="frage_20" id="frage_20" [value]="7"></td>
+              </tr>
+    
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>

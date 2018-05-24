@@ -1,0 +1,273 @@
+<div class="card">
+    <div class="card-body">
+      <h2>COPD Assessment Test, CAT</h2>
+      <hr />
+
+      <form (ngSubmit)="onSubmit()" #catForm="ngForm" *ngIf="showForm">
+          <div class="form-group">
+              <label class="col-sm-2" for="geburtsdatum">Erstellungsdatum</label>
+              <div class="col-sm-3">
+                  <input [(ngModel)]="cat.erstellungsdatum" type="date" class="form-control" id="erstellungsdatum" placeholder="Erstellungsdatum" name="erstellungsdatum">
+              </div>
+          </div>
+          <hr />
+          <!-- Frage 1-->
+          <div class="form-group row">
+            <label class="col-sm-2" for="frage_1">Ich huste nie</label>
+            <div class="col-sm-3">
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="0">
+                  <label class="form-check-label" for="frage_1">0</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="1">
+                <label class="form-check-label" for="frage_1">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="2">
+                  <label class="form-check-label" for="frage_1">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="3">
+                  <label class="form-check-label" for="frage_1">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="4">
+                  <label class="form-check-label" for="frage_1">4</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_1" class="form-check-input" type="radio" name="frage_1" id="frage_1" [value]="5">
+                  <label class="form-check-label" for="frage_1">5</label>
+              </div>
+          </div>
+          <label  for="frage_1">Ich huste immer</label>
+        </div>
+        <!-- Frage 2-->
+        <div class="form-group row">
+            <label class="col-sm-2" for="frage_2">Ich habe keinerlei Schleim in meiner Brust</label>
+            <div class="col-sm-3">
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="0">
+                  <label class="form-check-label" for="frage_2">0</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="1">
+                <label class="form-check-label" for="frage_2">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="2">
+                  <label class="form-check-label" for="frage_2">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="3">
+                  <label class="form-check-label" for="frage_2">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="4">
+                  <label class="form-check-label" for="frage_2">4</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_2" class="form-check-input" type="radio" name="frage_2" id="frage_2" [value]="5">
+                  <label class="form-check-label" for="frage_2">5</label>
+              </div>
+          </div>
+          <label  for="frage_2">Meine Brust ist vollkommen mit Schleim gefüllt</label>
+        </div>
+        <!-- Frage 3-->
+        <div class="form-group row">
+            <label class="col-sm-2" for="frage_3">Ich spüre keinerlei Engegefühl im Brustbereich</label>
+            <div class="col-sm-3">
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="0">
+                  <label class="form-check-label" for="frage_3">0</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="1">
+                <label class="form-check-label" for="frage_3">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="2">
+                  <label class="form-check-label" for="frage_3">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="3">
+                  <label class="form-check-label" for="frage_3">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="4">
+                  <label class="form-check-label" for="frage_3">4</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_3" class="form-check-input" type="radio" name="frage_3" id="frage_3" [value]="5">
+                  <label class="form-check-label" for="frage_3">5</label>
+              </div>
+          </div>
+          <label  for="frage_3">Ich spüre ein sehr starkes Engegefühl im Brustbereich</label>
+        </div>
+        <!-- Frage 4-->
+        <div class="form-group row">
+            <label class="col-sm-2" for="frage_4">Wenn ich einen flachen Hügel oder eine Treppe hinaufgehe, komme ich nicht ausser Atem</label>
+            <div class="col-sm-3">
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="0">
+                  <label class="form-check-label" for="frage_4">0</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="1">
+                <label class="form-check-label" for="frage_4">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="2">
+                  <label class="form-check-label" for="frage_4">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="3">
+                  <label class="form-check-label" for="frage_4">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="4">
+                  <label class="form-check-label" for="frage_4">4</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_4" class="form-check-input" type="radio" name="frage_4" id="frage_4" [value]="5">
+                  <label class="form-check-label" for="frage_4">5</label>
+              </div>
+          </div>
+          <label  for="frage_4">Wenn ich einen flachen Hügel oder eine Treppe hinaufgehe, komme ich sehr ausser Atem</label>
+        </div>
+        <!-- Frage 5-->
+        <div class="form-group row">
+            <label class="col-sm-2" for="frage_5">
+                Meine Aktivitäten zuhause sind nicht eingeschränkt</label>
+            <div class="col-sm-3">
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="0">
+                  <label class="form-check-label" for="frage_5">0</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="1">
+                <label class="form-check-label" for="frage_5">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="2">
+                  <label class="form-check-label" for="frage_5">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="3">
+                  <label class="form-check-label" for="frage_5">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="4">
+                  <label class="form-check-label" for="frage_5">4</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_5" class="form-check-input" type="radio" name="frage_5" id="frage_5" [value]="5">
+                  <label class="form-check-label" for="frage_5">5</label>
+              </div>
+          </div>
+          <label  for="frage_5">Meine Aktivitäten zuhause sind sehr eingeschränkt</label>
+        </div>
+        <!-- Frage 6-->
+        <div class="form-group row">
+            <label class="col-sm-2" for="frage_6">
+                Ich habe keine Bedenken, trotz meiner Lungenerkrankung das Haus zu verlassen</label>
+            <div class="col-sm-3">
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="0">
+                  <label class="form-check-label" for="frage_6">0</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="1">
+                <label class="form-check-label" for="frage_6">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="2">
+                  <label class="form-check-label" for="frage_6">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="3">
+                  <label class="form-check-label" for="frage_6">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="4">
+                  <label class="form-check-label" for="frage_6">4</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_6" class="form-check-input" type="radio" name="frage_6" id="frage_6" [value]="5">
+                  <label class="form-check-label" for="frage_6">5</label>
+              </div>
+          </div>
+          <label  for="frage_6">Ich habe wegen meiner Lungenerkrankung grosse Bedenken, das Haus zu verlassen</label>
+        </div>
+         <!-- Frage 7-->
+         <div class="form-group row">
+            <label class="col-sm-2" for="frage_7">Ich schlafe gut</label>
+            <div class="col-sm-3">
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="0">
+                  <label class="form-check-label" for="frage_7">0</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="1">
+                <label class="form-check-label" for="frage_7">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="2">
+                  <label class="form-check-label" for="frage_7">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="3">
+                  <label class="form-check-label" for="frage_7">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="4">
+                  <label class="form-check-label" for="frage_7">4</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input [(ngModel)]="cat.frage_7" class="form-check-input" type="radio" name="frage_7" id="frage_7" [value]="5">
+                  <label class="form-check-label" for="frage_7">5</label>
+              </div>
+          </div>
+          <label  for="frage_7">Wegen meiner Lungenerkrankung schlafe ich schlecht</label>
+        </div>
+        <!-- Frage 8-->
+        <div class="form-group row">
+          <label class="col-sm-2" for="frage_8">Ich habe viel Energie</label>
+          <div class="col-sm-3">
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="0">
+                <label class="form-check-label" for="frage_8">0</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input [(ngModel)]="cat.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="1">
+              <label class="form-check-label" for="frage_8">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="2">
+                <label class="form-check-label" for="frage_8">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="3">
+                <label class="form-check-label" for="frage_8">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="4">
+                <label class="form-check-label" for="frage_8">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="cat.frage_8" class="form-check-input" type="radio" name="frage_8" id="frage_8" [value]="5">
+                <label class="form-check-label" for="frage_8">5</label>
+            </div>
+        </div>
+
+      </div>
+      <div class="form-group row">
+          <label class="col-sm-2" for="groesse">Gesamtpunktzahl</label>
+          <div class="col-sm-3">
+              <input [(ngModel)]="cat.gesamtpunktzahl" type="text" class="form-control" id="groesse" placeholder="Gesamtpunktzahl" name="gesamtpunktzahl">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary"> Speichern</button>
+      </form>
+    </div>
+</div>
