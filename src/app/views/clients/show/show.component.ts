@@ -50,6 +50,8 @@ export class ShowComponent implements OnInit {
   getPatient(id){
     this._clientService.getClient(id)
       .subscribe(data => {
+        console.log("patient");
+        console.log(data);
         this.patient = data;
       
       })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainingsService } from "../../../services/trainings.service";
 import { Training } from "../../../models/Training";
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-create-training',
   templateUrl: './create_training.component.html',
@@ -28,7 +28,8 @@ export class CreateTrainingComponent implements OnInit {
   private sonntag_end;
 
   constructor(
-    private _trainingsService: TrainingsService
+    private _trainingsService: TrainingsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -57,7 +58,13 @@ export class CreateTrainingComponent implements OnInit {
 
     console.log(this.training);
 
-    this._trainingsService.createTraining(this.training);
+    this._trainingsService.createTraining(this.training)
+    .then(
+      data => {
+        this.router.navigate([`trainings/show/${this.training.id}`]);
+      }
+    )
+    .catch(error => console.log(error));
   }
 
   

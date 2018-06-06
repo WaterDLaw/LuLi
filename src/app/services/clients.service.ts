@@ -9,8 +9,8 @@ import 'rxjs/add/operator/map';
 import { AuthService } from './auth.service';
 import { Training } from '../models/Training';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Crqsas } from '../models/CRQSAS';
-import { Cat } from '../models/CAT';
+import { Crqsas } from '../models/Crqsas';
+import { Cat } from '../models/Cat';
 import { Gehtest } from '../models/Gehtest';
 
 @Injectable()

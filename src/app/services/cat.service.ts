@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Cat } from "../models/CAT";
+import { Cat } from "../models/Cat";
 import { Client } from "../models/Client";
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';

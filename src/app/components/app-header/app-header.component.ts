@@ -28,8 +28,9 @@ export class AppHeaderComponent {
         console.log("in sub");
         console.log(data);
         if(data){
-          var user = JSON.parse(localStorage.getItem('currentUser'));
-          this.currentUser = user["email"];
+          var user = localStorage.getItem('email');
+          console.log(user);
+          this.currentUser = user;
         }
       },
       (err) => {console.log(err)}, 

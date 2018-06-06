@@ -81,9 +81,14 @@
               <a (click)="openModal(content)" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
           </div>
         </div>
-        <div class="row" *ngIf="patient.training_id == null">
-            <a (click)="openModal(content)" class="btn btn-primary">Training zuteilen</a>
-        </div>
+        <div class="row margin-bot" *ngIf="patient.training_id == null">
+            <div class="col-md-3">
+              Noch keinem training zugeteilt
+            </div>
+            <div class="col-md-2">
+              <a (click)="openModal(content)" class="btn btn-primary white">Training zuteilen</a>
+            </div>
+          </div>
 
         <h3>Fragebögen</h3>
         <hr />
@@ -93,8 +98,8 @@
           </div>
           <div class="col-md-2">
               <div *ngIf="feedback">
-                  <a routerLink="../../../clients/show/{{patient?.training_id}}/feedback/show/{{feedback[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.training_id}}/feedback/edit/{{feedback[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/feedback/show/{{feedback[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/feedback/edit/{{feedback[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
               </div>
               <div *ngIf="!feedback">
                   <a routerLink="feedback/create" class="btn btn-primary">Erfassen</a>
@@ -107,8 +112,8 @@
           </div>
           <div class="col-md-2">
               <div *ngIf="crqsas">
-                  <a routerLink="../../../clients/show/{{patient?.training_id}}/crqsas/show/{{crqsas[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.training_id}}/crqsas/edit/{{crqsas[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsas[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsas[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
               </div>
               <div *ngIf="!crqsas">
                   <a routerLink="crqsas/create" class="btn btn-primary">Erfassen</a>
@@ -121,8 +126,8 @@
           </div>
           <div class="col-md-2">
               <div *ngIf="cat">
-                  <a routerLink="../../../clients/show/{{patient?.training_id}}/cat/show/{{cat?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.training_id}}/cat/edit/{{cat?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{cat?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{cat?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
               </div>
               <div *ngIf="!cat">
                   <a routerLink="cat/create" class="btn btn-primary">Erfassen</a>
@@ -135,8 +140,8 @@
             </div>
             <div class="col-md-2">
                 <div *ngIf="gehtest">
-                    <a routerLink="../../../clients/show/{{patient?.training_id}}/gehtest/show/{{gehtest?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                    <a routerLink="../../../clients/show/{{patient?.training_id}}/gehtest/edit/{{gehtest?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtest?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtest?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
                 </div>
                 <div *ngIf="!gehtest">
                     <a routerLink="gehtest/create" class="btn btn-primary">Erfassen</a>

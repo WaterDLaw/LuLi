@@ -27,9 +27,7 @@ export class TrainingsService {
     
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
     this.http.post('http://localhost:8000/api/trainings?token=' + token, training, {headers: headers})
-      .toPromise()
-      .then(res => console.log(res))
-      .catch(error => console.log(error)); 
+      .toPromise();
    
   }
   // Get all trainings INDEX Method returns all patients
@@ -53,9 +51,7 @@ export class TrainingsService {
     console.log(training);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.put(`http://localhost:8000/api/trainings/${training.id}?token=` + token, training, {headers: headers} )
-    .toPromise()
-    .then(res => console.log(res))
-    .catch(error => console.log(error)); 
+    .toPromise();
   }
 
   getParticipants(training_id: number){

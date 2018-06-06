@@ -3,7 +3,7 @@
     <h2>Stammdaten</h2>
     <hr />
   
-    <form (ngSubmit)="onSubmit()" #trainingForm="ngForm" >
+    <form (ngSubmit)="onSubmit()" #trainingForm="ngForm" *ngIf="showForm">
   
     <div class="form-group row">
         <label class="col-sm-2" for="title">Titel</label>
