@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 export class GehtestService {
 
   private localhost:string = "http://localhost:8000";
-  private herokuApi:string = 'http://arponline.herokuapp.com'
+  private herokuApi:string = 'https://arponline.herokuapp.com'
 
   constructor(
     private http: HttpClient,
