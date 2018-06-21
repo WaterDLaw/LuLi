@@ -9,11 +9,11 @@
 
   <!-- Login Page link -->
   <div *ngIf="!(isLoggedIn$ | async)">
-    <a routerLink="/login"type="button" class="btn btn-primary">Login</a>
+    <a routerLink="/login"  class="btn btn-primary">Login</a>
   </div>
   <div *ngIf="(isLoggedIn$ | async)">
     Eingeloggt als: {{currentUser}}
-    <a type="button" class="btn btn-primary" (click)="logout()">Logout</a>
+    <a class="btn btn-primary" (click)="logout()">Logout</a>
   </div>
   <button class="navbar-toggler d-md-down-none" type="button" appAsideMenuToggler>
     <span class="navbar-toggler-icon"></span>

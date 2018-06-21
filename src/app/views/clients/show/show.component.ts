@@ -20,9 +20,13 @@ export class ShowComponent implements OnInit {
 
   // Reference Variables
   feedback: any;
-  crqsas: any;
-  cat: any;
-  gehtest:any;
+  crqsasBefore: any;
+  catBefore: any;
+  gehtestBefore:any;
+
+  crqsasAfter: any;
+  catAfter: any;
+  gehtestAfter: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,11 +44,16 @@ export class ShowComponent implements OnInit {
     this.getPatient(this.route.snapshot.params['id']);
     // load the Trainings
     this.getTrainings();
-    // Check if questionaries exists
     this.checkFeedback(this.route.snapshot.params['id']);
-    this.checkCrqsas(this.route.snapshot.params['id']);
-    this.checkCat(this.route.snapshot.params['id']);
-    this.checkGehtest(this.route.snapshot.params['id']);
+    // Check if questionaries exists Before
+    this.checkCrqsasBefore(this.route.snapshot.params['id']);
+    this.checkCatBefore(this.route.snapshot.params['id']);
+    this.checkGehtestBefore(this.route.snapshot.params['id']);
+
+    // Check if questionaries exist After
+    this.checkCrqsasAfter(this.route.snapshot.params['id']);
+    this.checkCatAfter(this.route.snapshot.params['id']);
+    this.checkGehtestAfter(this.route.snapshot.params['id']);
   }
 
   getPatient(id){
@@ -65,30 +74,57 @@ export class ShowComponent implements OnInit {
       })
   }
 
-  checkCrqsas(id){
-    this._clientService.hasCrqsas(id)
+  checkCrqsasBefore(id){
+    this._clientService.hasCrqsasBefore(id)
       .subscribe(data => {
         console.log("check Crq");
         console.log(data);
-        this.crqsas = data;
+        this.crqsasBefore = data;
       })
   }
 
-  checkCat(id){
-    this._clientService.hasCat(id)
+  checkCrqsasAfter(id){
+    this._clientService.hasCrqsasAfter(id)
+      .subscribe(data => {
+        console.log("check Crq");
+        console.log(data);
+        this.crqsasAfter = data;
+      })
+  }
+
+  checkCatBefore(id){
+    this._clientService.hasCatBefore(id)
       .subscribe(data => {
         console.log("check Cat");
         console.log(data);
-        this.cat = data;
+        this.catBefore = data;
       })
   }
 
-  checkGehtest(id){
-    this._clientService.hasGehtest(id)
+  checkCatAfter(id){
+    this._clientService.hasCatAfter(id)
+      .subscribe(data => {
+        console.log("check Cat");
+        console.log(data);
+        this.catAfter = data;
+      })
+  }
+
+  checkGehtestBefore(id){
+    this._clientService.hasGehtestBefore(id)
       .subscribe(data => {
         console.log("check Gehtest");
         console.log(data);
-        this.gehtest = data;
+        this.gehtestBefore = data;
+      })
+  }
+
+  checkGehtestAfter(id){
+    this._clientService.hasGehtestAfter(id)
+      .subscribe(data => {
+        console.log("check Gehtest After");
+        console.log(data);
+        this.gehtestAfter = data;
       })
   }
 

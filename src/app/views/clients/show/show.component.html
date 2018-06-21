@@ -106,17 +106,18 @@
               </div>
           </div>  
         </div>
+        <h4>Vor dem Training</h4>
         <div class="row margin-bot">
           <div class="col-md-3">
             CRQ-SAS
           </div>
           <div class="col-md-2">
-              <div *ngIf="crqsas">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsas[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsas[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+              <div *ngIf="crqsasBefore">
+                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsasBefore[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsasBefore[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
               </div>
-              <div *ngIf="!crqsas">
-                  <a routerLink="crqsas/create" class="btn btn-primary">Erfassen</a>
+              <div *ngIf="!crqsasBefore">
+                  <a routerLink="crqsas/create/before" class="btn btn-primary">Erfassen</a>
               </div>
           </div>  
         </div>
@@ -125,12 +126,12 @@
             COPD Assessment Test
           </div>
           <div class="col-md-2">
-              <div *ngIf="cat">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{cat?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{cat?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+              <div *ngIf="catBefore">
+                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catBefore[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catBefore[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
               </div>
-              <div *ngIf="!cat">
-                  <a routerLink="cat/create" class="btn btn-primary">Erfassen</a>
+              <div *ngIf="!catBefore">
+                  <a routerLink="cat/create/before" class="btn btn-primary">Erfassen</a>
               </div>
           </div>  
         </div>
@@ -139,12 +140,55 @@
               Gehtest
             </div>
             <div class="col-md-2">
-                <div *ngIf="gehtest">
-                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtest?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtest?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                <div *ngIf="gehtestBefore">
+                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestBefore[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestBefore[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
                 </div>
-                <div *ngIf="!gehtest">
-                    <a routerLink="gehtest/create" class="btn btn-primary">Erfassen</a>
+                <div *ngIf="!gehtestBefore">
+                    <a routerLink="gehtest/create/before" class="btn btn-primary">Erfassen</a>
+                </div>
+            </div>  
+          </div>
+          <h4>Nach dem Training</h4>
+        <div class="row margin-bot">
+          <div class="col-md-3">
+            CRQ-SAS
+          </div>
+          <div class="col-md-2">
+              <div *ngIf="crqsasAfter">
+                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsasAfter[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsasAfter[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+              </div>
+              <div *ngIf="!crqsasAfter">
+                  <a routerLink="crqsas/create/after" class="btn btn-primary">Erfassen</a>
+              </div>
+          </div>  
+        </div>
+        <div class="row margin-bot">
+          <div class="col-md-3">
+            COPD Assessment Test
+          </div>
+          <div class="col-md-2">
+              <div *ngIf="catAfter">
+                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catAfter[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catAfter[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+              </div>
+              <div *ngIf="!catAfter">
+                  <a routerLink="cat/create/after" class="btn btn-primary">Erfassen</a>
+              </div>
+          </div>  
+        </div>
+        <div class="row margin-bot">
+            <div class="col-md-3">
+              Gehtest
+            </div>
+            <div class="col-md-2">
+                <div *ngIf="gehtestAfter">
+                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestAfter[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestAfter[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                </div>
+                <div *ngIf="!gehtestAfter">
+                    <a routerLink="gehtest/create/after" class="btn btn-primary">Erfassen</a>
                 </div>
             </div>  
           </div>

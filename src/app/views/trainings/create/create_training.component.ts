@@ -12,6 +12,7 @@ export class CreateTrainingComponent implements OnInit {
   private training: Training;
 
   // Time
+  /*
   private montag_start;
   private montag_end;
   private dienstag_start;
@@ -26,7 +27,7 @@ export class CreateTrainingComponent implements OnInit {
   private samstag_end;
   private sonntag_start;
   private sonntag_end;
-
+*/
   constructor(
     private _trainingsService: TrainingsService,
     private router: Router
@@ -41,6 +42,7 @@ export class CreateTrainingComponent implements OnInit {
   onSubmit(){
 
     //Stringify the json objects
+    /*
     this.training.montag_start = JSON.stringify(this.montag_start);
     this.training.montag_end = JSON.stringify(this.montag_end);
     this.training.dienstag_start = JSON.stringify(this.dienstag_start);
@@ -55,13 +57,13 @@ export class CreateTrainingComponent implements OnInit {
     this.training.samstag_end = JSON.stringify(this.samstag_end);
     this.training.sonntag_start = JSON.stringify(this.sonntag_start);
     this.training.sonntag_end = JSON.stringify(this.sonntag_end);
-
+    */
     console.log(this.training);
 
     this._trainingsService.createTraining(this.training)
     .then(
       data => {
-        this.router.navigate([`trainings/show/${this.training.id}`]);
+        this.router.navigate([`trainings`]);
       }
     )
     .catch(error => console.log(error));

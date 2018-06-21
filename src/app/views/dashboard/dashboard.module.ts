@@ -6,18 +6,25 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 
 import { FormsModule }   from '@angular/forms';
 
-import { AuthGuard } from "../../guards/auth.guard";
+
+import { CalendarComponent } from "../trainings/calendar/calendar.component";
+import { TrainingsService } from '../../services/trainings.service';
+import { CommonModule } from '@angular/common';
+
+
 
 @NgModule({
   imports: [
     DashboardRoutingModule,
     ChartsModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   declarations: 
     [ 
-      DashboardComponent
+      DashboardComponent,
+      CalendarComponent
     ],
-  providers:[AuthGuard]
+  providers:[TrainingsService]
 })
 export class DashboardModule { }

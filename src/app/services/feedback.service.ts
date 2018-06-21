@@ -8,6 +8,9 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class FeedbackService {
 
+  private localhost:string = "http://localhost:8000";
+  private herokuApi:string = 'https://arponline.herokuapp.com'
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -19,7 +22,7 @@ export class FeedbackService {
     console.log('create feedback');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.post('http://localhost:8000/api/arp_fragebogen?token=' + token, {feedback, patient_id}, {headers: headers})
+    return this.http.post(this.herokuApi + '/api/arp_fragebogen?token=' + token, {feedback, patient_id}, {headers: headers})
     .toPromise();
   }
   // updates an arpfeedback PUT
@@ -27,7 +30,7 @@ export class FeedbackService {
     console.log('update feedback');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.put(`http://localhost:8000/api/arp_fragebogen/${feedback.id}?token=` + token, {feedback, patient_id}, {headers: headers})
+    return this.http.put(this.herokuApi + `/api/arp_fragebogen/${feedback.id}?token=` + token, {feedback, patient_id}, {headers: headers})
     .toPromise();
   }
 
@@ -36,7 +39,7 @@ export class FeedbackService {
     console.log('show feedback');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.get<Feedback>(`http://localhost:8000/api/arp_fragebogen/${id}?token=` + token);
+    return this.http.get<Feedback>(this.herokuApi + `/api/arp_fragebogen/${id}?token=` + token);
   }
 
   // returns all feedback for future implemantation

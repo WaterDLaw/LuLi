@@ -13,6 +13,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class TrainingsService {
 
 
+  private localhost:string = "http://localhost:8000";
+  private herokuApi:string = 'http://arponline.herokuapp.com'
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -26,7 +29,7 @@ export class TrainingsService {
     const token = this._authService.getToken();
     
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    this.http.post('http://localhost:8000/api/trainings?token=' + token, training, {headers: headers})
+    return this.http.post(this.herokuApi + '/api/trainings?token=' + token, training, {headers: headers})
       .toPromise();
    
   }
@@ -34,14 +37,14 @@ export class TrainingsService {
   getTrainings(): any{
     console.log("index");
     const token = this._authService.getToken();
-    return this.http.get<Training>('http://localhost:8000/api/trainings?token=' + token);
+    return this.http.get<Training>(this.herokuApi + '/api/trainings?token=' + token);
   
   }
   // Get training SHOW Method returns a single training with an id
   getTraining(id){
     console.log("show");
     const token = this._authService.getToken();
-    return this.http.get<Training>(`http://localhost:8000/api/trainings/${id}?token=` + token);
+    return this.http.get<Training>(this.herokuApi + `/api/trainings/${id}?token=` + token);
   }
 
   updateTraining(training: Training): any{
@@ -50,7 +53,7 @@ export class TrainingsService {
     console.log(training.id);
     console.log(training);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put(`http://localhost:8000/api/trainings/${training.id}?token=` + token, training, {headers: headers} )
+    return this.http.put(this.herokuApi + `/api/trainings/${training.id}?token=` + token, training, {headers: headers} )
     .toPromise();
   }
 
@@ -58,7 +61,14 @@ export class TrainingsService {
     console.log("Get participations");
     const token = this._authService.getToken();
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.get<Array<Client>>(`http://localhost:8000/api/trainings/${training_id}/getParticipants?token=` + token);
+    return this.http.get<Array<Client>>(this.herokuApi + `/api/trainings/${training_id}/getParticipants?token=` + token);
+  }
+
+  getParticipantsCalendar(){
+    console.log("Get participants for Calendar");
+
+    return this.http.get<any>(this.herokuApi + `/api/calendar`)
+      .toPromise();
   }
 
 }

@@ -87,7 +87,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'show/:id/crqsas/create',
+    path: 'show/:id/crqsas/create/:time',
     component: CreateCrqsasComponent,
     canActivate: [AuthGuard],
     data: {
@@ -111,7 +111,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'show/:id/cat/create',
+    path: 'show/:id/cat/create/:time',
     component: CreateCatComponent,
     canActivate: [AuthGuard],
     data: {
@@ -136,7 +136,7 @@ const routes: Routes = [
   }
   ,
   {
-    path: 'show/:id/gehtest/create',
+    path: 'show/:id/gehtest/create/:time',
     component: CreateGehtestComponent,
     canActivate: [AuthGuard],
     data: {

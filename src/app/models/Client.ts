@@ -28,6 +28,7 @@ export interface Client{
     postoperative_lungenoperation?: boolean,
     funktionelle_atemstörung?: boolean,
     telefon?: number,
-    training_id?: number
+    training_id?: number,
+    status?: string
 
 }

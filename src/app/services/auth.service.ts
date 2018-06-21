@@ -14,6 +14,9 @@ export class AuthService {
   // BehavourSubject mit den Loogedin Data (init = False)
   public loginStatus: BehaviorSubject<any>= new BehaviorSubject<any>(false);
  
+    private localhost:string = "http://localhost:8000";
+    private herokuApi:string = 'https://arponline.herokuapp.com'
+
 
   constructor(
     private http: Http,
@@ -21,8 +24,8 @@ export class AuthService {
     
     
     // Setzt das Token wenn es im Localstorage gespeichert ist
-    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token = currentUser && currentUser.token;
+    var currentUser = localStorage.getItem('email');
+    this.token = this.getToken();
     console.log(currentUser);
 
     // Passt den initialwert an das Token an
@@ -47,7 +50,7 @@ export class AuthService {
   login(email: string, password: string): Observable<boolean> {
     console.log(email);
     console.log(password);
-    return this.http.post('http://localhost:8000/api/user/login', {email, password})
+    return this.http.post(this.herokuApi + '/api/user/login', {email, password})
         .map((response: Response) => {
             // Das Login war erflogreich wenn ein token vorhanden ist
 

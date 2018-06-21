@@ -8,6 +8,9 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class GehtestService {
 
+  private localhost:string = "http://localhost:8000";
+  private herokuApi:string = 'http://arponline.herokuapp.com'
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -19,7 +22,7 @@ export class GehtestService {
     console.log('create gehtest');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.post('http://localhost:8000/api/gehtest?token=' + token, {gehtest, patient_id}, {headers: headers})
+    return this.http.post(this.herokuApi + '/api/gehtest?token=' + token, {gehtest, patient_id}, {headers: headers})
     .toPromise();
   }
   // updates an gehtest PUT
@@ -27,7 +30,7 @@ export class GehtestService {
     console.log('update gehtest');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.put(`http://localhost:8000/api/gehtest/${gehtest.id}?token=` + token, {gehtest, patient_id}, {headers: headers})
+    return this.http.put(this.herokuApi + `/api/gehtest/${gehtest.id}?token=` + token, {gehtest, patient_id}, {headers: headers})
     .toPromise();
   }
 
@@ -36,7 +39,7 @@ export class GehtestService {
     console.log('show gehtest');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.get<Gehtest>(`http://localhost:8000/api/gehtest/${id}?token=` + token);
+    return this.http.get<Gehtest>(this.herokuApi + `/api/gehtest/${id}?token=` + token);
   }
 
   // returns all gehtests for future implemantation

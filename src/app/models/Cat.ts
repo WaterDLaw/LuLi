@@ -1,5 +1,6 @@
 export interface Cat{
     id: number,
+    patient_id: number,
     gesamtpunktzahl: number,
     erstellungsdatum: Date,
     frage1: number,
@@ -10,5 +11,5 @@ export interface Cat{
     frage6: number,
     frage7: number,
     frage8: number,
-    patient_id: number
+    erledigt: string
 }

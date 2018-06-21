@@ -22,5 +22,6 @@ export interface Crqsas{
     frage_18: number
     frage_19: number
     frage_20: number,
-    patient_id: number
+    patient_id: number,
+    erledigt: string
 }

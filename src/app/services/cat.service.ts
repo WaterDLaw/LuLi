@@ -7,10 +7,13 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class CatService {
 
+  private localhost:string = "http://localhost:8000";
+  private herokuApi:string = 'https://arponline.herokuapp.com'
+
   constructor(
     private http: HttpClient,
     private router: Router,
-    private _authService: AuthService
+    private _authService: AuthService 
   ) { }
 
    // creates a cat POST
@@ -18,7 +21,7 @@ export class CatService {
     console.log('create cat');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.post('http://localhost:8000/api/cat?token=' + token, {cat, patient_id}, {headers: headers})
+    return this.http.post(this.herokuApi + '/api/cat?token=' + token, {cat, patient_id}, {headers: headers})
     .toPromise();
   }
 
@@ -27,7 +30,7 @@ export class CatService {
     console.log('update cat');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.put(`http://localhost:8000/api/cat/${cat.id}?token=` + token, {cat, patient_id}, {headers: headers})
+    return this.http.put(this.herokuApi + `/api/cat/${cat.id}?token=` + token, {cat, patient_id}, {headers: headers})
     .toPromise();
   }
 
@@ -36,7 +39,7 @@ export class CatService {
     console.log('show cat');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.get<Cat>(`http://localhost:8000/api/cat/${id}?token=` + token);
+    return this.http.get<Cat>(this.herokuApi + `/api/cat/${id}?token=` + token);
   }
 
   // returns all cat for future implemantation

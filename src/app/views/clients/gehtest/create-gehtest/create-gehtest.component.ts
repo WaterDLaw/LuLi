@@ -12,6 +12,7 @@ export class CreateGehtestComponent implements OnInit {
 
   gehtest: Gehtest;
   patient_id: number;
+  time: string;
 
   constructor(
     private _gehtestService: GehtestService,
@@ -22,10 +23,21 @@ export class CreateGehtestComponent implements OnInit {
   ngOnInit() {
     this.gehtest = {} as Gehtest;
     this.patient_id = this.route.snapshot.params['id'];
+    this.time = this.route.snapshot.params['time'];
+    console.log(this.time);
   }
 
   onSubmit(){
     console.log(this.gehtest);
+
+    //Set the correct timing in gehtest
+
+    if(this.time == "before"){
+      this.gehtest.erledigt = "before"
+    }else if(this.time == "after"){
+      this.gehtest.erledigt = "after"
+    }
+
     this._gehtestService.createGehtest(this.gehtest, this.patient_id)
     .then(
       data => {
