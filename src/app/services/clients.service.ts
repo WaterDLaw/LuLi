@@ -65,10 +65,14 @@ export class ClientsService {
   }
 
   // Delete the Client
-  deleteClient(patient: Client){
-
+  deleteClient(patient_id: number){
+    console.log("delete Client");
+    const token = this._authService.getToken();
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.delete(this.herokuApi + `/api/patients/${patient_id}?token=` + token, {responseType: 'text'}) 
+    .toPromise();
   }
-
+ 
   // Add Training to the Client
   addTraining(patient: Client, training: Training){
     console.log("add Training");

@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 import { Client } from '../models/Client';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
 @Injectable()
 export class TrainingsService {
 
@@ -33,11 +34,12 @@ export class TrainingsService {
       .toPromise();
    
   }
-  // Get all trainings INDEX Method returns all patients
+  // Get all trainings INDEX Method returns all trainings
   getTrainings(): any{
     console.log("index");
     const token = this._authService.getToken();
-    return this.http.get<Training>(this.herokuApi + '/api/trainings?token=' + token);
+    return this.http.get<Training[]>(this.herokuApi + '/api/trainings?token=' + token)
+
   
   }
   // Get training SHOW Method returns a single training with an id
@@ -54,6 +56,14 @@ export class TrainingsService {
     console.log(training);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.put(this.herokuApi + `/api/trainings/${training.id}?token=` + token, training, {headers: headers} )
+    .toPromise();
+  }
+
+  deleteTraining(training_id: number){
+    console.log("delete Training");
+    const token = this._authService.getToken();
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.delete(this.herokuApi + `/api/trainings/${training_id}?token=` + token, {responseType: 'text'}) 
     .toPromise();
   }
 

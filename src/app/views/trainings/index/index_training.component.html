@@ -28,9 +28,30 @@
           
           <td><a routerLink="show/{{training.id}}"class="btn btn-primary"><i class="icon-eye white"></i></a>
           <a routerLink="edit/{{training.id}}"class="btn btn-primary"><i class="icon-pencil white"></i></a>
-          <a class="btn btn-danger"><i class="icon-trash white"></i></a></td>
+          <a (click)="openModal(content, training.id)"class="btn btn-danger"><i class="icon-trash white"></i></a></td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Training löschen</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <p>Sind Sie sicher das Sie dieses Training löschen möchten</p>
+
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="deleteTraining(trainingId)" class="btn btn-danger">Ja</button>
+    <button (click)="c('Save click')" class="btn btn-light">Nein</button>
+  </div>
+</ng-template>

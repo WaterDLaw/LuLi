@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainingsService } from '../../../services/trainings.service';
+import { Training } from '../../../models/Training';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
@@ -9,10 +11,13 @@ import { TrainingsService } from '../../../services/trainings.service';
 export class CalendarComponent implements OnInit {
 
   constructor(
-    private _trainingsService: TrainingsService
+    private _trainingsService: TrainingsService,
+    private router: Router
   ) { }
 
+  arrTraining: any[] = [null,null,null,null,null,null,null,null,null,null,null,null];
   arrCount: any[];
+  loaded: boolean = false;
 
   jan: number = 0;
   feb: number = 0;
@@ -38,6 +43,80 @@ export class CalendarComponent implements OnInit {
         console.log(err);
       })
 
+  //Get all the Trainings and match it with the fields
+    this._trainingsService.getTrainings()
+      .subscribe(data=>{
+        this.createRouteArray(data);
+        this.loaded = true;
+        console.log(data);
+      })
+    
+  }
+
+  routeTraining(id){
+    if(this.arrTraining[id] != null){
+      this.router.navigate(['trainings', 'show', this.arrTraining[id]]); 
+    }
+  }
+
+  createRouteArray(arr){
+    for(let i = 0; i < arr.length; i++){
+
+      let startMonth = new Date(Date.parse(arr[i].start.replace('-','/','g'))).getMonth();
+
+      switch(startMonth){
+        case 0:
+          this.arrTraining[0] = arr[i].id;
+        break;
+    
+      case 1:
+        this.arrTraining[1] = arr[i].id;
+        break;
+
+      case 2:
+        this.arrTraining[2] = arr[i].id;  
+        break;
+
+      case 3:
+        this.arrTraining[3] = arr[i].id;
+        break;
+
+      case 4:
+        this.arrTraining[4] = arr[i].id;
+        break;
+
+      case 5:
+        this.arrTraining[5] = arr[i].id;
+        break;
+
+      case 6:
+        this.arrTraining[6] = arr[i].id;
+        break;
+
+      case 7:
+        this.arrTraining[7] = arr[i].id;
+        break;
+
+      case 8:
+        this.arrTraining[8] = arr[i].id;
+        break;
+
+      case 9:
+        this.arrTraining[9] = arr[i].id;
+        break;
+
+      case 10:
+        this.arrTraining[10] = arr[i].id;
+        break;
+
+      case 11:
+        this.arrTraining[11] = arr[i].id;
+        break;
+      default:
+        break;
+      }
+    }
+    console.log(this.arrTraining);
   }
 
   calculatePatients(arr: any[]){
@@ -49,9 +128,9 @@ export class CalendarComponent implements OnInit {
       console.log(arr[i].start)
       console.log(arr[i].end)
 
-      let startMonth = new Date(arr[i].start).getMonth();
-
+      let startMonth = new Date(Date.parse(arr[i].start.replace('-','/','g'))).getMonth();
       
+      console.log("start Month: " + startMonth);
       switch (startMonth) {
         case 0:
           this.jan = this.jan + 1;

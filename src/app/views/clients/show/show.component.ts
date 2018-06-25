@@ -156,6 +156,9 @@ export class ShowComponent implements OnInit {
         this.getPatient(this.route.snapshot.params['id']);
         this.modalReference.close();
       })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   openModal(content) {
