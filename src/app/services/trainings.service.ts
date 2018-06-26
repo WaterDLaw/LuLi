@@ -38,7 +38,7 @@ export class TrainingsService {
   getTrainings(): any{
     console.log("index");
     const token = this._authService.getToken();
-    return this.http.get<Training[]>(this.herokuApi + '/api/trainings?token=' + token)
+    return this.http.get<Training[]>(this.herokuApi + '/api/trainings')
 
   
   }
