@@ -21,7 +21,7 @@
             </tr>
             <tr>
               <td>Geburtsdatum:</td>
-              <td>{{patient.geburtsdatum}}</td>
+              <td>{{patient.geburtsdatum | date}}</td>
             </tr>
             <tr>
               <td>Groesse:</td>
@@ -30,10 +30,6 @@
             <tr>
               <td>Geschlecht:</td>
               <td>{{patient.geschlecht}}</td>
-            </tr>
-            <tr>
-              <td>Sprachen:</td>
-              <td>{{patient.sprache}}</td>
             </tr>
             <tr>
               <td>Telefon:</td>
@@ -115,6 +111,7 @@
               <div *ngIf="crqsasBefore">
                   <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsasBefore[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
                   <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsasBefore[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  
               </div>
               <div *ngIf="!crqsasBefore">
                   <a routerLink="crqsas/create/before" class="btn btn-primary">Erfassen</a>
@@ -129,6 +126,7 @@
               <div *ngIf="catBefore">
                   <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catBefore[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
                   <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catBefore[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  Gesamtpunktzahl: {{catBefore[0]?.gesamtpunktzahl}}
               </div>
               <div *ngIf="!catBefore">
                   <a routerLink="cat/create/before" class="btn btn-primary">Erfassen</a>
@@ -143,6 +141,7 @@
                 <div *ngIf="gehtestBefore">
                     <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestBefore[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
                     <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestBefore[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                    Distanz: {{gehtestBefore[0]?.distanz}}
                 </div>
                 <div *ngIf="!gehtestBefore">
                     <a routerLink="gehtest/create/before" class="btn btn-primary">Erfassen</a>
@@ -166,12 +165,13 @@
         </div>
         <div class="row margin-bot">
           <div class="col-md-3">
-            COPD Assessment Test
+            COPD Assessment Test (CAT)
           </div>
           <div class="col-md-2">
               <div *ngIf="catAfter">
                   <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catAfter[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
                   <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catAfter[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  Gesamtpunktzahl: {{catAfter[0]?.gesamtpunktzahl}}
               </div>
               <div *ngIf="!catAfter">
                   <a routerLink="cat/create/after" class="btn btn-primary">Erfassen</a>
@@ -186,9 +186,11 @@
                 <div *ngIf="gehtestAfter">
                     <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestAfter[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
                     <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestAfter[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-                </div>
+                    Distanz: {{gehtestAfter[0]?.distanz}}
+                  </div>
                 <div *ngIf="!gehtestAfter">
                     <a routerLink="gehtest/create/after" class="btn btn-primary">Erfassen</a>
+                    
                 </div>
             </div>  
           </div>

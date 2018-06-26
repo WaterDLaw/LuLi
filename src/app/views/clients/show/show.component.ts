@@ -63,6 +63,7 @@ export class ShowComponent implements OnInit {
         console.log(data);
         this.patient = data;
       
+
       })
   }
   checkFeedback(id){
@@ -97,6 +98,7 @@ export class ShowComponent implements OnInit {
       .subscribe(data => {
         console.log("check Cat");
         console.log(data);
+        console.log(data[0].gesamtpunktzahl)
         this.catBefore = data;
       })
   }
@@ -106,6 +108,7 @@ export class ShowComponent implements OnInit {
       .subscribe(data => {
         console.log("check Cat");
         console.log(data);
+        console.log(data[0].gesamtpunktzahl)
         this.catAfter = data;
       })
   }

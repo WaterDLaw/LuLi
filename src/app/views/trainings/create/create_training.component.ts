@@ -58,7 +58,13 @@ export class CreateTrainingComponent implements OnInit {
     this.training.sonntag_start = JSON.stringify(this.sonntag_start);
     this.training.sonntag_end = JSON.stringify(this.sonntag_end);
     */
-    console.log(this.training);
+
+
+    // crate name of title
+
+    let start = new Date(this.training.start.toString().replace('-','/'));
+   
+    this.training.title = "Kurs " + (start.getMonth() + 1).toString() + " " + this.training.ort + " " +  start.getFullYear().toString(); 
 
     this._trainingsService.createTraining(this.training)
     .then(

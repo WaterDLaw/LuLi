@@ -5,20 +5,16 @@
 
   <form (ngSubmit)="onSubmit()" #trainingForm="ngForm" >
 
-  <div class="form-group row">
-      <label class="col-sm-2" for="title">Titel</label>
-      <div class="col-sm-10">
-        <input [(ngModel)]="training.title" type="text" class="form-control" id="title"  placeholder="Titel" name="title" required>
-      </div>
-  </div>
 
   <div class="form-group row">
-      <label class="col-sm-2" for="ort">Trainingsort</label>
-      <div class="col-sm-10">
-        <textarea [(ngModel)]="training.ort" class="form-control " value ="" id="ort" rows="3" name="ort"></textarea>
-      </div>
-  </div>
-
+    <label class="col-sm-2" for="status">Trainingsort</label>
+    <div class="col-sm-10">
+        <select class="form-control" [(ngModel)]="training.ort" name="ort" id="ort">
+          <option>KSO</option>
+          <option>BSS</option>
+        </select>
+    </div>
+</div>
   <div class="form-group row">
     <label class="col-sm-2" for="kursdauer">Trainingsdauer</label>
     
@@ -33,7 +29,7 @@
         </div>
     
   </div>
-    <!-- Fragebogen -->
+    <!-- 
     <h3>Fragebogen</h3>
     <div class="form-check">
         <input [(ngModel)]="training.CRQ_SAS_bogen" class="form-check-input" type="checkbox" value="" id="CRQ_SAS_bogen" name="CRQ_SAS_bogen">
@@ -71,6 +67,7 @@
             COPD Assessment Test (CAT)-Fragebogen
         </label>
     </div>
+    -->
   <!-- Time selection form Monday-->
   <!--
   <h3>Trainingszeiten</h3>

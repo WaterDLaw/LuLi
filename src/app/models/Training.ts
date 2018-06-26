@@ -8,6 +8,7 @@ export interface Training{
     ort: string,
     start: Date,
     end: Date,
+    spital: string,
     montag_start: string,
     montag_end: string,
     dienstag_start: string,

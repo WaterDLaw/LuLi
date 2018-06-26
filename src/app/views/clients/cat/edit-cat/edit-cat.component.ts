@@ -37,6 +37,7 @@ export class EditCatComponent implements OnInit {
 
   onSubmit(){
     console.log(this.cat);
+    this.calculteTotal();
     this._catService.updateCat(this.cat, this.patient_id)
     .then(
       data => {
@@ -45,6 +46,14 @@ export class EditCatComponent implements OnInit {
       }
     )
     .catch(error => console.log(error)); 
+  }
+
+  // berechnet die gesamtpunktzahl
+  calculteTotal(){
+
+    let gesamt = this.cat.frage_1 + this.cat.frage_2 + this.cat.frage_3 + this.cat.frage_4 + this.cat.frage_5 + this.cat.frage_6 + this.cat.frage_7 + this.cat.frage_8
+    console.log(gesamt);
+    this.cat.gesamtpunktzahl = gesamt;
   }
 
 }

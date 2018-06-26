@@ -9,8 +9,19 @@
     padding-left:4%;
 }
 
+
 .table td{
 
-    width: 50% !important;
+    white-space:nowrap !important;
 
+}
+
+
+table
+{
+    width: 100%;
+}
+
+table td:last-child{
+    width:100% !important;
 }

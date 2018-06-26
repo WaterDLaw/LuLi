@@ -34,6 +34,8 @@ export class CreateCatComponent implements OnInit {
       this.cat.erledigt = "after";
     }
 
+    // Calculate total value
+    this.calculteTotal();
     this._catService.createCat(this.cat, this.patient_id)
     .then(
       data => {
@@ -42,4 +44,13 @@ export class CreateCatComponent implements OnInit {
     )
     .catch(error => console.log(error));
   }
+
+  // berechnet die gesamtpunktzahl
+  calculteTotal(){
+    console.log("calculate Total")
+    let gesamt = this.cat.frage_1 + this.cat.frage_2 + this.cat.frage_3 + this.cat.frage_4 + this.cat.frage_5 + this.cat.frage_6 + this.cat.frage_7 + this.cat.frage_8
+    console.log(gesamt);
+    this.cat.gesamtpunktzahl = gesamt;
+  }
+
 }

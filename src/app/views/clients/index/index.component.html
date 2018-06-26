@@ -15,6 +15,7 @@
         <th>Vorname</th>
         <th>Nachname</th>
         <th>Geburtsdatum</th>
+        <th>Wohnort</th>
         <th></th>
 
       </tr>
@@ -24,7 +25,8 @@
       
         <td>{{patient?.vorname}}</td>
         <td>{{patient?.name}}</td>
-        <td>{{patient?.geburtsdatum}}</td>
+        <td>{{patient?.geburtsdatum | date}}</td>
+        <td>{{patient?.ort}}</td>
         <td><a routerLink="show/{{patient.id}}"class="btn btn-primary"><i class="icon-eye white"></i></a>
         <a routerLink="edit/{{patient.id}}"class="btn btn-primary"><i class="icon-pencil white"></i></a>
         <a (click)="openModal(content, patient.id)" class="btn btn-danger"><i class="icon-trash white"></i></a></td>

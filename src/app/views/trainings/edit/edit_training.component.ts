@@ -42,14 +42,18 @@ export class EditTrainingComponent implements OnInit {
         this.training = data;
         
         // Change the date values
-        this.parseTrainingTime();
+        //this.parseTrainingTime();
       })
   }
 
   onSubmit(){
     //Strinifigy the time object for the database
-    this.stringifyTrainingTime();
+    //this.stringifyTrainingTime();
     
+    let start = new Date(this.training.start.toString().replace('-','/'));
+   
+    this.training.title = "Kurs " + (start.getMonth() + 1).toString() + " " + this.training.ort + " " +  start.getFullYear().toString(); 
+
     this._trainingsService.updateTraining(this.training);
   }
 

@@ -21,7 +21,7 @@ export class CrqsasService {
     console.log('create crqsas');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.post(this.localhost + '/api/crq_sas?token=' + token, {crqsas, patient_id}, {headers: headers})
+    return this.http.post(this.herokuApi + '/api/crq_sas?token=' + token, {crqsas, patient_id}, {headers: headers})
     .toPromise();
   }
 
@@ -30,7 +30,7 @@ export class CrqsasService {
     console.log('update crqsas');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.put(this.localhost + `/api/crq_sas/${crqsas.id}?token=` + token, {crqsas, patient_id}, {headers: headers})
+    return this.http.put(this.herokuApi + `/api/crq_sas/${crqsas.id}?token=` + token, {crqsas, patient_id}, {headers: headers})
     .toPromise();
   }
 
@@ -39,7 +39,7 @@ export class CrqsasService {
     console.log('show crqsas');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.get<Crqsas>(this.localhost + `/api/crq_sas/${id}?token=` + token);
+    return this.http.get<Crqsas>(this.herokuApi + `/api/crq_sas/${id}?token=` + token);
   }
 
   // returns all crqsas for future implemantation
