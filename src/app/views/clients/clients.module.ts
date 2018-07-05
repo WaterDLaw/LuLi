@@ -19,6 +19,7 @@ import { CrqsasModule } from "./crqsas/crqsas.module";
 import { CatModule } from './cat/cat.module';
 import { GehtestModule } from "./gehtest/gehtest.module";
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { GehtestModule } from "./gehtest/gehtest.module";
     CommonModule,
     CrqsasModule,
     CatModule,
-    GehtestModule
+    GehtestModule,
+    NgbModule
   ],
   declarations: 
     [ 

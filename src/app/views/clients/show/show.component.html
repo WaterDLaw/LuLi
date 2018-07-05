@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
-        <a class="btn btn-primary" style="float:right;"><i class="icon-doc white"></i></a>
-        <a routerLink="../../edit/{{patient.id}}" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
+        <a class="btn btn-primary" style="float:right;" ngbTooltip="Patient als PDF downloaden"><i class="icon-doc white"></i></a>
+        <a routerLink="../../edit/{{patient.id}}" ngbTooltip="Patient bearbeiten" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
         <h2>Patienteninformationen</h2>
         <hr />
         <table class="table table-sm">
@@ -73,8 +73,8 @@
             {{getTrainingName(patient?.training_id)}}
           </div>
           <div class="col-md-2">
-              <a routerLink="../../../trainings/show/{{patient?.training_id}}" class="btn btn-primary"><i class="icon-eye white"></i></a> 
-              <a (click)="openModal(content)" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+              <a routerLink="../../../trainings/show/{{patient?.training_id}}" ngbTooltip="Training betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a> 
+              <a (click)="openModal(content)" class="btn btn-primary" ngbTooltip="Training neu zuteilen"  style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
           </div>
         </div>
         <div class="row margin-bot" *ngIf="patient.training_id == null">
@@ -82,7 +82,7 @@
               Noch keinem training zugeteilt
             </div>
             <div class="col-md-2">
-              <a (click)="openModal(content)" class="btn btn-primary white">Training zuteilen</a>
+              <a (click)="openModal(content)" ngbTooltip="Patient einem Training zuteilen" class="btn btn-primary white">Training zuteilen</a>
             </div>
           </div>
 
@@ -94,11 +94,11 @@
           </div>
           <div class="col-md-2">
               <div *ngIf="feedback">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/feedback/show/{{feedback[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/feedback/edit/{{feedback[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/feedback/show/{{feedback[0]?.id}}" ngbTooltip="Feedbackfragebogen betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/feedback/edit/{{feedback[0]?.id}}" ngbTooltip="Feedbackfragebogen bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
               </div>
               <div *ngIf="!feedback">
-                  <a routerLink="feedback/create" class="btn btn-primary">Erfassen</a>
+                  <a routerLink="feedback/create" ngbTooltip="Feedbackfragebogen erfassen" class="btn btn-primary">Erfassen</a>
               </div>
           </div>  
         </div>
@@ -107,14 +107,14 @@
           <div class="col-md-3">
             CRQ-SAS
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
               <div *ngIf="crqsasBefore">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsasBefore[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsasBefore[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsasBefore[0]?.id}}" ngbTooltip="CRQSAS 'Vorher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsasBefore[0]?.id}}" ngbTooltip="CRQSAS 'Vorher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
                   
               </div>
               <div *ngIf="!crqsasBefore">
-                  <a routerLink="crqsas/create/before" class="btn btn-primary">Erfassen</a>
+                  <a routerLink="crqsas/create/before" ngbTooltip="CRQSAS erfassen" class="btn btn-primary">Erfassen</a>
               </div>
           </div>  
         </div>
@@ -122,14 +122,14 @@
           <div class="col-md-3">
             COPD Assessment Test (CAT)
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
               <div *ngIf="catBefore">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catBefore[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catBefore[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catBefore[0]?.id}}" ngbTooltip="CAT 'Vorher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catBefore[0]?.id}}" ngbTooltip="CAT 'Vorher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
                   Gesamtpunktzahl: {{catBefore[0]?.gesamtpunktzahl}}
               </div>
               <div *ngIf="!catBefore">
-                  <a routerLink="cat/create/before" class="btn btn-primary">Erfassen</a>
+                  <a routerLink="cat/create/before" ngbTooltip="CAT erfassen" class="btn btn-primary">Erfassen</a>
               </div>
           </div>  
         </div>
@@ -137,14 +137,14 @@
             <div class="col-md-3">
               Gehtest
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div *ngIf="gehtestBefore">
-                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestBefore[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestBefore[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestBefore[0]?.id}}" ngbTooltip="Gehtest 'Vorher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestBefore[0]?.id}}" ngbTooltip="Gehtest 'Vorher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
                     Distanz: {{gehtestBefore[0]?.distanz}}
                 </div>
                 <div *ngIf="!gehtestBefore">
-                    <a routerLink="gehtest/create/before" class="btn btn-primary">Erfassen</a>
+                    <a routerLink="gehtest/create/before"  ngbTooltip="Gehtest 'Vorher' erfassen" class="btn btn-primary">Erfassen</a>
                 </div>
             </div>  
           </div>
@@ -153,13 +153,13 @@
           <div class="col-md-3">
             CRQ-SAS
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
               <div *ngIf="crqsasAfter">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsasAfter[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsasAfter[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsasAfter[0]?.id}}" ngbTooltip="CRQSAS 'Nachher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsasAfter[0]?.id}}" ngbTooltip="CRQSAS 'Nachher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
               </div>
               <div *ngIf="!crqsasAfter">
-                  <a routerLink="crqsas/create/after" class="btn btn-primary">Erfassen</a>
+                  <a routerLink="crqsas/create/after" ngbTooltip="CRQSAS 'Nachher' erfassen" class="btn btn-primary">Erfassen</a>
               </div>
           </div>  
         </div>
@@ -167,14 +167,14 @@
           <div class="col-md-3">
             COPD Assessment Test (CAT)
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
               <div *ngIf="catAfter">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catAfter[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catAfter[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catAfter[0]?.id}}" ngbTooltip="CAT 'Nachher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catAfter[0]?.id}}" ngbTooltip="CAT 'Nachher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
                   Gesamtpunktzahl: {{catAfter[0]?.gesamtpunktzahl}}
               </div>
               <div *ngIf="!catAfter">
-                  <a routerLink="cat/create/after" class="btn btn-primary">Erfassen</a>
+                  <a routerLink="cat/create/after" ngbTooltip="CAT 'Nachher' erfassen" class="btn btn-primary">Erfassen</a>
               </div>
           </div>  
         </div>
@@ -182,14 +182,14 @@
             <div class="col-md-3">
               Gehtest
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div *ngIf="gehtestAfter">
-                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestAfter[0]?.id}}" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestAfter[0]?.id}}" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestAfter[0]?.id}}" ngbTooltip="Gehtest 'Nachher' betrachten"  class="btn btn-primary"><i class="icon-eye white"></i></a>
+                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestAfter[0]?.id}}" ngbTooltip="Gehtest 'Nachher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
                     Distanz: {{gehtestAfter[0]?.distanz}}
                   </div>
                 <div *ngIf="!gehtestAfter">
-                    <a routerLink="gehtest/create/after" class="btn btn-primary">Erfassen</a>
+                    <a routerLink="gehtest/create/after" ngbTooltip="Gehtest 'Nachher' erfassen" class="btn btn-primary">Erfassen</a>
                     
                 </div>
             </div>  

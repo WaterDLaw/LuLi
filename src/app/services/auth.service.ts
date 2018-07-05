@@ -15,7 +15,7 @@ export class AuthService {
   public loginStatus: BehaviorSubject<any>= new BehaviorSubject<any>(false);
  
     private localhost:string = "http://localhost:8000";
-    private herokuApi:string = 'https://arponline.herokuapp.com'
+    private herokuApi:string = 'http://arponline.herokuapp.com'
 
 
   constructor(

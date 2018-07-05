@@ -7,11 +7,13 @@ import { StatistikPipe } from "../../pipes/statistikFilter";
 import { ClientsService } from '../../services/clients.service';
 import { CommonModule } from '@angular/common';
 import { StatisticService } from '../../services/statistic.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [
     StatisticsRoutingModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    NgbModule
   ],
   declarations: 
     [ 

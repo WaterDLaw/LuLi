@@ -6,7 +6,7 @@
               <span class="input-group-text" id="btnGroupAddon2"><i class="icon-magnifier"></i></span>
           </div>
           <input type="text" class="form-control" name="searchString" placeholder="Titel eingeben" [(ngModel)]="searchTitleString">
-          <a routerLink="create" class="btn btn-primary"><i class="icon-user-follow"></i> Neues Training</a>
+          <a routerLink="create" class="btn btn-primary" ngbTooltip="Neues Training erfassen"><i class="icon-user-follow"></i></a>
         </div>
       </form>
     <table class="table">
@@ -26,9 +26,9 @@
           <td>{{training?.start | date}}</td>
           <td>{{training?.end | date}}</td>
           
-          <td><a routerLink="show/{{training.id}}"class="btn btn-primary"><i class="icon-eye white"></i></a>
-          <a routerLink="edit/{{training.id}}"class="btn btn-primary"><i class="icon-pencil white"></i></a>
-          <a (click)="openModal(content, training.id)"class="btn btn-danger"><i class="icon-trash white"></i></a></td>
+          <td><a routerLink="show/{{training.id}}"class="btn btn-primary" ngbTooltip="Training betrachten"><i class="icon-eye white"></i></a>
+          <a routerLink="edit/{{training.id}}"class="btn btn-primary" ngbTooltip="Training bearbeiten"><i class="icon-pencil white"></i></a>
+          <a (click)="openModal(content, training.id)"class="btn btn-danger" ngbTooltip="Training löschen"><i class="icon-trash white"></i></a></td>
         </tr>
       </tbody>
     </table>

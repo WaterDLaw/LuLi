@@ -6,6 +6,7 @@ import { ClientsService } from "../../../services/clients.service";
 import { TrainingsService } from "../../../services/trainings.service";
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-show',
@@ -27,6 +28,18 @@ export class ShowComponent implements OnInit {
   crqsasAfter: any;
   catAfter: any;
   gehtestAfter: any;
+
+  // Subscription references
+
+  trainingSubscription: Subscription;
+  feedbackSubscription: Subscription;
+  crqsasBeforeSubscription: Subscription;
+  crqsasAfterSubscription: Subscription;
+  catBeforeSubscription: Subscription;
+  catAfterSubscription: Subscription;
+  gehtestBeforeSubscription: Subscription;
+  gehtestAfterSubscription: Subscription;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -55,6 +68,18 @@ export class ShowComponent implements OnInit {
     this.checkCatAfter(this.route.snapshot.params['id']);
     this.checkGehtestAfter(this.route.snapshot.params['id']);
   }
+  // Cancel subscriptions for performance boost
+  
+  ngOnDestroy() {
+    this.trainingSubscription.unsubscribe();
+    this.feedbackSubscription.unsubscribe();
+    this.crqsasBeforeSubscription.unsubscribe();
+    this.crqsasAfterSubscription.unsubscribe();
+    this.catBeforeSubscription.unsubscribe();
+    this.catAfterSubscription.unsubscribe();
+    this.gehtestBeforeSubscription.unsubscribe();
+    this.gehtestAfterSubscription.unsubscribe();
+  }
 
   getPatient(id){
     this._clientService.getClient(id)
@@ -67,7 +92,7 @@ export class ShowComponent implements OnInit {
       })
   }
   checkFeedback(id){
-    this._clientService.hasFeedback(id)
+    this.feedbackSubscription = this._clientService.hasFeedback(id)
       .subscribe(data => {
         console.log("check Feedback");
         console.log(data);
@@ -76,7 +101,7 @@ export class ShowComponent implements OnInit {
   }
 
   checkCrqsasBefore(id){
-    this._clientService.hasCrqsasBefore(id)
+    this.crqsasBeforeSubscription =  this._clientService.hasCrqsasBefore(id)
       .subscribe(data => {
         console.log("check Crq");
         console.log(data);
@@ -85,7 +110,7 @@ export class ShowComponent implements OnInit {
   }
 
   checkCrqsasAfter(id){
-    this._clientService.hasCrqsasAfter(id)
+    this.crqsasAfterSubscription = this._clientService.hasCrqsasAfter(id)
       .subscribe(data => {
         console.log("check Crq");
         console.log(data);
@@ -94,7 +119,7 @@ export class ShowComponent implements OnInit {
   }
 
   checkCatBefore(id){
-    this._clientService.hasCatBefore(id)
+    this.catBeforeSubscription = this._clientService.hasCatBefore(id)
       .subscribe(data => {
         console.log("check Cat");
         console.log(data);
@@ -104,7 +129,7 @@ export class ShowComponent implements OnInit {
   }
 
   checkCatAfter(id){
-    this._clientService.hasCatAfter(id)
+    this.catAfterSubscription = this._clientService.hasCatAfter(id)
       .subscribe(data => {
         console.log("check Cat");
         console.log(data);
@@ -114,7 +139,7 @@ export class ShowComponent implements OnInit {
   }
 
   checkGehtestBefore(id){
-    this._clientService.hasGehtestBefore(id)
+    this.gehtestBeforeSubscription = this._clientService.hasGehtestBefore(id)
       .subscribe(data => {
         console.log("check Gehtest");
         console.log(data);
@@ -123,7 +148,7 @@ export class ShowComponent implements OnInit {
   }
 
   checkGehtestAfter(id){
-    this._clientService.hasGehtestAfter(id)
+    this.gehtestAfterSubscription = this._clientService.hasGehtestAfter(id)
       .subscribe(data => {
         console.log("check Gehtest After");
         console.log(data);
@@ -132,7 +157,7 @@ export class ShowComponent implements OnInit {
   }
 
   getTrainings(){
-    this._trainingService.getTrainings()
+    this.trainingSubscription = this._trainingService.getTrainings()
       .subscribe(data =>{
         console.log(data);
         this.trainings = data;
