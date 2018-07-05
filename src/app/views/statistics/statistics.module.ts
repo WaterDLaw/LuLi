@@ -3,16 +3,21 @@ import { StatisticsComponent } from "../statistics/statistics.component";
 import { StatisticsRoutingModule } from "../statistics/statistics-routing.module";
 import { FormsModule }   from '@angular/forms';
 import { AuthGuard } from "../../guards/auth.guard";
-
+import { StatistikPipe } from "../../pipes/statistikFilter";
+import { ClientsService } from '../../services/clients.service';
+import { CommonModule } from '@angular/common';
+import { StatisticService } from '../../services/statistic.service';
 @NgModule({
   imports: [
     StatisticsRoutingModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   declarations: 
     [ 
-        StatisticsComponent
+        StatisticsComponent,
+        StatistikPipe
     ],
-  providers:[AuthGuard]
+  providers:[AuthGuard, ClientsService, StatisticService, StatistikPipe]
 })
 export class StatisticsModule { }
