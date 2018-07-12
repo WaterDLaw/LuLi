@@ -11,7 +11,7 @@ export interface Client{
     name?: string,
     vorname?: string,
     email?: string,
-    geburtstag?: Date,
+    geburtsdatum?: Date,
     diagnose_details?: string,
     bemerkungen?: string,
     groesse?: number,
@@ -31,6 +31,18 @@ export interface Client{
     training_id?: number,
     status?: string,
     rauchstatus?: string,
-    pneumologe?: string
+    pneumologe?: string,
+    gewicht_before?: number,
+    gewicht_after?: number,
+    fevl_before?: number,
+    fevl_after?: number,
+    fevp_before?: number,
+    fevp_after?: number,
+    vkmaxl_before?: number,
+    vkmaxl_after?: number,
+    vkmaxp_before?: number,
+    vkmaxp_after?: number,
+    vo2max_before?: number,
+    vo2max_after?: number
 
 }

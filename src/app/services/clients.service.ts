@@ -12,14 +12,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Crqsas } from '../models/Crqsas';
 import { Cat } from '../models/Cat';
 import { Gehtest } from '../models/Gehtest';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class ClientsService {
 
-  //commit comment
-  private localhost:string = "http://localhost:8000";
-  private herokuApi:string = 'https://arponline.herokuapp.com'
 
+  private apiurl = environment.apiurl;
 
   constructor(
     private http: HttpClient,
@@ -34,7 +33,7 @@ export class ClientsService {
     const token = this._authService.getToken();
     
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.post(this.herokuApi + '/api/patients?token=' + token, patient, {headers: headers})
+    return this.http.post(this.apiurl + '/api/patients?token=' + token, patient, {headers: headers})
       .toPromise();
    
   }
@@ -42,7 +41,7 @@ export class ClientsService {
   getClients(): any{
     console.log("index");
     const token = this._authService.getToken();
-    return this.http.get<Client>(this.herokuApi + '/api/patients?token=' + token);
+    return this.http.get<Client>(this.apiurl + '/api/patients?token=' + token);
       
   
   }
@@ -50,7 +49,7 @@ export class ClientsService {
   getClient(id){
     console.log("show");
     const token = this._authService.getToken();
-    return this.http.get<Client>(this.herokuApi + `/api/patients/${id}?token=` + token);
+    return this.http.get<Client>(this.apiurl + `/api/patients/${id}?token=` + token);
   }
 
   // Update Client 
@@ -60,7 +59,7 @@ export class ClientsService {
     console.log(patient.id);
     console.log(patient);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put(this.herokuApi + `/api/patients/${patient.id}?token=` + token, patient, {headers: headers} )
+    return this.http.put(this.apiurl + `/api/patients/${patient.id}?token=` + token, patient, {headers: headers} )
     .toPromise();
   }
 
@@ -69,7 +68,7 @@ export class ClientsService {
     console.log("delete Client");
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.delete(this.herokuApi + `/api/patients/${patient_id}?token=` + token, {responseType: 'text'}) 
+    return this.http.delete(this.apiurl + `/api/patients/${patient_id}?token=` + token, {responseType: 'text'}) 
     .toPromise();
   }
  
@@ -80,7 +79,7 @@ export class ClientsService {
     console.log(patient);
     console.log(training.id);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(this.herokuApi + `/api/patients/addTraining?token=` + token, {patient, training}, {headers: headers} )
+    return this.http.post(this.apiurl + `/api/patients/addTraining?token=` + token, {patient, training}, {headers: headers} )
     .toPromise();
   }
 
@@ -88,54 +87,54 @@ export class ClientsService {
   hasFeedback(patient_id: number){
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get<Feedback>(this.herokuApi + `/api/patients/hasFeedback/${patient_id}?token=` + token);
+    return this.http.get<Feedback>(this.apiurl + `/api/patients/hasFeedback/${patient_id}?token=` + token);
   }
 
   //Check if a crqsas exists
   hasCrqsasBefore(patient_id: number){
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get<Crqsas>(this.herokuApi + `/api/patients/hasCrqsasBefore/${patient_id}?token=` + token);
+    return this.http.get<Crqsas>(this.apiurl + `/api/patients/hasCrqsasBefore/${patient_id}?token=` + token);
   }
 
   //Check if a crqsas exists
   hasCrqsasAfter(patient_id: number){
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get<Crqsas>(this.herokuApi + `/api/patients/hasCrqsasAfter/${patient_id}?token=` + token);
+    return this.http.get<Crqsas>(this.apiurl + `/api/patients/hasCrqsasAfter/${patient_id}?token=` + token);
   }
 
   //Check if a cat exists
   hasCatBefore(patient_id: number){
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get<Cat>(this.herokuApi + `/api/patients/hasCatBefore/${patient_id}?token=` + token);
+    return this.http.get<Cat>(this.apiurl + `/api/patients/hasCatBefore/${patient_id}?token=` + token);
   }
 
   //Check if a cat exists
   hasCatAfter(patient_id: number){
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get<Cat>(this.herokuApi + `/api/patients/hasCatAfter/${patient_id}?token=` + token);
+    return this.http.get<Cat>(this.apiurl + `/api/patients/hasCatAfter/${patient_id}?token=` + token);
   }
 
   //Check if a gehtest exists
   hasGehtestBefore(patient_id: number){
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get<Gehtest>(this.herokuApi + `/api/patients/hasGehtestBefore/${patient_id}?token=` + token);
+    return this.http.get<Gehtest>(this.apiurl + `/api/patients/hasGehtestBefore/${patient_id}?token=` + token);
   }
 
   //Check if a gehtest after exists
   hasGehtestAfter(patient_id: number){
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get<Gehtest>(this.herokuApi + `/api/patients/hasGehtestAfter/${patient_id}?token=` + token);
+    return this.http.get<Gehtest>(this.apiurl + `/api/patients/hasGehtestAfter/${patient_id}?token=` + token);
   }
   //gets the feedback of this patient
   getFeedback(patient_id){
     const token = this._authService.getToken();
-    return this.http.get<Feedback>(this.herokuApi + `/api/patients/getFeedback/${patient_id}?token=` + token);
+    return this.http.get<Feedback>(this.apiurl + `/api/patients/getFeedback/${patient_id}?token=` + token);
   }
 
 }

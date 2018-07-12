@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <a class="btn btn-primary" style="float:right;" ngbTooltip="Patient als PDF downloaden"><i class="icon-doc white"></i></a>
+        <a (click)="download()"class="btn btn-primary" style="float:right;" ngbTooltip="Patient als PDF downloaden"><i class="icon-doc white"></i></a>
         <a routerLink="../../edit/{{patient.id}}" ngbTooltip="Patient bearbeiten" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
         <h2>Patienteninformationen</h2>
         <hr />
@@ -21,7 +21,7 @@
             </tr>
             <tr>
               <td>Geburtsdatum:</td>
-              <td>{{patient.geburtsdatum | date}}</td>
+              <td>{{patient.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
             </tr>
             <tr>
               <td>Groesse:</td>
@@ -66,6 +66,68 @@
           <hr />
           <p>{{patient.bemerkungen}}</p>
         </div>
+
+        <h3>Messwerte 
+          <a *ngIf="!measurmentEdit" (click)="measurmentsEdit()" ngbTooltip="Messwerte bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+          <a *ngIf="measurmentEdit" (click)="measurmentsSave()" ngbTooltip="Messwerte speichern" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-check white"> Speichern</i></a>
+        </h3>
+        <hr />
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Messwert</th>
+              <th scope="col">Vorher</th>
+              <th scope="col">Nachher</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Gewicht (kg)</th>
+              <td *ngIf="!measurmentEdit">{{patient.gewicht_before}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.gewicht_before" type="text" style="width:200px;"class="form-control" id="gewicht_before" placeholder="" name="gewicht_before"></td>
+              <td *ngIf="!measurmentEdit">{{patient.gewicht_after}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.gewicht_after" type="text" style="width:200px;"class="form-control" id="gewicht_after" placeholder="" name="gewicht_after"></td>
+            </tr>
+            <tr>
+              <th>FEV1(l)</th>
+              <td *ngIf="!measurmentEdit">{{patient.fevl_before}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevl_before" type="text" style="width:200px;"class="form-control" id="fevl_before" placeholder="" name="fevl_before"></td>
+              <td *ngIf="!measurmentEdit">{{patient.fevl_after}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevl_after" type="text" style="width:200px;"class="form-control" id="fevl_after" placeholder="" name="fevl_after"></td>
+            </tr>
+            <tr>
+              <th>FEV1 %</th>
+              <td *ngIf="!measurmentEdit">{{patient.fevp_before}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevp_before" type="text" style="width:200px;"class="form-control" id="fevp_before" placeholder="" name="fevp_before"></td>
+              <td *ngIf="!measurmentEdit">{{patient.fevp_after}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevp_after" type="text" style="width:200px;"class="form-control" id="fevp_after" placeholder="" name="fevp_after"></td>
+            </tr>
+            <tr>
+              <th>VK max. (l)</th>
+              <td *ngIf="!measurmentEdit">{{patient.vkmaxl_before}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxl_before" type="text" style="width:200px;"class="form-control" id="vkmaxl_before" placeholder="" name="vkmaxl_before"></td>
+              <td *ngIf="!measurmentEdit">{{patient.vkmaxl_after}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxl_after" type="text" style="width:200px;"class="form-control" id="vkmaxl_after" placeholder="" name="vkmaxl_after"></td>
+
+            </tr>
+            <tr>
+              <th>VK %</th>
+              <td *ngIf="!measurmentEdit">{{patient.vkmaxp_before}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxp_before" type="text" style="width:200px;"class="form-control" id="vkmaxp_before" placeholder="" name="vkmaxp_before"></td>
+              <td *ngIf="!measurmentEdit">{{patient.vkmaxp_after}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxp_after" type="text" style="width:200px;"class="form-control" id="vkmaxp_after" placeholder="" name="vkmaxp_after"></td>
+            </tr>
+            <tr>
+              <th>VO2 max. (ml)</th>
+              <td *ngIf="!measurmentEdit">{{patient.vo2max_before}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vo2max_before" type="text" style="width:200px;"class="form-control" id="vo2max_before" placeholder="" name="vo2max_before"></td>
+              <td *ngIf="!measurmentEdit">{{patient.vo2max_after}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vo2max_after" type="text" style="width:200px;"class="form-control" id="vo2max_after" placeholder="" name="vo2max_after"></td>
+            </tr>
+          </tbody>
+        </table>
+
         <h3>Training</h3>
         <hr />
         <div class="row" *ngIf="patient.training_id != null && trainings?.length > 0 ">

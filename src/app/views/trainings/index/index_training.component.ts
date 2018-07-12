@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Training } from '../../../models/Training';
 import { TrainingsService } from '../../../services/trainings.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-index-training',
   templateUrl: './index_training.component.html',

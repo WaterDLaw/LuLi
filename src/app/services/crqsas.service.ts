@@ -4,11 +4,11 @@ import { Client } from "../models/Client";
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { environment } from 'environments/environment';
 @Injectable()
 export class CrqsasService {
 
-  private localhost:string = "http://localhost:8000";
-  private herokuApi:string = 'https://arponline.herokuapp.com'
+  private apiurl = environment.apiurl;
 
   constructor(
     private http: HttpClient,
@@ -21,7 +21,7 @@ export class CrqsasService {
     console.log('create crqsas');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.post(this.herokuApi + '/api/crq_sas?token=' + token, {crqsas, patient_id}, {headers: headers})
+    return this.http.post(this.apiurl + '/api/crq_sas?token=' + token, {crqsas, patient_id}, {headers: headers})
     .toPromise();
   }
 
@@ -30,7 +30,7 @@ export class CrqsasService {
     console.log('update crqsas');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.put(this.herokuApi + `/api/crq_sas/${crqsas.id}?token=` + token, {crqsas, patient_id}, {headers: headers})
+    return this.http.put(this.apiurl + `/api/crq_sas/${crqsas.id}?token=` + token, {crqsas, patient_id}, {headers: headers})
     .toPromise();
   }
 
@@ -39,7 +39,7 @@ export class CrqsasService {
     console.log('show crqsas');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.get<Crqsas>(this.herokuApi + `/api/crq_sas/${id}?token=` + token);
+    return this.http.get<Crqsas>(this.apiurl + `/api/crq_sas/${id}?token=` + token);
   }
 
   // returns all crqsas for future implemantation

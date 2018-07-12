@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
+import { environment } from "../../environments/environment";
+
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
@@ -14,9 +16,7 @@ export class AuthService {
   // BehavourSubject mit den Loogedin Data (init = False)
   public loginStatus: BehaviorSubject<any>= new BehaviorSubject<any>(false);
  
-    private localhost:string = "http://localhost:8000";
-    private herokuApi:string = 'http://arponline.herokuapp.com'
-
+  private apiurl = environment.apiurl;
 
   constructor(
     private http: Http,
@@ -50,7 +50,7 @@ export class AuthService {
   login(email: string, password: string): Observable<boolean> {
     console.log(email);
     console.log(password);
-    return this.http.post(this.herokuApi + '/api/user/login', {email, password})
+    return this.http.post(this.apiurl + '/api/user/login', {email, password})
         .map((response: Response) => {
             // Das Login war erflogreich wenn ein token vorhanden ist
 

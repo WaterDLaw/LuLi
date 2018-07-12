@@ -7,7 +7,7 @@ import { AuthGuard } from "../../guards/auth.guard";
 import { ClientsService } from "../../services/clients.service";
 import { IndexComponent } from './index/index.component';
 import { ShowComponent } from './show/show.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 // Custom Pipes
 import { FilterPipe } from "../../pipes/nameFilter";
 import { EditComponent } from './edit/edit.component';
@@ -41,6 +41,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
       FilterPipe,
       EditComponent
     ],
-  providers:[AuthGuard, ClientsService, TrainingsService]
+  providers:[AuthGuard, ClientsService, TrainingsService, DatePipe]
 })
 export class ClientsModule { }

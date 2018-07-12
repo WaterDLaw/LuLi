@@ -17,10 +17,11 @@
     <div class="form-group row">
       <label class="col-sm-2" for="selectedOrt">Trainingsort</label>
       <div class="col-sm-10">
-          <select class="form-control" [(ngModel)]="selectedOrt" name="selectedOrt" id="selectedOrt">
-            <option>KSO</option>
-            <option>BSS</option>
-            <option>alle</option>
+          <select class="form-control" [(ngModel)]="selectedOrt" name="selectedOrt" id="selectedOrt" required>
+            <option disabled selected>Bitte wählen ...</option>
+            <option value="KSO">KSO</option>
+            <option value="BSS">BSS</option>
+            <option value="alle">alle</option>
           </select>
       </div>
     </div>
