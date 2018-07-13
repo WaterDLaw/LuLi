@@ -46,7 +46,7 @@
           
             <td>{{patient?.vorname}}</td>
             <td>{{patient?.name}}</td>
-            <td>{{patient?.geburtsdatum date: 'dd. MMMM yyyy'}}</td>
+            <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
             <td><a routerLink="../../../clients/show/{{patient.id}}"class="btn btn-primary" ngbTooltip="Patient betrachten"><i class="icon-eye white"></i></a>
             <a class="btn btn-danger"><i class="icon-trash white" ngbTooltip="Patient entfernen"></i></a></td>
           </tr>
