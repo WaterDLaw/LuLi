@@ -23,5 +23,9 @@ export interface Crqsas{
     frage_19: number
     frage_20: number,
     patient_id: number,
-    erledigt: string
+    erledigt: string,
+    dyspnoe: number,
+    fatique: number,
+    emotion: number,
+    mastery: number
 }

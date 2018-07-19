@@ -11,6 +11,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { Cat } from '../../../models/Cat';
 import { Gehtest } from '../../../models/Gehtest';
+import { Crqsas } from '../../../models/Crqsas';
+import { CrqsasComponent } from '../crqsas/crqsas.component';
 
 @Component({
   selector: 'app-show',
@@ -319,11 +321,11 @@ export class ShowComponent implements OnInit {
       // Table Messwerte
 
       var rowsMesswerte = [
-        ["FEV (l)", this.patient.fevl_before, this.patient.fevl_after, (this.patient.fevl_after -this.patient.fevl_before),"leer"],
-        ["FEV %", this.patient.fevp_before,this.patient.fevp_after,(this.patient.fevp_after-this.patient.fevp_before),"leer"],
-        ["VK max. (l)", this.patient.vkmaxl_before, this.patient.vkmaxl_after,(this.patient.vkmaxl_after-this.patient.vkmaxl_before), "leer"],
-        ["VK %", this.patient.vkmaxp_before, this.patient.vkmaxp_after, (this.patient.vkmaxp_after-this.patient.vkmaxp_before),"leer"],
-        ["V0 max. (ml)", this.patient.vo2max_before, this.patient.vo2max_after, (this.patient.vo2max_after-this.patient.vo2max_before),"leer"]
+        ["FEV (l)", this.patient.fevl_before, this.patient.fevl_after, (this.patient.fevl_after -this.patient.fevl_before), "%"],
+        ["FEV %", this.patient.fevp_before,this.patient.fevp_after,(this.patient.fevp_after-this.patient.fevp_before), "%"],
+        ["VK max. (l)", this.patient.vkmaxl_before, this.patient.vkmaxl_after,(this.patient.vkmaxl_after-this.patient.vkmaxl_before), "%"],
+        ["VK %", this.patient.vkmaxp_before, this.patient.vkmaxp_after, (this.patient.vkmaxp_after-this.patient.vkmaxp_before), "%"],
+        ["V0 max. (ml)", this.patient.vo2max_before, this.patient.vo2max_after, (this.patient.vo2max_after-this.patient.vo2max_before), "%"]
       ]
 
       col = ["Lungenfunktion", "vorher", "nachher", "Differenz", "%"];
@@ -337,13 +339,40 @@ export class ShowComponent implements OnInit {
 
       doc.autoTable(col,rowsMesswerte,options);
 
+      // undefined
+      let crqsasBefore: Crqsas;
+      let crqsasAfter: Crqsas;
+
+      if(this.crqsasBefore[0]){
+        crqsasBefore = this.crqsasBefore[0];
+      }else{
+
+        // create a fake crqsas with 0 in values
+        crqsasBefore = {} as Crqsas;
+        crqsasBefore.dyspnoe = 0;
+        crqsasBefore.emotion = 0;
+        crqsasBefore.fatique = 0;
+        crqsasBefore.mastery = 0;
+      }
+
+      if(this.crqsasAfter[0]){
+        crqsasAfter = this.crqsasAfter[0];
+
+      }else{
+        crqsasAfter = {} as Crqsas;
+        crqsasAfter.dyspnoe = 0;
+        crqsasAfter.emotion = 0;
+        crqsasAfter.fatique = 0;
+        crqsasAfter.mastery = 0;
+      }
+
       // CRQ
       col = ["CRQ","vorher", "nachher", "Differenz", "%"];
       var rowsCRQ = [
-        ["Dyspnoe", 0, 0, 0, "leer"],
-        ["Müdigkeit (Fatique)", 0, 0, 0, "leer"],
-        ["Gefühlslage (Emotion)", 0, 0, 0, "leer"],
-        ["Dyspnoe (Mastery)", 0, 0, 0, "leer"],
+        ["Dyspnoe", String(crqsasBefore.dyspnoe), String(crqsasAfter.dyspnoe), String(crqsasAfter.dyspnoe - crqsasBefore.dyspnoe), String((crqsasBefore.dyspnoe/100*crqsasAfter.dyspnoe)-100) + "%"],
+        ["Müdigkeit (Fatique)", String(crqsasBefore.fatique), String(crqsasAfter.fatique), String(crqsasAfter.fatique - crqsasBefore.fatique), String((crqsasBefore.fatique/100*crqsasAfter.fatique)-100) + "%"],
+        ["Gefühlslage (Emotion)", String(crqsasBefore.emotion), String(crqsasAfter.emotion), String(crqsasAfter.emotion - crqsasBefore.emotion),  String((crqsasBefore.emotion/100*crqsasAfter.emotion)-100) + "%"],
+        ["Dyspnoe (Mastery)", String(crqsasBefore.mastery), String(crqsasAfter.mastery), String(crqsasAfter.mastery - crqsasBefore.mastery), String((crqsasBefore.mastery/100*crqsasAfter.mastery)-100) + "%"],
       ]
       options = {
         margin: {
