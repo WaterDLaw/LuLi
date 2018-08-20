@@ -4,258 +4,273 @@
         <a routerLink="../../edit/{{patient.id}}" ngbTooltip="Patient bearbeiten" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
         <h2>Patienteninformationen</h2>
         <hr />
-        <table class="table table-sm">
-          <tbody>
-            <tr>
-              <td>Vorname:</td>
-              <td>{{patient.vorname}}</td>
-          
-            </tr>
-            <tr>
-              <td>Name:</td>
-              <td>{{patient.name}}</td>
-            </tr>
-            <tr>
-              <td>Email:</td>
-              <td>{{patient.email}}</td>
-            </tr>
-            <tr>
-              <td>Geburtsdatum:</td>
-              <td>{{patient.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
-            </tr>
-            <tr>
-              <td>Groesse:</td>
-              <td>{{patient.groesse}}</td>
-            </tr>
-            <tr>
-              <td>Geschlecht:</td>
-              <td>{{patient.geschlecht}}</td>
-            </tr>
-            <tr>
-              <td>Telefon:</td>
-              <td>{{patient.telefon}}</td>
-            </tr>
-            <tr>
-              <td>Strasse:</td>
-              <td>{{patient.strasse}}</td>
-            </tr>
-            <tr>
-              <td>PLZ:</td>
-              <td>{{patient.plz}}</td>
-            </tr>
-            <tr>
-              <td>Wohnort:</td>
-              <td>{{patient.wohnort}}</td>
-            </tr>
-          </tbody>
-        </table>
-        <h3>Diagnosen</h3>
-        <hr />
-        <ul>
-          <li *ngIf="patient.chronisch_obstruktive_Lungenkrankheit">Chronisch obstruktive Lungenkrankheit</li>
-          <li *ngIf="patient.zystische_fibrose">Zystische Fibroseme</li>
-          <li *ngIf="patient.asthma_bronchiale">Asthma Bronchiale</li>
-          <li *ngIf="patient.interstitielle_lungenkrankheit">Interstitielle Lungenkrankheit</li>
-          <li *ngIf="patient.thoraxwand_thoraxmuskelerkrankung">Thoraxwand Thoraxmuskelerkrankung</li>
-          <li *ngIf="patient.andere_lungenkrankheit">Andere Lungenkrankheit</li>
-          <li *ngIf="patient.postoperative_lungenoperation">Postoperative Lungenoperation</li>
-          <li *ngIf="patient.funktionelle_atemstoerung">Funktionelle Atemstoerung</li>
-        </ul>
-        <div *ngIf="patient.diagnose_details !=null">
-          <h3>Diagnose Details</h3>
-          <hr />
-          <p>{{patient.bemerkungen}}</p>
-        </div>
 
-        <h3>Messwerte 
-          <a *ngIf="!measurmentEdit" (click)="measurmentsEdit()" ngbTooltip="Messwerte bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-          <a *ngIf="measurmentEdit" (click)="measurmentsSave()" ngbTooltip="Messwerte speichern" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-check white"> Speichern</i></a>
-        </h3>
-        <hr />
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Messwert</th>
-              <th scope="col">Vorher</th>
-              <th scope="col">Nachher</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Gewicht (kg)</th>
-              <td *ngIf="!measurmentEdit">{{patient.gewicht_before}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.gewicht_before" type="text" style="width:200px;"class="form-control" id="gewicht_before" placeholder="" name="gewicht_before"></td>
-              <td *ngIf="!measurmentEdit">{{patient.gewicht_after}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.gewicht_after" type="text" style="width:200px;"class="form-control" id="gewicht_after" placeholder="" name="gewicht_after"></td>
-            </tr>
-            <tr>
-              <th>FEV1(l)</th>
-              <td *ngIf="!measurmentEdit">{{patient.fevl_before}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevl_before" type="text" style="width:200px;"class="form-control" id="fevl_before" placeholder="" name="fevl_before"></td>
-              <td *ngIf="!measurmentEdit">{{patient.fevl_after}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevl_after" type="text" style="width:200px;"class="form-control" id="fevl_after" placeholder="" name="fevl_after"></td>
-            </tr>
-            <tr>
-              <th>FEV1 %</th>
-              <td *ngIf="!measurmentEdit">{{patient.fevp_before}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevp_before" type="text" style="width:200px;"class="form-control" id="fevp_before" placeholder="" name="fevp_before"></td>
-              <td *ngIf="!measurmentEdit">{{patient.fevp_after}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevp_after" type="text" style="width:200px;"class="form-control" id="fevp_after" placeholder="" name="fevp_after"></td>
-            </tr>
-            <tr>
-              <th>VK max. (l)</th>
-              <td *ngIf="!measurmentEdit">{{patient.vkmaxl_before}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxl_before" type="text" style="width:200px;"class="form-control" id="vkmaxl_before" placeholder="" name="vkmaxl_before"></td>
-              <td *ngIf="!measurmentEdit">{{patient.vkmaxl_after}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxl_after" type="text" style="width:200px;"class="form-control" id="vkmaxl_after" placeholder="" name="vkmaxl_after"></td>
-
-            </tr>
-            <tr>
-              <th>VK %</th>
-              <td *ngIf="!measurmentEdit">{{patient.vkmaxp_before}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxp_before" type="text" style="width:200px;"class="form-control" id="vkmaxp_before" placeholder="" name="vkmaxp_before"></td>
-              <td *ngIf="!measurmentEdit">{{patient.vkmaxp_after}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxp_after" type="text" style="width:200px;"class="form-control" id="vkmaxp_after" placeholder="" name="vkmaxp_after"></td>
-            </tr>
-            <tr>
-              <th>VO2 max. (ml)</th>
-              <td *ngIf="!measurmentEdit">{{patient.vo2max_before}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vo2max_before" type="text" style="width:200px;"class="form-control" id="vo2max_before" placeholder="" name="vo2max_before"></td>
-              <td *ngIf="!measurmentEdit">{{patient.vo2max_after}}</td>
-              <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vo2max_after" type="text" style="width:200px;"class="form-control" id="vo2max_after" placeholder="" name="vo2max_after"></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>Training</h3>
-        <hr />
-        <div class="row" *ngIf="patient.training_id != null && trainings?.length > 0 ">
-          <div class="col-md-3" >
-            {{getTrainingName(patient?.training_id)}}
+        <!-- Patienten info-->
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table table-sm">
+              <tbody>
+                <tr>
+                  <td>Vorname:</td>
+                  <td>{{patient.vorname}}</td>
+              
+                </tr>
+                <tr>
+                  <td>Name:</td>
+                  <td>{{patient.name}}</td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td>{{patient.email}}</td>
+                </tr>
+                <tr>
+                  <td>Geburtsdatum:</td>
+                  <td>{{patient.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
+                </tr>
+    
+                <tr>
+                  <td>Geschlecht:</td>
+                  <td>{{patient.geschlecht}}</td>
+                </tr>
+                <tr>
+                  <td>Telefon:</td>
+                  <td>{{patient.telefon}}</td>
+                </tr>
+                <tr>
+                  <td>Strasse:</td>
+                  <td>{{patient.strasse}}</td>
+                </tr>
+                <tr>
+                  <td>PLZ:</td>
+                  <td>{{patient.plz}}</td>
+                </tr>
+                <tr>
+                  <td>Wohnort:</td>
+                  <td>{{patient.wohnort}}</td>
+                </tr>
+                <tr>
+                  <td>Groesse:</td>
+                  <td>{{patient.groesse}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="col-md-2">
-              <a routerLink="../../../trainings/show/{{patient?.training_id}}" ngbTooltip="Training betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a> 
-              <a (click)="openModal(content)" class="btn btn-primary" ngbTooltip="Training neu zuteilen"  style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-          </div>
-        </div>
-        <div class="row margin-bot" *ngIf="patient.training_id == null">
-            <div class="col-md-3">
-              Noch keinem training zugeteilt
+          <div class="col-md-6">
+
+            <h3>Training</h3>
+            <div class="row" *ngIf="patient.training_id != null && trainings?.length > 0 ">
+              <div class="col-md-3" >
+                {{getTrainingName(patient?.training_id)}}
+              </div>
+              <div class="col-md-9">
+                  <a routerLink="../../../trainings/show/{{patient?.training_id}}" ngbTooltip="Training betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a> 
+                  <a (click)="openModal(content)" class="btn btn-primary" ngbTooltip="Training neu zuteilen"  style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+              </div>
             </div>
-            <div class="col-md-2">
-              <a (click)="openModal(content)" ngbTooltip="Patient einem Training zuteilen" class="btn btn-primary white">Training zuteilen</a>
+            <div class="row margin-bot" *ngIf="patient.training_id == null">
+              <div class="col-md-3">
+                Noch keinem training zugeteilt
+              </div>
+              <div class="col-md-9">
+                <a (click)="openModal(content)" ngbTooltip="Patient einem Training zuteilen" class="btn btn-primary white">Training zuteilen</a>
+              </div>
+            </div>
+            <hr />
+            <h4>Diagnosen</h4>
+            <ul>
+              <li *ngIf="patient.chronisch_obstruktive_Lungenkrankheit">Chronisch obstruktive Lungenkrankheit</li>
+              <li *ngIf="patient.zystische_fibrose">Zystische Fibroseme</li>
+              <li *ngIf="patient.asthma_bronchiale">Asthma Bronchiale</li>
+              <li *ngIf="patient.interstitielle_lungenkrankheit">Interstitielle Lungenkrankheit</li>
+              <li *ngIf="patient.thoraxwand_thoraxmuskelerkrankung">Thoraxwand Thoraxmuskelerkrankung</li>
+              <li *ngIf="patient.andere_lungenkrankheit">Andere Lungenkrankheit</li>
+              <li *ngIf="patient.postoperative_lungenoperation">Postoperative Lungenoperation</li>
+              <li *ngIf="patient.funktionelle_atemstoerung">Funktionelle Atemstoerung</li>
+            </ul>
+            <div *ngIf="patient.diagnose_details !=null">
+              <h4>Diagnose Details</h4>
+              <p>{{patient.bemerkungen}}</p>
             </div>
           </div>
+        </div>
+        
+        <!-- Messwerte Accordian-->
+        <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+          <ngb-panel>
+              <ng-template ngbPanelTitle>
+                  <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Journal</span>
+              </ng-template>
+              <ng-template ngbPanelContent>
+              </ng-template>
+            </ngb-panel>
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+                <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Messwerte</span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <h3>Messwerte 
+                  <a *ngIf="!measurmentEdit" (click)="measurmentsEdit()" ngbTooltip="Messwerte bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  <a *ngIf="measurmentEdit" (click)="measurmentsSave()" ngbTooltip="Messwerte speichern" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-check white"> Speichern</i></a>
+                </h3>
+                <hr />
+        
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Messwert</th>
+                      <th scope="col">Vor dem Training</th>
+                      <th scope="col">Nach dem Training</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Gewicht (kg)</th>
+                      <td *ngIf="!measurmentEdit">{{patient.gewicht_before}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.gewicht_before" type="text" style="width:200px;"class="form-control" id="gewicht_before" placeholder="" name="gewicht_before"></td>
+                      <td *ngIf="!measurmentEdit">{{patient.gewicht_after}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.gewicht_after" type="text" style="width:200px;"class="form-control" id="gewicht_after" placeholder="" name="gewicht_after"></td>
+                    </tr>
+                    <tr>
+                      <th>FEV1(l)</th>
+                      <td *ngIf="!measurmentEdit">{{patient.fevl_before}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevl_before" type="text" style="width:200px;"class="form-control" id="fevl_before" placeholder="" name="fevl_before"></td>
+                      <td *ngIf="!measurmentEdit">{{patient.fevl_after}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevl_after" type="text" style="width:200px;"class="form-control" id="fevl_after" placeholder="" name="fevl_after"></td>
+                    </tr>
+                    <tr>
+                      <th>FEV1 %</th>
+                      <td *ngIf="!measurmentEdit">{{patient.fevp_before}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevp_before" type="text" style="width:200px;"class="form-control" id="fevp_before" placeholder="" name="fevp_before"></td>
+                      <td *ngIf="!measurmentEdit">{{patient.fevp_after}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevp_after" type="text" style="width:200px;"class="form-control" id="fevp_after" placeholder="" name="fevp_after"></td>
+                    </tr>
+                    <tr>
+                      <th>VK max. (l)</th>
+                      <td *ngIf="!measurmentEdit">{{patient.vkmaxl_before}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxl_before" type="text" style="width:200px;"class="form-control" id="vkmaxl_before" placeholder="" name="vkmaxl_before"></td>
+                      <td *ngIf="!measurmentEdit">{{patient.vkmaxl_after}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxl_after" type="text" style="width:200px;"class="form-control" id="vkmaxl_after" placeholder="" name="vkmaxl_after"></td>
+        
+                    </tr>
+                    <tr>
+                      <th>VK %</th>
+                      <td *ngIf="!measurmentEdit">{{patient.vkmaxp_before}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxp_before" type="text" style="width:200px;"class="form-control" id="vkmaxp_before" placeholder="" name="vkmaxp_before"></td>
+                      <td *ngIf="!measurmentEdit">{{patient.vkmaxp_after}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxp_after" type="text" style="width:200px;"class="form-control" id="vkmaxp_after" placeholder="" name="vkmaxp_after"></td>
+                    </tr>
+                    <tr>
+                      <th>VO2 max. (ml)</th>
+                      <td *ngIf="!measurmentEdit">{{patient.vo2max_before}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vo2max_before" type="text" style="width:200px;"class="form-control" id="vo2max_before" placeholder="" name="vo2max_before"></td>
+                      <td *ngIf="!measurmentEdit">{{patient.vo2max_after}}</td>
+                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vo2max_after" type="text" style="width:200px;"class="form-control" id="vo2max_after" placeholder="" name="vo2max_after"></td>
+                    </tr>
+                  </tbody>
+                </table>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+              <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Fragebögen</span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <h3>Fragebögen</h3>
+            <hr />
 
-        <h3>Fragebögen</h3>
-        <hr />
-        <div class="row margin-bot">
-          <div class="col-md-3">
-            Feedback Fragebogen
-          </div>
-          <div class="col-md-2">
-              <div *ngIf="feedback">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/feedback/show/{{feedback[0]?.id}}" ngbTooltip="Feedbackfragebogen betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/feedback/edit/{{feedback[0]?.id}}" ngbTooltip="Feedbackfragebogen bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-              </div>
-              <div *ngIf="!feedback">
-                  <a routerLink="feedback/create" ngbTooltip="Feedbackfragebogen erfassen" class="btn btn-primary">Erfassen</a>
-              </div>
-          </div>  
-        </div>
-        <h4>Vor dem Training</h4>
-        <div class="row margin-bot">
-          <div class="col-md-3">
-            CRQ-SAS
-          </div>
-          <div class="col-md-3">
-              <div *ngIf="crqsasBefore">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsasBefore[0]?.id}}" ngbTooltip="CRQSAS 'Vorher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsasBefore[0]?.id}}" ngbTooltip="CRQSAS 'Vorher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-                  
-              </div>
-              <div *ngIf="!crqsasBefore">
-                  <a routerLink="crqsas/create/before" ngbTooltip="CRQSAS erfassen" class="btn btn-primary">Erfassen</a>
-              </div>
-          </div>  
-        </div>
-        <div class="row margin-bot">
-          <div class="col-md-3">
-            COPD Assessment Test (CAT)
-          </div>
-          <div class="col-md-3">
-              <div *ngIf="catBefore">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catBefore[0]?.id}}" ngbTooltip="CAT 'Vorher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catBefore[0]?.id}}" ngbTooltip="CAT 'Vorher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-                  Gesamtpunktzahl: {{catBefore[0]?.gesamtpunktzahl}}
-              </div>
-              <div *ngIf="!catBefore">
-                  <a routerLink="cat/create/before" ngbTooltip="CAT erfassen" class="btn btn-primary">Erfassen</a>
-              </div>
-          </div>  
-        </div>
-        <div class="row margin-bot">
-            <div class="col-md-3">
-              Gehtest
-            </div>
-            <div class="col-md-3">
-                <div *ngIf="gehtestBefore">
-                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestBefore[0]?.id}}" ngbTooltip="Gehtest 'Vorher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestBefore[0]?.id}}" ngbTooltip="Gehtest 'Vorher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-                    Distanz: {{gehtestBefore[0]?.distanz}}
-                </div>
-                <div *ngIf="!gehtestBefore">
-                    <a routerLink="gehtest/create/before"  ngbTooltip="Gehtest 'Vorher' erfassen" class="btn btn-primary">Erfassen</a>
-                </div>
-            </div>  
-          </div>
-          <h4>Nach dem Training</h4>
-        <div class="row margin-bot">
-          <div class="col-md-3">
-            CRQ-SAS
-          </div>
-          <div class="col-md-3">
-              <div *ngIf="crqsasAfter">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsasAfter[0]?.id}}" ngbTooltip="CRQSAS 'Nachher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsasAfter[0]?.id}}" ngbTooltip="CRQSAS 'Nachher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-              </div>
-              <div *ngIf="!crqsasAfter">
-                  <a routerLink="crqsas/create/after" ngbTooltip="CRQSAS 'Nachher' erfassen" class="btn btn-primary">Erfassen</a>
-              </div>
-          </div>  
-        </div>
-        <div class="row margin-bot">
-          <div class="col-md-3">
-            COPD Assessment Test (CAT)
-          </div>
-          <div class="col-md-3">
-              <div *ngIf="catAfter">
-                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catAfter[0]?.id}}" ngbTooltip="CAT 'Nachher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                  <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catAfter[0]?.id}}" ngbTooltip="CAT 'Nachher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-                  Gesamtpunktzahl: {{catAfter[0]?.gesamtpunktzahl}}
-              </div>
-              <div *ngIf="!catAfter">
-                  <a routerLink="cat/create/after" ngbTooltip="CAT 'Nachher' erfassen" class="btn btn-primary">Erfassen</a>
-              </div>
-          </div>  
-        </div>
-        <div class="row margin-bot">
-            <div class="col-md-3">
-              Gehtest
-            </div>
-            <div class="col-md-3">
-                <div *ngIf="gehtestAfter">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Fragebogen</th>
+                  <th scope="col">Vor dem Training</th>
+                  <th scope="col">Nach dem Training</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- CRQSS -->
+                <tr>
+                  <td>CRQ-SAS</td>
+                  <!-- check crqsas Before-->
+                  <td *ngIf="crqsasBefore">
+                    <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsasBefore[0]?.id}}" ngbTooltip="CRQSAS 'Vorher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                    <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsasBefore[0]?.id}}" ngbTooltip="CRQSAS 'Vorher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a> 
+                  </td>
+                  <td *ngIf="!crqsasBefore">
+                    <a routerLink="crqsas/create/before" ngbTooltip="CRQSAS erfassen" class="btn btn-primary">Erfassen</a>
+                  </td>
+                  <!-- check crqsas After -->
+                  <td *ngIf="crqsasAfter">
+                    <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/show/{{crqsasAfter[0]?.id}}" ngbTooltip="CRQSAS 'Nachher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                    <a routerLink="../../../clients/show/{{patient?.id}}/crqsas/edit/{{crqsasAfter[0]?.id}}" ngbTooltip="CRQSAS 'Nachher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  </td>
+                  <td *ngIf="!crqsasAfter">
+                    <a routerLink="crqsas/create/after" ngbTooltip="CRQSAS 'Nachher' erfassen" class="btn btn-primary">Erfassen</a>
+                  </td>
+                </tr>
+                <!-- CAT -->
+                <tr>
+                  <td>COPD Assesment Test (CAT)</td>
+                  <!-- check CAT before-->
+                  <td *ngIf="catBefore">
+                      <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catBefore[0]?.id}}" ngbTooltip="CAT 'Vorher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                      <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catBefore[0]?.id}}" ngbTooltip="CAT 'Vorher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                      Gesamtpunktzahl: {{catBefore[0]?.gesamtpunktzahl}}
+                  </td>
+                  <td *ngIf="!catBefore">
+                      <a routerLink="cat/create/before" ngbTooltip="CAT erfassen" class="btn btn-primary">Erfassen</a>
+                  </td>
+                  <!-- check CAT after-->
+                  <td *ngIf="catAfter">
+                      <a routerLink="../../../clients/show/{{patient?.id}}/cat/show/{{catAfter[0]?.id}}" ngbTooltip="CAT 'Nachher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                      <a routerLink="../../../clients/show/{{patient?.id}}/cat/edit/{{catAfter[0]?.id}}" ngbTooltip="CAT 'Nachher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                      Gesamtpunktzahl: {{catAfter[0]?.gesamtpunktzahl}}
+                  </td>
+                  <td *ngIf="!catAfter">
+                      <a routerLink="cat/create/after" ngbTooltip="CAT 'Nachher' erfassen" class="btn btn-primary">Erfassen</a>
+                  </td>
+                </tr>
+                <!-- Gehttest -->
+                <tr>
+                  <td>Gehtest</td>
+                  <!-- check Gehtest before-->
+                  <td *ngIf="gehtestBefore">
+                      <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestBefore[0]?.id}}" ngbTooltip="Gehtest 'Vorher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                      <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestBefore[0]?.id}}" ngbTooltip="Gehtest 'Vorher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                      Distanz: {{gehtestBefore[0]?.distanz}}
+                  </td>
+                  <td *ngIf="!gehtestBefore">
+                      <a routerLink="gehtest/create/before"  ngbTooltip="Gehtest 'Vorher' erfassen" class="btn btn-primary">Erfassen</a>
+                  </td>
+                  <!-- check Gehtest after -->
+                  <td *ngIf="gehtestAfter">
                     <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestAfter[0]?.id}}" ngbTooltip="Gehtest 'Nachher' betrachten"  class="btn btn-primary"><i class="icon-eye white"></i></a>
                     <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestAfter[0]?.id}}" ngbTooltip="Gehtest 'Nachher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
                     Distanz: {{gehtestAfter[0]?.distanz}}
-                  </div>
-                <div *ngIf="!gehtestAfter">
-                    <a routerLink="gehtest/create/after" ngbTooltip="Gehtest 'Nachher' erfassen" class="btn btn-primary">Erfassen</a>
-                    
+                  </td>
+                  <td *ngIf="!gehtestAfter">
+                    <a routerLink="gehtest/create/after" ngbTooltip="Gehtest 'Nachher' erfassen" class="btn btn-primary">Erfassen</a>  
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row margin-bot">
+                <div class="col-md-3">
+                  Feedback Fragebogen
                 </div>
-            </div>  
-          </div>
+                <div class="col-md-2">
+                    <div *ngIf="feedback">
+                        <a routerLink="../../../clients/show/{{patient?.id}}/feedback/show/{{feedback[0]?.id}}" ngbTooltip="Feedbackfragebogen betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+                        <a routerLink="../../../clients/show/{{patient?.id}}/feedback/edit/{{feedback[0]?.id}}" ngbTooltip="Feedbackfragebogen bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                    </div>
+                    <div *ngIf="!feedback">
+                        <a routerLink="feedback/create" ngbTooltip="Feedbackfragebogen erfassen" class="btn btn-primary">Erfassen</a>
+                    </div>
+                </div>  
+              </div>
+              
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>              
     </div>
 </div>
 
