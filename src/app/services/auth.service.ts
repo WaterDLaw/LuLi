@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import { HttpClient,HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from "../../environments/environment";
-
+import { User } from "../models/User";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
@@ -19,7 +20,7 @@ export class AuthService {
   private apiurl = environment.apiurl;
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private router: Router) { 
     
     
@@ -51,10 +52,10 @@ export class AuthService {
     console.log(email);
     console.log(password);
     return this.http.post(this.apiurl + '/api/user/login', {email, password})
-        .map((response: Response) => {
+        .map((response: User) => {
             // Das Login war erflogreich wenn ein token vorhanden ist
 
-            let token = response.json() && response.json().token;
+            let token = response && response.token;
             if (token) {
                 // Setze das Token
                 this.token = token;
@@ -94,6 +95,11 @@ export class AuthService {
 
   getToken(){
       return localStorage.getItem('token');
+  }
+
+  // Function returns the current User by Email
+  getCurrentUser(email:string){
+    return this.http.get<User>(this.apiurl + `/api/user/loggedIn/${email}`);
   }
 
 }

@@ -9,7 +9,6 @@ import { environment } from 'environments/environment';
 @Injectable()
 export class GehtestService {
 
-
   private apiurl = environment.apiurl;
 
   constructor(

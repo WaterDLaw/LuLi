@@ -100,17 +100,33 @@
               <ng-template ngbPanelTitle>
                   <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Journal</span>
               </ng-template>
+              <!-- actual journal with entries-->
               <ng-template ngbPanelContent>
+
+                <h3>Einträge
+                  
+                  <a *ngIf="!entryCreate" (click)="createEntry()" ngbTooltip="Eintrag erstellen" class="btn btn-primary" style="margin-left: 5px; float:right; color:white;"><i class="icon-note white"></i> Neuer Eintrag</a>
+                  <a *ngIf="entryCreate" (click)="createEntry()" ngbTooltip="Eintrag erstellen schliessen" class="btn btn-primary" style="margin-left: 5px; float:right; color:white;"><i class="icon-close white"></i> Schliessen</a>
+                  <a routerLink="entries" class="btn btn-primary" ngbTooltip="Alle Einträge anschauen" style="margin-left: 5px; float:right; color:white;"><i class="icon-list white"></i> Alle Einträge</a> 
+                </h3>
+                <!-- Show create entry field -->
+                <app-create-entry [patient_id]="patient.id" (created)="entryCreated($event)"*ngIf="entryCreate"></app-create-entry>
+                <hr />
+                <app-entry [entries]="entries"></app-entry>
+                
               </ng-template>
             </ngb-panel>
           <ngb-panel>
+
+
+
             <ng-template ngbPanelTitle>
                 <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Messwerte</span>
             </ng-template>
             <ng-template ngbPanelContent>
               <h3>Messwerte 
-                  <a *ngIf="!measurmentEdit" (click)="measurmentsEdit()" ngbTooltip="Messwerte bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-                  <a *ngIf="measurmentEdit" (click)="measurmentsSave()" ngbTooltip="Messwerte speichern" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-check white"> Speichern</i></a>
+                  <a *ngIf="!measurmentEdit" (click)="measurmentsEdit()" ngbTooltip="Messwerte bearbeiten" class="btn btn-primary" style="margin-left: 5px; color:white; float:right;"><i class="icon-pencil white"> </i>Bearbeiten</a>
+                  <a *ngIf="measurmentEdit" (click)="measurmentsSave()" ngbTooltip="Messwerte speichern" class="btn btn-primary" style="margin-left: 5px; float:right;"><i class="icon-check white"></i> Speichern</a>
                 </h3>
                 <hr />
         
@@ -172,7 +188,7 @@
         </ngb-panel>
         <ngb-panel>
           <ng-template ngbPanelTitle>
-              <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Fragebögen</span>
+              <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Fragebögen </span>
           </ng-template>
           <ng-template ngbPanelContent>
             <h3>Fragebögen</h3>

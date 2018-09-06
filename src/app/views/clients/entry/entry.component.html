@@ -1,0 +1,12 @@
+
+<div *ngFor="let entry of entries; let i = index;let first = first;" class="row">
+  <app-show-entry [ngClass]="first || show ? 'show' : 'hide'"  [entry]="entry"></app-show-entry>
+</div>
+<button (click)="showMore()" class="btn btn-primary">
+  <i *ngIf="!show" class="icon-arrow-down white"></i>
+  <i *ngIf="show" class="icon-arrow-up white"></i>
+   {{moreButton}}</button>
+
+
+
+

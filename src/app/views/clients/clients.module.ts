@@ -19,7 +19,14 @@ import { CrqsasModule } from "./crqsas/crqsas.module";
 import { CatModule } from './cat/cat.module';
 import { GehtestModule } from "./gehtest/gehtest.module";
 
+// Entry Module
+import { CreateEntryComponent } from "./entry/create-entry/create-entry.component";
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { EntryService } from '../../services/entry.service';
+import { ShowEntryComponent } from './entry/show-entry/show-entry.component';
+import { IndexEntryComponent } from './entry/index-entry/index-entry.component';
+import { EntryComponent } from "./entry/entry.component";
 
 @NgModule({
   imports: [
@@ -39,8 +46,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
       ShowComponent,
       ClientsComponent,
       FilterPipe,
-      EditComponent
+      EditComponent,
+      CreateEntryComponent,
+      ShowEntryComponent,
+      IndexEntryComponent,
+      EntryComponent
     ],
-  providers:[AuthGuard, ClientsService, TrainingsService, DatePipe]
+  providers:[AuthGuard, ClientsService, TrainingsService, DatePipe, EntryService]
 })
 export class ClientsModule { }

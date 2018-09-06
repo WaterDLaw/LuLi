@@ -13,6 +13,8 @@ import { Cat } from '../../../models/Cat';
 import { Gehtest } from '../../../models/Gehtest';
 import { Crqsas } from '../../../models/Crqsas';
 import { CrqsasComponent } from '../crqsas/crqsas.component';
+import { EntryService } from '../../../services/entry.service';
+import { Entry } from '../../../models/Entry';
 
 @Component({
   selector: 'app-show',
@@ -37,6 +39,8 @@ export class ShowComponent implements OnInit {
   catAfter: Cat;
   gehtestAfter: Gehtest;
 
+  entries: Entry[];
+
   // Subscription references
 
   trainingSubscription: Subscription;
@@ -48,6 +52,9 @@ export class ShowComponent implements OnInit {
   gehtestBeforeSubscription: Subscription;
   gehtestAfterSubscription: Subscription;
 
+  entriesSubscription: Subscription;
+  // Entry variables
+  entryCreate: boolean = false;
 
 
   constructor(
@@ -55,14 +62,20 @@ export class ShowComponent implements OnInit {
     private _clientService: ClientsService,
     private modalService: NgbModal,
     private _trainingService: TrainingsService,
+    private _entryService: EntryService,
     private router: Router,
-    private datePipe: DatePipe) { }
+    private datePipe: DatePipe) {
+
+    }
 
   patient = {} as Client;
 
   ngOnInit() {
     console.log("Routes");
     console.log('configured routes: ', this.router.config);
+
+    // get entries
+    this.getEntries(this.route.snapshot.params['id']);
 
     this.getPatient(this.route.snapshot.params['id']);
     // load the Trainings
@@ -81,6 +94,7 @@ export class ShowComponent implements OnInit {
   // Cancel subscriptions for performance boost
 
   ngOnDestroy() {
+    //this.entriesSubscription.unsubscribe();
     this.trainingSubscription.unsubscribe();
     this.feedbackSubscription.unsubscribe();
     this.crqsasBeforeSubscription.unsubscribe();
@@ -89,6 +103,27 @@ export class ShowComponent implements OnInit {
     this.catAfterSubscription.unsubscribe();
     this.gehtestBeforeSubscription.unsubscribe();
     this.gehtestAfterSubscription.unsubscribe();
+  }
+
+  createEntry(){
+    this.entryCreate = !this.entryCreate;
+  }
+
+  entryCreated(created:boolean){
+    if(created){
+      // change the form
+      this.createEntry();
+      // reload entries
+      this.getEntries(this.route.snapshot.params['id']);
+    }
+  }
+
+  getEntries(id:number){
+    this._entryService.getEntriesByPatient(id)
+      .subscribe(data =>{
+        this.entries = data;
+        console.log(data);
+      })
   }
 
   measurmentsEdit(){

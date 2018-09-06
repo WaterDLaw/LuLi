@@ -27,7 +27,8 @@ import { CreateGehtestComponent } from './gehtest/create-gehtest/create-gehtest.
 import { ShowGehtestComponent } from './gehtest/show-gehtest/show-gehtest.component';
 import { EditGehtestComponent } from './gehtest/edit-gehtest/edit-gehtest.component';
 
-
+//Entries component
+import { IndexEntryComponent } from "./entry/index-entry/index-entry.component";
 
 const routes: Routes = [
   {
@@ -52,6 +53,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Show Client'
+    }
+  },
+  {
+    path: 'show/:id/entries',
+    component: IndexEntryComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Index Entries'
     }
   },
   {
