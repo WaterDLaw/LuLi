@@ -22,11 +22,11 @@ export class PdfService {
 
     //const token = this._authService.getToken();
 
-    return this.http.get(this.apiurl + `/api/pdf/Verordnung/${patient_id}` , {responseType: 'blob'});
+    return this.http.get('https://arponline.herokuapp.com' + `/api/pdf/Verordnung/${patient_id}` , {responseType: 'blob'});
   }
 
   getEmptyVerordnung(){
-    return this.http.get(this.apiurl + `/api/pdf/VerordnungEmpty`, {responseType: 'blob'});
+    return this.http.get('https://arponline.herokuapp.com' + `/api/pdf/VerordnungEmpty`, {responseType: 'blob'});
   }
 
 }
