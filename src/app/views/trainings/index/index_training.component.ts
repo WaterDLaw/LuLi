@@ -10,9 +10,9 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class IndexTrainingComponent implements OnInit {
 
-  private trainings: Array<Training>;
+  trainings: Array<Training>;
   public searchTitleString: string;
-  private trainingId;
+  trainingId;
   modalReference: any;
   closeResult: string;
 

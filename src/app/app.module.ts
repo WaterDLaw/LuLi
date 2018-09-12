@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -16,6 +16,12 @@ const APP_CONTAINERS = [
   FullLayoutComponent,
   SimpleLayoutComponent
 ]
+
+import { registerLocaleData } from '@angular/common';
+import localeDECH from '@angular/common/locales/de-CH';
+
+// the second parameter 'fr' is optional
+registerLocaleData(localeDECH);
 
 // Services
 import { AuthService } from "./services/auth.service";
@@ -100,6 +106,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'de-ch'
     }
     
   ],

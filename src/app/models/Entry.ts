@@ -4,5 +4,6 @@ export interface Entry{
     author:string,
     title:string,
     patient_id:number,
-    user_id:number
+    user_id:number,
+    created_at:any
 }

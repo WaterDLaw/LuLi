@@ -10,7 +10,7 @@ import { CreateCatComponent } from './create-cat/create-cat.component';
 import { EditCatComponent } from './edit-cat/edit-cat.component';
 import { ShowCatComponent } from './show-cat/show-cat.component';
 import { IndexCatComponent } from './index-cat/index-cat.component';
-
+import { CatComponent } from "./cat.component";
 import { CatService } from '../../../services/cat.service';
 
 
@@ -25,7 +25,8 @@ import { CatService } from '../../../services/cat.service';
         CreateCatComponent,
         EditCatComponent,
         ShowCatComponent,
-        IndexCatComponent
+        IndexCatComponent,
+        CatComponent
     ],
   providers:[AuthGuard, ClientsService, CatService]
 })

@@ -26,6 +26,7 @@ export interface Feedback{
     frage_5_l?:number,
     frage_5_m?:number,
     frage_5_n?:number,
+    frage_5_o?:number,
     frage_5_bemerkungen?:string,
     frage_6_a?:number,
     frage_6_b?:number,

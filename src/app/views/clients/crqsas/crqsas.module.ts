@@ -11,6 +11,7 @@ import { ShowCrqsasComponent } from './show-crqsas/show-crqsas.component';
 import { IndexCrqsasComponent } from './index-crqsas/index-crqsas.component';
 
 import { ClientsRoutingModule } from "../../clients/clients-routing.module";
+import { CrqsasComponent } from './crqsas.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ClientsRoutingModule } from "../../clients/clients-routing.module";
     CreateCrqsasComponent, 
     EditCrqsasComponent, 
     ShowCrqsasComponent, 
-    IndexCrqsasComponent
+    IndexCrqsasComponent,
+    CrqsasComponent
     ],
   providers:[AuthGuard, ClientsService, CrqsasService]
 })

@@ -119,16 +119,20 @@
             <label class="col-sm-2" for="status">Status</label>
             <div class="col-sm-10">
                 <select class="form-control" [(ngModel)]="patient.status" name="status" id="status" required>
-                  <option>Starter</option>
-                  <option>Nicht Starter</option>
-                  <option>Dropout</option>
+                  <option>Teilnehmer</option>
+                  <option>Nichtstarter</option>
+                  <option>Drop-out</option>
                 </select>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2" for="rauchstatus">Rauchstatus</label>
             <div class="col-sm-10">
-                <input [(ngModel)]="patient.rauchstatus" type="text" class="form-control" id="rauchstatus" placeholder="Rauchstatus" name="rauchstatus" >
+                <select class="form-control" [(ngModel)]="patient.rauchstatus" name="rauchstatus" id="rauchstatus" required>
+                    <option>Raucher</option>
+                    <option>Ex-Raucher</option>
+                    <option>Nichtraucher</option>
+                </select>
             </div>
         </div>
         <div class="form-group row">
@@ -137,12 +141,12 @@
                 <input [(ngModel)]="patient.pneumologe" type="text" class="form-control" id="pneumologe" placeholder="Pneumologe" name="pneumologe" >
             </div>
         </div>
-        <h2>Diagnosen</h2>
+        <h2>Diagnose(n)</h2>
         <hr />
         <div class="form-check">
             <input [(ngModel)]="patient.chronisch_obstruktive_Lungenkrankheit" class="form-check-input" type="checkbox" value="" id="chronisch_obstruktive_Lungenkrankheit" name="chronisch_obstruktive_Lungenkrankheit">
             <label class="form-check-label" for="chronisch_obstruktive_Lungenkrankheit">
-                Chronisch obstruktive Lungenkrankheit (J40-44; J47)
+                COPD (J40-44; J47)
             </label>
         </div>
         <div class="form-check">

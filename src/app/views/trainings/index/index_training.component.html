@@ -5,14 +5,14 @@
           <div class="input-group-prepend">
               <span class="input-group-text" id="btnGroupAddon2"><i class="icon-magnifier"></i></span>
           </div>
-          <input type="text" class="form-control" name="searchString" placeholder="Titel eingeben" [(ngModel)]="searchTitleString">
+          <input type="text" class="form-control suche" name="searchString" placeholder="Suche" [(ngModel)]="searchTitleString">
           <a routerLink="create" class="btn btn-primary" ngbTooltip="Neues Training erfassen"><i class="icon-user-follow"></i></a>
         </div>
       </form>
-    <table class="table">
+    <table class="table" style="margin-top:10px">
       <thead>
         <tr>
-          <th>Titel</th>
+          <th>Kurs</th>
           <th>Start</th>
           <th>Ende</th>
           <th></th>

@@ -27,6 +27,8 @@ import { EntryService } from '../../services/entry.service';
 import { ShowEntryComponent } from './entry/show-entry/show-entry.component';
 import { IndexEntryComponent } from './entry/index-entry/index-entry.component';
 import { EntryComponent } from "./entry/entry.component";
+import { EditEntryComponent } from './entry/edit-entry/edit-entry.component';
+import { PdfService } from '../../services/pdf.service';
 
 @NgModule({
   imports: [
@@ -50,8 +52,9 @@ import { EntryComponent } from "./entry/entry.component";
       CreateEntryComponent,
       ShowEntryComponent,
       IndexEntryComponent,
-      EntryComponent
+      EntryComponent,
+      EditEntryComponent
     ],
-  providers:[AuthGuard, ClientsService, TrainingsService, DatePipe, EntryService]
+  providers:[AuthGuard, ClientsService, TrainingsService, DatePipe, EntryService, PdfService]
 })
 export class ClientsModule { }

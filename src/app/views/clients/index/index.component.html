@@ -5,11 +5,11 @@
         <div class="input-group-prepend">
             <span class="input-group-text" id="btnGroupAddon2"><i class="icon-magnifier"></i></span>
         </div>
-        <input type="text" class="form-control" name="searchString" placeholder="Name eingeben" [(ngModel)]="searchString">
+        <input type="text" class="form-control suche" name="searchString" placeholder="Suche" [(ngModel)]="searchString">
         <a routerLink="create" class="btn btn-primary"><i class="icon-user-follow" ngbTooltip="Patient erstellen"></i></a>
       </div>
     </form>
-  <table class="table">
+  <table class="table" style="margin-top:10px;">
     <thead>
       <tr>
         <th>Vorname</th>
@@ -25,10 +25,10 @@
       
         <td>{{patient?.vorname}}</td>
         <td>{{patient?.name}}</td>
-        <td>{{patient?.geburtsdatum | date}}</td>
-        <td>{{patient?.ort}}</td>
+        <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
+        <td>{{patient?.wohnort}}</td>
         <td><a routerLink="show/{{patient.id}}" ngbTooltip="Patient betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
-        <a routerLink="edit/{{patient.id}}"class="btn btn-primary" ngbTooltip="Patient bearbeiten" ><i class="icon-pencil white"></i></a>
+        <!--<a routerLink="edit/{{patient.id}}"class="btn btn-primary" ngbTooltip="Patient bearbeiten" ><i class="icon-pencil white"></i></a>-->
         <a (click)="openModal(content, patient.id)" class="btn btn-danger" ngbTooltip="Patient löschen" ><i class="icon-trash white"></i></a></td>
       </tr>
     </tbody>

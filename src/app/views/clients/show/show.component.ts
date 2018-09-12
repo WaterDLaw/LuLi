@@ -1,6 +1,6 @@
 declare var jsPDF: any;
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from "../../../models/Client";
 import { Training } from "../../../models/Training";
@@ -15,6 +15,8 @@ import { Crqsas } from '../../../models/Crqsas';
 import { CrqsasComponent } from '../crqsas/crqsas.component';
 import { EntryService } from '../../../services/entry.service';
 import { Entry } from '../../../models/Entry';
+import { PdfService } from '../../../services/pdf.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-show',
@@ -22,7 +24,7 @@ import { Entry } from '../../../models/Entry';
   styleUrls: ['./show.component.scss']
 })
 export class ShowComponent implements OnInit {
-
+  
   measurmentEdit: boolean = false;
 
   closeResult: string;
@@ -64,7 +66,8 @@ export class ShowComponent implements OnInit {
     private _trainingService: TrainingsService,
     private _entryService: EntryService,
     private router: Router,
-    private datePipe: DatePipe) {
+    private datePipe: DatePipe,
+    private _pdfService: PdfService) {
 
     }
 
@@ -260,6 +263,31 @@ export class ShowComponent implements OnInit {
       })
   }
 
+  downloadEmpty(){
+    this._pdfService.getEmptyVerordnung()
+    .subscribe(data =>{
+
+      console.log("success");
+      console.log(data);
+      
+      saveAs(data, `pdf report.pdf`);
+      
+ 
+    })
+  }
+
+  downloadVerordnung(){
+    console.log("download phsysio");
+    console.log(this.patient.id);
+    this._pdfService.getVerordnung(this.patient.id)
+      .subscribe(data =>{
+
+        console.log("success");
+        console.log(data);
+        saveAs(data, `pdf Verordnung.pdf`);
+      })
+  }
+
   download(){
     var doc = new jsPDF();
     var startY = 20;
@@ -306,7 +334,7 @@ export class ShowComponent implements OnInit {
       }else if(this.patient.chronisch_obstruktive_Lungenkrankheit){
         doc.text(40,55 +posY + startY, "Chronisch obstruktive Lungenkrankheit");
         posY = posY + 5;   
-      }else if(this.patient.funktionelle_atemstörung){
+      }else if(this.patient.funktionelle_atemstoerung){
         doc.text(40,55 +posY + startY, "Funktionelle Atemstörtung");
         posY = posY + 5;  
       }else if(this.patient.interstitielle_lungenkrankheit){

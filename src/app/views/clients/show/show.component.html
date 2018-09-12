@@ -1,6 +1,8 @@
 <div class="card">
     <div class="card-body">
         <a (click)="download()"class="btn btn-primary" style="float:right;" ngbTooltip="Patient als PDF downloaden"><i class="icon-doc white"></i></a>
+        <a (click)="downloadVerordnung()" class="btn btn-primary" style="float:right;margin-right: 5px;" ngbTooltip="Physiotherapie Formular"><i class="icon-event white"></i></a>
+
         <a routerLink="../../edit/{{patient.id}}" ngbTooltip="Patient bearbeiten" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
         <h2>Patienteninformationen</h2>
         <hr />
@@ -78,8 +80,8 @@
             <hr />
             <h4>Diagnosen</h4>
             <ul>
-              <li *ngIf="patient.chronisch_obstruktive_Lungenkrankheit">Chronisch obstruktive Lungenkrankheit</li>
-              <li *ngIf="patient.zystische_fibrose">Zystische Fibroseme</li>
+              <li *ngIf="patient.chronisch_obstruktive_Lungenkrankheit">COPD</li>
+              <li *ngIf="patient.zystische_fibrose">Zystische Fibrose</li>
               <li *ngIf="patient.asthma_bronchiale">Asthma Bronchiale</li>
               <li *ngIf="patient.interstitielle_lungenkrankheit">Interstitielle Lungenkrankheit</li>
               <li *ngIf="patient.thoraxwand_thoraxmuskelerkrankung">Thoraxwand Thoraxmuskelerkrankung</li>

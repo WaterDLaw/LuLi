@@ -1,3 +1,13 @@
-<p>
-  index-entry works!
-</p>
+<div class="card">
+  <div class="card-body">
+    <div *ngFor="let entry of entries" class="row">
+      <div class="col-md-10">
+        <app-show-entry [entry]="entry"></app-show-entry>
+      </div>
+      <div class="col-md-2">
+        <a routerLink="{{entry.id}}/edit"class="btn btn-primary" ngbTooltip="Eintrag bearbeiten" ><i class="icon-pencil white"></i></a>
+        <a class="btn btn-danger" ngbTooltip="Eintrag löschen"style="color:white;" ><i class="icon-trash white"></i></a>
+      </div>
+    </div>
+  </div>
+</div>

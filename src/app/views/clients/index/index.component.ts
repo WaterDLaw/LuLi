@@ -38,6 +38,10 @@ export class IndexComponent implements OnInit {
         this.modalReference.close();
         this.patientId = null;
       })
+      .catch(error =>{
+        console.log(error);
+      }
+      )
 
     
   }

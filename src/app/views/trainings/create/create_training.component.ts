@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CreateTrainingComponent implements OnInit {
 
-  private training: Training;
+  training: Training;
 
   // Time
   /*

@@ -29,6 +29,7 @@ import { EditGehtestComponent } from './gehtest/edit-gehtest/edit-gehtest.compon
 
 //Entries component
 import { IndexEntryComponent } from "./entry/index-entry/index-entry.component";
+import { EditEntryComponent } from './entry/edit-entry/edit-entry.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Index Entries'
+    }
+  },
+  {
+    path: 'show/:id/entries/:entry_id/edit',
+    component: EditEntryComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Edit Entry'
     }
   },
   {

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { EntryService } from "../../../../services/entry.service";
+import { Entry } from '../../../../models/Entry';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-index-entry',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexEntryComponent implements OnInit {
 
-  constructor() { }
+  entries: Entry[]
+
+  constructor(
+    private _entryService: EntryService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.getEntries(this.route.snapshot.params['id']);
   }
+
+  getEntries(id:number){
+    this._entryService.getEntriesByPatient(id)
+      .subscribe(data =>{
+        this.entries = data;
+        console.log(data);
+      })
+  }
+
 
 }

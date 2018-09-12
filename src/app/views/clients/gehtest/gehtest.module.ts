@@ -10,6 +10,7 @@ import { EditGehtestComponent } from './edit-gehtest/edit-gehtest.component';
 import { ShowGehtestComponent } from './show-gehtest/show-gehtest.component';
 import { IndexGehtestComponent } from './index-gehtest/index-gehtest.component';
 import { GehtestService } from "../../../services/gehtest.service";
+import { GehtestComponent } from './gehtest.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { GehtestService } from "../../../services/gehtest.service";
       CreateGehtestComponent,
       EditGehtestComponent,
       ShowGehtestComponent,
-      IndexGehtestComponent
+      IndexGehtestComponent,
+      GehtestComponent
     ],
   providers:[AuthGuard, ClientsService, GehtestService]
 })

@@ -26,7 +26,7 @@ export interface Client{
     thoraxwand_thoraxmuskelerkrankung?: boolean,
     andere_lungenkrankheit?: boolean,
     postoperative_lungenoperation?: boolean,
-    funktionelle_atemstörung?: boolean,
+    funktionelle_atemstoerung?: boolean,
     telefon?: string,
     training_id?: number,
     status?: string,
