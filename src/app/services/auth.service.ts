@@ -90,6 +90,7 @@ activeUser:User;
       // remove den User aus dem Localstorage
       localStorage.removeItem('email');
       localStorage.removeItem('token');
+
       // sende false an das Observable
       this.loginStatus.next(false);
 

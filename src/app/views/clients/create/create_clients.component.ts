@@ -27,9 +27,8 @@ export class CreateClientsComponent implements OnInit {
 
     this._clientsService.createClient(this.patient)
       .then(
-        data => {
           this.router.navigate(['clients'])
-        }
+        
       )
       .catch(error => console.log(error));
       

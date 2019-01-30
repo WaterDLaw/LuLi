@@ -27,7 +27,7 @@ export class CreateEntryComponent implements OnInit {
     console.log("patient id");
     console.log(this.patient_id);
     this._authService.getCurrentUser(localStorage.getItem('email'))
-      .subscribe((user) => {
+      .then((user) => {
         this.user_id = user[0].id
         console.log(this.user_id);
       })
