@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
 
-  constructor( ) { }
+  constructor( ) {
+   }
 
 }

@@ -47,6 +47,10 @@ export const routes: Routes = [
       {
         path: 'statistics',
         loadChildren: './views/statistics/statistics.module#StatisticsModule'
+      },
+      {
+        path: 'admin',
+        loadChildren: './views/admin/users/users.module#UsersModule'
       }
 
       

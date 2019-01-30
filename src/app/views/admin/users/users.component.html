@@ -1,0 +1,60 @@
+<div class="card">
+  <div class="card-body">
+    <form>
+      <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="btnGroupAddon2"><i class="icon-magnifier"></i></span>
+        </div>
+      
+        <input type="text" class="form-control suche" name="searchString" placeholder="Suche" [(ngModel)]="searchString">
+        <a routerLink="create-user" class="btn btn-primary"><i class="icon-user-follow" ngbTooltip="User erstellen"></i></a>
+      </div>
+    </form>
+  <table class="table" style="margin-top:10px;">
+    <thead>
+      <tr>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Email</th>
+        <th>Usertype</th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of users | filter : 'name' : searchString;">
+      <tr>
+      
+        <td>{{user?.vorname}}</td>
+        <td>{{user?.name}}</td>
+        <td>{{user?.email}}</td>
+        <td>{{user?.userType}}</td>
+        <td>
+          <!--<a routerLink="create-user" ngbTooltip="User betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>-->
+        <a routerLink="edit-user/{{user.id}}"class="btn btn-primary" ngbTooltip="User bearbeiten" ><i class="icon-pencil white"></i></a>
+        <a (click)="openModal(content, user.id)" class="btn btn-danger" ngbTooltip="User löschen" ><i class="icon-trash white"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">User löschen</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <p>Sind Sie sicher das Sie diesen User löschen möchten</p>
+
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="deleteUser(userId)" class="btn btn-danger">Ja</button>
+    <button (click)="c('Save click')" class="btn btn-light">Nein</button>
+  </div>
+</ng-template>

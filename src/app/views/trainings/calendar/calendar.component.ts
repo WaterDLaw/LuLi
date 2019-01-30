@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TrainingsService } from '../../../services/trainings.service';
 import { Training } from '../../../models/Training';
 import { Router } from '@angular/router';
+import { IfObservable } from 'rxjs/observable/IfObservable';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-calendar',
@@ -10,30 +12,49 @@ import { Router } from '@angular/router';
 })
 export class CalendarComponent implements OnInit {
 
+  @Input() location: string;
   constructor(
     private _trainingsService: TrainingsService,
+    private _authService: AuthService,
     private router: Router
   ) { }
 
   arrTraining: any[] = [null,null,null,null,null,null,null,null,null,null,null,null];
   arrCount: any[];
   loaded: boolean = false;
+  maxNumber = 12;
+  showCalendar: boolean = false;
 
-  jan: number = 0;
-  feb: number = 0;
-  marz: number = 0;
-  apr: number = 0;
-  mai: number = 0;
-  jun: number = 0;
-  jul: number = 0;
-  aug: number = 0;
-  sep: number = 0;
-  okt: number = 0;
-  nov: number = 0;
-  dez: number = 0;
+  jan: number = this.maxNumber;
+  feb: number = this.maxNumber;
+  marz: number = this.maxNumber;
+  apr: number = this.maxNumber;
+  mai: number = this.maxNumber;
+  jun: number = this.maxNumber;
+  jul: number = this.maxNumber;
+  aug: number = this.maxNumber;
+  sep: number = this.maxNumber;
+  okt: number = this.maxNumber;
+  nov: number = this.maxNumber;
+  dez: number = this.maxNumber;
 
   ngOnInit() {
+    console.log(this.location);
+    // only show for the person from that place or if the person has access to both places
+    this._authService.getCurrentUser(localStorage.getItem('email'))
+    .then(user =>{
+      console.log(user);
+      console.log(user[0].ort);
+      if(user[0].ort == this.location){
+        console.log("show calendar true");
+        this.showCalendar = true;
+      }else if(user[0].ort == "alle"){
+        console.log("show calendar true");
+        this.showCalendar = true;
+      }
+    })
 
+    
     //calculate the numbers of participants per month
     this._trainingsService.getParticipantsCalendar()
       .then(succes => {
@@ -61,6 +82,7 @@ export class CalendarComponent implements OnInit {
 
   createRouteArray(arr){
     for(let i = 0; i < arr.length; i++){
+
 
       let startMonth = new Date(Date.parse(arr[i].start.replace('-','/','g'))).getMonth();
 
@@ -119,9 +141,20 @@ export class CalendarComponent implements OnInit {
     console.log(this.arrTraining);
   }
 
+  // Function that filters the array to the location
+  filterArrayLocation(arrClients: any[]){
+    if(this.location == "Olten"){
+      return arrClients.filter(client => client.ort == "KSO")
+    }else if(this.location == "Solothurn"){
+      return arrClients.filter(client => client.ort == "BSS")
+    }
+  }
+
   calculatePatients(arr: any[]){
 
-    for (let i = 0; i < arr.length; i++) {
+    let arrClients: any[];
+    arrClients = this.filterArrayLocation(arr);
+    for (let i = 0; i < arrClients.length; i++) {
     
 
       //check the date to figure out what months need a count higher
@@ -129,79 +162,79 @@ export class CalendarComponent implements OnInit {
       console.log(arr[i].end)
 
       let startMonth = new Date(Date.parse(arr[i].start.replace('-','/','g'))).getMonth();
-      
+      console.log(this.jan);
       console.log("start Month: " + startMonth);
       switch (startMonth) {
         case 0:
-          this.jan = this.jan + 1;
-          this.feb = this.feb + 1;
-          this.marz = this.marz + 1;
+          this.jan = this.jan - 1;
+          this.feb = this.feb - 1;
+          this.marz = this.marz - 1;
           break;
       
         case 1:
-          this.feb = this.feb + 1;
-          this.marz = this.marz + 1;
-          this.apr = this.apr + 1;
+          this.feb = this.feb - 1;
+          this.marz = this.marz - 1;
+          this.apr = this.apr - 1;
           break;
 
         case 2:
-          this.marz = this.marz + 1;
-          this.apr = this.apr + 1;
-          this.mai = this.mai + 1;
+          this.marz = this.marz - 1;
+          this.apr = this.apr - 1;
+          this.mai = this.mai - 1;
           break;
 
         case 3:
-          this.apr = this.apr + 1;
-          this.mai = this.mai + 1;
-          this.jun = this.jun + 1;
+          this.apr = this.apr - 1;
+          this.mai = this.mai - 1;
+          this.jun = this.jun - 1;
           break;
 
         case 4:
-          this.mai = this.mai + 1;
-          this.jun = this.jun + 1;
-          this.jul = this.jul + 1;
+          this.mai = this.mai - 1;
+          this.jun = this.jun - 1;
+          this.jul = this.jul - 1;
           break;
 
         case 5:
-          this.jun = this.jun + 1;
-          this.jul = this.jul + 1;
-          this.aug = this.aug + 1;
+          this.jun = this.jun - 1;
+          this.jul = this.jul - 1;
+          this.aug = this.aug - 1;
           break;
 
         case 6:
-          this.jul = this.jul + 1;
-          this.aug = this.aug + 1;
-          this.sep = this.sep + 1;
+          this.jul = this.jul - 1;
+          this.aug = this.aug - 1;
+          this.sep = this.sep - 1;
           break;
 
         case 7:
-          this.aug = this.aug + 1;
-          this.sep = this.sep + 1;
-          this.okt = this.okt + 1;
+          this.aug = this.aug - 1;
+          this.sep = this.sep - 1;
+          this.okt = this.okt - 1;
           break;
 
         case 8:
-          this.sep = this.sep + 1;
-          this.okt = this.okt + 1;
-          this.nov = this.nov + 1;
+          this.sep = this.sep - 1;
+          this.okt = this.okt - 1;
+          this.nov = this.nov - 1;
           break;
 
         case 9:
-          this.okt = this.okt + 1;
-          this.nov = this.nov + 1;
-          this.dez = this.dez + 1;
+          this.okt = this.okt - 1;
+          this.nov = this.nov - 1;
+          this.dez = this.dez - 1;
           break;
 
         case 10:
-          this.nov = this.nov + 1;
-          this.dez = this.dez + 1;
-          this.jan = this.jan + 1;
+          this.nov = this.nov - 1;
+          this.dez = this.dez - 1;
+          this.jan = this.jan - 1;
           break;
 
         case 11:
-          this.dez = this.dez + 1;
-          this.jan = this.jan + 1;
-          this.feb = this.feb + 1;
+          this.dez = this.dez - 1;
+          this.jan = this.jan - 1;
+          this.feb = this.feb - 1;
           break;
         default:
           break;
@@ -216,7 +249,7 @@ export class CalendarComponent implements OnInit {
   //lightgreen
   isLow(count:number): boolean{
     let result:boolean = false;
-    if (count < 7 ) {
+    if (count <= 12 && count >=8 ) {
       result = true;
     }
     return result;
@@ -224,7 +257,7 @@ export class CalendarComponent implements OnInit {
 
   isMedium(count:number): boolean{
     let result:boolean = false;
-    if (count >= 7 && count < 12){
+    if (count > 2 && count < 8){
       result = true;
     }
     return result;
@@ -232,7 +265,7 @@ export class CalendarComponent implements OnInit {
 
   isHigh(count:number):boolean{
     let result:boolean = false;
-    if (count >= 12){
+    if (count <= 2){
       result = true;
     }
     return result;

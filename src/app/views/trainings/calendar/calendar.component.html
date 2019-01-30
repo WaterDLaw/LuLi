@@ -1,6 +1,6 @@
 <div class="card" *ngIf="loaded">
-  <div class="card-body">
-  <h2>Verfügbarkeit Trainings</h2>
+  <div class="card-body" *ngIf="showCalendar">
+  <h2>Verfügbarkeit Trainings {{location}} </h2>
   <hr />
 
   <table class="table table-bordered">
@@ -23,7 +23,7 @@
     </thead>
     <tbody>
       <tr>
-        <th scope="row">Teilnehmer</th>
+        <th scope="row"> Freie Plätze</th>
         <td (click)="routeTraining(0)"  class="align-center" [ngClass]="{'low': isLow(jan),'medium': isMedium(jan), 'high': isHigh(jan)}">{{jan}}</td>
         <td (click)="routeTraining(1)"  class="align-center" [ngClass]="{'low': isLow(feb),'medium': isMedium(feb), 'high': isHigh(feb)}">{{feb}}</td>
         <td (click)="routeTraining(2)"  class="align-center" [ngClass]="{'low': isLow(marz),'medium': isMedium(marz), 'high': isHigh(marz)}">{{marz}}</td>

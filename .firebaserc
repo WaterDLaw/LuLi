@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "arponline-cbe00"
+    "default": "arponline-cbe00",
+    "production": "apr-online"
   }
 }

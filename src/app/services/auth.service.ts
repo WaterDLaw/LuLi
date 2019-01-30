@@ -14,6 +14,7 @@ import "rxjs/add/observable/of";
 export class AuthService {
 
   public token: string;
+activeUser:User;
   // BehavourSubject mit den Loogedin Data (init = False)
   public loginStatus: BehaviorSubject<any>= new BehaviorSubject<any>(false);
  
@@ -54,7 +55,8 @@ export class AuthService {
     return this.http.post(this.apiurl + '/api/user/login', {email, password})
         .map((response: User) => {
             // Das Login war erflogreich wenn ein token vorhanden ist
-
+            console.log("RESPONSE");
+            console.log(response);
             let token = response && response.token;
             if (token) {
                 // Setze das Token
@@ -67,6 +69,7 @@ export class AuthService {
                 console.log("sende true");    
                 // Sende den werte True an das BehavourSubject   
                 this.loginStatus.next(true);
+                
 
                 return true;
             } else {
@@ -89,6 +92,9 @@ export class AuthService {
       localStorage.removeItem('token');
       // sende false an das Observable
       this.loginStatus.next(false);
+
+      // remove activeUser
+      this.activeUser = null;
       // Route zur Login page
       this.router.navigate(['/login']);
   }
@@ -99,7 +105,17 @@ export class AuthService {
 
   // Function returns the current User by Email
   getCurrentUser(email:string){
-    return this.http.get<User>(this.apiurl + `/api/user/loggedIn/${email}`);
+    const token = this.getToken();
+    return this.http.get<User>(this.apiurl + `/api/user/loggedIn/${email}?token=` + token).toPromise();
+  }
+
+  // Function returns activeUser
+  getActiveUser(){
+      return this.activeUser;
+  }
+
+  setActiveUser(user){
+      this.activeUser = user;
   }
 
 }

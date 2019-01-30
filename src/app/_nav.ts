@@ -49,5 +49,13 @@ export const navigation = [
     badge: {
       variant: 'info'
     }
+  },
+  {
+    name: 'Admin',
+    url:  '/admin',
+    icon: 'icon-note',
+    badge: {
+      variant: 'info'
+    }
   }
 ];

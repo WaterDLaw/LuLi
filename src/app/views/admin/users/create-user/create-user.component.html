@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-body">
+  <h2>Benutzer erfassen</h2>
+  <hr />
+
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm" >
+      <div class="form-group row">
+          <label class="col-sm-2" for="vorname">Vorname</label>
+          <div class="col-sm-10">
+              <input [(ngModel)]="user.vorname" type="text" class="form-control" id="vorname"  placeholder="Vorname" name="vorname" required>
+     
+          </div>
+          
+      </div>
+      <div class="form-group row">
+          <label class="col-sm-2" for="name">Name</label>
+          <div class="col-sm-10">
+            <input [(ngModel)]="user.name" type="text" class="form-control" id="name" placeholder="Name" name="name" required>
+          </div>
+          
+      </div>
+      <div class="form-group row">
+          <label class="col-sm-2" for="email">Email</label>
+          <div class="col-sm-10">
+            <input [(ngModel)]="user.email" type="text" class="form-control" id="email" placeholder="Email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+          </div>
+          
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2" for="password">Password</label>
+        <div class="col-sm-10">
+          <input [(ngModel)]="user.password" name="password" type="password" class="form-control" id="password" required>
+        </div>
+      </div>
+     
+      <div class="form-group row">
+        <label class="col-sm-2" for="userType">Usertype</label>
+        <div class="col-sm-10">
+            <select class="form-control" [(ngModel)]="user.userType" name="userType" id="userType" required>
+                <option value="1">Admin (1)</option>
+                <option value="2">Super User (2)</option>
+                <option value="3">User (3)</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2" for="ort">Ort</label>
+        <div class="col-sm-10">
+            <select class="form-control" [(ngModel)]="user.ort" name="ort" id="ort" required>
+                <option value="Solothurn">Solothurn</option>
+                <option value="Olten">Olten</option>
+                <option value="alle">Alle</option>
+            </select>
+        </div>
+    </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">Speichern</button>
+  </form>
+  </div>
+</div>

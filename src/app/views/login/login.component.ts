@@ -36,9 +36,15 @@ export class LoginComponent implements OnInit {
         if(success){
           console.log("success");
           console.log(success);
-          
-          // Wenn das login geklappt route zum dashboard
+          // Set the active user
+         
+ 
+             
+              // Wenn das login geklappt route zum dashboard
           this.router.navigate(['\dashboard']);
+              
+         
+          
         }else{
           console.log("error");
         }
