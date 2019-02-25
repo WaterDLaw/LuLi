@@ -5,7 +5,7 @@ import { CreateUserComponent } from "./create-user/create-user.component";
 import { EditUserComponent } from "./edit-user/edit-user.component";
 import { UsersComponent } from './users.component';
 import { UsersService } from '../../../services/users.service';
-import { FilterPipe } from "../../../pipes/nameFilter";
+import { FilterAdminPipe } from "../../../pipes/adminFilter";
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
         CreateUserComponent,
         EditUserComponent,
         UsersComponent,
-        FilterPipe
+        FilterAdminPipe
     ],
   providers:[UsersService]
 })

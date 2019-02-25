@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+
 // Import containers
 import {
   FullLayoutComponent,
@@ -99,7 +100,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
-    ...APP_DIRECTIVES,
+    ...APP_DIRECTIVES
   ],
   providers: [
     AuthService,

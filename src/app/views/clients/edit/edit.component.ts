@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from "../../../models/Client";
 import { ClientsService } from "../../../services/clients.service";
 import { Router, ActivatedRoute } from '@angular/router';
+import { PneumologistService } from '../../../services/pneumologist.service';
+import { Pneumologist } from '../../../models/pneumologist';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -11,9 +13,11 @@ export class EditComponent implements OnInit {
 
   patient: Client;
   showForm: boolean;
-
+  pneumologists: Pneumologist;
+  
   constructor(
     private _clientsService: ClientsService,
+    private _pneumologistService: PneumologistService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -25,6 +29,13 @@ export class EditComponent implements OnInit {
         console.log(data);
         this.patient = data;
         this.showForm = true;
+      })
+      this._pneumologistService.getPneumologists()
+      .subscribe(data => {
+        console.log(data);
+        // Get the body of the response
+        this.pneumologists = data;
+      
       })
   }
 

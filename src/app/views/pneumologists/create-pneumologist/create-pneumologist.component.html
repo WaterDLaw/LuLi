@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-body">
+  <h2>Pneumologist erfassen</h2>
+  <hr />
+
+  <form (ngSubmit)="onSubmit()" #pneumoForm="ngForm" >
+
+
+      <div class="form-group row">
+          <label class="col-sm-2" for="anrede">Anrede</label>
+          <div class="col-sm-10">
+              <select class="form-control" [(ngModel)]="pneumologist.anrede" name="anrede" id="anrede" required>
+                  <option value="Dr.">Dr.</option>
+                  <option value="Herr">Herr</option>
+                  <option value="Frau">Frau</option>
+              </select>
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <label class="col-sm-2" for="vorname">Vorname</label>
+          <div class="col-sm-10">
+              <input [(ngModel)]="pneumologist.vorname" type="text" class="form-control" id="vorname"  placeholder="Vorname" name="vorname" required>
+     
+          </div>
+          
+      </div>
+      <div class="form-group row">
+          <label class="col-sm-2" for="name">Name</label>
+          <div class="col-sm-10">
+            <input [(ngModel)]="pneumologist.name" type="text" class="form-control" id="name" placeholder="Name" name="name" required>
+          </div>
+          
+      </div>
+
+          
+      <button type="submit" class="btn btn-primary" [disabled]="!pneumoForm.form.valid">Speichern</button>
+  </form>
+  </div>
+</div>

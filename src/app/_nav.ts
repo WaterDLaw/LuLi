@@ -23,25 +23,7 @@ export const navigation = [
     badge: {
       variant: 'info'
     }
-  }
-  ,
-  {
-    name: 'Messwerte',
-    url: '/measurements',
-    icon: 'icon-note',
-    badge: {
-      variant: 'info'
-    }
   },
-  {
-    name: 'Reports',
-    url: '/reports',
-    icon: 'icon-doc',
-    badge: {
-      variant: 'info'
-    }
-  }
-  ,
   {
     name: 'Statistik',
     url: '/statistics',
@@ -57,5 +39,14 @@ export const navigation = [
     badge: {
       variant: 'info'
     }
-  }
+  },
+  
+  {
+    name: 'Pneumologisten',
+    url: '/pneumologists',
+    icon: 'icon-note',
+    badge: {
+      variant: 'info'
+    }
+  },
 ];

@@ -51,7 +51,12 @@ export const routes: Routes = [
       {
         path: 'admin',
         loadChildren: './views/admin/users/users.module#UsersModule'
-      }
+      },
+      {
+        path: 'pneumologists',
+        loadChildren: './views/pneumologists/pneumologists.module#PneumologistsModule'
+      },
+
 
       
     ]
