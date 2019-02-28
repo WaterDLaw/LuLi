@@ -7,6 +7,7 @@ import { PneumologistsComponent } from './pneumologists.component';
 import { CreatePneumologistComponent } from './create-pneumologist/create-pneumologist.component';
 import { EditPneumologistComponent } from './edit-pneumologist/edit-pneumologist.component';
 import { IndexPneumologistComponent } from './index-pneumologist/index-pneumologist.component';
+import { ShowPneumologistComponent } from './show-pneumologist/show-pneumologist.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Show all Pneumologist'
+    }
+  },
+   
+  {
+    path: 'show/:id',
+    component: ShowPneumologistComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Show a Pneumologist'
     }
   }
 ];

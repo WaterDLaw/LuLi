@@ -7,7 +7,7 @@
         </div>
       
         <input type="text" class="form-control suche" name="searchString" placeholder="Suche" [(ngModel)]="searchString">
-        <a routerLink="create" class="btn btn-primary"><i class="icon-user-follow" ngbTooltip="Pnemologist erstellen"></i></a>
+        <a routerLink="create" class="btn btn-primary"><i class="icon-user-follow" ngbTooltip="Pnemologen erstellen"></i></a>
       </div>
     </form>
   <table class="table" style="margin-top:10px;">
@@ -27,9 +27,9 @@
         <td>{{pneumologist?.vorname}}</td>
         <td>{{pneumologist?.name}}</td>
         <td>
-          <!--<a routerLink="create-user" ngbTooltip="User betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>-->
-        <a routerLink="edit/{{pneumologist.id}}"class="btn btn-primary" ngbTooltip="Pneumologist bearbeiten" ><i class="icon-pencil white"></i></a>
-        <a (click)="openModal(content, pneumologist.id)" class="btn btn-danger" ngbTooltip="Pneumologist löschen" ><i class="icon-trash white"></i></a></td>
+        <a routerLink="show/{{pneumologist.id}}" ngbTooltip="Pneumologen betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
+        <a routerLink="edit/{{pneumologist.id}}"class="btn btn-primary" ngbTooltip="Pneumologen bearbeiten" ><i class="icon-pencil white"></i></a>
+        <a (click)="openModal(content, pneumologist.id)" class="btn btn-danger" ngbTooltip="Pneumologen löschen" ><i class="icon-trash white"></i></a></td>
       </tr>
     </tbody>
   </table>
@@ -38,7 +38,7 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Pneumologisten löschen</h4>
+    <h4 class="modal-title">Pneumologen löschen</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -46,7 +46,7 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <p>Sind Sie sicher das Sie diesen Pneumologisten löschen möchten</p>
+        <p>Sind Sie sicher das Sie diesen Pneumologen löschen möchten</p>
 
       </div>
     </form>

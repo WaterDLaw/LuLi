@@ -42,7 +42,7 @@ export const navigation = [
   },
   
   {
-    name: 'Pneumologisten',
+    name: 'Pneumologen',
     url: '/pneumologists',
     icon: 'icon-note',
     badge: {

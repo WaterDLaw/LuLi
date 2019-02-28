@@ -11,6 +11,7 @@ import { PneumologistService } from '../../services/pneumologist.service';
 import { PneumologistsRoutingModule } from './pneumologists-routing';
 import { AuthGuard } from '../../guards/auth.guard';
 import { FilterPneumoPipe } from '../../pipes/pneumoFilter';
+import { ShowPneumologistComponent } from './show-pneumologist/show-pneumologist.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FilterPneumoPipe } from '../../pipes/pneumoFilter';
         IndexPneumologistComponent,
         DeletePneumologistComponent,
         PneumologistsComponent,
-        FilterPneumoPipe
+        FilterPneumoPipe,
+        ShowPneumologistComponent
     ],
   providers:[PneumologistService, AuthGuard]
 })

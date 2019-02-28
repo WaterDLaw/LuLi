@@ -64,4 +64,11 @@ export class PneumologistService {
     .toPromise();
   }
  
+  // Get all Clients for the Pneumologist
+  getPatients(pneumologist_id:number){
+    console.log("pneumo pateints");
+    const token = this._authService.getToken();
+    return this.http.get<Array<Pneumologist>>(this.apiurl + `/api/pneumologist/${pneumologist_id}/getPatients?token=` + token);
+  }
+
 }

@@ -1,0 +1,54 @@
+<div class="card">
+    <div class="card-body">
+        <h2>Pneumolog Information</h2>
+        <hr />
+        <table class="table table-sm">
+          <tbody>
+            <tr>
+              <td>Anrede:</td>
+              <td>{{pneumologist?.anrede}}</td>
+            </tr>
+            <tr>
+              <td>Vorname:</td>
+              <td>{{pneumologist?.vorname}}</td>
+            </tr>
+            <tr>
+              <td>Name:</td>
+              <td>{{pneumologist?.name}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>  
+        
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h2>Patientenliste</h2>
+      <hr />
+      <table class="table">
+          <thead>
+            <tr>
+              <th>Vorname</th>
+              <th>Nachname</th>
+              <th>Geburtsdatum</th>
+              <th></th>
+      
+            </tr>
+          </thead>
+          <tbody *ngFor="let patient of patients">
+            <tr>
+            
+              <td>{{patient?.vorname}}</td>
+              <td>{{patient?.name}}</td>
+              <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
+              <td><a routerLink="../../../clients/show/{{patient.id}}"class="btn btn-primary" ngbTooltip="Patient betrachten"><i class="icon-eye white"></i></a>
+              <a class="btn btn-danger"><i class="icon-trash white" ngbTooltip="Patient entfernen"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>  
