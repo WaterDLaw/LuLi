@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-body">
+
+  <table class="table" style="margin-top:10px;">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Topic</th>
+        <th>Action</th>
+        <th>Time</th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody *ngFor="let historyEntry of historyEntries ">
+      <tr>
+      
+        <td>{{historyEntry?.email}}</td>
+        <td>{{historyEntry?.topic}}</td>
+        <td>{{historyEntry?.action}}</td>
+        <td>{{historyEntry?.created_at}}</td>
+        <td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
