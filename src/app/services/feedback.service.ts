@@ -5,6 +5,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { environment } from 'environments/environment';
+import { ActionHistoryService } from './ActionHistory.service';
 
 @Injectable()
 export class FeedbackService {
@@ -14,11 +15,15 @@ export class FeedbackService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _actionHistoryService: ActionHistoryService
   ) { }
 
   // creates a arpfeedback POST
   createFeedback(feedback: Feedback, patient_id: number){
+
+    this._actionHistoryService.createHistoryEntry("Feedback", "create");
+
     console.log('create feedback');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
@@ -27,6 +32,9 @@ export class FeedbackService {
   }
   // updates an arpfeedback PUT
   updateFeedback(feedback: Feedback, patient_id: number){
+
+    this._actionHistoryService.createHistoryEntry("Feedback", "delete");
+
     console.log('update feedback');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})

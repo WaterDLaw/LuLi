@@ -43,6 +43,12 @@ export interface Client{
     vkmaxp_before?: number,
     vkmaxp_after?: number,
     vo2max_before?: number,
-    vo2max_after?: number
+    vo2max_after?: number,
+    copdgold?:string,
+    copdletter?:string,
+    belastung?:number,
+    sauerstoff_bei_belastung?:number,
+    sao2?:number,
+    Intervalttraining?:boolean
 
 }

@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-body">
         <a (click)="download()"class="btn btn-primary" style="float:right;" ngbTooltip="Patient als PDF downloaden"><i class="icon-doc white"></i></a>
-        <a (click)="downloadVerordnung()" class="btn btn-primary" style="float:right;margin-right: 5px;" ngbTooltip="Physiotherapie Formular"><i class="icon-event white"></i></a>
-
+        <a (click)="downloadVerordnung()" class="btn btn-primary" style="float:right;margin-right: 5px;" ngbTooltip="Verordnung Physiotherapie"><i class="icon-event white"></i></a>
+        <span style="float:right;"><button (click)="csvExport()" ngbTooltip="Download als CSV Datei" class="btn btn-primary" style="float:right;margin-right: 5px; color:white"><i class="icon-cloud-download"></i></button></span>
         <a routerLink="../../edit/{{patient.id}}" ngbTooltip="Patient bearbeiten" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
         <h2>Patienteninformationen</h2>
         <hr />
@@ -50,37 +50,33 @@
                   <td>Wohnort:</td>
                   <td>{{patient.wohnort}}</td>
                 </tr>
-                <tr>
-                  <td>Groesse:</td>
-                  <td>{{patient.groesse}}</td>
-                </tr>
               </tbody>
             </table>
           </div>
           <div class="col-md-6">
 
-            <h3>Training</h3>
+            <h3>Kurs</h3>
             <div class="row" *ngIf="patient.training_id != null && trainings?.length > 0 ">
               <div class="col-md-3" >
                 {{getTrainingName(patient?.training_id)}}
               </div>
               <div class="col-md-9">
-                  <a routerLink="../../../trainings/show/{{patient?.training_id}}" ngbTooltip="Training betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a> 
-                  <a (click)="openModal(content)" class="btn btn-primary" ngbTooltip="Training neu zuteilen"  style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
+                  <a routerLink="../../../trainings/show/{{patient?.training_id}}" ngbTooltip="Kurs betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a> 
+                  <a (click)="openModal(content)" class="btn btn-primary" ngbTooltip="Kurs neu zuteilen"  style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
               </div>
             </div>
             <div class="row margin-bot" *ngIf="patient.training_id == null">
               <div class="col-md-3">
-                Noch keinem training zugeteilt
+                Noch keinem Kurs zugeteilt
               </div>
               <div class="col-md-9">
-                <a (click)="openModal(content)" ngbTooltip="Patient einem Training zuteilen" class="btn btn-primary white">Training zuteilen</a>
+                <a (click)="openModal(content)" ngbTooltip="Patient einem Kurs zuteilen" class="btn btn-primary white">Kurs zuteilen</a>
               </div>
             </div>
             <hr />
-            <h4>Diagnosen</h4>
+            <h4>Diagnose(n)</h4>
             <ul>
-              <li *ngIf="patient.chronisch_obstruktive_Lungenkrankheit">COPD</li>
+              <li *ngIf="patient.chronisch_obstruktive_Lungenkrankheit">COPD {{patient.copdgold}}/{{patient.copdletter}}</li>
               <li *ngIf="patient.zystische_fibrose">Zystische Fibrose</li>
               <li *ngIf="patient.asthma_bronchiale">Asthma Bronchiale</li>
               <li *ngIf="patient.interstitielle_lungenkrankheit">Interstitielle Lungenkrankheit</li>
@@ -93,6 +89,8 @@
               <h4>Diagnose Details</h4>
               <p>{{patient.bemerkungen}}</p>
             </div>
+            <h4>Rauchstatus</h4>
+            <p>{{patient.rauchstatus}}</p>
           </div>
         </div>
         
@@ -118,76 +116,427 @@
                 
               </ng-template>
             </ngb-panel>
-          <ngb-panel>
+         
+        <!-- Messwerte Neu-->
+        <ngb-panel>
+        <ng-template ngbPanelTitle>
+          <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Messwerte</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <h3>Messwerte 
+            <a *ngIf="!measurmentEdit" (click)="measurmentsEdit()" ngbTooltip="Messwerte bearbeiten" class="btn btn-primary" style="margin-left: 5px; color:white; float:right;"><i class="icon-pencil white"> </i>Bearbeiten</a>
+            <a *ngIf="measurmentEdit" (click)="measurmentsSave()" ngbTooltip="Messwerte speichern" class="btn btn-primary" style="margin-left: 5px; float:right;"><i class="icon-check white"></i> Speichern</a>
+          </h3>
+          <hr />
+
+          <!-- Allgemeine Daten -->
+
+          <h4>Allgemeine Daten</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Messwert</th>
+                <th scope="col">Vor dem Training</th>
+                <th scope="col">Nach dem Training</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <!-- Groesse -->
+              <tr>
+                <th>Groesse (m)</th>
+                <td *ngIf="!measurmentEdit">{{messwerte[0].groesse_vor}}</td>
+                <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].groesse_vor" type="text" style="width:200px;"class="form-control" id="groesse_vor" placeholder="" name="groesse_vor"></td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0].groesse_nach}}</td>
+                <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].groesse_nach" type="text" style="width:200px;"class="form-control" id="groesse_nach" placeholder="" name="groesse_nach"></td>
+              </tr>
+              <!-- Gewicht -->
+              <tr>
+                <th>Gewicht (kg)</th>
+                <td *ngIf="!measurmentEdit">{{messwerte[0].gewicht_vor}}</td>
+                <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].gewicht_vor" type="text" style="width:200px;"class="form-control" id="gewicht_vor" placeholder="" name="gewicht_vor"></td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0].gewicht_nach}}</td>
+                <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].gewicht_nach" type="text" style="width:200px;"class="form-control" id="gewicht_nach" placeholder="" name="gewicht_nach"></td>
+              </tr>
+
+              <!-- BMI -->
+              <tr>
+                <th>BMI (kg/m2)</th>
+                <td *ngIf="!measurmentEdit">{{calcBMI(messwerte[0].gewicht_vor, messwerte[0].groesse_vor)}}</td>
+                <td *ngIf="measurmentEdit">{{calcBMI(messwerte[0].gewicht_vor, messwerte[0].groesse_vor)}}</td>
+                <td *ngIf="!measurmentEdit">{{calcBMI(messwerte[0].gewicht_nach, messwerte[0].groesse_nach)}}</td>
+                <td *ngIf="measurmentEdit">{{calcBMI(messwerte[0].gewicht_nach, messwerte[0].groesse_nach)}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Spirometrie -->
+          <h4>Spirometrie</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Messwert</th>
+                <th scope="col">Vor dem Training</th>
+                <th scope="col">Nach dem Training</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- FEV1 -->
+              <tr>
+                <th>FEV1 (l)/(%Soll)</th>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fev1l_vor}} ({{calcFev1Soll(messwerte[0]?.groesse_vor, patient?.geschlecht)}}%)</td>
+                <td *ngIf="measurmentEdit">
+                  <input [(ngModel)]="messwerte[0].fev1l_vor" type="text" style="width:200px;"class="form-control" id="fev1l_vor" placeholder="" name="fev1l_vor">
+                  {{calcFev1Soll(messwerte[0]?.groesse_vor, patient?.geschlecht)}}%
+                </td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fev1l_nach}} ({{calcFev1Soll(messwerte[0]?.groesse_nach, patient?.geschlecht)}}%)</td>
+                <td *ngIf="measurmentEdit">
+                  <input [(ngModel)]="messwerte[0].fev1l_nach" type="text" style="width:200px;"class="form-control" id="fev1l_nach" placeholder="" name="fev1l_nach">
+                  {{calcFev1Soll(messwerte[0]?.groesse_nach, patient?.geschlecht)}}%
+                </td>
+              </tr>
+              <!-- FVC -->
+              <tr>
+                <th>FVC (l)</th>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_vor}}</td>
+                <td *ngIf="measurmentEdit">
+                  <input [(ngModel)]="messwerte[0].fvc_vor" type="text" style="width:200px;"class="form-control" id="fvc_vor" placeholder="" name="fvc_vor">
+                </td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_nach}}</td>
+                <td *ngIf="measurmentEdit">
+                  <input [(ngModel)]="messwerte[0].fvc_nach" type="text" style="width:200px;"class="form-control" id="fvc_nach" placeholder="" name="fvc_nach">
+                </td>
+              </tr>
+
+              <!-- RV -->
+              <tr>
+                <th>RV (l)</th>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.rv_vor}}</td>
+                <td *ngIf="measurmentEdit">
+                  <input [(ngModel)]="messwerte[0].rv_vor" type="text" style="width:200px;"class="form-control" id="rv_vor" placeholder="" name="rv_vor">
+                </td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.rv_nach}}</td>
+                <td *ngIf="measurmentEdit">
+                  <input [(ngModel)]="messwerte[0].rv_nach" type="text" style="width:200px;"class="form-control" id="rv_nach" placeholder="" name="rv_nach">
+                </td>
+              </tr>
+              <!-- TLC -->              
+              <tr>
+                  <th>TLC (l)</th>
+                  <td *ngIf="!measurmentEdit">{{messwerte[0]?.tlc_vor}}</td>
+                  <td *ngIf="measurmentEdit">
+                    <input [(ngModel)]="messwerte[0].tlc_vor" type="text" style="width:200px;"class="form-control" id="tlc_vor" placeholder="" name="tlc_vor">
+                  </td>
+                  <td *ngIf="!measurmentEdit">{{messwerte[0]?.tlc_nach}}</td>
+                  <td *ngIf="measurmentEdit">
+                    <input [(ngModel)]="messwerte[0].tlc_nach" type="text" style="width:200px;"class="form-control" id="tlc_nach" placeholder="" name="tlc_nach">
+                  </td>
+                </tr>
+
+              <!-- FEV1/FVC -->
+                <tr>
+                  <th>FEV1/FVC (%)</th>
+                  <td *ngIf="!measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_vor, messwerte[0].fvc_vor)}}</td>
+                  <td *ngIf="measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_vor, messwerte[0].fvc_vor)}}</td>
+                  <td *ngIf="!measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_nach, messwerte[0].fvc_nach)}}</td>
+                  <td *ngIf="measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_nach, messwerte[0].fvc_nach)}}</td>
+                </tr>
+              <!-- RV/TLC-->
+              <tr>
+                  <th>RV/TLC (%)</th>
+                  <td *ngIf="!measurmentEdit">{{calcRVTLC(messwerte[0].rv_vor, messwerte[0].tlc_vor)}}</td>
+                  <td *ngIf="measurmentEdit">{{calcRVTLC(messwerte[0].rv_vor, messwerte[0].tlc_vor)}}</td>
+                  <td *ngIf="!measurmentEdit">{{calcRVTLC(messwerte[0].rv_nach, messwerte[0].tlc_nach)}}</td>
+                  <td *ngIf="measurmentEdit">{{calcRVTLC(messwerte[0].rv_nach, messwerte[0].tlc_nach)}}</td>
+                </tr>
+              <tr>
+
+            </tbody>
+          </table>
+
+          <!-- 6 Minute gehtest-->
+          <h4>6-Minuten-Gehtest</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Messwert</th>
+                <th scope="col">Vor dem Training</th>
+                <th scope="col">Nach dem Training</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <!-- Distanz Meter -->
+              <tr>
+                <th>Distanz Meter (m)/(%Soll)</th>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.distanzM_vor}} ( {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_vor, messwerte[0]?.gewicht_vor)}}%)</td>
+                <td *ngIf="measurmentEdit">
+                  <input [(ngModel)]="messwerte[0].distanzM_vor" type="text" style="width:200px;"class="form-control" id="distanzM_vor" placeholder="" name="distanzM_vor">
+                  {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_vor, messwerte[0]?.gewicht_vor)}}%
+                </td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.distanzM_nach}} ({{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_nach, messwerte[0]?.gewicht_nach)}}%)</td>
+                <td *ngIf="measurmentEdit">
+                  <input [(ngModel)]="messwerte[0].distanzM_nach" type="text" style="width:200px;"class="form-control" id="distanzM_nach" placeholder="" name="distanzM_nach">
+                  {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_nach, messwerte[0]?.gewicht_nach)}}%
+                </td>
+              </tr>
+              <!-- SaO2min -->
+              <tr>
+                <th>SaO2min (%) (Eingabe dezimal)</th>
+                <td *ngIf="!measurmentEdit">{{messwerte[0].saO2min_vor | percent}}</td>
+                <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].saO2min_vor" style="width:200px;"class="form-control" id="saO2min_vor" placeholder="" name="saO2min_vor"></td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0].saO2min_nach | percent}}</td>
+                <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].saO2min_nach"  style="width:200px;"class="form-control" id="saO2min_nach" placeholder="" name="saO2min_nach"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Belastung -->
+          <h4>Belastung</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Messwert</th>
+                <th scope="col">Vor dem Training</th>
+                <th scope="col">Nach dem Training</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            <!-- Max. Leistung-->
+            <tr>
+              <th>Max. Leistung (W)/(%Soll)</th>
+              <td *ngIf="!measurmentEdit">{{messwerte[0]?.max_leistungW_vor}} ( {{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_nach)}}%)</td>
+              <td *ngIf="measurmentEdit">
+                <input [(ngModel)]="messwerte[0].max_leistungW_vor" type="text" style="width:200px;"class="form-control" id="max_leistungW_vor" placeholder="" name="max_leistungW_vor">
+                {{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_vor)}}%
+              </td>
+              <td *ngIf="!measurmentEdit">{{messwerte[0]?.max_leistungW_nach}} ({{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_nach)}}%)</td>
+              <td *ngIf="measurmentEdit">
+                <input [(ngModel)]="messwerte[0].max_leistungW_nach" type="text" style="width:200px;"class="form-control" id="max_leistungW_nach" placeholder="" name="max_leistungW_nach">
+                {{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_nach)}}%
+              </td>
+            </tr>
+            <!-- VO2max -->
+            <tr>
+              <th>VO2max (l/m/kg)</th>
+              <td *ngIf="!measurmentEdit">{{messwerte[0].vO2max_vor}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].vO2max_vor" type="text" style="width:200px;"class="form-control" id="vO2max_vor" placeholder="" name="vO2max_vor"></td>
+              <td *ngIf="!measurmentEdit">{{messwerte[0].vO2max_nach}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].vO2max_nach" type="text" style="width:200px;"class="form-control" id="vO2max_nach" placeholder="" name="vO2max_nach"></td>
+            </tr>
+
+            <!-- HFmax -->
+            <tr>
+              <th>HFmax (/min)</th>
+              <td *ngIf="!measurmentEdit">{{messwerte[0].hfmax_vor}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].hfmax_vor" type="text" style="width:200px;"class="form-control" id="hfmax_vor" placeholder="" name="hfmax_vor"></td>
+              <td *ngIf="!measurmentEdit">{{messwerte[0].hfmax_nach}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].hfmax_nach" type="text" style="width:200px;"class="form-control" id="hfmax_nach" placeholder="" name="hfmax_nach"></td>
+            </tr>
+          </tbody>
+        </table> 
 
 
+        <h4>Dyspnoe - MMRC-Score</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Messwert</th>
+              <th scope="col">Vor dem Training</th>
+              <th scope="col">Nach dem Training</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <!-- Groesse -->
+            <tr>
+              <th>Dyspnoe (0-4)</th>
+              <td *ngIf="!measurmentEdit">
+                  {{messwerte[0].dyspnoe_vor}}
+              </td>
+              <td *ngIf="measurmentEdit">
+                <select class="form-control" [(ngModel)]="messwerte[0].dyspnoe_vor" name="dyspnoe_vor" id="dyspnoe_vor">
+                    <option>0  Keine Belastungsdyspnoe</option>
+                    <option>1  bei Steigung oder schnellem Laufen ebenerdig </option>
+                    <option>2  Langsamer Laufen als Altersgenossen wegen Dyspnoe, Stop beim Laufen nötig</option>
+                    <option>3  Pause nach 100m</option>
+                    <option>4  Zu starke Atemnot um das Haus zu verlassen, Dyspnoe beim Umziehen</option>
+                  </select>
+              </td>
+              <td *ngIf="!measurmentEdit">
+                {{messwerte[0].dyspnoe_nach}}
+              </td>
+              <td *ngIf="measurmentEdit">
+                  <select class="form-control" [(ngModel)]="messwerte[0].dyspnoe_nach" name="dyspnoe_nach" id="dyspnoe_nach">
+                      <option>0  Keine Belastungsdyspnoe</option>
+                      <option>1  bei Steigung oder schnellem Laufen ebenerdig </option>
+                      <option>2  Langsamer Laufen als Altersgenossen wegen Dyspnoe, Stop beim Laufen nötig</option>
+                      <option>3  Pause nach 100m</option>
+                      <option>4  Zu starke Atemnot um das Haus zu verlassen, Dyspnoe beim Umziehen</option>
+                    </select>
+              </td>
+            </tr>
 
-            <ng-template ngbPanelTitle>
-                <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Messwerte</span>
-            </ng-template>
-            <ng-template ngbPanelContent>
-              <h3>Messwerte 
-                  <a *ngIf="!measurmentEdit" (click)="measurmentsEdit()" ngbTooltip="Messwerte bearbeiten" class="btn btn-primary" style="margin-left: 5px; color:white; float:right;"><i class="icon-pencil white"> </i>Bearbeiten</a>
-                  <a *ngIf="measurmentEdit" (click)="measurmentsSave()" ngbTooltip="Messwerte speichern" class="btn btn-primary" style="margin-left: 5px; float:right;"><i class="icon-check white"></i> Speichern</a>
-                </h3>
-                <hr />
-        
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Messwert</th>
-                      <th scope="col">Vor dem Training</th>
-                      <th scope="col">Nach dem Training</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th>Gewicht (kg)</th>
-                      <td *ngIf="!measurmentEdit">{{patient.gewicht_before}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.gewicht_before" type="text" style="width:200px;"class="form-control" id="gewicht_before" placeholder="" name="gewicht_before"></td>
-                      <td *ngIf="!measurmentEdit">{{patient.gewicht_after}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.gewicht_after" type="text" style="width:200px;"class="form-control" id="gewicht_after" placeholder="" name="gewicht_after"></td>
-                    </tr>
-                    <tr>
-                      <th>FEV1(l)</th>
-                      <td *ngIf="!measurmentEdit">{{patient.fevl_before}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevl_before" type="text" style="width:200px;"class="form-control" id="fevl_before" placeholder="" name="fevl_before"></td>
-                      <td *ngIf="!measurmentEdit">{{patient.fevl_after}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevl_after" type="text" style="width:200px;"class="form-control" id="fevl_after" placeholder="" name="fevl_after"></td>
-                    </tr>
-                    <tr>
-                      <th>FEV1 %</th>
-                      <td *ngIf="!measurmentEdit">{{patient.fevp_before}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevp_before" type="text" style="width:200px;"class="form-control" id="fevp_before" placeholder="" name="fevp_before"></td>
-                      <td *ngIf="!measurmentEdit">{{patient.fevp_after}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.fevp_after" type="text" style="width:200px;"class="form-control" id="fevp_after" placeholder="" name="fevp_after"></td>
-                    </tr>
-                    <tr>
-                      <th>VK max. (l)</th>
-                      <td *ngIf="!measurmentEdit">{{patient.vkmaxl_before}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxl_before" type="text" style="width:200px;"class="form-control" id="vkmaxl_before" placeholder="" name="vkmaxl_before"></td>
-                      <td *ngIf="!measurmentEdit">{{patient.vkmaxl_after}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxl_after" type="text" style="width:200px;"class="form-control" id="vkmaxl_after" placeholder="" name="vkmaxl_after"></td>
-        
-                    </tr>
-                    <tr>
-                      <th>VK %</th>
-                      <td *ngIf="!measurmentEdit">{{patient.vkmaxp_before}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxp_before" type="text" style="width:200px;"class="form-control" id="vkmaxp_before" placeholder="" name="vkmaxp_before"></td>
-                      <td *ngIf="!measurmentEdit">{{patient.vkmaxp_after}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vkmaxp_after" type="text" style="width:200px;"class="form-control" id="vkmaxp_after" placeholder="" name="vkmaxp_after"></td>
-                    </tr>
-                    <tr>
-                      <th>VO2 max. (ml)</th>
-                      <td *ngIf="!measurmentEdit">{{patient.vo2max_before}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vo2max_before" type="text" style="width:200px;"class="form-control" id="vo2max_before" placeholder="" name="vo2max_before"></td>
-                      <td *ngIf="!measurmentEdit">{{patient.vo2max_after}}</td>
-                      <td *ngIf="measurmentEdit"><input [(ngModel)]="patient.vo2max_after" type="text" style="width:200px;"class="form-control" id="vo2max_after" placeholder="" name="vo2max_after"></td>
-                    </tr>
-                  </tbody>
-                </table>
-          </ng-template>
-        </ngb-panel>
+          </tbody>
+        </table>
+
+      <!-- BODE score-->
+      <h4>Allgemeine Daten</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Messwert</th>
+            <th scope="col">Vor dem Training</th>
+            <th scope="col">Nach dem Training</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <!-- Groesse -->
+          <tr>
+            <th>BODE-Score</th>
+            <td *ngIf="!measurmentEdit">{{calcBodeVor()}}</td>
+            <td *ngIf="measurmentEdit">{{calcBodeVor()}}</td>
+            <td *ngIf="!measurmentEdit">{{calcBodeNach()}}</td>
+            <td *ngIf="measurmentEdit">{{calcBodeNach()}}</td>
+          </tr>
+
+
+        </tbody>
+      </table>
+
+
+      <!-- Arterielle Blutgase -->
+      <h4>Arterielle Blutgase</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Messwert</th>
+              <th scope="col">Vor dem Training</th>
+              <th scope="col">Nach dem Training</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          <!-- O2-Dosis-->
+          <tr>
+              <th>Dosis (l/min)</th>
+              <td *ngIf="!measurmentEdit">{{messwerte[0].O2_Dosis_vor}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].O2_Dosis_vor" type="text" style="width:200px;"class="form-control" id="O2_Dosis_vor" placeholder="" name="O2_Dosis_vor"></td>
+              <td *ngIf="!measurmentEdit">{{messwerte[0].vO2max_nach}}</td>
+              <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].O2_Dosis_nach" type="text" style="width:200px;"class="form-control" id="O2_Dosis_nach" placeholder="" name="O2_Dosis_nach"></td>
+            </tr>
+          <!-- SaO2 -->
+          <tr>
+            <th>SaO2 (%) (Eingabe dezimal)</th>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].saO2_vor | percent}}</td>
+            <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].saO2_vor" type="text" style="width:200px;"class="form-control" id="saO2_vor" placeholder="" name="saO2_vor"></td>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].saO2_nach | percent}}</td>
+            <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].saO2_nach" type="text" style="width:200px;"class="form-control" id="saO2_nach" placeholder="" name="saO2_nach"></td>
+          </tr>
+
+          <!-- pH -->
+          <tr>
+            <th>pH </th>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].phwert_vor}}</td>
+            <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].phwert_vor" type="text" style="width:200px;"class="form-control" id="phwert_vor" placeholder="" name="phwert_vor"></td>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].phwert_nach}}</td>
+            <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].phwert_nach" type="text" style="width:200px;"class="form-control" id="phwert_nach" placeholder="" name="phwert_nach"></td>
+          </tr>
+
+          <!-- pO2 -->
+          <tr>
+            <th>pO2 (mmHg)</th>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].pO2_vor}}</td>
+            <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].pO2_vor" type="text" style="width:200px;"class="form-control" id="pO2_vor" placeholder="" name="pO2_vor"></td>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].pO2_nach}}</td>
+            <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].pO2_nach" type="text" style="width:200px;"class="form-control" id="pO2_nach" placeholder="" name="pO2_nach"></td>
+          </tr>
+
+          <!-- pCO2 -->
+          <tr>
+            <th>pCO2 (mmHg)</th>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].pC02_vor}}</td>
+            <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].pC02_vor" type="text" style="width:200px;"class="form-control" id="pC02_vor" placeholder="" name="pC02_vor"></td>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].pC02_nach}}</td>
+            <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].pC02_nach" type="text" style="width:200px;"class="form-control" id="pC02_nach" placeholder="" name="pC02_nach"></td>
+          </tr>
+
+          <!-- Bicarbonat -->
+          <tr>
+            <th>Bicarbonat (mmol/l)</th>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].bicarbonat_vor}}</td>
+            <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].bicarbonat_vor" type="text" style="width:200px;"class="form-control" id="bicarbonat_vor" placeholder="" name="bicarbonat_vor"></td>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].bicarbonat_nach}}</td>
+            <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].bicarbonat_nach" type="text" style="width:200px;"class="form-control" id="bicarbonat_nach" placeholder="" name="bicarbonat_nach"></td>
+          </tr>
+
+        </tbody>
+      </table> 
+
+    </ng-template>
+  </ngb-panel>
+
+  <ngb-panel>
+      <ng-template ngbPanelTitle>
+          <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Trainingsempfehlungen </span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+          <h3>TrainingsEmpfehlungen 
+              <a *ngIf="!empfehlungenEdit" (click)="trainingsEmpfehlungenEdit()" ngbTooltip="Empfehlungen bearbeiten" class="btn btn-primary" style="margin-left: 5px; color:white; float:right;"><i class="icon-pencil white"> </i>Bearbeiten</a>
+              <a *ngIf="empfehlungenEdit" (click)="trainingsEmpfehlungenSave()" ngbTooltip="Empfehlungen speichern" class="btn btn-primary" style="margin-left: 5px; float:right;"><i class="icon-check white"></i> Speichern</a>
+            </h3>
+            <hr />
+        <hr />
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Messwert</th>
+              <th scope="col">Wert</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Belastung (W)</th>
+              <td *ngIf="!empfehlungenEdit">{{patient.belastung}}</td>
+              <td *ngIf="empfehlungenEdit"><input [(ngModel)]="patient.belastung" type="text" style="width:200px;"class="form-control" id="belastung" placeholder="" name="belastung"></td>
+            </tr>
+            <tr>
+              <th>Sauerstoff bei Belastung (l)</th>
+              <td *ngIf="!empfehlungenEdit">{{patient.sauerstoff_bei_belastung}}</td>
+              <td *ngIf="empfehlungenEdit"><input [(ngModel)]="patient.sauerstoff_bei_belastung" type="text" style="width:200px;"class="form-control" id="sauerstoff_bei_belastung" placeholder="" name="sauerstoff_bei_belastung"></td>
+            </tr>
+            <tr>
+              <th>SaO2 (%) (Dezimal eingeben)</th>
+              <td *ngIf="!empfehlungenEdit">{{patient.sao2 | percent}}</td>
+              <td *ngIf="empfehlungenEdit"><input [(ngModel)]="patient.sao2" type="text" style="width:200px;"class="form-control" id="sao2" placeholder="" name="sao2"></td>
+            </tr>
+            <tr>
+              <th>Intervalltraining</th>
+              <td *ngIf="!empfehlungenEdit">             
+                <div class="form-check">
+                  
+                  <input [(ngModel)]="patient.Intervalltraining" [disabled]="true" class="form-check-input" type="checkbox" value="" id="patient.Intervalltraining" name="patient.Intervalltraining">
+                  <label class="form-check-label" for="patient.Intervalltraining">
+                      
+                  </label>
+              </div></td>
+              <td *ngIf="empfehlungenEdit">
+                <div class="form-check">
+                    <input [(ngModel)]="patient.Intervalltraining" class="form-check-input" type="checkbox" value="" id="patient.Intervalltraining" name="patient.Intervalltraining">
+                    <label class="form-check-label" for="patient.Intervalltraining">
+                        
+                    </label>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          </table>
+        </ng-template>
+      </ngb-panel>
+
+
         <ngb-panel>
           <ng-template ngbPanelTitle>
               <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Fragebögen </span>
@@ -245,28 +594,6 @@
                   </td>
                   <td *ngIf="!catAfter">
                       <a routerLink="cat/create/after" ngbTooltip="CAT 'Nachher' erfassen" class="btn btn-primary">Erfassen</a>
-                  </td>
-                </tr>
-                <!-- Gehttest -->
-                <tr>
-                  <td>Gehtest</td>
-                  <!-- check Gehtest before-->
-                  <td *ngIf="gehtestBefore">
-                      <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestBefore[0]?.id}}" ngbTooltip="Gehtest 'Vorher' betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
-                      <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestBefore[0]?.id}}" ngbTooltip="Gehtest 'Vorher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-                      Distanz: {{gehtestBefore[0]?.distanz}}
-                  </td>
-                  <td *ngIf="!gehtestBefore">
-                      <a routerLink="gehtest/create/before"  ngbTooltip="Gehtest 'Vorher' erfassen" class="btn btn-primary">Erfassen</a>
-                  </td>
-                  <!-- check Gehtest after -->
-                  <td *ngIf="gehtestAfter">
-                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/show/{{gehtestAfter[0]?.id}}" ngbTooltip="Gehtest 'Nachher' betrachten"  class="btn btn-primary"><i class="icon-eye white"></i></a>
-                    <a routerLink="../../../clients/show/{{patient?.id}}/gehtest/edit/{{gehtestAfter[0]?.id}}" ngbTooltip="Gehtest 'Nachher' bearbeiten" class="btn btn-primary" style="margin-left: 5px;"><i class="icon-pencil white"></i></a>
-                    Distanz: {{gehtestAfter[0]?.distanz}}
-                  </td>
-                  <td *ngIf="!gehtestAfter">
-                    <a routerLink="gehtest/create/after" ngbTooltip="Gehtest 'Nachher' erfassen" class="btn btn-primary">Erfassen</a>  
                   </td>
                 </tr>
               </tbody>

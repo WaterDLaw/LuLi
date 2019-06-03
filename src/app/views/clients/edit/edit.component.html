@@ -34,13 +34,6 @@
             
         </div>
         <div class="form-group row">
-            <label class="col-sm-2" for="groesse">Grösse in cm</label>
-            <div class="col-sm-10">
-                <input [(ngModel)]="patient.groesse" type="text" class="form-control" id="groesse" placeholder="Grösse" name="groesse" required>
-            </div>
-            
-        </div>
-        <div class="form-group row">
                 <label class="col-sm-2" for="groesse">Geschlecht</label>
                 <div class="col-sm-10">
                 <div class="form-check">
@@ -125,12 +118,16 @@
                     </select>
                 </div>
             </div>
-        <div class="form-group row">
-            <label class="col-sm-2" for="rauchstatus">Rauchstatus</label>
-            <div class="col-sm-10">
-                <input [(ngModel)]="patient.rauchstatus" type="text" class="form-control" id="rauchstatus" placeholder="Rauchstatus" name="rauchstatus" required>
+            <div class="form-group row">
+                <label class="col-sm-2" for="rauchstatus">Rauchstatus</label>
+                <div class="col-sm-10">
+                    <select class="form-control" [(ngModel)]="patient.rauchstatus" name="rauchstatus" id="rauchstatus" required>
+                        <option>Raucher</option>
+                        <option>Ex-Raucher</option>
+                        <option>Nichtraucher</option>
+                    </select>
+                </div>
             </div>
-        </div>
         <div class="form-group row">
                 <label class="col-sm-2" for="pneumologist_id">Pneumologe</label>
                 <div class="col-sm-10">
@@ -141,55 +138,79 @@
             </div>
         <h2>Diagnosen</h2>
         <hr />
-        <div class="form-check">
-            <input [(ngModel)]="patient.chronisch_obstruktive_Lungenkrankheit" class="form-check-input" type="checkbox" value="" id="chronisch_obstruktive_Lungenkrankheit" name="chronisch_obstruktive_Lungenkrankheit">
-            <label class="form-check-label" for="chronisch_obstruktive_Lungenkrankheit">
-                Chronisch obstruktive Lungenkrankheit (J40-44; J47)
-            </label>
+        <div class="row">
+            <div class="col-sm-7">
+            <div class="form-check">
+                <input [(ngModel)]="patient.chronisch_obstruktive_Lungenkrankheit" (change)="checkCOPD($event)" class="form-check-input" type="checkbox" value="" id="chronisch_obstruktive_Lungenkrankheit" name="chronisch_obstruktive_Lungenkrankheit">
+                <label class="form-check-label" for="chronisch_obstruktive_Lungenkrankheit">
+                        COPD (J40-44; J47)
+                </label>
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="patient.zystische_fibrose" class="form-check-input" type="checkbox" value="" id="zystische_fibrose" name="zystische_fibrose">
+                <label class="form-check-label" for="zystische_fibrose">
+                    Zystische Fibrose (E84)
+                </label>
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="patient.asthma_bronchiale" class="form-check-input" type="checkbox" value="" id="asthma_bronchiale" name="asthma_bronchiale">
+                <label class="form-check-label" for="asthma_bronchiale">
+                    Asthma bronchiale (J45)
+                </label>
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="patient.interstitielle_lungenkrankheit" class="form-check-input" type="checkbox" value="" id="interstitielle_lungenkrankheit" name="interstitielle_lungenkrankheit">
+                <label class="form-check-label" for="interstitielle_lungenkrankheit">
+                    Interstitielle Lungenkrankheit (J60-70; J80-J84)
+                </label>
+            </div>
+            <div class="form-check">
+                <input  [(ngModel)]="patient.thoraxwand_thoraxmuskelerkrankung" class="form-check-input" type="checkbox" value="" id="thoraxwand_thoraxmuskelerkrankung" name="thoraxwand_thoraxmuskelerkrankung">
+                <label class="form-check-label" for="thoraxwand_thoraxmuskelerkrankung">
+                    Thoraxwand- und Thoraxmuskelerkrankung (G47; G71/72; M40/41)
+                </label>
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="patient.andere_lungenkrankheit" class="form-check-input" type="checkbox" value="" id="andere_lungenkrankheit" name="andere_lungenkrankheit">
+                <label class="form-check-label" for="andere_lungenkrankheit">
+                    Andere Lungenkrankheit (J96; J98/99)
+                </label>
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="patient.postoperative_lungenoperation" class="form-check-input" type="checkbox" value="" id="postoperative_lungenoperation" name="postoperative_lungenoperation">
+                <label class="form-check-label" for="postoperative_lungenoperation">
+                    Prä- und postoperative Lungenoperation (J95)
+                </label>
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="patient.funktionelle_atemstoerung" class="form-check-input" type="checkbox" value="" id="funktionelle_atemstoerung" name="funktionelle_atemstoerung">
+                <label class="form-check-label" for="funktionelle_atemstoerung">
+                    Funktionelle Atemstörung (F45.33; R05-09)
+                </label>
+            </div>
         </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.zystische_fibrose" class="form-check-input" type="checkbox" value="" id="zystische_fibrose" name="zystische_fibrose">
-            <label class="form-check-label" for="zystische_fibrose">
-                Zystische Fibrose (E84)
-            </label>
-        </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.asthma_bronchiale" class="form-check-input" type="checkbox" value="" id="asthma_bronchiale" name="asthma_bronchiale">
-            <label class="form-check-label" for="asthma_bronchiale">
-                Asthma bronchiale (J45)
-            </label>
-        </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.interstitielle_lungenkrankheit" class="form-check-input" type="checkbox" value="" id="interstitielle_lungenkrankheit" name="interstitielle_lungenkrankheit">
-            <label class="form-check-label" for="interstitielle_lungenkrankheit">
-                Interstitielle Lungenkrankheit (J60-70; J80-J84)
-            </label>
-        </div>
-        <div class="form-check">
-            <input  [(ngModel)]="patient.thoraxwand_thoraxmuskelerkrankung" class="form-check-input" type="checkbox" value="" id="thoraxwand_thoraxmuskelerkrankung" name="thoraxwand_thoraxmuskelerkrankung">
-            <label class="form-check-label" for="thoraxwand_thoraxmuskelerkrankung">
-                Thoraxwand- und Thoraxmuskelerkrankung (G47; G71/72; M40/41)
-            </label>
-        </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.andere_lungenkrankheit" class="form-check-input" type="checkbox" value="" id="andere_lungenkrankheit" name="andere_lungenkrankheit">
-            <label class="form-check-label" for="andere_lungenkrankheit">
-                Andere Lungenkrankheit (J96; J98/99)
-            </label>
-        </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.postoperative_lungenoperation" class="form-check-input" type="checkbox" value="" id="postoperative_lungenoperation" name="postoperative_lungenoperation">
-            <label class="form-check-label" for="postoperative_lungenoperation">
-                Prä- und postoperative Lungenoperation (J95)
-            </label>
-        </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.funktionelle_atemstoerung" class="form-check-input" type="checkbox" value="" id="funktionelle_atemstoerung" name="funktionelle_atemstoerung">
-            <label class="form-check-label" for="funktionelle_atemstoerung">
-                Funktionelle Atemstörung (F45.33; R05-09)
-            </label>
-        </div>
+        <div *ngIf="copdchecked" class="col-sm-5">
+            <div class="row">
 
+                <div class="col-sm-6">
+                    <select class="form-control" [(ngModel)]="patient.copdgold" name="copdgold" id="copdgold" required>
+                        <option>GOLD 1</option>
+                        <option>GOLD 2</option>
+                        <option>GOLD 3</option>
+                        <option>GOLD 4</option>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" [(ngModel)]="patient.copdletter" name="copdletter" id="copdletter" required>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>D</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        </div>
         <br>
         <div class="form-group row">
             <label class="col-sm-2" for="diagnose_details">Diagnose (optional)</label>

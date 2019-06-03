@@ -5,6 +5,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { environment } from 'environments/environment';
+import { ActionHistoryService } from './ActionHistory.service';
 @Injectable()
 export class CatService {
 
@@ -14,11 +15,15 @@ export class CatService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private _authService: AuthService 
+    private _authService: AuthService,
+    private _actionHistoryService: ActionHistoryService 
   ) { }
 
    // creates a cat POST
    createCat(cat: Cat, patient_id: number){
+
+    this._actionHistoryService.createHistoryEntry("Cat", "create");
+
     console.log('create cat');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
@@ -28,6 +33,9 @@ export class CatService {
 
   // updates an cat PUT
   updateCat(cat: Cat, patient_id: number){
+
+    this._actionHistoryService.createHistoryEntry("Cat", "update");
+
     console.log('update cat');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})

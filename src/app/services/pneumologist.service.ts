@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Pneumologist } from '../models/pneumologist';
+import { ActionHistoryService } from './ActionHistory.service';
 
 @Injectable()
 export class PneumologistService {
@@ -15,12 +16,16 @@ export class PneumologistService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private _authService: AuthService) { 
+    private _authService: AuthService,
+    private _actionHistoryService: ActionHistoryService) { 
 
   }
 
   // Creates a new Pneumologist
   createPneumologist(pneumologist: Pneumologist): any{
+
+    this._actionHistoryService.createHistoryEntry("Pneumologe", "create");
+
     console.log("create pneumo");
     const token = this._authService.getToken();
     
@@ -46,6 +51,9 @@ export class PneumologistService {
 
   // Update Pneumologist 
   updatePneumologist(pneumologist: Pneumologist): any{
+
+    this._actionHistoryService.createHistoryEntry("Pneumologe", "update");
+
     console.log("update");
     const token = this._authService.getToken();
     console.log(pneumologist.id);
@@ -57,6 +65,9 @@ export class PneumologistService {
 
   // Delete the Pneumologist
   deletePneumologist(pneumologist_id: number){
+
+    this._actionHistoryService.createHistoryEntry("Pneumologe", "delete");
+
     console.log("delete Pneumo");
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});

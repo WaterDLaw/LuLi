@@ -30,6 +30,7 @@ import { EntryComponent } from "./entry/entry.component";
 import { EditEntryComponent } from './entry/edit-entry/edit-entry.component';
 import { PdfService } from '../../services/pdf.service';
 import { PneumologistService } from '../../services/pneumologist.service';
+import { MesswerteService } from 'app/services/messwerte.service';
 
 @NgModule({
   imports: [
@@ -56,6 +57,6 @@ import { PneumologistService } from '../../services/pneumologist.service';
       EntryComponent,
       EditEntryComponent
     ],
-  providers:[AuthGuard, ClientsService, TrainingsService, DatePipe, EntryService, PdfService, PneumologistService]
+  providers:[AuthGuard, ClientsService, TrainingsService, DatePipe, EntryService, PdfService, PneumologistService, MesswerteService]
 })
 export class ClientsModule { }

@@ -5,6 +5,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { environment } from 'environments/environment';
+import { ActionHistoryService } from './ActionHistory.service';
 
 @Injectable()
 export class EntryService {
@@ -14,11 +15,15 @@ export class EntryService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _actionHistoryService: ActionHistoryService
   ) { }
 
   // Function to send the entry data to the server for the CREATE method
   createEntry(entry: Entry, patient_id: number, user_id: number){
+
+    this._actionHistoryService.createHistoryEntry("Journal Eintrag", "create");
+
     console.log("create");
     const token = this._authService.getToken();
     
@@ -47,12 +52,12 @@ export class EntryService {
 
   // Function updates a specific entry with an id
   updateEntry(){
-
+    this._actionHistoryService.createHistoryEntry("Journal Eintrag", "update");
   }
 
   // Function deletes a specific entry with an id
   deleteEntry(){
-
+    this._actionHistoryService.createHistoryEntry("Journal Eintrag", "delete");
   }
 
   // Function to retrieve all entries

@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 import { Client } from '../models/Client';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'environments/environment';
+import { ActionHistoryService } from './ActionHistory.service';
 
 
 @Injectable()
@@ -19,12 +20,17 @@ export class TrainingsService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private _authService: AuthService) { 
+    private _authService: AuthService,
+    private _actionHistoryService: ActionHistoryService) { 
 
   }
 
   // Creates a new training
   createTraining(training: Training): any{
+
+    // create the Action in the Table
+    this._actionHistoryService.createHistoryEntry("Training", "create");
+
     console.log("create");
     const token = this._authService.getToken();
     
@@ -49,6 +55,10 @@ export class TrainingsService {
   }
 
   updateTraining(training: Training): any{
+
+    // create the Action in the Table
+    this._actionHistoryService.createHistoryEntry("Training", "update");
+
     console.log("update");
     const token = this._authService.getToken();
     console.log(training.id);
@@ -79,5 +89,6 @@ export class TrainingsService {
     return this.http.get<any>(this.apiurl + `/api/calendar`)
       .toPromise();
   }
+
 
 }

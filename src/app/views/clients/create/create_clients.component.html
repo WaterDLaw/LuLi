@@ -149,70 +149,94 @@
 
         <h2>Diagnose(n)</h2>
         <hr />
-        <div class="form-check">
-            <input [(ngModel)]="patient.chronisch_obstruktive_Lungenkrankheit" class="form-check-input" type="checkbox" value="" id="chronisch_obstruktive_Lungenkrankheit" name="chronisch_obstruktive_Lungenkrankheit">
-            <label class="form-check-label" for="chronisch_obstruktive_Lungenkrankheit">
-                COPD (J40-44; J47)
-            </label>
-        </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.zystische_fibrose" class="form-check-input" type="checkbox" value="" id="zystische_fibrose" name="zystische_fibrose">
-            <label class="form-check-label" for="zystische_fibrose">
-                Zystische Fibrose (E84)
-            </label>
-        </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.asthma_bronchiale" class="form-check-input" type="checkbox" value="" id="asthma_bronchiale" name="asthma_bronchiale">
-            <label class="form-check-label" for="asthma_bronchiale">
-                Asthma bronchiale (J45)
-            </label>
-        </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.interstitielle_lungenkrankheit" class="form-check-input" type="checkbox" value="" id="interstitielle_lungenkrankheit" name="interstitielle_lungenkrankheit">
-            <label class="form-check-label" for="interstitielle_lungenkrankheit">
-                Interstitielle Lungenkrankheit (J60-70; J80-J84)
-            </label>
-        </div>
-        <div class="form-check">
-            <input  [(ngModel)]="patient.thoraxwand_thoraxmuskelerkrankung" class="form-check-input" type="checkbox" value="" id="thoraxwand_thoraxmuskelerkrankung" name="thoraxwand_thoraxmuskelerkrankung">
-            <label class="form-check-label" for="thoraxwand_thoraxmuskelerkrankung">
-                Thoraxwand- und Thoraxmuskelerkrankung (G47; G71/72; M40/41)
-            </label>
-        </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.andere_lungenkrankheit" class="form-check-input" type="checkbox" value="" id="andere_lungenkrankheit" name="andere_lungenkrankheit">
-            <label class="form-check-label" for="andere_lungenkrankheit">
-                Andere Lungenkrankheit (J96; J98/99)
-            </label>
-        </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.postoperative_lungenoperation" class="form-check-input" type="checkbox" value="" id="postoperative_lungenoperation" name="postoperative_lungenoperation">
-            <label class="form-check-label" for="postoperative_lungenoperation">
-                Prä- und postoperative Lungenoperation (J95)
-            </label>
-        </div>
-        <div class="form-check">
-            <input [(ngModel)]="patient.funktionelle_atemstoerung" class="form-check-input" type="checkbox" value="" id="funktionelle_atemstoerung" name="funktionelle_atemstoerung">
-            <label class="form-check-label" for="funktionelle_atemstoerung">
-                Funktionelle Atemstörung (F45.33; R05-09)
-            </label>
-        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="form-check">
+                    <input [(ngModel)]="patient.chronisch_obstruktive_Lungenkrankheit" (change)="checkCOPD($event)" class="form-check-input" type="checkbox" value="" id="chronisch_obstruktive_Lungenkrankheit" name="chronisch_obstruktive_Lungenkrankheit">
+                    <label class="form-check-label" for="chronisch_obstruktive_Lungenkrankheit">
+                        COPD (J40-44; J47)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="patient.zystische_fibrose" class="form-check-input" type="checkbox" value="" id="zystische_fibrose" name="zystische_fibrose">
+                    <label class="form-check-label" for="zystische_fibrose">
+                        Zystische Fibrose (E84)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="patient.asthma_bronchiale" class="form-check-input" type="checkbox" value="" id="asthma_bronchiale" name="asthma_bronchiale">
+                    <label class="form-check-label" for="asthma_bronchiale">
+                        Asthma bronchiale (J45)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="patient.interstitielle_lungenkrankheit" class="form-check-input" type="checkbox" value="" id="interstitielle_lungenkrankheit" name="interstitielle_lungenkrankheit">
+                    <label class="form-check-label" for="interstitielle_lungenkrankheit">
+                        Interstitielle Lungenkrankheit (J60-70; J80-J84)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input  [(ngModel)]="patient.thoraxwand_thoraxmuskelerkrankung" class="form-check-input" type="checkbox" value="" id="thoraxwand_thoraxmuskelerkrankung" name="thoraxwand_thoraxmuskelerkrankung">
+                    <label class="form-check-label" for="thoraxwand_thoraxmuskelerkrankung">
+                        Thoraxwand- und Thoraxmuskelerkrankung (G47; G71/72; M40/41)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="patient.andere_lungenkrankheit" class="form-check-input" type="checkbox" value="" id="andere_lungenkrankheit" name="andere_lungenkrankheit">
+                    <label class="form-check-label" for="andere_lungenkrankheit">
+                        Andere Lungenkrankheit (J96; J98/99)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="patient.postoperative_lungenoperation" class="form-check-input" type="checkbox" value="" id="postoperative_lungenoperation" name="postoperative_lungenoperation">
+                    <label class="form-check-label" for="postoperative_lungenoperation">
+                        Prä- und postoperative Lungenoperation (J95)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="patient.funktionelle_atemstoerung" class="form-check-input" type="checkbox" value="" id="funktionelle_atemstoerung" name="funktionelle_atemstoerung">
+                    <label class="form-check-label" for="funktionelle_atemstoerung">
+                        Funktionelle Atemstörung (F45.33; R05-09)
+                    </label>
+                </div>
+            </div>
+            <div *ngIf="copdchecked" class="col-sm-5">
+                <div class="row">
 
+                    <div class="col-sm-6">
+                        <select class="form-control" [(ngModel)]="patient.copdgold" name="copdgold" id="copdgold" required>
+                            <option>GOLD 1</option>
+                            <option>GOLD 2</option>
+                            <option>GOLD 3</option>
+                            <option>GOLD 4</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <select class="form-control" [(ngModel)]="patient.copdletter" name="copdletter" id="copdletter" required>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
         <br>
         <div class="form-group row">
-            <label class="col-sm-2" for="diagnose_details">Diagnose (optional)</label>
+            <label class="col-sm-2" for="diagnose_details">Weitere Diagnosen</label>
             <div class="col-sm-10">
                 <textarea [(ngModel)]="patient.diagnose_details" class="form-control " value ="" id="diagnose_details" rows="3" name="diagnose_details"></textarea>
             </div>
         </div>
         <br>
         <div class="form-group row">
-            <label class="col-sm-2" for="bemerkungen">Bemerkungen (optional)</label>
+            <label class="col-sm-2" for="bemerkungen">Bemerkungen</label>
             <div class="col-sm-10">
                     <textarea [(ngModel)]="patient.bemerkungen" class="form-control " value ="" id="bemerkungen" rows="3" name="bemerkungen"></textarea>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!patientForm.form.valid">Speichern</button>
+        <button type="submit" class="btn btn-primary">Speichern</button>
     </form>
     </div>
 </div>

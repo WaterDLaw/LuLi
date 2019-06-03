@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { User } from '../models/User';
+import { ActionHistoryService } from './ActionHistory.service';
 
 @Injectable()
 export class UsersService {
@@ -15,12 +16,16 @@ export class UsersService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private _authService: AuthService) { 
+    private _authService: AuthService,
+    private _actionHistoryService: ActionHistoryService) { 
 
   }
 
   // Creates a new User
   createUser(user: User): any{
+
+    this._actionHistoryService.createHistoryEntry("User", "create");
+
     console.log("create");
     const token = this._authService.getToken();
     
@@ -46,6 +51,9 @@ export class UsersService {
 
   // Update Client 
   updateUser(user: User): any{
+
+    this._actionHistoryService.createHistoryEntry("User", "update");
+
     console.log("update");
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
@@ -55,6 +63,9 @@ export class UsersService {
 
   // Delete the User
   deleteClient(user_id: number){
+
+    this._actionHistoryService.createHistoryEntry("User", "delete");
+
     console.log("delete User");
     const token = this._authService.getToken();
     return this.http.delete(this.apiurl + `/api/users/${user_id}?token=` + token, {responseType: 'text'}) 

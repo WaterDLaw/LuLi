@@ -13,6 +13,7 @@ import { Crqsas } from '../models/Crqsas';
 import { Cat } from '../models/Cat';
 import { Gehtest } from '../models/Gehtest';
 import { environment } from 'environments/environment';
+import { ActionHistoryService } from './ActionHistory.service';
 
 @Injectable()
 export class ClientsService {
@@ -23,12 +24,16 @@ export class ClientsService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private _authService: AuthService) { 
+    private _authService: AuthService,
+    private _actionHistoryService: ActionHistoryService) { 
 
   }
 
   // Creates a new Client
   createClient(patient: Client): any{
+
+    this._actionHistoryService.createHistoryEntry("Patient", "create");
+
     console.log("create");
     const token = this._authService.getToken();
     
@@ -54,6 +59,9 @@ export class ClientsService {
 
   // Update Client 
   updateClient(patient: Client): any{
+
+    this._actionHistoryService.createHistoryEntry("Patient", "update");
+
     console.log("update");
     const token = this._authService.getToken();
     console.log(patient.id);
@@ -65,6 +73,9 @@ export class ClientsService {
 
   // Delete the Client
   deleteClient(patient_id: number){
+
+    this._actionHistoryService.createHistoryEntry("Patient", "delete");
+
     console.log("delete Client");
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
@@ -74,6 +85,9 @@ export class ClientsService {
  
   // Add Training to the Client
   addTraining(patient: Client, training: Training){
+
+    this._actionHistoryService.createHistoryEntry("Patient", "Training zugewiesen");
+
     console.log("add Training");
     const token = this._authService.getToken();
     console.log(patient);

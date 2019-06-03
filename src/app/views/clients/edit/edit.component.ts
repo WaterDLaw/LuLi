@@ -14,7 +14,7 @@ export class EditComponent implements OnInit {
   patient: Client;
   showForm: boolean;
   pneumologists: Pneumologist;
-  
+  copdchecked:boolean;
   constructor(
     private _clientsService: ClientsService,
     private _pneumologistService: PneumologistService,
@@ -28,6 +28,10 @@ export class EditComponent implements OnInit {
       .subscribe(data =>{
         console.log(data);
         this.patient = data;
+        if(this.patient.chronisch_obstruktive_Lungenkrankheit == true){
+          this.copdchecked = true;
+          console.log("TRUEEEE");    
+        }
         this.showForm = true;
       })
       this._pneumologistService.getPneumologists()
@@ -49,6 +53,11 @@ export class EditComponent implements OnInit {
     .catch(error => console.log(error));
     
 
+  }
+
+  checkCOPD(){
+    this.copdchecked = !this.copdchecked;
+    console.log("COPD IS" + this.copdchecked) ;
   }
 
 }

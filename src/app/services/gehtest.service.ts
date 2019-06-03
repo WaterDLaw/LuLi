@@ -5,6 +5,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { environment } from 'environments/environment';
+import { ActionHistoryService } from './ActionHistory.service';
 
 @Injectable()
 export class GehtestService {
@@ -14,11 +15,15 @@ export class GehtestService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _actionHistoryService: ActionHistoryService
   ) { }
 
   // creates a gehtest POST
   createGehtest(gehtest: Gehtest, patient_id: number){
+
+    this._actionHistoryService.createHistoryEntry("Gehttest", "create");
+
     console.log('create gehtest');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
@@ -27,6 +32,9 @@ export class GehtestService {
   }
   // updates an gehtest PUT
   updateGehtest(gehtest: Gehtest, patient_id: number){
+
+    this._actionHistoryService.createHistoryEntry("Gehttest", "update");
+
     console.log('update gehtest');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})

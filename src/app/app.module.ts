@@ -82,6 +82,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 // Import custom components so
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ActionHistoryService } from './services/ActionHistory.service';
 
 @NgModule({
   imports: [
@@ -111,8 +112,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     {
       provide: LOCALE_ID,
       useValue: 'de-ch'
-    }
-    
+    },
+    ActionHistoryService
   ],
   bootstrap: [ AppComponent ]
 })

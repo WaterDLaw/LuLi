@@ -35,18 +35,26 @@ export const navigation = [
   {
     name: 'Admin',
     url:  '/admin',
-    icon: 'icon-note',
+    icon: 'icon-user',
     badge: {
-      variant: 'info'
+      variant: 'user'
     }
   },
   
   {
     name: 'Pneumologen',
     url: '/pneumologists',
-    icon: 'icon-note',
+    icon: 'icon-people',
     badge: {
       variant: 'info'
+    }
+  },
+  {
+    name: 'History',
+    url: '/actionhistory',
+    icon: 'icon-notebook',
+    badge: {
+      variant: 'notebook'
     }
   },
 ];

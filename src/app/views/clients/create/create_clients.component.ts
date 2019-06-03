@@ -4,6 +4,7 @@ import { ClientsService } from "../../../services/clients.service";
 import { Router } from '@angular/router';
 import { Pneumologist } from '../../../models/pneumologist';
 import { PneumologistService } from '../../../services/pneumologist.service';
+import { MesswerteService } from 'app/services/messwerte.service';
 @Component({
   selector: 'app-create-clients',
   templateUrl: './create_clients.component.html',
@@ -13,10 +14,12 @@ export class CreateClientsComponent implements OnInit {
 
   patient: Client;
   pneumologists: Pneumologist;
+  copdchecked:boolean=false;
 
   constructor(
     private _clientsService: ClientsService,
     private _pneumologistService: PneumologistService,
+    private _messwerteService: MesswerteService,
     private router: Router
   ) { }
 
@@ -41,12 +44,28 @@ export class CreateClientsComponent implements OnInit {
     this._clientsService.createClient(this.patient)
       .then(
         data =>{
-          this.router.navigate(['clients'])
+          console.log(data);
+          console.log(data.id);
+
+          // create an empty messwerte table
+          this._messwerteService.createMesswerte(data.id)
+            .then( result =>{
+
+              this.router.navigate(['clients'])
+            })
+            .catch(error => console.log(error));
+
+          
         }
       )
       .catch(error => console.log(error));
       
 
+  }
+
+  checkCOPD(){
+    this.copdchecked = !this.copdchecked;
+    console.log("COPD IS" + this.copdchecked) ;
   }
 
 }

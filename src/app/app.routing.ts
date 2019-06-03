@@ -56,6 +56,10 @@ export const routes: Routes = [
         path: 'pneumologists',
         loadChildren: './views/pneumologists/pneumologists.module#PneumologistsModule'
       },
+      {
+        path: 'actionhistory',
+        loadChildren: './views/admin/actionhistory/actionhistory.module#ActionHistoryModule'
+      }
 
 
       

@@ -2,7 +2,8 @@
   <div class="card-body">
       <a class="btn btn-primary" ngbTooltip="Training als PDF downloaden" style="float:right;"><i class="icon-doc white"></i></a>
       <a routerLink="../../edit/{{training.id}}" ngbTooltip="Training bearbeiten" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
-      <h2>Trainingsinformationen</h2>
+      <span style="float:right;"><button (click)="csvExport()" ngbTooltip="Download als CSV Datei" class="btn btn-primary" style="float:right;margin-right: 5px; color:white"><i class="icon-cloud-download"></i></button></span>
+      <h2>Kursinformationen</h2>
       <hr />
       <table class="table table-sm">
         <tbody>
@@ -29,13 +30,16 @@
 </div>
 <div class="card">
   <div class="card-body">
-    <h2>Teilnehmerliste</h2>
+    <h2>Teilnehmerliste
+      <a routerLink="../../../clients/create" ngbTooltip="Patient erstellen" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-user-follow"></i></a>
+    </h2>
     <hr />
     <table class="table">
         <thead>
           <tr>
             <th>Vorname</th>
             <th>Nachname</th>
+            <th>Pneumologen</th>
             <th>Geburtsdatum</th>
             <th></th>
     
@@ -46,6 +50,7 @@
           
             <td>{{patient?.vorname}}</td>
             <td>{{patient?.name}}</td>
+            <td>{{patient?.pneumologistVorname}} {{patient?.pneumologistName}}</td>
             <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
             <td><a routerLink="../../../clients/show/{{patient.id}}"class="btn btn-primary" ngbTooltip="Patient betrachten"><i class="icon-eye white"></i></a>
             <a class="btn btn-danger"><i class="icon-trash white" ngbTooltip="Patient entfernen"></i></a></td>

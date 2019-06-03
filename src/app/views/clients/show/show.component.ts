@@ -17,6 +17,9 @@ import { EntryService } from '../../../services/entry.service';
 import { Entry } from '../../../models/Entry';
 import { PdfService } from '../../../services/pdf.service';
 import { saveAs } from 'file-saver';
+import { Angular5Csv } from 'angular5-csv/Angular5-csv';
+import { MesswerteService } from 'app/services/messwerte.service';
+import { Messwerte } from 'app/models/Messwerte';
 
 @Component({
   selector: 'app-show',
@@ -26,6 +29,7 @@ import { saveAs } from 'file-saver';
 export class ShowComponent implements OnInit {
   
   measurmentEdit: boolean = false;
+  empfehlungenEdit: boolean = false;
 
   closeResult: string;
   trainings: Array<Training>
@@ -42,7 +46,7 @@ export class ShowComponent implements OnInit {
   gehtestAfter: Gehtest;
 
   entries: Entry[];
-
+  messwerte: Messwerte;
   // Subscription references
 
   trainingSubscription: Subscription;
@@ -67,7 +71,8 @@ export class ShowComponent implements OnInit {
     private _entryService: EntryService,
     private router: Router,
     private datePipe: DatePipe,
-    private _pdfService: PdfService) {
+    private _pdfService: PdfService,
+    private _messwerteService: MesswerteService) {
 
     }
 
@@ -81,18 +86,19 @@ export class ShowComponent implements OnInit {
     this.getEntries(this.route.snapshot.params['id']);
 
     this.getPatient(this.route.snapshot.params['id']);
+
+    this.getMesswerte(this.route.snapshot.params['id']);
+
     // load the Trainings
     this.getTrainings();
     this.checkFeedback(this.route.snapshot.params['id']);
     // Check if questionaries exists Before
     this.checkCrqsasBefore(this.route.snapshot.params['id']);
     this.checkCatBefore(this.route.snapshot.params['id']);
-    this.checkGehtestBefore(this.route.snapshot.params['id']);
 
     // Check if questionaries exist After
     this.checkCrqsasAfter(this.route.snapshot.params['id']);
     this.checkCatAfter(this.route.snapshot.params['id']);
-    this.checkGehtestAfter(this.route.snapshot.params['id']);
   }
   // Cancel subscriptions for performance boost
 
@@ -104,8 +110,7 @@ export class ShowComponent implements OnInit {
     this.crqsasAfterSubscription.unsubscribe();
     this.catBeforeSubscription.unsubscribe();
     this.catAfterSubscription.unsubscribe();
-    this.gehtestBeforeSubscription.unsubscribe();
-    this.gehtestAfterSubscription.unsubscribe();
+
   }
 
   createEntry(){
@@ -129,18 +134,44 @@ export class ShowComponent implements OnInit {
       })
   }
 
+  // get Messwerte
+
+  getMesswerte(patient_id:number){
+    this._messwerteService.getMesswerte(patient_id)
+      .subscribe(data => {
+        this.messwerte = data;
+        //this.messwerte[0].saO2_vor = (this.messwerte[0].saO2_vor*100).toFixed(2);
+        //this.messwerte[0].saO2_nach = (this.messwerte[0].saO2_nach*100).toFixed(2);
+        //this.messwerte[0].saO2min_vor = (this.messwerte[0].saO2min_vor*100).toFixed(2);
+        //this.messwerte[0].saO2min_nach = (this.messwerte[0].saO2min_nach*100).toFixed(2);
+        console.log("MESSWERTE");
+        console.log(data);
+      })
+  }
+
+  trainingsEmpfehlungenEdit(){
+    if(this.empfehlungenEdit){
+      this.empfehlungenEdit = false;
+    }else if(!this.empfehlungenEdit){
+      this.empfehlungenEdit = true;
+    }
+   
+  }
   measurmentsEdit(){
     if(this.measurmentEdit){
       this.measurmentEdit = false;
     }else if(!this.measurmentEdit){
       this.measurmentEdit = true;
     }
-   
   }
 
   measurmentsSave(){
+
+    // Umwandlungs Methode
+    this.measurementsChange();
     // Save the measurements changed in databse
-    this._clientService.updateClient(this.patient)
+    console.log(this.messwerte);
+    this._messwerteService.updateMesswerte(this.messwerte)
       .then(success =>{
         console.log(success);
       })
@@ -155,6 +186,97 @@ export class ShowComponent implements OnInit {
     }
   }
 
+  trainingsEmpfehlungenSave(){
+
+    this._clientService.updateClient(this.patient)
+      .then(success =>{
+        console.log(success);
+      })
+      .catch(err =>{
+        console.log(err);
+      })
+
+    if(this.empfehlungenEdit){
+      this.empfehlungenEdit = false;
+    }else if(!this.empfehlungenEdit){
+      this.empfehlungenEdit = true;
+    }
+    
+  }
+
+  measurementsChange(){
+    //this.messwerte.groesse_vor = Number(this.messwerte.groesse_vor);
+    //this.messwerte.groesse_nach = Number(this.messwerte.groesse_nach);
+
+    //this.messwerte.gewicht_vor = Number(this.messwerte.gewicht_vor);
+    //this.messwerte.gewicht_nach = Number(this.messwerte.gewicht_nach);
+
+    //this.messwerte.bmi_vor = Number(this.calcBMI(this.messwerte.gewicht_vor,this.messwerte.groesse_vor));
+    //this.messwerte.bmi_nach = Number(this.calcBMI(this.messwerte.gewicht_nach,this.messwerte.groesse_nach));
+
+    //this.messwerte.fev1l_vor = Number(this.messwerte.fev1l_vor);
+   // this.messwerte.fev1l_nach = Number(this.messwerte.fev1l_nach);
+
+    //this.messwerte.fev1soll_vor = Number(this.calcFev1Soll(this.messwerte.groesse_vor,this.patient.geschlecht));
+    //this.messwerte.fev1soll_nach = Number(this.calcFev1Soll(this.messwerte.groesse_nach,this.patient.geschlecht));
+
+    //this.messwerte.fvc_vor = Number(this.messwerte.fvc_vor);
+    //this.messwerte.fvc_nach = Number(this.messwerte.fvc_nach);
+
+    //this.messwerte.fev1_fvc_vor = Number(this.calcFEV1FVC(this.messwerte.fev1l_vor,this.messwerte.fvc_vor));
+    //this.messwerte.fev1_fvc_nach = Number(this.calcFEV1FVC(this.messwerte.fev1l_nach,this.messwerte.fvc_nach));
+
+    //this.messwerte.rv_vor = Number(this.messwerte.rv_vor);
+    //this.messwerte.rv_nach = Number(this.messwerte.rv_nach);
+
+    //this.messwerte.tlc_vor = Number(this.messwerte.tlc_vor);
+    //this.messwerte.tlc_nach = Number(this.messwerte.tlc_nach);
+
+    //this.messwerte.rv_tlc_vor = Number(this.calcRVTLC(this.messwerte.rv_vor,this.messwerte.tlc_vor));
+    //this.messwerte.rv_tlc_nach = Number(this.calcRVTLC(this.messwerte.rv_nach,this.messwerte.tlc_nach));
+
+    //this.messwerte.O2_Dosis_vor = Number(this.messwerte.O2_Dosis_vor);
+    //this.messwerte.O2_Dosis_nach = Number(this.messwerte.O2_Dosis_nach);
+
+    //this.messwerte[0].saO2_vor = Number(this.messwerte[0].saO2_vor/100);
+    //this.messwerte[0].saO2_nach = Number(this.messwerte[0].saO2_nach)/100;
+    //this.messwerte[0].saO2min_vor = Number(this.messwerte[0].saO2min_vor/100);
+    //this.messwerte[0].saO2min_nach = Number(this.messwerte[0].saO2min_nach)/100;
+    //this.messwerte.phwert_vor = Number(this.messwerte.phwert_vor);
+    //this.messwerte.phwert_nach = Number(this.messwerte.phwert_nach);
+
+    //this.messwerte.pO2_vor = Number(this.messwerte.pO2_vor);
+    //this.messwerte.pO2_nach = Number(this.messwerte.pO2_nach);
+
+    //this.messwerte.pC02_vor = Number(this.messwerte.pC02_vor);
+    //this.messwerte.pC02_nach = Number(this.messwerte.pC02_nach);
+
+    //this.messwerte.bicarbonat_vor = Number(this.messwerte.bicarbonat_vor);
+    //this.messwerte.bicarbonat_nach = Number(this.messwerte.bicarbonat_nach);
+
+    //this.messwerte.distanzM_vor = Number(this.messwerte.distanzM_vor);
+    //this.messwerte.distanzM_nach = Number(this.messwerte.distanzM_nach);
+
+    //this.messwerte.max_leistungW_vor = Number(this.messwerte.max_leistungW_vor);
+    //this.messwerte.max_leistungW_nach = Number(this.messwerte.max_leistungW_nach);
+
+    //this.messwerte.max_leistungS_vor = Number(this.calcMaxLeistung(this.patient.geschlecht,this.messwerte.groesse_vor));
+    //this.messwerte.max_leistungS_nach = Number(this.calcMaxLeistung(this.patient.geschlecht,this.messwerte.groesse_nach));
+
+    //this.messwerte.vO2max_vor = Number(this.messwerte.vO2max_vor);
+    //this.messwerte.vO2max_nach = Number(this.messwerte.vO2max_nach);
+
+    //this.messwerte.hfmax_vor = Number(this.messwerte.hfmax_vor);
+    //this.messwerte.hfmax_nach = Number(this.messwerte.hfmax_nach);
+
+    //this.messwerte.distanzM_vor = Number(this.messwerte.distanzM_vor);
+    //this.messwerte.distanzM_nach = Number(this.messwerte.distanzM_nach);
+
+    //this.messwerte.distanzS_vor = Number(this.calcDistanzSoll(this.patient.geschlecht,this.messwerte.groesse_vor,this.messwerte.gewicht_vor));
+    //this.messwerte.distanzS_nach = Number(this.calcDistanzSoll(this.patient.geschlecht,this.messwerte.groesse_nach,this.messwerte.gewicht_nach));
+
+  }
+
   getPatient(id){
     this._clientService.getClient(id)
       .subscribe(data => {
@@ -165,6 +287,118 @@ export class ShowComponent implements OnInit {
 
       })
   }
+
+  calcBMI(gewicht, groesse){
+    return this._messwerteService.calcBMI(Number(gewicht),Number(groesse));
+  }
+
+  calcFev1Soll(groesse, geschlecht){
+    let age;
+    var diff_ms = Date.now() - new Date(this.patient.geburtsdatum).getTime();
+    var age_dt = new Date(diff_ms); 
+
+    age = Math.abs(age_dt.getUTCFullYear() - 1970);
+    return this._messwerteService.calcFEV1Soll(age,groesse,geschlecht);
+  }
+
+  calcFEV1FVC(fev1, fvc){
+    return this._messwerteService.calcFEV1FVC(fev1,fvc);
+  }
+
+  calcRVTLC(rv,tlc){
+    return this._messwerteService.calcRVTLC(rv,tlc);
+  }
+
+  calcDistanzSoll(geschlecht,groesse,gewicht){
+    let age;
+    var diff_ms = Date.now() - new Date(this.patient.geburtsdatum).getTime();
+    var age_dt = new Date(diff_ms); 
+
+    age = Math.abs(age_dt.getUTCFullYear() - 1970);
+    return this._messwerteService.calcDistanzSoll(geschlecht,groesse,age,gewicht);
+  }
+
+  calcMaxLeistung(geschlecht,groesse){
+    let age;
+    var diff_ms = Date.now() - new Date(this.patient.geburtsdatum).getTime();
+    var age_dt = new Date(diff_ms);
+
+    age = Math.abs(age_dt.getUTCFullYear() - 1970);
+    return this._messwerteService.calcMaxLeistung(geschlecht,groesse,age);    
+  }
+
+  calcBodeVor(){
+    
+    return this._messwerteService.calcBodeScore(this.calcFev1Soll(this.messwerte[0].groesse_vor,this.patient.geschlecht),this.messwerte[0].distanzM_vor,this.messwerte[0].dyspnoe_vor,this.calcBMI(this.messwerte[0].gewicht_vor,this.messwerte[0].groesse_vor));
+  }
+
+  calcBodeNach(){
+    return this._messwerteService.calcBodeScore(this.calcFev1Soll(this.messwerte[0].groesse_nach,this.patient.geschlecht),this.messwerte[0].distanzM_nach,this.messwerte[0].dyspnoe_nach,this.calcBMI(this.messwerte[0].gewicht_nach,this.messwerte[0].groesse_nach));
+  }
+
+  csvExport(){
+
+    //apply pipe
+    var data = this.patient;
+  
+    if(data != null){
+      var options = { 
+        fieldSeparator: ',',
+        quoteStrings: '"',
+        decimalseparator: '.',
+        showLabels: true, 
+        showTitle: true,
+        useBom: false,
+        noDownload: false,
+        headers: [
+          "Id",
+          "Created_at Patient",
+          "Updated_at Patient",
+          "Vorname",
+          "Name",
+          "Email",
+          "Geburtsdatum",
+          "Grösse",
+          "Geschlecht",
+          "Sprache",
+          "Telefonnummer",
+          "Strasse",
+          "PLZ",
+          "Ort",
+          "Chronisch obstruktive Lungenkrankheit",
+          "Zystische Fibrose",
+          "Asthma bronchiale",
+          "Interstitielle Lungenkrankheit",
+          "Thoraxwand- und Thoraxmuskelerkrankung",
+          "Andere Lungenkrankheit",
+          "Prä- und postoperative Lungenoperation",
+          "Funktionelle Atemstörung ",
+          "Diagnose Details",
+          "Bemerkungen",
+          "Training_id",
+          "Status",
+          "pneumologistName",
+          "pneumologistVorname",
+          "Rauchstatus",
+          "Created_At Training",
+          "Updated_At Training",
+          "Titel",
+          "Trainingsort",
+          "Start",
+          "Ende"
+        ]
+    
+  
+      }
+      new Angular5Csv(data, "ExportPatientARP " + this.patient.vorname + " " + this.patient.name, options);
+    }else{
+      console.log("Patienten leer");
+    }
+
+    
+  }
+
+
   checkFeedback(id){
     this.feedbackSubscription = this._clientService.hasFeedback(id)
       .subscribe(data => {

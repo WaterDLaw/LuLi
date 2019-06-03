@@ -17,7 +17,7 @@ export class StatisticsComponent implements OnInit {
   public searchString: string;
   public patientId: number;
 
-  selectedGeschlecht: string = "";
+  selectedGeschlecht: string = "alle";
   selectedOrt: string;
   selectedKurs: string;
   selectedStatus: string;
