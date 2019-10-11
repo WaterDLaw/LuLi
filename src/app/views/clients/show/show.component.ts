@@ -245,7 +245,7 @@ export class ShowComponent implements OnInit {
     this.loading = true;
     const delay = ms => new Promise(res => setTimeout(res, ms));
     this.formDownload = true;
-    await delay(50);
+    await delay(2000);
     // get the `<a>` element from click event
     console.log("Continue");
     var canvasCrq = <HTMLCanvasElement> document.querySelector('#bar-chart-crq');
@@ -267,7 +267,7 @@ export class ShowComponent implements OnInit {
     const fd = new FormData();
     fd.append('charts', pdf, pdf.name);
     // send the doc to the temporary charts folder
-    this.formDownload = false;
+    
     this._pdfService.uploadTempCharts(fd).subscribe(data =>{
       console.log(data);
       //do the actual download call
