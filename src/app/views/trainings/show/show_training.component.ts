@@ -3,7 +3,7 @@ import { TrainingsService } from '../../../services/trainings.service';
 import { Training } from '../../../models/Training';
 import { Client } from '../../../models/Client';
 import { ActivatedRoute } from '@angular/router';
-import { Angular5Csv } from 'angular5-csv/Angular5-csv';
+import { Angular5Csv } from 'angular5-csv/dist/Angular5-csv';
 
 @Component({
   selector: 'app-show-training',

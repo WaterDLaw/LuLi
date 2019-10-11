@@ -38,4 +38,5 @@ export class CreatePneumologistComponent implements OnInit {
       .catch(error => console.log(error));
     
   }
+
 }

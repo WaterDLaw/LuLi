@@ -76,6 +76,19 @@ export class MesswerteService {
     return fev1soll.toFixed(2);
   }
 
+  calcFVCSoll(alter:number,groesse:number, geschlecht:string){
+
+      let fvcsoll = 0;
+      if(geschlecht== "m"){
+         fvcsoll = (5.76*groesse)-(0.026*alter)-4.34
+      }
+
+      if(geschlecht == "f"){
+         fvcsoll = (4.43*groesse)-(0.026*alter)-2.89
+      }
+      return fvcsoll.toFixed(2);
+  }
+
   calcFEV1FVC(fev1, fvc){
     return (fev1/fvc).toFixed(0);
   }
@@ -88,28 +101,28 @@ export class MesswerteService {
 
     let gehtestSoll = 0;
     if(geschlecht == "m"){
-        gehtestSoll = 218+(5.14*(groesse*100)-5.32*alter)-(1.8*gewicht);
+        gehtestSoll = (218+(5.14*(groesse*100)-5.32*alter)-(1.8*gewicht))/100;
     }
 
     if(geschlecht == "w"){
-        gehtestSoll = 218+(5.14*(groesse*100)-5.32*alter)-(1.8*gewicht+51.31);
+        gehtestSoll = (218+(5.14*(groesse*100)-5.32*alter)-(1.8*gewicht+51.31))/100;
     }
 
-    return gehtestSoll.toFixed(0);
+    return gehtestSoll.toFixed(2) ;
   }
 
   calcMaxLeistung(geschlecht, groesse,alter){
 
     let maxLeistungSoll= 0;
     if(geschlecht == "m"){
-        maxLeistungSoll = (2526*groesse/100-9.08*alter-2759)*0.163
+        maxLeistungSoll = ((2526*groesse/100-9.08*alter-2759)*0.163)/100
     }
 
     if(geschlecht == "w"){
-        maxLeistungSoll = (1266*groesse/100-8.27*alter-940)*0.163
+        maxLeistungSoll = ((1266*groesse/100-8.27*alter-940)*0.163)/100
     }
 
-    return maxLeistungSoll.toFixed(0);
+    return maxLeistungSoll.toFixed(2);
   }
 
   calcBodeScore(fev1lsoll, distanzM, mmrc, bmi){

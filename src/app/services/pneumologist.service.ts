@@ -50,17 +50,30 @@ export class PneumologistService {
   }
 
   // Update Pneumologist 
+
   updatePneumologist(pneumologist: Pneumologist): any{
 
     this._actionHistoryService.createHistoryEntry("Pneumologe", "update");
 
     console.log("update");
     const token = this._authService.getToken();
-    console.log(pneumologist.id);
-    console.log(pneumologist);
+
+   
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put(this.apiurl + `/api/pneumologist/${pneumologist.id}?token=` + token, pneumologist, {headers: headers} )
+    return this.http.post(this.apiurl + `/api/pneumologist/${pneumologist.id}?token=` + token, pneumologist)
     .toPromise();
+  }
+
+  uploadSignature(pneumologist: Pneumologist,formData){
+
+    this._actionHistoryService.createHistoryEntry("Pneumologe", "upload Signature");
+
+    console.log("upload Signature");
+    const token = this._authService.getToken();
+
+    return this.http.post(this.apiurl + `/api/pneumologist/${pneumologist.id}/uploadSignature?token=` + token, formData)
+    .toPromise();
+
   }
 
   // Delete the Pneumologist
@@ -81,5 +94,16 @@ export class PneumologistService {
     const token = this._authService.getToken();
     return this.http.get<Array<Pneumologist>>(this.apiurl + `/api/pneumologist/${pneumologist_id}/getPatients?token=` + token);
   }
+
+  // Update image link to database
+  getSignature(signature: String){
+    console.log("get signature");
+    //trim signature for url
+    let strArr = signature.split("/")
+
+    const token = this._authService.getToken();
+    return this.http.get(this.apiurl + `/api/pneumologistSignature/${strArr[1]}?token=` + token,  {responseType: 'blob'})
+  }
+  
 
 }

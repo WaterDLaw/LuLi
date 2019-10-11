@@ -3,10 +3,9 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-
+import { ChartsModule } from 'ng2-charts';
 // Import containers
 import {
   FullLayoutComponent,
@@ -77,12 +76,16 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 
 // Import custom components so
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ActionHistoryService } from './services/ActionHistory.service';
+
+// AngularFire modules
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -92,8 +95,9 @@ import { ActionHistoryService } from './services/ActionHistory.service';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     NgbModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     ChartsModule,
-    HttpModule,
     CommonModule,
     HttpClientModule
   ],

@@ -12,6 +12,7 @@ export class EditPneumologistComponent implements OnInit {
 
   pneumologist: Pneumologist;
   showForm: boolean;
+  signatureFile: File = null;
 
   constructor(
     private _pneumologistService: PneumologistService,
@@ -30,10 +31,16 @@ export class EditPneumologistComponent implements OnInit {
       })
   }
 
+
+
   onSubmit(){
 
+    // Due to PHP bug report since 2014... the only way to get the image is send it via Post but define the method as PUT
+    // more here... https://github.com/laravel/framework/issues/13457
+    //fd.append('_method', 'PUT');
 
-    this._pneumologistService.updatePneumologist(this.pneumologist)
+    //console.log(fd);
+    this._pneumologistService.updatePneumologist(this.pneumologist )
     .then(
         data => {
           this.router.navigate(['pneumologists'])

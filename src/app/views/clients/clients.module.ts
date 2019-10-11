@@ -31,7 +31,7 @@ import { EditEntryComponent } from './entry/edit-entry/edit-entry.component';
 import { PdfService } from '../../services/pdf.service';
 import { PneumologistService } from '../../services/pneumologist.service';
 import { MesswerteService } from 'app/services/messwerte.service';
-
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   imports: [
     FeedbackModule,
@@ -41,7 +41,8 @@ import { MesswerteService } from 'app/services/messwerte.service';
     CrqsasModule,
     CatModule,
     GehtestModule,
-    NgbModule
+    NgbModule,
+    ChartsModule
   ],
   declarations: 
     [ 

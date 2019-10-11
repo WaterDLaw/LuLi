@@ -1,5 +1,8 @@
 <div class="card">
-    <div class="card-body">
+
+    <div class="card-body">  
+      <div class="row">
+        <div class="col-sm-8">
         <h2>Pneumolog Information</h2>
         <hr />
         <table class="table table-sm">
@@ -22,11 +25,21 @@
             </tr>
           </tbody>
         </table>  
+      </div>
+      <div class="col-sm-4" style="margin-top:50px;">
+        <p>Unterschrift:</p>
+        <div class="form-group row" *ngIf="!hasSignature">
+            <label class="col-sm-2" for="unterschrift"></label>
+            <input type="file" (change)="onFileSelected($event)" accept=".png,.jpg" />
+            <button type="button"(click)="uploadSignature()">Upload</button>
+        </div>
+        <img [src]="signature" height="200" *ngIf="signature">
         
+      </div>
+  
     </div>
   </div>
-  <div class="card">
-    <div class="card-body">
+  <div class="col-sm-12">
       <h2>Patientenliste</h2>
       <hr />
       <table class="table">
@@ -50,5 +63,5 @@
             </tr>
           </tbody>
         </table>
-    </div>
+      </div>
   </div>  

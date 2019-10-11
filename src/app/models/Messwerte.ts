@@ -51,6 +51,8 @@ export interface Messwerte{
     bodescore_vor?:number,
     bodescore_nach?:number,
     saO2min_vor?:number,
-    saO2min_nach?:number
+    saO2min_nach?:number,
+    fvc_soll_vor?:number,
+    fvc_soll_nach?:number
 
 }

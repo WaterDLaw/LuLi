@@ -1,10 +1,14 @@
 <div class="card">
     <div class="card-body">
-        <a (click)="download()"class="btn btn-primary" style="float:right;" ngbTooltip="Patient als PDF downloaden"><i class="icon-doc white"></i></a>
-        <a (click)="downloadVerordnung()" class="btn btn-primary" style="float:right;margin-right: 5px;" ngbTooltip="Verordnung Physiotherapie"><i class="icon-event white"></i></a>
+
+        <a (click)="getTrainingFormular()"class="btn btn-primary" style="float:right;" ngbTooltip="Trainingsinformationen als PDF downloaden"><i class="icon-doc white"></i></a>
+        <a (click)="downloadpdf()"class="btn btn-primary" style="float:right;margin-right: 5px;" ngbTooltip="Patient als PDF downloaden"><i class="icon-doc white"></i></a>
+        <a (click)="openModal(selectPneumo)" class="btn btn-primary" style="float:right;margin-right: 5px;" ngbTooltip="Verordnung Physiotherapie"><i class="icon-event white"></i></a>
         <span style="float:right;"><button (click)="csvExport()" ngbTooltip="Download als CSV Datei" class="btn btn-primary" style="float:right;margin-right: 5px; color:white"><i class="icon-cloud-download"></i></button></span>
         <a routerLink="../../edit/{{patient.id}}" ngbTooltip="Patient bearbeiten" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
-        <h2>Patienteninformationen</h2>
+        <h2>Patienteninformationen        <div *ngIf="loading" class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div></h2>
         <hr />
 
         <!-- Patienten info-->
@@ -162,10 +166,10 @@
               <!-- BMI -->
               <tr>
                 <th>BMI (kg/m2)</th>
-                <td *ngIf="!measurmentEdit">{{calcBMI(messwerte[0].gewicht_vor, messwerte[0].groesse_vor)}}</td>
-                <td *ngIf="measurmentEdit">{{calcBMI(messwerte[0].gewicht_vor, messwerte[0].groesse_vor)}}</td>
-                <td *ngIf="!measurmentEdit">{{calcBMI(messwerte[0].gewicht_nach, messwerte[0].groesse_nach)}}</td>
-                <td *ngIf="measurmentEdit">{{calcBMI(messwerte[0].gewicht_nach, messwerte[0].groesse_nach)}}</td>
+                <td *ngIf="!measurmentEdit">{{calcBMI(messwerte[0].gewicht_vor, messwerte[0].groesse_vor, status_vor)}} </td>
+                <td *ngIf="measurmentEdit">{{calcBMI(messwerte[0].gewicht_vor, messwerte[0].groesse_vor, status_vor)}}</td>
+                <td *ngIf="!measurmentEdit">{{calcBMI(messwerte[0].gewicht_nach, messwerte[0].groesse_nach, status_nach)}}</td>
+                <td *ngIf="measurmentEdit">{{calcBMI(messwerte[0].gewicht_nach, messwerte[0].groesse_nach, status_nach)}}</td>
               </tr>
             </tbody>
           </table>
@@ -183,27 +187,29 @@
               <!-- FEV1 -->
               <tr>
                 <th>FEV1 (l)/(%Soll)</th>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fev1l_vor}} ({{calcFev1Soll(messwerte[0]?.groesse_vor, patient?.geschlecht)}}%)</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fev1l_vor}} ({{calcFev1Soll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].fev1l_vor" type="text" style="width:200px;"class="form-control" id="fev1l_vor" placeholder="" name="fev1l_vor">
-                  {{calcFev1Soll(messwerte[0]?.groesse_vor, patient?.geschlecht)}}%
+                  {{calcFev1Soll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor)}}%
                 </td>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fev1l_nach}} ({{calcFev1Soll(messwerte[0]?.groesse_nach, patient?.geschlecht)}}%)</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fev1l_nach}} ({{calcFev1Soll(messwerte[0]?.groesse_nach, patient?.geschlecht, status_nach)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].fev1l_nach" type="text" style="width:200px;"class="form-control" id="fev1l_nach" placeholder="" name="fev1l_nach">
-                  {{calcFev1Soll(messwerte[0]?.groesse_nach, patient?.geschlecht)}}%
+                  {{calcFev1Soll(messwerte[0]?.groesse_nach, patient?.geschlecht, status_nach)}}%
                 </td>
               </tr>
               <!-- FVC -->
               <tr>
                 <th>FVC (l)</th>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_vor}}</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_vor}} {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor)}}%</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].fvc_vor" type="text" style="width:200px;"class="form-control" id="fvc_vor" placeholder="" name="fvc_vor">
+                  {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor)}}%
                 </td>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_nach}}</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_nach}} {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_nach)}}%</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].fvc_nach" type="text" style="width:200px;"class="form-control" id="fvc_nach" placeholder="" name="fvc_nach">
+                  {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_nach)}}%
                 </td>
               </tr>
 
@@ -235,18 +241,18 @@
               <!-- FEV1/FVC -->
                 <tr>
                   <th>FEV1/FVC (%)</th>
-                  <td *ngIf="!measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_vor, messwerte[0].fvc_vor)}}</td>
-                  <td *ngIf="measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_vor, messwerte[0].fvc_vor)}}</td>
-                  <td *ngIf="!measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_nach, messwerte[0].fvc_nach)}}</td>
-                  <td *ngIf="measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_nach, messwerte[0].fvc_nach)}}</td>
+                  <td *ngIf="!measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_vor, messwerte[0].fvc_vor, status_vor)}}</td>
+                  <td *ngIf="measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_vor, messwerte[0].fvc_vor, status_vor)}}</td>
+                  <td *ngIf="!measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_nach, messwerte[0].fvc_nach,status_nach)}}</td>
+                  <td *ngIf="measurmentEdit">{{calcFEV1FVC(messwerte[0].fev1l_nach, messwerte[0].fvc_nach, status_nach)}}</td>
                 </tr>
               <!-- RV/TLC-->
               <tr>
                   <th>RV/TLC (%)</th>
-                  <td *ngIf="!measurmentEdit">{{calcRVTLC(messwerte[0].rv_vor, messwerte[0].tlc_vor)}}</td>
-                  <td *ngIf="measurmentEdit">{{calcRVTLC(messwerte[0].rv_vor, messwerte[0].tlc_vor)}}</td>
-                  <td *ngIf="!measurmentEdit">{{calcRVTLC(messwerte[0].rv_nach, messwerte[0].tlc_nach)}}</td>
-                  <td *ngIf="measurmentEdit">{{calcRVTLC(messwerte[0].rv_nach, messwerte[0].tlc_nach)}}</td>
+                  <td *ngIf="!measurmentEdit">{{calcRVTLC(messwerte[0].rv_vor, messwerte[0].tlc_vor,status_vor)}}</td>
+                  <td *ngIf="measurmentEdit">{{calcRVTLC(messwerte[0].rv_vor, messwerte[0].tlc_vor,status_vor)}}</td>
+                  <td *ngIf="!measurmentEdit">{{calcRVTLC(messwerte[0].rv_nach, messwerte[0].tlc_nach,status_nach)}}</td>
+                  <td *ngIf="measurmentEdit">{{calcRVTLC(messwerte[0].rv_nach, messwerte[0].tlc_nach,status_nach)}}</td>
                 </tr>
               <tr>
 
@@ -268,15 +274,15 @@
               <!-- Distanz Meter -->
               <tr>
                 <th>Distanz Meter (m)/(%Soll)</th>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.distanzM_vor}} ( {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_vor, messwerte[0]?.gewicht_vor)}}%)</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.distanzM_vor}} ( {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_vor, messwerte[0]?.gewicht_vor, status_vor)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].distanzM_vor" type="text" style="width:200px;"class="form-control" id="distanzM_vor" placeholder="" name="distanzM_vor">
-                  {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_vor, messwerte[0]?.gewicht_vor)}}%
+                  {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_vor, messwerte[0]?.gewicht_vor,status_vor)}}%
                 </td>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.distanzM_nach}} ({{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_nach, messwerte[0]?.gewicht_nach)}}%)</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.distanzM_nach}} ({{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_nach, messwerte[0]?.gewicht_nach, status_nach)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].distanzM_nach" type="text" style="width:200px;"class="form-control" id="distanzM_nach" placeholder="" name="distanzM_nach">
-                  {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_nach, messwerte[0]?.gewicht_nach)}}%
+                  {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_nach, messwerte[0]?.gewicht_nach, status_nach)}}%
                 </td>
               </tr>
               <!-- SaO2min -->
@@ -305,15 +311,15 @@
             <!-- Max. Leistung-->
             <tr>
               <th>Max. Leistung (W)/(%Soll)</th>
-              <td *ngIf="!measurmentEdit">{{messwerte[0]?.max_leistungW_vor}} ( {{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_nach)}}%)</td>
+              <td *ngIf="!measurmentEdit">{{messwerte[0]?.max_leistungW_vor}} ( {{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_nach, status_vor)}}%)</td>
               <td *ngIf="measurmentEdit">
                 <input [(ngModel)]="messwerte[0].max_leistungW_vor" type="text" style="width:200px;"class="form-control" id="max_leistungW_vor" placeholder="" name="max_leistungW_vor">
-                {{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_vor)}}%
+                {{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_vor, status_vor)}}%
               </td>
-              <td *ngIf="!measurmentEdit">{{messwerte[0]?.max_leistungW_nach}} ({{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_nach)}}%)</td>
+              <td *ngIf="!measurmentEdit">{{messwerte[0]?.max_leistungW_nach}} ({{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_nach,status_nach)}}%)</td>
               <td *ngIf="measurmentEdit">
                 <input [(ngModel)]="messwerte[0].max_leistungW_nach" type="text" style="width:200px;"class="form-control" id="max_leistungW_nach" placeholder="" name="max_leistungW_nach">
-                {{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_nach)}}%
+                {{calcMaxLeistung(patient?.geschlecht,messwerte[0]?.groesse_nach,status_nach)}}%
               </td>
             </tr>
             <!-- VO2max -->
@@ -533,6 +539,9 @@
             </tr>
           </tbody>
           </table>
+          
+          
+          <a (click)="downloadpdf()"> DOWNLOAD THIS</a>
         </ng-template>
       </ngb-panel>
 
@@ -614,10 +623,71 @@
               </div>
               
             </ng-template>
+            
           </ngb-panel>
+          
         </ngb-accordion>              
     </div>
+    <div *ngIf="formDownload">
+      <div style="max-width: 400px;max-height: 300px;">
+        <canvas id="bar-chart-crq" width="400" height="300"
+            baseChart
+            [chartType]="'bar'"
+            [datasets]="chartDataCrq"
+            [labels]="chartLabelsCrq"
+            [options]="chartOptionsCrq"
+            [legend]="true"
+            [colors]="barChartColorsCrq"
+            (chartClick)="onChartClick($event)">
+        </canvas>
+      </div>
+      <div >
+        <canvas id="bar-chart-geh" width="150px" height="300px"
+            baseChart
+            [chartType]="'bar'"
+            [datasets]="chartDataGeh"
+            [labels]="chartLabelsGeh"
+            [options]="chartOptionsGeh"
+            [legend]="true"
+            [colors]="barChartColorsGeh"
+            (chartClick)="onChartClick($event)">
+        </canvas>
+      </div>
+      <div > 
+        <canvas id="bar-chart-gehW" width="150" height="300"
+            baseChart
+            [chartType]="'bar'"
+            [datasets]="chartDataGehW"
+            [labels]="chartLabelsGehW"
+            [options]="chartOptionsGehW"
+            [legend]="true"
+            [colors]="barChartColorsGehW"
+            (chartClick)="onChartClick($event)">
+        </canvas>
+      </div>
+    </div>
 </div>
+
+
+<ng-template #selectPneumo let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Pneumologe auswählen</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <select class="form-control" (change)="onChangePneumo($event.target.value)" name="pneumos" id="pneumos">
+
+              <option *ngFor="let pneumo of pneumos" [value]="pneumo.signature">
+                <span *ngIf="pneumo.signature">{{pneumo?.anrede}} {{pneumo?.vorname}} {{pneumo?.name}}</span>
+              </option>
+          </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="pneumoSelected()">Pdf downloaden</button>
+      </div>
+</ng-template>
 
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
@@ -651,4 +721,5 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
     </div>
+    
   </ng-template>

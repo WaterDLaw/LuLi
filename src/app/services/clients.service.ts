@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http'; // Debricated soon -> Wechsel auf HttpModule
 import { Observable } from 'rxjs';
 import { Client } from "../models/Client";
 import { Feedback } from "../models/Feedback";
