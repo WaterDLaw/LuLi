@@ -267,11 +267,14 @@ export class ShowComponent implements OnInit {
     const fd = new FormData();
     fd.append('charts', pdf, pdf.name);
     // send the doc to the temporary charts folder
-    
+    this.formDownload = false;
+    setTimeout(function(){
+      
+    },2000)
     this._pdfService.uploadTempCharts(fd).subscribe(data =>{
       console.log(data);
       //do the actual download call
-      this.formDownload = false;
+      
       this.getPatientFormular();
       
     })
