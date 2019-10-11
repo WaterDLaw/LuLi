@@ -271,7 +271,7 @@ export class ShowComponent implements OnInit {
     this._pdfService.uploadTempCharts(fd).subscribe(data =>{
       console.log(data);
       //do the actual download call
-      
+      this.formDownload = false;
       this.getPatientFormular();
       
     })
