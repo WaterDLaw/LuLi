@@ -261,12 +261,13 @@ export class ShowComponent implements OnInit {
     doc.addImage(canvasImgCrq, 'png', 10, 220, 100 , 60 );
     doc.addImage(canvasImgGeh, 'png', 120, 220, 30 , 60 );
     doc.addImage(canvasImgGehW, 'png', 160, 220, 30 , 60 );
-    this.formDownload = false;
+    
     //doc.save('canvas.pdf');
     var pdf = doc.output('blob');
     const fd = new FormData();
     fd.append('charts', pdf, pdf.name);
     // send the doc to the temporary charts folder
+    this.formDownload = false;
     this._pdfService.uploadTempCharts(fd).subscribe(data =>{
       console.log(data);
       //do the actual download call
@@ -374,9 +375,10 @@ export class ShowComponent implements OnInit {
     
     console.log("create chart gehtest");
     let data = [
-      70,90
+      this.messwerte[0].max_leistungW_vor,this.messwerte[0].max_leistungW_nach
     ]
     this.chartOptionsGehW= {
+      animation: false,
       responsive: false,
       scales : {
         yAxes: [{
@@ -427,9 +429,10 @@ export class ShowComponent implements OnInit {
 
     console.log("create chart gehtest");
     let data = [
-      400,450
+      this.messwerte[0].distanzM_vor,this.messwerte[0].distanzM_nach
     ]
     this.chartOptionsGeh= {
+      animation: false,
       responsive: false,
       scales : {
         yAxes: [{
@@ -492,6 +495,7 @@ export class ShowComponent implements OnInit {
     
 
     this.chartOptionsCrq = {
+      animation: false,
       responsive: true,
       scales : {
         yAxes: [{
