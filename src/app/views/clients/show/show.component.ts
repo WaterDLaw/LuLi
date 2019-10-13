@@ -1,6 +1,6 @@
 declare var jsPDF: any;
 
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from "../../../models/Client";
 import { Training } from "../../../models/Training";
@@ -23,11 +23,15 @@ import { Messwerte } from 'app/models/Messwerte';
 import { PneumologistService } from 'app/services/pneumologist.service';
 import { Pneumologist } from 'app/models/pneumologist';
 import { strictEqual } from 'assert';
+
 import { Chart } from 'chart.js';
 import * as ChartAnnotation from 'chartjs-plugin-annotation';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
+
+
 import { CrqsasService } from 'app/services/crqsas.service';
+import { ExcelService } from 'app/services/Excel.service';
 
 @Component({
   selector: 'app-show',
@@ -111,7 +115,9 @@ export class ShowComponent implements OnInit {
     private _pdfService: PdfService,
     private _messwerteService: MesswerteService,
     private _pneumoService: PneumologistService,
-    private _crqsasService: CrqsasService) {
+    private _crqsasService: CrqsasService,
+    private ngZone: NgZone,
+    private _excelService: ExcelService) {
 
     }
 
@@ -140,9 +146,6 @@ export class ShowComponent implements OnInit {
 
     this.checkCalls();
     
-
-    
-
   }
   // Cancel subscriptions for performance boost
 
@@ -157,6 +160,23 @@ export class ShowComponent implements OnInit {
 
   }
 
+  
+  // Executeds the creation of the excel outside the ngzone
+  downloadExcel(){
+
+      this._excelService.createExcelInformation(this.patient,this.messwerte).then(blob=>{
+        console.log("BLOOOOOOB")
+        saveAs(new Blob([blob]), 'abc.xlsx');
+      })
+
+  }
+
+  // this function uses the ExcelJs libary to create an Excel sheet and the there are callbacks outside the NgZone
+  async createPatientExcel(){
+    
+  
+  }
+  
   async checkCalls(){
     console.log("start async");
     await this.checkFeedback(this.route.snapshot.params['id']);
@@ -242,6 +262,9 @@ export class ShowComponent implements OnInit {
   }
 
   async downloadpdf() {
+    this.createChartCrq();
+    this.createGehtestChart();
+    this.createGehtestChartW();
     this.loading = true;
     const delay = ms => new Promise(res => setTimeout(res, ms));
     this.formDownload = true;
@@ -310,8 +333,7 @@ export class ShowComponent implements OnInit {
         console.log("MESSWERTE");
         console.log(data);
         // after the Values are here we can create this chart
-        this.createGehtestChart();
-        this.createGehtestChartW();
+
       })
   }
 
@@ -828,7 +850,6 @@ export class ShowComponent implements OnInit {
         console.log(data);
         // Now we can create the chart
         this.crqsasAfter = data;
-        this.createChartCrq();
   
       })
   }
@@ -849,6 +870,8 @@ export class ShowComponent implements OnInit {
         console.log(data);
 
         this.catAfter = data;
+        // Rethink the archtiecture of this call not save to call it on the last api call
+   
       })
   }
 

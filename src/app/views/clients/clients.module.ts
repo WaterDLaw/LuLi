@@ -33,6 +33,7 @@ import { PneumologistService } from '../../services/pneumologist.service';
 import { MesswerteService } from 'app/services/messwerte.service';
 
 import { ChartsModule } from 'ng2-charts';
+import { ExcelService } from 'app/services/Excel.service';
 @NgModule({
   imports: [
     FeedbackModule,
@@ -59,6 +60,6 @@ import { ChartsModule } from 'ng2-charts';
       EntryComponent,
       EditEntryComponent
     ],
-  providers:[AuthGuard, ClientsService, TrainingsService, DatePipe, EntryService, PdfService, PneumologistService, MesswerteService]
+  providers:[AuthGuard, ClientsService, TrainingsService, DatePipe, EntryService, PdfService, PneumologistService, MesswerteService, ExcelService]
 })
 export class ClientsModule { }

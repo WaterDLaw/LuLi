@@ -4,7 +4,7 @@
         <a (click)="getTrainingFormular()"class="btn btn-primary" style="float:right;" ngbTooltip="Trainingsinformationen als PDF downloaden"><i class="icon-doc white"></i></a>
         <a (click)="downloadpdf()"class="btn btn-primary" style="float:right;margin-right: 5px;" ngbTooltip="Patient als PDF downloaden"><i class="icon-doc white"></i></a>
         <a (click)="openModal(selectPneumo)" class="btn btn-primary" style="float:right;margin-right: 5px;" ngbTooltip="Verordnung Physiotherapie"><i class="icon-event white"></i></a>
-        <span style="float:right;"><button (click)="csvExport()" ngbTooltip="Download als CSV Datei" class="btn btn-primary" style="float:right;margin-right: 5px; color:white"><i class="icon-cloud-download"></i></button></span>
+        <span style="float:right;"><button (click)="downloadExcel()" ngbTooltip="Download als CSV Datei" class="btn btn-primary" style="float:right;margin-right: 5px; color:white"><i class="icon-cloud-download"></i></button></span>
         <a routerLink="../../edit/{{patient.id}}" ngbTooltip="Patient bearbeiten" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
         <h2>Patienteninformationen        <div *ngIf="loading" class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
