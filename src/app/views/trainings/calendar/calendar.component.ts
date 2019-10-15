@@ -19,26 +19,38 @@ export class CalendarComponent implements OnInit {
     private router: Router
   ) { }
 
+  trainings: Training[];
   arrTraining: any[] = [null,null,null,null,null,null,null,null,null,null,null,null];
   arrCount: any[];
   loaded: boolean = false;
   maxNumber = 12;
   showCalendar: boolean = false;
 
-  jan: number = this.maxNumber;
-  feb: number = this.maxNumber;
-  marz: number = this.maxNumber;
-  apr: number = this.maxNumber;
-  mai: number = this.maxNumber;
-  jun: number = this.maxNumber;
-  jul: number = this.maxNumber;
-  aug: number = this.maxNumber;
-  sep: number = this.maxNumber;
-  okt: number = this.maxNumber;
-  nov: number = this.maxNumber;
-  dez: number = this.maxNumber;
+  // Each month represents the course number 1 = Januar 2 = February
+  jan: number;
+  feb: number;
+  marz: number;
+  apr: number;
+  mai: number;
+  jun: number;
+  jul: number;
+  aug: number;
+  sep: number;
+  okt: number;
+  nov: number;
+  dez: number;
 
   ngOnInit() {
+
+    // Get all trainings
+    this._trainingsService.getTrainings()
+      .subscribe(data =>{
+        this.trainings = data;
+        console.log(this.trainings);
+      })
+
+
+
     console.log(this.location);
     // only show for the person from that place or if the person has access to both places
     this._authService.getCurrentUser(localStorage.getItem('email'))
@@ -59,7 +71,15 @@ export class CalendarComponent implements OnInit {
     this._trainingsService.getParticipantsCalendar()
       .then(succes => {
         console.log(succes)
-        this.calculatePatients(succes);
+        // Get all trainings
+        this._trainingsService.getTrainings()
+        .subscribe(data =>{
+          this.trainings = data;
+          console.log(this.trainings);
+          this.calculatePatients(succes);
+
+        })
+        
       }).catch(err => {
         console.log(err);
       })
@@ -154,15 +174,129 @@ export class CalendarComponent implements OnInit {
 
     let arrClients: any[];
     arrClients = this.filterArrayLocation(arr);
-    for (let i = 0; i < arrClients.length; i++) {
+
+
+    // Map the trainings max anzahl to the days
+    this.trainings.forEach((training) => {
+      console.log(training);
+      let trainingMonth = new Date(training.start).getMonth()
+      console.log(trainingMonth)
+      // Check place and location
+      if(this.location == "Olten"){
+        if(training.ort =="KSO"){
+          // Check start date
+          switch (trainingMonth){
+            case 0:
+                console.log("JANUAR");
+              this.jan = training.max_anzahl
+              console.log(this.jan)
+              break;
+            case 1:
+              this.feb = training.max_anzahl
+              console.log(this.feb)
+              break;
+            case 2:
+              this.marz = training.max_anzahl
+              console.log(this.marz)
+              break;
+            case 3:
+              this.apr = training.max_anzahl
+              console.log(this.apr)
+              break;
+            case 4:
+              this.mai = training.max_anzahl
+              console.log(this.mai)
+              break;
+            case 5:
+              this.jun = training.max_anzahl
+              console.log(this.jun)
+              break;
+            case 6:
+              this.jul = training.max_anzahl
+              console.log(this.jul)
+              break;
+            case 7:
+              this.aug = training.max_anzahl
+              console.log(this.aug)
+              break;
+            case 8:
+              this.sep = training.max_anzahl
+              console.log(this.sep)
+              break;
+            case 9:
+              this.okt = training.max_anzahl
+              console.log(this.okt)
+              break;
+            case 10:
+              this.nov = training.max_anzahl
+              console.log(this.nov)
+              break;
+            case 11:
+              this.dez = training.max_anzahl
+              console.log(this.dez)
+              break;
+          }
+  
+  
+        }
+      }
+      if(this.location == "Solothurn"){
+        if(training.ort == "BSS"){
+          // Check start date
+          switch ((new Date(training.start)).getMonth()){
+            case 0:
+              this.jan = training.max_anzahl
+              console.log("JANUAR");
+              console.log(training.max_anzahl)
+              console.log(this.jan)
+            case 1:
+              this.feb = training.max_anzahl
+              console.log(this.feb)
+            case 2:
+              this.marz = training.max_anzahl
+              console.log(this.marz)
+            case 3:
+              this.apr = training.max_anzahl
+              console.log(this.apr)
+            case 4:
+              this.mai = training.max_anzahl
+              console.log(this.mai)
+            case 5:
+              this.jun = training.max_anzahl
+              console.log(this.jun)
+            case 6:
+              this.jul = training.max_anzahl
+              console.log(this.jul)
+            case 7:
+              this.aug = training.max_anzahl
+              console.log(this.aug)
+            case 8:
+              this.sep = training.max_anzahl
+              console.log(this.sep)
+            case 9:
+              this.okt = training.max_anzahl
+              console.log(this.okt)
+            case 10:
+              this.nov = training.max_anzahl
+              console.log(this.nov)
+            case 11:
+              this.dez = training.max_anzahl
+              console.log(this.dez)
+          }
+        }
+      }
+      
+    }); 
     
 
+    for (let i = 0; i < arrClients.length; i++) {
+    
       //check the date to figure out what months need a count higher
       console.log(arr[i].start)
       console.log(arr[i].end)
 
       let startMonth = new Date(Date.parse(arr[i].start.replace('-','/','g'))).getMonth();
-      console.log(this.jan);
+
       console.log("start Month: " + startMonth);
       switch (startMonth) {
         case 0:
@@ -185,8 +319,14 @@ export class CalendarComponent implements OnInit {
 
         case 3:
           this.apr = this.apr - 1;
+          console.log("APriol")
+          console.log(this.apr)
           this.mai = this.mai - 1;
+          console.log("MAI")
+          console.log(this.apr)
           this.jun = this.jun - 1;
+          console.log("June")
+          console.log(this.apr)
           break;
 
         case 4:

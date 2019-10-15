@@ -29,5 +29,6 @@ export interface Training{
     gehtest_bogen: boolean,
     feedback_bogen: boolean,
     COPD_bogen: boolean,
-    belegt: boolean
+    belegt: boolean,
+    max_anzahl: number
 }
