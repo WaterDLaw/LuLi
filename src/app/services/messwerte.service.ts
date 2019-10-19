@@ -52,26 +52,21 @@ export class MesswerteService {
   // Calculation logic for the fields
 
   calcBMI(gewicht:number, groesse:number){
-      console.log("BMI clac");
-      console.log(gewicht);
-      console.log(groesse);
+
       return (gewicht/(groesse*groesse)).toFixed(1);
   }
 
   calcFEV1Soll(alter:number,groesse:number, geschlecht:string){
     let fev1soll = 0;
-    console.log("calcFEV1Soll");
-    console.log(alter);
-    console.log(groesse);
-    console.log(geschlecht);
+
     if(geschlecht == "m"){
         fev1soll = 4.3*groesse-0.029*alter-2.49
-        console.log(fev1soll);
+
     }
 
     if(geschlecht == "w"){
         fev1soll = 3.95*groesse-0.025*alter-2.6
-        console.log(fev1soll);
+
     }
     return fev1soll.toFixed(2);
   }
@@ -127,69 +122,63 @@ export class MesswerteService {
 
   calcBodeScore(fev1lsoll, distanzM, mmrc, bmi){
 
-        console.log("CALC BODE SCORE");
-        console.log(fev1lsoll);
-        console.log(distanzM);
-        console.log(mmrc);
-        console.log(bmi);
+
         
         let score:number= 0;
          //check Fev
          console.log("FEV");
          if (Number(fev1lsoll) > 64){
             score = score + 0
-            console.log("+0")
+
          }else if(fev1lsoll <=64 && fev1lsoll >=50){
             score = score + 1
-            console.log("+1")
+
          }else if(fev1lsoll < 50 && fev1lsoll >= 35){
             score = score + 2
-            console.log("+2")
+
          }else if(fev1lsoll < 35){
             score = score + 3
-            console.log("+3")
+
          }
 
-        console.log("Distanz");
          // check gehtest
          if(distanzM > 350){
             score = score + 0
-            console.log("+0")
+
          }else if(distanzM <= 350 && distanzM >= 250){
             score = score + 1
-            console.log("+1")
+
          }else if (distanzM <250 && distanzM >= 150){
             score = score + 2
-            console.log("+2")
+
          }else if(distanzM < 150){
             score = score + 3
-            console.log("+3")
+
          }
 
-         console.log("mmr");
          //check mmrc
          if(mmrc == +"1  bei Steigung oder schnellem Laufen ebenerdig"){
             score = score + 0
-            console.log("+0")
+
          }else if(mmrc == "2 Langsamer Laufen als Altersgenossen wegen Dyspnoe, Stop beim Laufen nötig"){
             score = score + 1
-            console.log("+1")
+
          }else if(mmrc == "3 Pause nach 100m"){
             score = score + 2
-            console.log("+2")
+
          }else if(mmrc == "4 Zu starke Atemnot um das Haus zu verlassen, Dyspnoe beim Umziehen"){
             score = score + 3
-            console.log("+3")
+
          }
 
-         console.log("Bmi");
+
          //check bmi
          if(bmi >21){
             score = score + 0
-            console.log("+0")
+
          }else if (bmi <=21){
             score = score + 1
-            console.log("+1")
+ 
          }
 
         return score;

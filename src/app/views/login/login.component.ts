@@ -32,21 +32,25 @@ export class LoginComponent implements OnInit {
     console.log(this.user.email);
     console.log(this.user.password);
     this._authService.login(this.user.email,this.user.password)
-      .subscribe(success => {
-        if(success){
+    
+      .subscribe(
+        success => {
           console.log("success");
           console.log(success);
           // Set the active user
       
               // Wenn das login geklappt route zum dashboard
-          this.router.navigate(['\dashboard']);
-              
-         
-          
-        }else{
-          console.log("error");
-        }
-
-      })
+          this.router.navigate(['\dashboard']);      
+        },
+        error => this.errorHandler(error)
+      );
   }
+
+  errorHandler(error:any){
+    console.log(error);
+    if(error.error.error == "invalid_credentials"){
+      alert("Falsches Passwort oder Email wurde eingegeben");
+  }
+  }
+
 }

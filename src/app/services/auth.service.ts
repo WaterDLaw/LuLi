@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators' ;
 import { environment } from "../../environments/environment";
 import { User } from "../models/User";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Router } from '@angular/router';
+import {throwError as observableThrowError, Observable } from 'rxjs'
 import 'rxjs/add/operator/map';
 import "rxjs/add/observable/of";
 
@@ -51,8 +51,9 @@ activeUser:User;
   login(email: string, password: string): Observable<boolean> {
     console.log(email);
     console.log(password);
-    return this.http.post(this.apiurl + '/api/user/login', {email, password})
-        .map((response: User) => {
+    return this.http.post(this.apiurl + '/api/user/login', {email, password}).pipe(
+        
+        map((response: User) => {
             // Das Login war erflogreich wenn ein token vorhanden ist
             console.log("RESPONSE");
             console.log(response);
@@ -79,7 +80,10 @@ activeUser:User;
 
                 return false;
             }
-        });
+        }),
+        catchError(this.errorHandler)
+        
+    )
         
   }
 
@@ -116,6 +120,11 @@ activeUser:User;
 
   setActiveUser(user){
       this.activeUser = user;
+  }
+
+  errorHandler(error: HttpErrorResponse){
+
+      return observableThrowError(error || "Server Error")
   }
 
 }

@@ -326,6 +326,9 @@ export class ShowComponent implements OnInit {
     this._messwerteService.getMesswerte(patient_id)
       .subscribe(data => {
         this.messwerte = data;
+        // Gewicht has apperantly no comma
+        this.messwerte[0].gewicht_vor = Math.round((this.messwerte[0].gewicht_vor))
+        this.messwerte[0].gewicht_nach = Math.round((this.messwerte[0].gewicht_nach));
         //this.messwerte[0].saO2_vor = (this.messwerte[0].saO2_vor*100).toFixed(2);
         //this.messwerte[0].saO2_nach = (this.messwerte[0].saO2_nach*100).toFixed(2);
         //this.messwerte[0].saO2min_vor = (this.messwerte[0].saO2min_vor*100).toFixed(2);
@@ -392,8 +395,16 @@ export class ShowComponent implements OnInit {
     
   }
 
+  // Check if a value is nan if so change it to Null since mysql cannot store Nan
   measurementsChange(){
   
+    // Divide the sa02 into 100 for percent database value
+    this.messwerte[0].saO2min_vor = this.messwerte[0].saO2min_vor / 100
+    this.messwerte[0].saO2min_nach = this.messwerte[0].saO2min_nach / 100
+
+    this.messwerte[0].saO2_vor = this.messwerte[0].saO2_vor / 100
+    this.messwerte[0].saO2_nach = this.messwerte[0].saO2_nach / 100
+
   }
 
   createGehtestChartW(){
@@ -637,16 +648,20 @@ export class ShowComponent implements OnInit {
   }
 
   calcBMI(gewicht, groesse, status?:string){
-    let bmi = this._messwerteService.calcBMI(Number(gewicht),Number(groesse));
-    if(status == "vor"){
-
-      this.messwerte[0].bmi_vor = Number(bmi);
-    }else if(status == "nach"){
-
-      this.messwerte[0].bmi_nach = Number(bmi);
-
+    // Check this so it calculates the BMI wihtout showing Nan on aempty values
+    if(gewicht != null && groesse != null){
+      let bmi = this._messwerteService.calcBMI(Number(gewicht),Number(groesse));
+      if(status == "vor"){
+  
+        this.messwerte[0].bmi_vor = Number(bmi);
+      }else if(status == "nach"){
+  
+        this.messwerte[0].bmi_nach = Number(bmi);
+  
+      }
+      return bmi;
     }
-    return bmi;
+
   }
 
   calcFev1Soll(groesse, geschlecht, status?:string){
@@ -675,8 +690,6 @@ export class ShowComponent implements OnInit {
 
     age = Math.abs(age_dt.getUTCFullYear() - 1970);
     let fvc = this._messwerteService.calcFVCSoll(age,groesse,geschlecht);
-    console.log("FVC SOLL")
-    console.log(fvc);
     if(status == "vor"){
       
       this.messwerte[0].fvc_soll_vor = fvc;
@@ -688,25 +701,33 @@ export class ShowComponent implements OnInit {
   }
 
   calcFEV1FVC(fev1, fvc,status?:string){
-    let fevfvc = this._messwerteService.calcFEV1FVC(fev1,fvc);
-    if(status == "vor"){
-      
-      this.messwerte[0].fev1_fvc_vor = fevfvc;
-    }else if(status == "nach"){
-      this.messwerte[0].fev1_fvc_nach = fevfvc;
+    // Check if there is a value or it will return null
+    if(fvc != null && fev1 != null){
+      console.log("Beides fev1 und fvc")
+      let fevfvc = this._messwerteService.calcFEV1FVC(fev1,fvc);
+      if(status == "vor"){
+        
+        this.messwerte[0].fev1_fvc_vor = fevfvc;
+      }else if(status == "nach"){
+        this.messwerte[0].fev1_fvc_nach = fevfvc;
+      }
+      return fevfvc;
     }
-    return fevfvc;
   }
 
   calcRVTLC(rv,tlc,status?:string){
-    let rvtlc = this._messwerteService.calcRVTLC(rv,tlc);
-    if(status == "vor"){
-      
-      this.messwerte[0].rv_tlc_vor = rvtlc;
-    }else if(status == "nach"){
-      this.messwerte[0].rv_tlc_nach = rvtlc;
+    // Check if there is a value or it will return null
+    if(rv != null && tlc != null){
+      console.log("beides rv und tlc");
+      let rvtlc = this._messwerteService.calcRVTLC(rv,tlc);
+      if(status == "vor"){
+        
+        this.messwerte[0].rv_tlc_vor = rvtlc;
+      }else if(status == "nach"){
+        this.messwerte[0].rv_tlc_nach = rvtlc;
+      }
+      return rvtlc;
     }
-    return rvtlc;
   }
 
   calcDistanzSoll(geschlecht,groesse,gewicht, status?:string){

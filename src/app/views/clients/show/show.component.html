@@ -174,6 +174,7 @@
             </tbody>
           </table>
           <!-- Spirometrie -->
+          <br>
           <h4>Spirometrie</h4>
           <table class="table">
             <thead>
@@ -200,13 +201,13 @@
               </tr>
               <!-- FVC -->
               <tr>
-                <th>FVC (l)</th>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_vor}} {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor)}}%</td>
+                <th>FVC (l)/(%Soll)</th>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_vor}} ({{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].fvc_vor" type="text" style="width:200px;"class="form-control" id="fvc_vor" placeholder="" name="fvc_vor">
                   {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor)}}%
                 </td>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_nach}} {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_nach)}}%</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_nach}} ({{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_nach)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].fvc_nach" type="text" style="width:200px;"class="form-control" id="fvc_nach" placeholder="" name="fvc_nach">
                   {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_nach)}}%
@@ -260,6 +261,7 @@
           </table>
 
           <!-- 6 Minute gehtest-->
+          <br>
           <h4>6-Minuten-Gehtest</h4>
           <table class="table">
             <thead>
@@ -297,6 +299,7 @@
           </table>
 
           <!-- Belastung -->
+          <br>
           <h4>Belastung</h4>
           <table class="table">
             <thead>
@@ -342,7 +345,7 @@
           </tbody>
         </table> 
 
-
+        <br>
         <h4>Dyspnoe - MMRC-Score</h4>
         <table class="table">
           <thead>
@@ -387,6 +390,7 @@
         </table>
 
       <!-- BODE score-->
+      <br>
       <h4>Allgemeine Daten</h4>
       <table class="table">
         <thead>
@@ -413,6 +417,7 @@
 
 
       <!-- Arterielle Blutgase -->
+      <br>
       <h4>Arterielle Blutgase</h4>
         <table class="table">
           <thead>
@@ -434,7 +439,7 @@
             </tr>
           <!-- SaO2 -->
           <tr>
-            <th>SaO2 (%) (Eingabe dezimal)</th>
+            <th>SaO2 (%)</th>
             <td *ngIf="!measurmentEdit">{{messwerte[0].saO2_vor | percent}}</td>
             <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].saO2_vor" type="text" style="width:200px;"class="form-control" id="saO2_vor" placeholder="" name="saO2_vor"></td>
             <td *ngIf="!measurmentEdit">{{messwerte[0].saO2_nach | percent}}</td>
@@ -540,8 +545,6 @@
           </tbody>
           </table>
           
-          
-          <a (click)="downloadpdf()"> DOWNLOAD THIS</a>
         </ng-template>
       </ngb-panel>
 
