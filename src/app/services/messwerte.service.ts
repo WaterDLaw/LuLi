@@ -56,31 +56,34 @@ export class MesswerteService {
       return (gewicht/(groesse*groesse)).toFixed(1);
   }
 
-  calcFEV1Soll(alter:number,groesse:number, geschlecht:string){
+  calcFEV1Soll(alter:number,groesse:number, geschlecht:string, fev1wert: number){
+    let fev1mid = 0;
     let fev1soll = 0;
 
     if(geschlecht == "m"){
-        fev1soll = 4.3*groesse-0.029*alter-2.49
+      fev1mid = 4.3*groesse-0.029*alter-2.49
 
     }
 
     if(geschlecht == "w"){
-        fev1soll = 3.95*groesse-0.025*alter-2.6
+      fev1mid = 3.95*groesse-0.025*alter-2.6
 
     }
+    fev1soll = fev1wert / fev1mid * 100
     return fev1soll.toFixed(2);
   }
 
-  calcFVCSoll(alter:number,groesse:number, geschlecht:string){
-
+  calcFVCSoll(alter:number,groesse:number, geschlecht:string, fvcwert:number){
+      let fvcmid = 0;
       let fvcsoll = 0;
       if(geschlecht== "m"){
-         fvcsoll = (5.76*groesse)-(0.026*alter)-4.34
+         fvcmid = (5.76*groesse)-(0.026*alter)-4.34
       }
 
       if(geschlecht == "f"){
-         fvcsoll = (4.43*groesse)-(0.026*alter)-2.89
+         fvcmid = (4.43*groesse)-(0.026*alter)-2.89
       }
+      fvcsoll = fvcwert / fvcmid * 100;
       return fvcsoll.toFixed(2);
   }
 

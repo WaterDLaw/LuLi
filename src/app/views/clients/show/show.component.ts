@@ -664,14 +664,14 @@ export class ShowComponent implements OnInit {
 
   }
 
-  calcFev1Soll(groesse, geschlecht, status?:string){
+  calcFev1Soll(groesse, geschlecht, status?:string, fev1wert?:number){
     
     let age;
     var diff_ms = Date.now() - new Date(this.patient.geburtsdatum).getTime();
     var age_dt = new Date(diff_ms); 
 
     age = Math.abs(age_dt.getUTCFullYear() - 1970);
-    let fev = this._messwerteService.calcFEV1Soll(age,groesse,geschlecht);
+    let fev = this._messwerteService.calcFEV1Soll(age,groesse,geschlecht,fev1wert);
 
     if(status == "vor"){
       
@@ -683,13 +683,13 @@ export class ShowComponent implements OnInit {
     return fev;
   }
 
-  calcFvcSoll(groesse, geschlecht, status?:string){
+  calcFvcSoll(groesse, geschlecht, status?:string, fvcwert?:number){
     let age;
     var diff_ms = Date.now() - new Date(this.patient.geburtsdatum).getTime();
     var age_dt = new Date(diff_ms); 
 
     age = Math.abs(age_dt.getUTCFullYear() - 1970);
-    let fvc = this._messwerteService.calcFVCSoll(age,groesse,geschlecht);
+    let fvc = this._messwerteService.calcFVCSoll(age,groesse,geschlecht,fvcwert);
     if(status == "vor"){
       
       this.messwerte[0].fvc_soll_vor = fvc;

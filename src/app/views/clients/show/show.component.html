@@ -188,29 +188,29 @@
               <!-- FEV1 -->
               <tr>
                 <th>FEV1 (l)/(%Soll)</th>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fev1l_vor}} ({{calcFev1Soll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor)}}%)</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fev1l_vor}} ({{calcFev1Soll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor, messwerte[0]?.fev1l_vor)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].fev1l_vor" type="text" style="width:200px;"class="form-control" id="fev1l_vor" placeholder="" name="fev1l_vor">
-                  {{calcFev1Soll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor)}}%
+                  {{calcFev1Soll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor, messwerte[0]?.fev1l_vor)}}%
                 </td>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fev1l_nach}} ({{calcFev1Soll(messwerte[0]?.groesse_nach, patient?.geschlecht, status_nach)}}%)</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fev1l_nach}} ({{calcFev1Soll(messwerte[0]?.groesse_nach, patient?.geschlecht, status_nach, messwerte[0]?.fev1l_nach)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].fev1l_nach" type="text" style="width:200px;"class="form-control" id="fev1l_nach" placeholder="" name="fev1l_nach">
-                  {{calcFev1Soll(messwerte[0]?.groesse_nach, patient?.geschlecht, status_nach)}}%
+                  {{calcFev1Soll(messwerte[0]?.groesse_nach, patient?.geschlecht, status_nach, messwerte[0]?.fev1l_nach)}}%
                 </td>
               </tr>
               <!-- FVC -->
               <tr>
                 <th>FVC (l)/(%Soll)</th>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_vor}} ({{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor)}}%)</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_vor}} ({{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor,messwerte[0]?.fvc_vor)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].fvc_vor" type="text" style="width:200px;"class="form-control" id="fvc_vor" placeholder="" name="fvc_vor">
-                  {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor)}}%
+                  {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_vor,messwerte[0]?.fvc_vor)}}%
                 </td>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_nach}} ({{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_nach)}}%)</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.fvc_nach}} ({{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_nach,messwerte[0]?.fvc_nach)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].fvc_nach" type="text" style="width:200px;"class="form-control" id="fvc_nach" placeholder="" name="fvc_nach">
-                  {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_nach)}}%
+                  {{calcFvcSoll(messwerte[0]?.groesse_vor, patient?.geschlecht, status_nach,messwerte[0]?.fvc_nach)}}%
                 </td>
               </tr>
 
