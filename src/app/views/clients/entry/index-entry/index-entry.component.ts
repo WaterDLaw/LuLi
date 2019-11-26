@@ -25,10 +25,17 @@ export class IndexEntryComponent implements OnInit {
   getEntries(id:number){
     this._entryService.getEntriesByPatient(id)
       .subscribe(data =>{
+        
+
+        //sort entries by dates
+        data.sort(function(a,b) { 
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime() 
+        });
         this.entries = data;
-        console.log(data);
       })
   }
+
+
 
 
 }

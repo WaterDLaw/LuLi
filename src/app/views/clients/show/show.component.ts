@@ -205,10 +205,17 @@ export class ShowComponent implements OnInit {
   getEntries(id:number){
     this._entryService.getEntriesByPatient(id)
       .subscribe(data =>{
-        this.entries = data;
+        
         console.log(data);
+        // Sort so the newest is first
+        data.sort(function(a,b) { 
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime() 
+        });
+   
+        this.entries = data;
       })
   }
+
 
   getPneumologen(){
     this._pneumoService.getPneumologists()
