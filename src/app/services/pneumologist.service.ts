@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 import { AuthService } from './auth.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Pneumologist } from '../models/pneumologist';
 import { ActionHistoryService } from './ActionHistory.service';
@@ -60,10 +60,11 @@ export class PneumologistService {
 
    
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(this.apiurl + `/api/pneumologist/${pneumologist.id}?token=` + token, pneumologist)
+    return this.http.put(this.apiurl + `/api/pneumologist/${pneumologist.id}?token=` + token, pneumologist, {headers: headers})
     .toPromise();
   }
 
+  // Upload the signature
   uploadSignature(pneumologist: Pneumologist,formData){
 
     this._actionHistoryService.createHistoryEntry("Pneumologe", "upload Signature");
@@ -71,7 +72,23 @@ export class PneumologistService {
     console.log("upload Signature");
     const token = this._authService.getToken();
 
+    
     return this.http.post(this.apiurl + `/api/pneumologist/${pneumologist.id}/uploadSignature?token=` + token, formData)
+    .toPromise();
+
+  }
+
+  // Check the Password of the Pneumologist
+  
+  checkPassword(pneumologist: Pneumologist, pneumopassword: string){
+
+    console.log("check the password");
+    console.log(pneumopassword)
+    const token = this._authService.getToken();
+
+    let params = new HttpParams().set('password' , pneumopassword);
+
+    return this.http.get(this.apiurl+ `/api/pneumologistPassword/${pneumologist.id}?token=` + token, {params:params})
     .toPromise();
 
   }
@@ -96,8 +113,9 @@ export class PneumologistService {
   }
 
   // Update image link to database
-  getSignature(signature: String){
+  getSignature(pneumologist: Pneumologist){
     console.log("get signature");
+    let signature = pneumologist.signature;
     //trim signature for url
     let strArr = signature.split("/")
 

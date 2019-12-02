@@ -681,12 +681,14 @@
         </button>
       </div>
       <div class="modal-body">
-          <select class="form-control" (change)="onChangePneumo($event.target.value)" name="pneumos" id="pneumos">
+          <select class="form-control"  (change)="onChangePneumo($event.target.value)" name="pneumos" id="pneumos">
 
-              <option *ngFor="let pneumo of pneumos" [value]="pneumo.signature">
+              <option *ngFor="let pneumo of pneumos" value={{pneumo.id}}>
                 <span *ngIf="pneumo.signature">{{pneumo?.anrede}} {{pneumo?.vorname}} {{pneumo?.name}}</span>
               </option>
           </select>
+         <br>
+          <input [(ngModel)]="pneumoPassword" type="password" class="form-control" id="password" placeholder="Passwort" name="password">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="pneumoSelected()">Pdf downloaden</button>

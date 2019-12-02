@@ -50,8 +50,9 @@ export class ShowPneumologistComponent implements OnInit {
     })
   }
 
+  
   getSignature(){
-    this._pneumologistService.getSignature(this.pneumologist.signature).subscribe(sign =>{
+    this._pneumologistService.getSignature(this.pneumologist).subscribe(sign =>{
       console.log("lauft");
       var reader = new FileReader();
       reader.readAsDataURL(sign); 

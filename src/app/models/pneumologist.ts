@@ -4,4 +4,5 @@ export interface Pneumologist{
     name: string,
     vorname: string,
     signature:string,
+    password:string
 }

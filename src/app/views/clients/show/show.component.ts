@@ -68,6 +68,7 @@ export class ShowComponent implements OnInit {
   modalReference: any;
 
   selectedPneumo:any;
+  pneumoPassword:any = "";
 
   // Loading ability
   loading: boolean= false;
@@ -225,26 +226,51 @@ export class ShowComponent implements OnInit {
       })
   }
 
-  onChangePneumo(pneumo){
-    console.log(pneumo);
-    this.selectedPneumo = pneumo;
+  onChangePneumo(pneumoid){
+    console.log(pneumoid);
+    this.selectedPneumo = this.pneumos.find(x => x.id == pneumoid);
   }
 
-  pneumoSelected(){
+  async checkPneumoPassword(){
+    let checked;
+    console.log("check password");
+    console.log(this.pneumoPassword);
+    checked = await this._pneumoService.checkPassword(this.selectedPneumo, this.pneumoPassword).then(data =>{
+      console.log("CHECK PW")
+      console.log(data);
+      return data;
+    }).catch(err =>{
+      console.log("CHECK PW ERR") 
+      console.log(err);
+    })
+    console.log(checked);
+    return checked;
+  }
+
+  async pneumoSelected(){
     // get the file from the signature
     // split string
     let signature;
+    console.log("Selected PNEUMO")
     console.log(this.selectedPneumo);
-    this._pneumoService.getSignature(this.selectedPneumo).subscribe(sign =>{
+    let checked = await this.checkPneumoPassword();
+    console.log(checked);
+    if(checked){
+      this._pneumoService.getSignature(this.selectedPneumo).subscribe(sign =>{
       
-      console.log("lauft");
-      var reader = new FileReader();
-      reader.readAsDataURL(sign); 
-      reader.onload = (_event) => { 
-        signature = reader.result; 
-        this.createTempSignaturePDF(signature);
-      }
-    })
+        console.log("lauft");
+        var reader = new FileReader();
+        reader.readAsDataURL(sign); 
+        reader.onload = (_event) => { 
+          signature = reader.result; 
+          this.createTempSignaturePDF(signature);
+        }
+      })
+    }else{
+      alert("Falsches Passwort wurde eingegeben");
+    }
+
+   
 
   }
 
