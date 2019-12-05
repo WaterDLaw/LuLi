@@ -45,6 +45,7 @@
             <th>Nachname</th>
             <th>Pneumologen</th>
             <th>Geburtsdatum</th>
+            <th>Status</th>
             <th></th>
     
           </tr>
@@ -56,6 +57,7 @@
             <td>{{patient?.name}}</td>
             <td>{{patient?.pneumologistVorname}} {{patient?.pneumologistName}}</td>
             <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
+            <td>{{patient?.status}}</td>
             <td><a routerLink="../../../clients/show/{{patient.id}}"class="btn btn-primary" ngbTooltip="Patient betrachten"><i class="icon-eye white"></i></a>
             <a class="btn btn-danger"><i class="icon-trash white" ngbTooltip="Patient entfernen"></i></a></td>
           </tr>

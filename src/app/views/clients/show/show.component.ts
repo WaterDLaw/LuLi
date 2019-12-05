@@ -362,8 +362,18 @@ export class ShowComponent implements OnInit {
         // Gewicht has apperantly no comma
         this.messwerte[0].gewicht_vor = Math.round((this.messwerte[0].gewicht_vor))
         this.messwerte[0].gewicht_nach = Math.round((this.messwerte[0].gewicht_nach));
-        //this.messwerte[0].saO2_vor = (this.messwerte[0].saO2_vor*100).toFixed(2);
-        //this.messwerte[0].saO2_nach = (this.messwerte[0].saO2_nach*100).toFixed(2);
+        this.messwerte[0].hfmax_vor = Number(this.messwerte[0].hfmax_vor).toFixed(0)
+        this.messwerte[0].hfmax_nach = Number(this.messwerte[0].hfmax_nach).toFixed(0)
+        this.messwerte[0].O2_Dosis_vor = Number(this.messwerte[0].O2_Dosis_vor).toFixed(0)
+        this.messwerte[0].O2_Dosis_nach = Number(this.messwerte[0].O2_Dosis_nach).toFixed(0)
+        //this.messwerte[0].saO2_vor = (this.messwerte[0].saO2_vor/100).toFixed(0);
+        //this.messwerte[0].saO2_nach = (this.messwerte[0].saO2_nach/100).toFixed(0);
+        this.messwerte[0].phwert_vor = Number(this.messwerte[0].phwert_vor).toFixed(1)
+        this.messwerte[0].phwert_nach = Number(this.messwerte[0].phwert_nach).toFixed(1)
+        this.messwerte[0].pO2_vor = Number(this.messwerte[0].pO2_vor).toFixed(0)
+        this.messwerte[0].pO2_nach = Number(this.messwerte[0].pO2_nach).toFixed(0)
+        this.messwerte[0].pC02_vor = Number(this.messwerte[0].pC02_vor).toFixed(0)
+        this.messwerte[0].pC02_nach = Number(this.messwerte[0].pC02_nach).toFixed(0)
         //this.messwerte[0].saO2min_vor = (this.messwerte[0].saO2min_vor*100).toFixed(2);
         //this.messwerte[0].saO2min_nach = (this.messwerte[0].saO2min_nach*100).toFixed(2);
         console.log("MESSWERTE");
@@ -395,6 +405,14 @@ export class ShowComponent implements OnInit {
     this.measurementsChange();
     // Save the measurements changed in databse
     console.log(this.messwerte);
+        // Divide the sa02 into 100 for percent database value
+    this.messwerte[0].saO2min_vor = this.messwerte[0].saO2min_vor / 100
+    this.messwerte[0].saO2min_nach = this.messwerte[0].saO2min_nach / 100
+        
+    this.messwerte[0].saO2_vor = this.messwerte[0].saO2_vor / 100
+    this.messwerte[0].saO2_nach = this.messwerte[0].saO2_nach / 100
+    //this.messwerte[0].saO2_vor = Number(this.messwerte[0].saO2_vor) / 100
+    //this.messwerte[0].saO2_nach = Number(this.messwerte[0].saO2_nach) / 100
     this._messwerteService.updateMesswerte(this.messwerte)
       .then(success =>{
         console.log(success);
@@ -431,12 +449,8 @@ export class ShowComponent implements OnInit {
   // Check if a value is nan if so change it to Null since mysql cannot store Nan
   measurementsChange(){
   
-    // Divide the sa02 into 100 for percent database value
-    this.messwerte[0].saO2min_vor = this.messwerte[0].saO2min_vor / 100
-    this.messwerte[0].saO2min_nach = this.messwerte[0].saO2min_nach / 100
 
-    this.messwerte[0].saO2_vor = this.messwerte[0].saO2_vor / 100
-    this.messwerte[0].saO2_nach = this.messwerte[0].saO2_nach / 100
+
 
   }
 
@@ -706,6 +720,8 @@ export class ShowComponent implements OnInit {
     age = Math.abs(age_dt.getUTCFullYear() - 1970);
     let fev = this._messwerteService.calcFEV1Soll(age,groesse,geschlecht,fev1wert);
 
+    console.log("FEEEEEEEEV")
+    console.log(fev)
     if(status == "vor"){
       
       this.messwerte[0].fev1soll_vor = fev;
@@ -771,14 +787,17 @@ export class ShowComponent implements OnInit {
     age = Math.abs(age_dt.getUTCFullYear() - 1970);
 
     let distanzsoll = this._messwerteService.calcDistanzSoll(geschlecht,groesse,age,gewicht);
+    let dsoll;
 
     if(status == "vor"){
       
-      this.messwerte[0].distanzS_vor = distanzsoll;
+      this.messwerte[0].distanzS_vor = this.messwerte[0].distanzM_vor / Number(distanzsoll) *100;
+      dsoll = (this.messwerte[0].distanzM_vor / Number(distanzsoll) *100).toFixed(0);
     }else if(status == "nach"){
-      this.messwerte[0].distanzS_nach = distanzsoll;
+      this.messwerte[0].distanzS_nach = this.messwerte[0].distanzM_nach / Number(distanzsoll) *100;
+      dsoll = (this.messwerte[0].distanzM_nach / Number(distanzsoll) *100).toFixed(0);
     }
-    return distanzsoll;
+    return dsoll;
   }
 
   calcMaxLeistung(geschlecht,groesse, status?:string){
@@ -788,29 +807,32 @@ export class ShowComponent implements OnInit {
 
     age = Math.abs(age_dt.getUTCFullYear() - 1970);
 
-    let maxsleistungsoll = this._messwerteService.calcMaxLeistung(geschlecht,groesse,age);
-
+    let maxsleistungsoll = Number(this._messwerteService.calcMaxLeistung(geschlecht,groesse,age));
+    let mxSoll;
     
     if(status == "vor"){
       
-      this.messwerte[0].max_leistungS_vor = maxsleistungsoll;
+      this.messwerte[0].max_leistungS_vor = this.messwerte[0].max_leistungW_vor / maxsleistungsoll * 100;
+      mxSoll = (this.messwerte[0].max_leistungW_vor / maxsleistungsoll * 100).toFixed(0);
     }else if(status == "nach"){
-      this.messwerte[0].max_leistungS_nach = maxsleistungsoll;
+      this.messwerte[0].max_leistungS_nach = this.messwerte[0].max_leistungW_nach /maxsleistungsoll* 100;
+      mxSoll = (this.messwerte[0].max_leistungW_nach / maxsleistungsoll * 100).toFixed(0);
     }
     //comment
-    return maxsleistungsoll;    
+    return mxSoll;    
   }
 
 
 
   calcBodeVor(){
-    let bodescore = this._messwerteService.calcBodeScore(this.calcFev1Soll(this.messwerte[0].groesse_vor,this.patient.geschlecht),this.messwerte[0].distanzM_vor,this.messwerte[0].dyspnoe_vor,this.calcBMI(this.messwerte[0].gewicht_vor,this.messwerte[0].groesse_vor));
+    let bodescore = this._messwerteService.calcBodeScore(this.calcFev1Soll(this.messwerte[0].groesse_vor,this.patient.geschlecht,this.status_vor,this.messwerte[0].fev1l_vor),this.messwerte[0].distanzM_vor,this.messwerte[0].dyspnoe_vor,this.calcBMI(this.messwerte[0].gewicht_vor,this.messwerte[0].groesse_vor));
     this.messwerte[0].bodescore_vor = bodescore;
     return bodescore;
   }
 
   calcBodeNach(){
-    let bodescore = this._messwerteService.calcBodeScore(this.calcFev1Soll(this.messwerte[0].groesse_nach,this.patient.geschlecht),this.messwerte[0].distanzM_nach,this.messwerte[0].dyspnoe_nach,this.calcBMI(this.messwerte[0].gewicht_nach,this.messwerte[0].groesse_nach));
+    
+    let bodescore = this._messwerteService.calcBodeScore(this.calcFev1Soll(this.messwerte[0].groesse_nach,this.patient.geschlecht,this.status_nach,this.messwerte[0].fev1l_nach),this.messwerte[0].distanzM_nach,this.messwerte[0].dyspnoe_nach,this.calcBMI(this.messwerte[0].gewicht_nach,this.messwerte[0].groesse_nach));
     this.messwerte[0].bodescore_nach = bodescore;
     return bodescore;
   }

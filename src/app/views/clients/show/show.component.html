@@ -440,9 +440,9 @@
           <!-- SaO2 -->
           <tr>
             <th>SaO2 (%)</th>
-            <td *ngIf="!measurmentEdit">{{messwerte[0].saO2_vor | percent}}</td>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].saO2_vor| percent}}</td>
             <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].saO2_vor" type="text" tabindex="15" style="width:200px;"class="form-control" id="saO2_vor" placeholder="" name="saO2_vor"></td>
-            <td *ngIf="!measurmentEdit">{{messwerte[0].saO2_nach | percent}}</td>
+            <td *ngIf="!measurmentEdit">{{messwerte[0].saO2_nach| percent}}</td>
             <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].saO2_nach" type="text" tabindex="33" style="width:200px;"class="form-control" id="saO2_nach" placeholder="" name="saO2_nach"></td>
           </tr>
 
@@ -520,7 +520,7 @@
               <td *ngIf="empfehlungenEdit"><input [(ngModel)]="patient.sauerstoff_bei_belastung" type="text" style="width:200px;"class="form-control" id="sauerstoff_bei_belastung" placeholder="" name="sauerstoff_bei_belastung"></td>
             </tr>
             <tr>
-              <th>SaO2 (%) (Dezimal eingeben)</th>
+              <th>SaO2 (%) </th>
               <td *ngIf="!empfehlungenEdit">{{patient.sao2 | percent}}</td>
               <td *ngIf="empfehlungenEdit"><input [(ngModel)]="patient.sao2" type="text" style="width:200px;"class="form-control" id="sao2" placeholder="" name="sao2"></td>
             </tr>
@@ -717,8 +717,8 @@
               <tr>
               
                 <td>{{training?.title}}</td>
-                <td>{{training?.start}}</td>
-                <td>{{training?.end}}</td>
+                <td>{{training?.start | date: 'dd. MMMM yyyy'}}</td>
+                <td>{{training?.end | date: 'dd. MMMM yyyy'}}</td>
                 <td><a (click)="addTraining(training)" class="btn btn-success">Zuteilen</a></td>
               </tr>
             </tbody>

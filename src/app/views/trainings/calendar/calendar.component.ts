@@ -100,7 +100,10 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  createRouteArray(arr){
+  createRouteArray(arrayTrainings){
+
+    let arr =  this.filterArrayLocation(arrayTrainings)
+
     for(let i = 0; i < arr.length; i++){
 
 

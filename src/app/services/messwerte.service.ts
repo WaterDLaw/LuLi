@@ -88,22 +88,26 @@ export class MesswerteService {
   }
 
   calcFEV1FVC(fev1, fvc){
-    return (fev1/fvc).toFixed(0);
+    return (fev1/fvc*100).toFixed(0) ;
   }
 
   calcRVTLC(rv,tlc){
-    return (rv/tlc).toFixed(0);
+    return (rv/tlc*100).toFixed(0);
   }
 
   calcDistanzSoll(geschlecht, groesse, alter,gewicht){
 
     let gehtestSoll = 0;
+    console.log(groesse);
+    console.log(alter);
+    console.log(gewicht);
     if(geschlecht == "m"){
-        gehtestSoll = (218+(5.14*(groesse*100)-5.32*alter)-(1.8*gewicht))/100;
+        gehtestSoll = 218+((5.14*groesse*100)-(5.32*alter))-(1.8*gewicht);
+        console.log(gehtestSoll);
     }
 
     if(geschlecht == "w"){
-        gehtestSoll = (218+(5.14*(groesse*100)-5.32*alter)-(1.8*gewicht+51.31))/100;
+        gehtestSoll = 218+((5.14*groesse*100)-5.32*alter)-(1.8*gewicht+51.31);
     }
 
     return gehtestSoll.toFixed(2) ;
@@ -113,11 +117,13 @@ export class MesswerteService {
 
     let maxLeistungSoll= 0;
     if(geschlecht == "m"){
-        maxLeistungSoll = ((2526*groesse/100-9.08*alter-2759)*0.163)/100
+        maxLeistungSoll = ((2526*groesse-(9.08*alter)-2759)*0.163)
+        console.log(maxLeistungSoll)
     }
 
     if(geschlecht == "w"){
-        maxLeistungSoll = ((1266*groesse/100-8.27*alter-940)*0.163)/100
+        maxLeistungSoll = ((1266*groesse-(8.27*alter)-940)*0.163)
+        console.log(maxLeistungSoll)
     }
 
     return maxLeistungSoll.toFixed(2);
@@ -130,6 +136,7 @@ export class MesswerteService {
         let score:number= 0;
          //check Fev
          console.log("FEV");
+         console.log(fev1lsoll)
          if (Number(fev1lsoll) > 64){
             score = score + 0
 
@@ -143,6 +150,9 @@ export class MesswerteService {
             score = score + 3
 
          }
+
+         console.log("FEV")
+         console.log(score);
 
          // check gehtest
          if(distanzM > 350){
@@ -159,6 +169,10 @@ export class MesswerteService {
 
          }
 
+         console.log("gehtest")
+         console.log(score);
+
+
          //check mmrc
          if(mmrc == +"1  bei Steigung oder schnellem Laufen ebenerdig"){
             score = score + 0
@@ -174,7 +188,8 @@ export class MesswerteService {
 
          }
 
-
+         console.log("mmrc")
+         console.log(score);
          //check bmi
          if(bmi >21){
             score = score + 0
