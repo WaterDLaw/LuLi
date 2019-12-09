@@ -64,7 +64,7 @@ export class CreateTrainingComponent implements OnInit {
 
     let start = new Date(this.training.start.toString().replace('-','/'));
     console.log(start.getMonth()+1);
-    this.training.title = "Kurs " + (start.getMonth() + 1).toString() + " " + this.training.ort + " " +  start.getFullYear().toString(); 
+    this.training.title = this.training.ort + " " + start.getFullYear().toString() + " " + (start.getMonth() + 1).toString(); 
 
     this._trainingsService.createTraining(this.training)
     .then(

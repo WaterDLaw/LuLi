@@ -70,7 +70,7 @@ export class MesswerteService {
 
     }
     fev1soll = fev1wert / fev1mid * 100
-    return fev1soll.toFixed(2);
+    return fev1soll.toFixed(1);
   }
 
   calcFVCSoll(alter:number,groesse:number, geschlecht:string, fvcwert:number){
@@ -84,7 +84,7 @@ export class MesswerteService {
          fvcmid = (4.43*groesse)-(0.026*alter)-2.89
       }
       fvcsoll = fvcwert / fvcmid * 100;
-      return fvcsoll.toFixed(2);
+      return fvcsoll.toFixed(1);
   }
 
   calcFEV1FVC(fev1, fvc){
@@ -110,7 +110,7 @@ export class MesswerteService {
         gehtestSoll = 218+((5.14*groesse*100)-5.32*alter)-(1.8*gewicht+51.31);
     }
 
-    return gehtestSoll.toFixed(2) ;
+    return gehtestSoll.toFixed(0) ;
   }
 
   calcMaxLeistung(geschlecht, groesse,alter){
@@ -126,7 +126,7 @@ export class MesswerteService {
         console.log(maxLeistungSoll)
     }
 
-    return maxLeistungSoll.toFixed(2);
+    return maxLeistungSoll.toFixed(0);
   }
 
   calcBodeScore(fev1lsoll, distanzM, mmrc, bmi){

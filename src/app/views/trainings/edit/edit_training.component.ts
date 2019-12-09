@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Training } from "../../../models/Training";
 import { TrainingsService } from '../../../services/trainings.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-training',
@@ -12,7 +12,8 @@ export class EditTrainingComponent implements OnInit {
 
   constructor(
     private _trainingsService: TrainingsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   training: Training;
@@ -36,9 +37,12 @@ export class EditTrainingComponent implements OnInit {
     
     let start = new Date(this.training.start.toString().replace('-','/'));
    
-    this.training.title = "Kurs " + (start.getMonth() + 1).toString() + " " + this.training.ort + " " +  start.getFullYear().toString(); 
+    this.training.title = this.training.ort + " " + start.getFullYear().toString() + " " + (start.getMonth() + 1).toString(); 
 
     this._trainingsService.updateTraining(this.training);
+    
+      this.router.navigate([`trainings`]);
+    
   }
 
 }

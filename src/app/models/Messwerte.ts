@@ -53,6 +53,11 @@ export interface Messwerte{
     saO2min_vor?:number,
     saO2min_nach?:number,
     fvc_soll_vor?:number,
-    fvc_soll_nach?:number
+    fvc_soll_nach?:number,
+    trainingspuls?:number,
+    rr_syst_vor?:number,
+    rr_syst_nach?:number,
+    rr_diast_vor?:number,
+    rr_diast_nach?:number
 
 }

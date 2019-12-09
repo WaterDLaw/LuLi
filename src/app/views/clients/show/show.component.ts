@@ -366,16 +366,18 @@ export class ShowComponent implements OnInit {
         this.messwerte[0].hfmax_nach = Number(this.messwerte[0].hfmax_nach).toFixed(0)
         this.messwerte[0].O2_Dosis_vor = Number(this.messwerte[0].O2_Dosis_vor).toFixed(0)
         this.messwerte[0].O2_Dosis_nach = Number(this.messwerte[0].O2_Dosis_nach).toFixed(0)
-        //this.messwerte[0].saO2_vor = (this.messwerte[0].saO2_vor/100).toFixed(0);
-        //this.messwerte[0].saO2_nach = (this.messwerte[0].saO2_nach/100).toFixed(0);
+        this.messwerte[0].max_leistungW_vor = Number(this.messwerte[0].max_leistungW_vor).toFixed(0);
+        this.messwerte[0].max_leistungW_nach = Number(this.messwerte[0].max_leistungW_nach).toFixed(0);
         this.messwerte[0].phwert_vor = Number(this.messwerte[0].phwert_vor).toFixed(1)
         this.messwerte[0].phwert_nach = Number(this.messwerte[0].phwert_nach).toFixed(1)
         this.messwerte[0].pO2_vor = Number(this.messwerte[0].pO2_vor).toFixed(0)
         this.messwerte[0].pO2_nach = Number(this.messwerte[0].pO2_nach).toFixed(0)
         this.messwerte[0].pC02_vor = Number(this.messwerte[0].pC02_vor).toFixed(0)
         this.messwerte[0].pC02_nach = Number(this.messwerte[0].pC02_nach).toFixed(0)
-        //this.messwerte[0].saO2min_vor = (this.messwerte[0].saO2min_vor*100).toFixed(2);
-        //this.messwerte[0].saO2min_nach = (this.messwerte[0].saO2min_nach*100).toFixed(2);
+        this.messwerte[0].rr_syst_vor = Number(this.messwerte[0].rr_syst_vor).toFixed(0);
+        this.messwerte[0].rr_syst_nach = Number(this.messwerte[0].rr_syst_nach).toFixed(0);
+        this.messwerte[0].rr_diast_vor = Number(this.messwerte[0].rr_diast_vor).toFixed(0);
+        this.messwerte[0].rr_diast_nach = Number(this.messwerte[0].rr_diast_nach).toFixed(0);
         console.log("MESSWERTE");
         console.log(data);
         // after the Values are here we can create this chart
@@ -399,6 +401,15 @@ export class ShowComponent implements OnInit {
     }
   }
 
+
+  valuechange(event){
+    console.log("CHANGE THE DAMN PERCENTAGE")
+    console.log(event)
+    event = event / 100
+    console.log(event)
+  
+  }
+
   measurmentsSave(){
 
     // Umwandlungs Methode
@@ -406,11 +417,11 @@ export class ShowComponent implements OnInit {
     // Save the measurements changed in databse
     console.log(this.messwerte);
         // Divide the sa02 into 100 for percent database value
-    this.messwerte[0].saO2min_vor = this.messwerte[0].saO2min_vor / 100
-    this.messwerte[0].saO2min_nach = this.messwerte[0].saO2min_nach / 100
+    //this.messwerte[0].saO2min_vor = this.messwerte[0].saO2min_vor / 100
+    //this.messwerte[0].saO2min_nach = this.messwerte[0].saO2min_nach / 100
         
-    this.messwerte[0].saO2_vor = this.messwerte[0].saO2_vor / 100
-    this.messwerte[0].saO2_nach = this.messwerte[0].saO2_nach / 100
+    //this.messwerte[0].saO2_vor = this.messwerte[0].saO2_vor / 100
+    //this.messwerte[0].saO2_nach = this.messwerte[0].saO2_nach / 100
     //this.messwerte[0].saO2_vor = Number(this.messwerte[0].saO2_vor) / 100
     //this.messwerte[0].saO2_nach = Number(this.messwerte[0].saO2_nach) / 100
     this._messwerteService.updateMesswerte(this.messwerte)
@@ -807,16 +818,22 @@ export class ShowComponent implements OnInit {
 
     age = Math.abs(age_dt.getUTCFullYear() - 1970);
 
-    let maxsleistungsoll = Number(this._messwerteService.calcMaxLeistung(geschlecht,groesse,age));
+    let maxsleistungsoll = this._messwerteService.calcMaxLeistung(geschlecht,groesse,age);
     let mxSoll;
     
     if(status == "vor"){
       
-      this.messwerte[0].max_leistungS_vor = this.messwerte[0].max_leistungW_vor / maxsleistungsoll * 100;
-      mxSoll = (this.messwerte[0].max_leistungW_vor / maxsleistungsoll * 100).toFixed(0);
+      this.messwerte[0].max_leistungS_vor = this.messwerte[0].max_leistungW_vor / Number(maxsleistungsoll) * 100;
+      mxSoll = (this.messwerte[0].max_leistungW_vor / Number(maxsleistungsoll) * 100).toFixed(0);
+      console.log("VOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR")
+      console.log(this.messwerte[0].max_leistungS_vor)
+      console.log(this.messwerte[0].max_leistungW_vor)
     }else if(status == "nach"){
-      this.messwerte[0].max_leistungS_nach = this.messwerte[0].max_leistungW_nach /maxsleistungsoll* 100;
-      mxSoll = (this.messwerte[0].max_leistungW_nach / maxsleistungsoll * 100).toFixed(0);
+      this.messwerte[0].max_leistungS_nach = this.messwerte[0].max_leistungW_nach /Number(maxsleistungsoll)* 100;
+      mxSoll = (this.messwerte[0].max_leistungW_nach / Number(maxsleistungsoll) * 100).toFixed(0);
+      console.log("NAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACh")
+      console.log(this.messwerte[0].max_leistungS_nach)
+      console.log(this.messwerte[0].max_leistungW_nach)
     }
     //comment
     return mxSoll;    
