@@ -14,7 +14,7 @@ export class IndexPneumologistComponent implements OnInit {
   pneumologists: Array<Pneumologist>;
   public searchString: string;
   modalReference: any;
-  public pneumoId: number;
+  pneumoid;
 
   constructor(
     private _pneumologistService: PneumologistService,
@@ -28,8 +28,8 @@ export class IndexPneumologistComponent implements OnInit {
     console.log(this.pneumologists);
 
   }
-  // Gets all Patients from the server
-  deletePatient(id){
+  // Gets all Pneumologist from the server
+  deletePneumologist(id){
     console.log("Debug");
     console.log(id);
     this._pneumologistService.deletePneumologist(id)
@@ -38,7 +38,7 @@ export class IndexPneumologistComponent implements OnInit {
         // reload the pneumo if sucessful
         this.getAllPneumos();
         this.modalReference.close();
-        this.pneumoId = null;
+        this.pneumoid = null;
       })
       .catch(error =>{
         console.log(error);
@@ -61,8 +61,9 @@ export class IndexPneumologistComponent implements OnInit {
 
 
   
-  openModal(content, userId) {
-    this.pneumoId = userId;
+  openModal(content, pneumoId) {
+    this.pneumoid = pneumoId;
+    console.log(this.pneumoid)
     this.modalReference = this.modalService.open(content)
     this.modalReference.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;

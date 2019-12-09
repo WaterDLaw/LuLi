@@ -72,11 +72,13 @@ export class CalendarComponent implements OnInit {
       .then(succes => {
         console.log(succes)
         // Get all trainings
+        let participants = succes.filter(patient => patient.status == "Starter");
+        console.log(participants)
         this._trainingsService.getTrainings()
         .subscribe(data =>{
           this.trainings = data;
           console.log(this.trainings);
-          this.calculatePatients(succes);
+          this.calculatePatients(participants);
 
         })
         

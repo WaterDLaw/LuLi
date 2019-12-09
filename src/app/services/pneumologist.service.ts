@@ -99,6 +99,7 @@ export class PneumologistService {
     this._actionHistoryService.createHistoryEntry("Pneumologe", "delete");
 
     console.log("delete Pneumo");
+    console.log(pneumologist_id)
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.delete(this.apiurl + `/api/pneumologist/${pneumologist_id}?token=` + token, {responseType: 'text'}) 
