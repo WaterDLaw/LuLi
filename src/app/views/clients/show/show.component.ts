@@ -705,7 +705,7 @@ export class ShowComponent implements OnInit {
       
         //schweigepflicht
         if(this.patient.schweigepflicht){
-          this.schweigepflicht = "Ausgefühlt"
+          this.schweigepflicht = "Ausgefüllt"
         }else{
           this.schweigepflicht = "Noch offen"
         }

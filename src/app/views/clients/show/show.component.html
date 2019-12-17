@@ -709,7 +709,7 @@
       </div>
       <div class="modal-body">
           <select class="form-control"  (change)="onChangePneumo($event.target.value)" name="pneumos" id="pneumos">
-
+              <option>Bitte auswählen</option>
               <option *ngFor="let pneumo of pneumos" value={{pneumo.id}}>
                 <span *ngIf="pneumo.signature">{{pneumo?.anrede}} {{pneumo?.vorname}} {{pneumo?.name}}</span>
               </option>
