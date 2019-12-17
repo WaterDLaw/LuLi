@@ -167,7 +167,7 @@ export class ShowComponent implements OnInit {
   // Executeds the creation of the excel outside the ngzone
   downloadExcel(){
 
-      this._excelService.createExcelInformation(this.patient,this.messwerte).then(blob=>{
+      this._excelService.createExcelInformation(this.patient,this.messwerte[0]).then(blob=>{
         console.log("BLOOOOOOB")
         saveAs(new Blob([blob]), 'abc.xlsx');
       })
@@ -705,9 +705,9 @@ export class ShowComponent implements OnInit {
       
         //schweigepflicht
         if(this.patient.schweigepflicht){
-          this.schweigepflicht = "Schweigefplicht erhalten."
+          this.schweigepflicht = "Ausgefühlt"
         }else{
-          this.schweigepflicht = "Schweigepflicht nicht erhalten."
+          this.schweigepflicht = "Noch offen"
         }
 
       })

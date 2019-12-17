@@ -3,6 +3,7 @@ import { Client } from 'app/models/Client';
 import { Messwerte } from 'app/models/Messwerte';
 import * as Excel from "exceljs/dist/exceljs.min.js";
 import { saveAs } from 'file-saver';
+import { Training } from 'app/models/Training';
 
 @Injectable()
 
@@ -21,7 +22,7 @@ export class ExcelService {
 
   }
 
-    async createExcelInformation(patient:Client, messwerte: Messwerte){
+    async createExcelInformation(patient:Client, messwerte: Messwerte, training?: Training){
 
     let wb = new Excel.Workbook()
     
@@ -38,29 +39,53 @@ export class ExcelService {
     wsPatient.getCell("A1").font = {bold: true};
     wsPatient.addRow(['']);
 
+    let Pgebdatum = new Date(patient.geburtsdatum)
+    let gebdate = Pgebdatum.getDay() + "." + Pgebdatum.getMonth() + "." + Pgebdatum.getFullYear
+    let diagnosen = "";
+
+    if(patient.chronisch_obstruktive_Lungenkrankheit){
+      diagnosen = diagnosen  + "COPD " +patient.copdgold + "/" + patient.copdletter + ", "
+    }
+    if(patient.zystische_fibrose){
+      diagnosen = diagnosen + "Zystische Fibrose" + ", "
+    }
+    if(patient.asthma_bronchiale){
+      diagnosen = diagnosen + "Asthma bronchiale" + ", "
+    }
+    if(patient.interstitielle_lungenkrankheit){
+      diagnosen = diagnosen +  "Interstitielle Lungenkrankheit" + ", "
+    }
+    if(patient.thoraxwand_thoraxmuskelerkrankung){
+      diagnosen = diagnosen +  "Thorwaxwand- und Thoraxmuskelerkrankung" + ", "
+    }
+    if(patient.andere_lungenkrankheit){
+      diagnosen = diagnosen + + "Andere Lungenkrankheit" + ", "
+    }
+    if(patient.postoperative_lungenoperation){
+      diagnosen = diagnosen +  "Prä- und postoperative Lungenoperation" + ", "
+    }
+    if(patient.funktionelle_atemstoerung){
+      diagnosen = diagnosen + "Funktionelle Atemstörung" + ", "
+    }
+
     //Headers für Blatt eins
     wsPatient.addRow([
+      'Kurs',
       'Vorname',
       'Name', 
       'Geburtsdatum',
-      'Groesse',
       'Geschlecht',
       'Telefon',
+      'E-Mail',
       'Strasse',
       'PLZ',
       'Wohnort',
-      'Chronische Obstruktive Lungenkrankheit',
-      'Zystische Fibrose',
-      'Asthma Bronchiale',
-      'Interstitielle Lungenkrankheit',
-      'Thoraxwand Thoraxmuskelerkrankung',
-      'Andere Lungenkrankheit',
-      'Postoperative Lungenoperation',
-      'Funktionelle Atemstoerung',
+      'Diagnose(n)',
+      'Pneumolog/in',
       'Rauchstatus',
       'Status',
-      'Groesse (m) vor',
-      'Groesse (m) nach',
+      'Grösse (m) vor',
+      'Grösse (m) nach',
       'Gewicht (kg) vor',
       'Gewicht (kg) nach',
       'BMI (kg/m2) vor',
@@ -71,6 +96,8 @@ export class ExcelService {
       'FEV1 (%Soll) nach',
       'FVC (l) vor',
       'FVC (l) nach',
+      'FVC (% Soll) vor',
+      'FVC (% Soll) nach',
       'RV (l) vor',
       'RV (l) nach',
       'TLC (l) vor',
@@ -93,6 +120,10 @@ export class ExcelService {
       'VO2max (l/m/kg) nach',
       'HFmax (/min) vor',
       'HFmax (/min) nach',
+      'RR Syst. vor',
+      'RR Syst. nach',
+      'RR Diast. vor',
+      'RR Diast. nach',
       'Dyspnoe (0-4) vor',
       'Dyspnoe (0-4) nach',
       'BODE-Score vor',
@@ -114,25 +145,20 @@ export class ExcelService {
 
     //Data für Blatt eins
     wsPatient.addRow([
+      patient.training_id,
       patient.vorname,
       patient.name, 
-      patient.geburtsdatum,
-      patient.groesse,
+      gebdate,
       patient.geschlecht,
-      patient.telefon,
       patient.strasse,
       patient.plz,
       patient.wohnort,
-      patient.chronisch_obstruktive_Lungenkrankheit,
-      patient.zystische_fibrose,
-      patient.asthma_bronchiale,
-      patient.interstitielle_lungenkrankheit,
-      patient.thoraxwand_thoraxmuskelerkrankung,
-      patient.andere_lungenkrankheit,
-      patient.postoperative_lungenoperation,
-      patient.funktionelle_atemstoerung,
+      patient.telefon,
+      patient.email,
+      diagnosen,
       patient.rauchstatus,
       patient.status,
+      patient.pneumologe,
       messwerte.groesse_vor,
       messwerte.groesse_nach,
       messwerte.gewicht_vor,
@@ -145,6 +171,8 @@ export class ExcelService {
       messwerte.fev1soll_nach,
       messwerte.fvc_vor,
       messwerte.fvc_nach,
+      messwerte.fvc_soll_vor,
+      messwerte.fvc_soll_nach,
       messwerte.rv_vor,
       messwerte.rv_nach,
       messwerte.tlc_vor,
@@ -167,6 +195,10 @@ export class ExcelService {
       messwerte.vO2max_nach,
       messwerte.hfmax_vor,
       messwerte.hfmax_nach,
+      messwerte.rr_syst_vor,
+      messwerte.rr_syst_nach,
+      messwerte.rr_diast_vor,
+      messwerte.rr_diast_nach,
       messwerte.dyspnoe_vor,
       messwerte.dyspnoe_nach,
       messwerte.bodescore_vor,

@@ -25,10 +25,7 @@
                   <td>Name:</td>
                   <td>{{patient.name}}</td>
                 </tr>
-                <tr>
-                  <td>Email:</td>
-                  <td>{{patient.email}}</td>
-                </tr>
+
                 <tr>
                   <td>Geburtsdatum:</td>
                   <td>{{patient.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
@@ -38,10 +35,7 @@
                   <td>Geschlecht:</td>
                   <td>{{patient.geschlecht}}</td>
                 </tr>
-                <tr>
-                  <td>Telefon:</td>
-                  <td>{{patient.telefon}}</td>
-                </tr>
+
                 <tr>
                   <td>Strasse:</td>
                   <td>{{patient.strasse}}</td>
@@ -53,6 +47,14 @@
                 <tr>
                   <td>Wohnort:</td>
                   <td>{{patient.wohnort}}</td>
+                </tr>
+                <tr>
+                  <td>Telefon:</td>
+                  <td>{{patient.telefon}}</td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td>{{patient.email}}</td>
                 </tr>
               </tbody>
             </table>
@@ -97,7 +99,7 @@
             <h4>Rauchstatus</h4>
             <p>{{patient.rauchstatus}}</p>
             <hr />
-            <h4>Schweigepflicht</h4>
+            <h4>Entbindung Schweigepflicht</h4>
             <p>{{schweigepflicht}}</p>
           </div>
         </div>
