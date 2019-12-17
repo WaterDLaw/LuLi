@@ -167,7 +167,7 @@ export class ShowComponent implements OnInit {
   // Executeds the creation of the excel outside the ngzone
   downloadExcel(){
 
-      this._excelService.createExcelInformation(this.patient,this.messwerte[0]).then(blob=>{
+      this._excelService.createExcelInformation(this.patient,this.messwerte[0],this.catBefore[0],this.catAfter[0],this.crqsasBefore[0],this.crqsasAfter[0],this.getTrainingName(this.patient.training_id)).then(blob=>{
         console.log("BLOOOOOOB")
         saveAs(new Blob([blob]), 'abc.xlsx');
       })
@@ -998,6 +998,9 @@ export class ShowComponent implements OnInit {
     this.trainingSubscription = this._trainingService.getTrainings()
       .subscribe(data =>{
         console.log(data);
+        data.sort(function(a,b) { 
+          return new Date(b.start).getTime() - new Date(a.start).getTime() 
+        });
         this.trainings = data;
       })
   }

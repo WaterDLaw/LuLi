@@ -62,7 +62,7 @@ export class UsersService {
   }
 
   // Delete the User
-  deleteClient(user_id: number){
+  deleteUser(user_id: number){
 
     this._actionHistoryService.createHistoryEntry("User", "delete");
 

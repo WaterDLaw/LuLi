@@ -33,7 +33,7 @@ export class UsersComponent implements OnInit {
   deletePatient(id){
     console.log("Debug");
     console.log(id);
-    this._userService.deleteClient(id)
+    this._userService.deleteUser(id)
       .then(success => {
         console.log(success);
         // reload the patient if sucessful

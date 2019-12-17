@@ -4,7 +4,8 @@ import { Messwerte } from 'app/models/Messwerte';
 import * as Excel from "exceljs/dist/exceljs.min.js";
 import { saveAs } from 'file-saver';
 import { Training } from 'app/models/Training';
-
+import { Cat } from "app/models/Cat";
+import { Crqsas } from "app/models/Crqsas";
 @Injectable()
 
 /**
@@ -22,7 +23,7 @@ export class ExcelService {
 
   }
 
-    async createExcelInformation(patient:Client, messwerte: Messwerte, training?: Training){
+    async createExcelInformation(patient:Client, messwerte: Messwerte, cat_vor: Cat, cat_nach:Cat, crq_vor: Crqsas, crq_nach:Crqsas, training?: String){
 
     let wb = new Excel.Workbook()
     
@@ -40,7 +41,7 @@ export class ExcelService {
     wsPatient.addRow(['']);
 
     let Pgebdatum = new Date(patient.geburtsdatum)
-    let gebdate = Pgebdatum.getDay() + "." + Pgebdatum.getMonth() + "." + Pgebdatum.getFullYear
+    let gebdate = Pgebdatum.getDate() + "." + (Pgebdatum.getMonth()+1) + "." + Pgebdatum.getFullYear()
     let diagnosen = "";
 
     if(patient.chronisch_obstruktive_Lungenkrankheit){
@@ -139,13 +140,23 @@ export class ExcelService {
       'pCO2 (mmHg) vor',
       'pCO2 (mmHg) nach',
       'Bicarbonat (mmol/l) vor',
-      'Bicarbonat (mmol/l) nach'
+      'Bicarbonat (mmol/l) nach',
+      'CAT vor',
+      'CAT nach',
+      'Dyspnoe vor',
+      'Müdigkeit vor',
+      'Gefühlslage vor',
+      'Bewältigung vor',
+      'Dyspnoe nach',
+      'Müdigkeit nach',
+      'Gefühlslage nach',
+      'Bewältigung nach',
     
     ])
 
     //Data für Blatt eins
     wsPatient.addRow([
-      patient.training_id,
+      training,
       patient.vorname,
       patient.name, 
       gebdate,
@@ -214,7 +225,17 @@ export class ExcelService {
       messwerte.pC02_vor,
       messwerte.pC02_nach,
       messwerte.bicarbonat_vor,
-      messwerte.bicarbonat_nach
+      messwerte.bicarbonat_nach,
+      cat_vor.gesamtpunktzahl,
+      cat_nach.gesamtpunktzahl,
+      crq_vor.dyspnoe,
+      crq_vor.fatique,
+      crq_vor.emotion,
+      crq_vor.mastery,
+      crq_nach.dyspnoe,
+      crq_nach.fatique,
+      crq_nach.emotion,
+      crq_nach.mastery
     ])
 
     /*

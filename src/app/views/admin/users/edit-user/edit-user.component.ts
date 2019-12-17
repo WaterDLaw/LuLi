@@ -33,7 +33,7 @@ export class EditUserComponent implements OnInit {
   onSubmit(){
 
 console.log(this.user.userType);
-
+    console.log(this.user.password);
     this._usersService.updateUser(this.user)
     .then(
       
