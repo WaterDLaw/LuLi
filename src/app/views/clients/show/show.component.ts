@@ -103,6 +103,8 @@ export class ShowComponent implements OnInit {
   status_vor:string = "vor";
   status_nach:string = "nach";
 
+  schweigepflicht:string;
+
   chart:any;
 
   constructor(
@@ -701,6 +703,12 @@ export class ShowComponent implements OnInit {
         console.log(data);
         this.patient = data;
       
+        //schweigepflicht
+        if(this.patient.schweigepflicht){
+          this.schweigepflicht = "Schweigefplicht erhalten."
+        }else{
+          this.schweigepflicht = "Schweigepflicht nicht erhalten."
+        }
 
       })
   }

@@ -15,6 +15,7 @@ export class ShowTrainingComponent implements OnInit {
   
   training = {} as Training;
   patients: Array<Client>;
+  
 
   constructor(
     private _trainingsService: TrainingsService,
@@ -40,6 +41,19 @@ export class ShowTrainingComponent implements OnInit {
       this.training = data;
       console.log(this.training);
     })
+  }
+
+  getBackgroundColor(status:string){
+    console.log(status)
+    let color = "white";
+    if(status == "Nichtstarter"){
+      color = 'lightgrey'
+      console.log("grey")
+    }else{
+      color = "white"
+      console.log("white")
+    }
+    return color;
   }
 
   csvExport(){

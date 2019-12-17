@@ -51,9 +51,14 @@ export class EditCatComponent implements OnInit {
   // berechnet die gesamtpunktzahl
   calculteTotal(){
 
-    let gesamt = this.cat.frage_1 + this.cat.frage_2 + this.cat.frage_3 + this.cat.frage_4 + this.cat.frage_5 + this.cat.frage_6 + this.cat.frage_7 + this.cat.frage_8
-    console.log(gesamt);
-    this.cat.gesamtpunktzahl = gesamt;
+    if(!isNaN(Number(this.cat.gesamtpunktzahl)) && isNaN(Number(this.cat.frage_1))){
+      console.log("empty");
+    }else{
+      console.log("calculate Total")
+      let gesamt = Number(this.cat.frage_1) + Number(this.cat.frage_2) + Number(this.cat.frage_3) + Number(this.cat.frage_4) + Number(this.cat.frage_5) + Number(this.cat.frage_6) + Number(this.cat.frage_7) + Number(this.cat.frage_8)
+      console.log(gesamt);
+      this.cat.gesamtpunktzahl = gesamt;
+    }
   }
 
 }

@@ -49,6 +49,7 @@ export interface Client{
     belastung?:number,
     sauerstoff_bei_belastung?:number,
     sao2?:number,
-    Intervalttraining?:boolean
+    Intervalttraining?:boolean,
+    schweigepflicht?:boolean
 
 }

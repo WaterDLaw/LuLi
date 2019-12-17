@@ -93,8 +93,12 @@
               <h4>Diagnose Details</h4>
               <p>{{patient.bemerkungen}}</p>
             </div>
+            <hr />
             <h4>Rauchstatus</h4>
             <p>{{patient.rauchstatus}}</p>
+            <hr />
+            <h4>Schweigepflicht</h4>
+            <p>{{schweigepflicht}}</p>
           </div>
         </div>
         
@@ -127,7 +131,7 @@
           <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Messwerte</span>
       </ng-template>
       <ng-template ngbPanelContent>
-        <h3>Messwerte 
+        <h3>
             <a *ngIf="!measurmentEdit" (click)="measurmentsEdit()" ngbTooltip="Messwerte bearbeiten" class="btn btn-primary" style="margin-left: 5px; color:white; float:right;"><i class="icon-pencil white"> </i>Bearbeiten</a>
             <a *ngIf="measurmentEdit" (click)="measurmentsSave()" ngbTooltip="Messwerte speichern" class="btn btn-primary" style="margin-left: 5px; float:right;"><i class="icon-check white"></i> Speichern</a>
           </h3>
@@ -148,7 +152,7 @@
               
               <!-- Groesse -->
               <tr>
-                <th>Groesse (m)</th>
+                <th>Grösse (m)</th>
                 <td *ngIf="!measurmentEdit">{{messwerte[0].groesse_vor}}</td>
                 <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].groesse_vor" tabindex="1" type="text" style="width:200px;"class="form-control" id="groesse_vor" placeholder="" name="groesse_vor"></td>
                 <td *ngIf="!measurmentEdit">{{messwerte[0].groesse_nach}}</td>
@@ -576,7 +580,7 @@
               <span style="font-size: 16px;"><i class="icon-arrow-right"></i> Fragebögen </span>
           </ng-template>
           <ng-template ngbPanelContent>
-            <h3>Fragebögen</h3>
+            
             <hr />
 
             <table class="table">

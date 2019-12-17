@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-  <h2>Pneumologist erfassen</h2>
+  <h2>Pneumolog/in erfassen</h2>
   <hr />
 
   <form (ngSubmit)="onSubmit()" #pneumoForm="ngForm" >
@@ -35,7 +35,7 @@
       <div class="form-group row">
         <label class="col-sm-2" for="password">Passwort</label>
         <div class="col-sm-10">
-          <input [(ngModel)]="pneumologist.password" type="text" class="form-control" id="password" placeholder="password" name="password" required>
+          <input [(ngModel)]="pneumologist.password" type="password" class="form-control" id="password" placeholder="Passwort" name="password" required>
         </div>
         
     </div>
