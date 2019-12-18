@@ -103,6 +103,8 @@ export class ShowComponent implements OnInit {
   status_vor:string = "vor";
   status_nach:string = "nach";
 
+  pneumoName:string;
+
   schweigepflicht:string;
 
   chart:any;
@@ -134,18 +136,7 @@ export class ShowComponent implements OnInit {
     Chart.pluginService.register(ChartAnnotation);
 
     
-    // get entries
-    this.getEntries(this.route.snapshot.params['id']);
-
-    this.getPatient(this.route.snapshot.params['id']);
-
-    this.getMesswerte(this.route.snapshot.params['id']);
-
-    // get Pneumologen
-    this.getPneumologen();
-
-    // load the Trainings
-    this.getTrainings();
+    this.loadInformation();
 
     this.checkCalls();
     
@@ -192,6 +183,22 @@ export class ShowComponent implements OnInit {
     
   }
 
+  async loadInformation(){
+    // get entries
+    this.getEntries(this.route.snapshot.params['id']);
+    this.getMesswerte(this.route.snapshot.params['id']);
+
+    console.log("GETPATIENTS");
+    await this.getPatient(this.route.snapshot.params['id']);
+    // get Pneumologen
+    console.log("GETPNEUMOS")
+    await this.getPneumologen();
+
+
+    // load the Trainings
+    this.getTrainings();
+  }
+
   createEntry(){
     this.entryCreate = !this.entryCreate;
   }
@@ -229,6 +236,7 @@ export class ShowComponent implements OnInit {
     this._pneumoService.getPneumologists()
       .subscribe(data =>{
         this.pneumos = data;
+        this.pneumoName = this.getPneumoname(this.patient.pneumologist_id);
         console.log(data);
       })
   }

@@ -32,6 +32,7 @@ export interface Client{
     status?: string,
     rauchstatus?: string,
     pneumologe?: string,
+    pneumologist_id?: number,
     gewicht_before?: number,
     gewicht_after?: number,
     fevl_before?: number,
