@@ -220,6 +220,11 @@ export class ShowComponent implements OnInit {
   }
 
 
+  getPneumoname(id:number){
+    let hispneumo =  this.pneumos.find(e => e.id == id);
+    return hispneumo.anrede + " " + hispneumo.vorname + " " + hispneumo.name
+  }
+
   getPneumologen(){
     this._pneumoService.getPneumologists()
       .subscribe(data =>{
