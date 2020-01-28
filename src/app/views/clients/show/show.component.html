@@ -557,7 +557,7 @@
             <tr>
               <th>SaO2> (%) </th>
               <td *ngIf="!empfehlungenEdit">{{patient.sao2 | percent}}</td>
-              <td *ngIf="empfehlungenEdit"><input [(ngModel)]="patient.sao2" type="text" style="width:200px;"class="form-control" id="sao2" placeholder="" name="sao2"></td>
+              <td *ngIf="empfehlungenEdit"><input [(ngModel)]="patient.sao2" (change)="patient.sao2 = $event.target.value / 100" type="text" style="width:200px;"class="form-control" id="sao2" placeholder="" name="sao2"></td>
             </tr>
             <tr>
               <th>Intervalltraining</th>

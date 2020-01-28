@@ -80,7 +80,7 @@ export class MesswerteService {
          fvcmid = (5.76*groesse)-(0.026*alter)-4.34
       }
 
-      if(geschlecht == "f"){
+      if(geschlecht == "w"){
          fvcmid = (4.43*groesse)-(0.026*alter)-2.89
       }
       fvcsoll = fvcwert / fvcmid * 100;

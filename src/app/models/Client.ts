@@ -47,9 +47,10 @@ export interface Client{
     vo2max_after?: number,
     copdgold?:string,
     copdletter?:string,
-    belastung?:number,
+    belastung?:string,
     sauerstoff_bei_belastung?:number,
     sao2?:number,
+    trainingspuls?:string,
     Intervalttraining?:boolean,
     schweigepflicht?:boolean
 
