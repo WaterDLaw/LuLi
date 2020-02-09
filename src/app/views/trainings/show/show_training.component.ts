@@ -30,9 +30,14 @@ export class ShowTrainingComponent implements OnInit {
     this._trainingsService.getParticipants(this.route.snapshot.params['id'])
       .subscribe(data =>{
         console.log(data);
+        data.sort(function(a,b){
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        });
         this.patients = data;
         console.log(this.patients);
-      })
+      });
+
+  
   }
 
   getTraining(id){

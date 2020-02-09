@@ -29,7 +29,7 @@ export class ClientsService {
   }
 
   // Creates a new Client
-  createClient(patient: Client): any{
+  createClient(patient: Client, trainingAdd: number): any{
 
     this._actionHistoryService.createHistoryEntry("Patient", "create");
 
@@ -37,7 +37,7 @@ export class ClientsService {
     const token = this._authService.getToken();
     
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.post(this.apiurl + '/api/patients?token=' + token, patient, {headers: headers})
+    return this.http.post(this.apiurl + '/api/patients?token=' + token, {patient, trainingAdd}, {headers: headers})
       .toPromise();
    
   }

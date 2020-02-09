@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from "../../../models/Client";
+import { Training } from "../../../models/Training";
 import { ClientsService } from "../../../services/clients.service";
 import { Router } from '@angular/router';
 import { Pneumologist } from '../../../models/pneumologist';
 import { PneumologistService } from '../../../services/pneumologist.service';
+import { TrainingsService } from '../../../services/trainings.service';
 import { MesswerteService } from 'app/services/messwerte.service';
 @Component({
   selector: 'app-create-clients',
@@ -13,19 +15,30 @@ import { MesswerteService } from 'app/services/messwerte.service';
 export class CreateClientsComponent implements OnInit {
 
   patient: Client;
+  trainings: Training;
   pneumologists: Pneumologist;
   copdchecked:boolean=false;
+  trainingAdd: number;
 
   constructor(
     private _clientsService: ClientsService,
     private _pneumologistService: PneumologistService,
     private _messwerteService: MesswerteService,
+    private _trainingService: TrainingsService,
     private router: Router
   ) { }
 
   ngOnInit() {
 
     this.patient = {} as Client;
+
+    this.patient.status = "Starter"
+
+    this._trainingService.getTrainings()
+      .subscribe(data => {
+        console.log(data);
+        this.trainings = data;
+      })
 
     this._pneumologistService.getPneumologists()
     .subscribe(data => {
@@ -41,12 +54,12 @@ export class CreateClientsComponent implements OnInit {
   onSubmit(){
     console.log(this.patient);
 
-    this._clientsService.createClient(this.patient)
+    this._clientsService.createClient(this.patient,this.trainingAdd)
       .then(
         data =>{
           console.log(data);
           console.log(data.id);
-
+          console.log(this.trainingAdd);
           // create an empty messwerte table
           this._messwerteService.createMesswerte(data.id)
             .then( result =>{

@@ -121,9 +121,9 @@
             <label class="col-sm-2" for="status">Status</label>
             <div class="col-sm-10">
                 <select class="form-control" [(ngModel)]="patient.status" name="status" id="status" required>
-                  <option>Teilnehmer</option>
-                  <option>Nichtstarter</option>
-                  <option>Drop-out</option>
+                  <option selected>Starter</option>
+                  <option >Nichtstarter</option>
+                  <option >Drop-out</option>
                 </select>
             </div>
         </div>
@@ -157,7 +157,15 @@
             </div>
         </div>
         </div>
-
+        <div class="form-group row">
+            <label class="col-sm-2" for="trainingzuteilen">Training zuteilen</label>
+            <div class="col-sm-10">
+                <select [(ngModel)]="trainingAdd" class="form-control" name="trainingzuteilen" id="trainingzuteilen" required>
+                    <option [value] ="0" selected>Wähle Training</option>
+                    <option *ngFor="let training of trainings"  [value]="training.id">{{training.title}}</option>
+                </select>
+            </div>
+        </div>
         <h2>Diagnose(n)</h2>
         <hr />
         <div class="row">
@@ -234,6 +242,9 @@
             </div>
         </div>
         <br>
+
+        
+
         <div class="form-group row">
             <label class="col-sm-2" for="diagnose_details">Weitere Diagnosen</label>
             <div class="col-sm-10">

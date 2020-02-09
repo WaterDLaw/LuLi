@@ -7,6 +7,7 @@
 
 export interface Client{
     id?: number,
+    created_at?: Date,
     sprache?: string,
     name?: string,
     vorname?: string,
