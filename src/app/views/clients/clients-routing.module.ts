@@ -12,6 +12,9 @@ import { CreateCrqsasComponent } from "./crqsas/create-crqsas/create-crqsas.comp
 import { ShowCrqsasComponent } from "./crqsas/show-crqsas/show-crqsas.component";
 import { EditCrqsasComponent } from "./crqsas/edit-crqsas/edit-crqsas.component";
 
+import { CreateCrqsasAltComponent } from "./crqsas/create-crqsas-alt/create-crqsas-alt.component";
+import { EditCrqsasAltComponent } from "./crqsas/edit-crqsas-alt/edit-crqsas-alt.component";
+import { ShowCrqsasAltComponent } from "./crqsas/show-crqsas-alt/show-crqsas-alt.component";
 // Feedback components
 import { CreateFeedbackComponent } from './feedback/create-feedback/create-feedback.component';
 import { ShowFeedbackComponent } from './feedback/show-feedback/show-feedback.component';
@@ -106,7 +109,7 @@ const routes: Routes = [
   },
   {
     path: 'show/:id/crqsas/create/:time',
-    component: CreateCrqsasComponent,
+    component: CreateCrqsasAltComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'Create Crqsas'
@@ -114,7 +117,7 @@ const routes: Routes = [
   },
   {
     path: 'show/:id/crqsas/show/:crqsas_id',
-    component: ShowCrqsasComponent,
+    component: ShowCrqsasAltComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'Show Crqsas'
@@ -122,7 +125,7 @@ const routes: Routes = [
   },
   {
     path: 'show/:id/crqsas/edit/:crqsas_id',
-    component: EditCrqsasComponent,
+    component: EditCrqsasAltComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'Edit Crqsas'

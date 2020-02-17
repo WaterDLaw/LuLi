@@ -1,0 +1,153 @@
+<div class="card">
+    <div class="card-body">
+      <h2>CRQ-SAS Fragebogen</h2>
+
+      <form (ngSubmit)="onSubmit()" #crqsasForm="ngForm" >
+        <div class="form-group">
+            <label class="col-sm-2" for="erstellungsdatum">Erstellungsdatum</label>
+            <div class="col-sm-3">
+                <input [(ngModel)]="crqsas.erstellungsdatum" type="date" class="form-control" id="erstellungsdatum" placeholder="Erstellungsdatum" name="erstellungsdatum">
+            </div>
+        </div>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="align-center"scope="col">Frage</th>
+                    <th scope="col">Werte</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>1. Gefühle wie z.B. Ärger oder Verdruss</td>
+                    <td ><input  [(ngModel)]="crqsas.frage_1" class="form-check-input werte" type="text" name="frage_1" id="frage_1" required pattern="[1-8]"> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>2. Sich um Ihre Grundbedürfnisse kümmern (baden, duschen, essen oder sich anziehen)</td>
+                    <td class="align-center"><input  [(ngModel)]="crqsas.frage_2" class="form-check-input werte" type="text" name="frage_2" id="frage_2" required pattern="[1-8]" /> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>3. Zu Fuss gehen</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_3" class="form-check-input werte" type="text" name="frage_3" id="frage_3" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>4. Aufgaben im Haushalt erledigen (z.B. Hausarbeit, Lebensmittel einkaufen)</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_4" class="form-check-input werte" type="text" name="frage_4" id="frage_4" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>5. Kontakte und Unternehmungen mit anderen Menschen</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_5" class="form-check-input werte" type="text" name="frage_5" id="frage_5" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+
+                <tr>
+                    <td>6. Wie oft fühlten Sie sich während der <b>LETZTEN ZWEI WOCHEN</b> frustriert oder waren ungeduldig?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_6" class="form-check-input werte" type="text" name="frage_6" id="frage_6" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>7. Wie oft verspürten Sie in den <b>LETZTEN ZWEI WOCHEN</b> ein Gefühl der Angst oder Panik, wenn Sie Schwierigkeiten mit dem Atmen hatten?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_7" class="form-check-input werte" type="text" name="frage_7" id="frage_7" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>8. Wie sieht es mit Erschöpfung und Müdigkeit aus? Wie müde haben Sie sich während der
+                        <b>LETZTEN ZWEI WOCHEN</b> gefühlt?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_8" class="form-check-input werte" type="text" name="frage_8" id="frage_8" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>9. Wie oft war es Ihnen in den <b>LETZTEN ZWEI WOCHEN</b> peinlich, weil Sie husten oder schwer atmen mussten?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_9" class="form-check-input werte" type="text" name="frage_9" id="frage_9" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>10. Wie oft waren Sie in den <b>LETZTEN ZWEI WOCHEN</b> zuversichtlich und sicher, dass Sie mit Ihrer Krankheit umgehen können?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_10" class="form-check-input werte" type="text" name="frage_10" id="frage_10" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>11. Wie viel Energie hatten Sie in den <b>LETZTEN ZWEI WOCHEN</b>?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_11" class="form-check-input werte" type="text" name="frage_11" id="frage_11" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>12. Wie oft waren Sie während der <b>LETZTEN ZWEI WOCHEN</b> verärgert, besorgt oder deprimiert?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_12" class="form-check-input werte" type="text" name="frage_12" id="frage_12" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+
+                <tr>
+                    <td>13. Wie oft hatten Sie während der <b>LETZTEN ZWEI WOCHEN</b> das Gefühl, Ihre Atemprobleme vollständig unter Kontrolle zu haben?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_13" class="form-check-input werte" type="text" name="frage_13" id="frage_13" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>14. Wie oft waren Sie in den <b>LETZTEN ZWEI WOCHEN</b> locker und entspannt?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_14" class="form-check-input werte" type="text" name="frage_14" id="frage_14" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>15. Wie oft hatten Sie in den <b>LETZTEN ZWEI WOCHEN</b> das Gefühl, wenig Energie zu haben?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_15" class="form-check-input werte" type="text" name="frage_15" id="frage_15" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>16. Wie oft fühlten Sie sich in den <b>LETZTEN ZWEI WOCHEN</b> im Allgemeinen mutlos oder niedergeschlagen?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_16" class="form-check-input werte" type="text" name="frage_16" id="frage_16" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>17. Wie oft haben Sie sich in den <b>LETZTEN ZWEI WOCHEN</b> erschöpft oder lustlos gefühlt?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_17" class="form-check-input werte" type="text" name="frage_17" id="frage_17" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>18. Wie zufrieden waren Sie in den <b>LETZTEN ZWEI WOCHEN</b> mit Ihrem Leben?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_18" class="form-check-input werte" type="text" name="frage_18" id="frage_18" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>19. Wie oft waren Sie in den <b>LETZTEN ZWEI WOCHEN</b> verstört oder ängstlich, wenn Sie Schwierigkeiten mit dem Atmen hatten?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_19" class="form-check-input werte" type="text" name="frage_19" id="frage_19" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>20. Wie oft waren Sie in <b>LETZTEN ZWEI WOCHEN</b> im Allgemeinen ruhelos, angespannt oder nervös?</td>
+                    <td class="align-center"><input [(ngModel)]="crqsas.frage_20" class="form-check-input werte" type="text" name="frage_20" id="frage_20" required pattern="[1-8]"/> </td>
+                    <td></td>
+                </tr>
+
+            </tbody>    
+            
+
+        </table>
+
+        <button type="submit" [disabled]="crqsasForm.form.invalid" class="btn btn-primary"> Speichern</button>
+        </form>
+        </div>
+</div>
