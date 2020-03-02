@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from "../../../models/Client";
 import { Training } from "../../../models/Training";
 import { ClientsService } from "../../../services/clients.service";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Pneumologist } from '../../../models/pneumologist';
 import { PneumologistService } from '../../../services/pneumologist.service';
 import { TrainingsService } from '../../../services/trainings.service';
@@ -19,19 +19,24 @@ export class CreateClientsComponent implements OnInit {
   pneumologists: Pneumologist;
   copdchecked:boolean=false;
   trainingAdd: number;
+  trainings_id;
 
   constructor(
     private _clientsService: ClientsService,
     private _pneumologistService: PneumologistService,
     private _messwerteService: MesswerteService,
     private _trainingService: TrainingsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
 
     this.patient = {} as Client;
 
+    this.trainings_id = this.route.snapshot.params['id']
+    this.trainingAdd = this.trainings_id;
+    console.log(this.trainings_id);
     this.patient.status = "Starter"
 
     this._trainingService.getTrainings()

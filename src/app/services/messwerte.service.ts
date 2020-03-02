@@ -42,7 +42,7 @@ export class MesswerteService {
   }
 
   // show a gehtest GET
-  getMesswerte(id:number){
+   getMesswerte(id:number){
     console.log('show Messwerte');
     const token = this._authService.getToken();
     const headers = new HttpHeaders({'Content-Type': 'application/json'})

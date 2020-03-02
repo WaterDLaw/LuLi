@@ -51,6 +51,15 @@ const routes: Routes = [
       title: 'Create Client'
     }
   },
+  
+  {
+    path: 'create/:id',
+    component: CreateClientsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Create Client'
+    }
+  },
   {
     path: 'show/:id',
     component: ShowComponent,
