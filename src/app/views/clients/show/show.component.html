@@ -362,7 +362,7 @@
             </tr>
             <!-- RR Syst. -->
             <tr>
-              <th>RR Syst. (kPa)</th>
+              <th>RR Syst. (mmHg)</th>
               <td *ngIf="!measurmentEdit">{{messwerte[0].rr_syst_vor}}</td>
               <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].rr_syst_vor" tabindex="11" type="text" style="width:200px;"class="form-control" id="rr_syst_vor" placeholder="" name="rr_syst_vor"></td>
               <td *ngIf="!measurmentEdit">{{messwerte[0].rr_syst_nach}}</td>
@@ -370,7 +370,7 @@
             </tr>
             <!-- RR Diast. -->
             <tr>
-              <th>RR Diast. (kPa)</th>
+              <th>RR Diast. (mmHg)</th>
               <td *ngIf="!measurmentEdit">{{messwerte[0].rr_diast_vor}}</td>
               <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].rr_diast_vor" tabindex="11" type="text" style="width:200px;"class="form-control" id="rr_diast_vor" placeholder="" name="rr_syst_vor"></td>
               <td *ngIf="!measurmentEdit">{{messwerte[0].rr_diast_nach}}</td>
