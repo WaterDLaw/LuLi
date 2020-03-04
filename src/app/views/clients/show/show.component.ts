@@ -310,7 +310,12 @@ export class ShowComponent implements OnInit {
   }
 
   async downloadpdf() {
-    this.createChartCrq();
+    console.log(this.crqsasBefore[0])
+    if(this.crqsasBefore[0]!= null && this.crqsasAfter != null){
+      this.createChartCrq();
+
+    }
+  
     this.createGehtestChart();
     this.createGehtestChartW();
     this.loading = true;
