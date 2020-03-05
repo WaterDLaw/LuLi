@@ -54,6 +54,9 @@ export class ShowTrainingComponent implements OnInit {
     if(status == "Nichtstarter"){
       color = 'lightgrey'
       console.log("grey")
+    }else if(status == "Dropout"){
+      color = 'lightgrey'
+      console.log("grey")
     }else{
       color = "white"
       console.log("white")
