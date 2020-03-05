@@ -311,7 +311,7 @@ export class ShowComponent implements OnInit {
 
   async downloadpdf() {
     console.log(this.crqsasBefore[0])
-    if(this.crqsasBefore[0]!= null && this.crqsasAfter != null){
+    if(this.crqsasBefore[0]){
       this.createChartCrq();
 
     }
@@ -390,10 +390,10 @@ export class ShowComponent implements OnInit {
         this.messwerte[0].max_leistungW_nach = Number(this.messwerte[0].max_leistungW_nach).toFixed(0);
         this.messwerte[0].phwert_vor = Number(this.messwerte[0].phwert_vor).toFixed(1)
         this.messwerte[0].phwert_nach = Number(this.messwerte[0].phwert_nach).toFixed(1)
-        this.messwerte[0].pO2_vor = Number(this.messwerte[0].pO2_vor).toFixed(0)
-        this.messwerte[0].pO2_nach = Number(this.messwerte[0].pO2_nach).toFixed(0)
-        this.messwerte[0].pC02_vor = Number(this.messwerte[0].pC02_vor).toFixed(0)
-        this.messwerte[0].pC02_nach = Number(this.messwerte[0].pC02_nach).toFixed(0)
+        this.messwerte[0].pO2_vor = Number(this.messwerte[0].pO2_vor).toFixed(1)
+        this.messwerte[0].pO2_nach = Number(this.messwerte[0].pO2_nach).toFixed(1)
+        this.messwerte[0].pC02_vor = Number(this.messwerte[0].pC02_vor).toFixed(1)
+        this.messwerte[0].pC02_nach = Number(this.messwerte[0].pC02_nach).toFixed(1)
         this.messwerte[0].rr_syst_vor = Number(this.messwerte[0].rr_syst_vor).toFixed(0);
         this.messwerte[0].rr_syst_nach = Number(this.messwerte[0].rr_syst_nach).toFixed(0);
         this.messwerte[0].rr_diast_vor = Number(this.messwerte[0].rr_diast_vor).toFixed(0);

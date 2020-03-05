@@ -491,7 +491,7 @@
 
           <!-- pO2 -->
           <tr>
-            <th>pO2 (mmHg)</th>
+            <th>pO2 (kPa)</th>
             <td *ngIf="!measurmentEdit">{{messwerte[0].pO2_vor}}</td>
             <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].pO2_vor" tabindex="17" type="text" style="width:200px;"class="form-control" id="pO2_vor" placeholder="" name="pO2_vor"></td>
             <td *ngIf="!measurmentEdit">{{messwerte[0].pO2_nach}}</td>
@@ -500,7 +500,7 @@
 
           <!-- pCO2 -->
           <tr>
-            <th>pCO2 (mmHg)</th>
+            <th>pCO2 (kPa)</th>
             <td *ngIf="!measurmentEdit">{{messwerte[0].pC02_vor}}</td>
             <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].pC02_vor" tabindex="18" type="text" style="width:200px;"class="form-control" id="pC02_vor" placeholder="" name="pC02_vor"></td>
             <td *ngIf="!measurmentEdit">{{messwerte[0].pC02_nach}}</td>
