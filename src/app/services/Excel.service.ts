@@ -23,6 +23,248 @@ export class ExcelService {
 
   }
 
+
+  async createExcelTrainings(data: any[], messwerte: any[], cat_vor: any[], cat_nach: any[], crq_vor: any[], crq_nach: any[]){
+
+    console.log("INSIDE EXCEL TRIAING")
+
+    console.log(data);
+    console.log(messwerte);
+    console.log(cat_vor);
+    console.log(cat_nach);
+    console.log(crq_vor);
+    console.log(crq_nach);
+
+    let wb = new Excel.Workbook()
+
+    let wsPage = wb.addWorksheet('Patienteninformationen');
+
+
+    // Headers
+    wsPage.addRow(['Patienteninformationen']);
+   
+    wsPage.getCell("A1").font = {bold: true};
+    wsPage.addRow(['']);
+    //Headers für Blatt eins
+    wsPage.addRow([
+      'Kurs',
+      'Vorname',
+      'Name', 
+      'Geburtsdatum',
+      'Geschlecht',
+      'Strasse',
+      'PLZ',
+      'Wohnort',
+      'Telefon',
+      'E-Mail',
+      'Diagnose(n)',
+      'Pneumolog/in',
+      'Rauchstatus',
+      'Status',
+      'Grösse (m) vor',
+      'Grösse (m) nach',
+      'Gewicht (kg) vor',
+      'Gewicht (kg) nach',
+      'BMI (kg/m2) vor',
+      'BMI (kg/m2) nach',
+      'FEV1 (l) vor',
+      'FEV1 (l) nach',
+      'FEV1 (%Soll) vor',
+      'FEV1 (%Soll) nach',
+      'FVC (l) vor',
+      'FVC (l) nach',
+      'FVC (% Soll) vor',
+      'FVC (% Soll) nach',
+      'RV (l) vor',
+      'RV (l) nach',
+      'TLC (l) vor',
+      'TLC (l) nach',
+      'FEV/FVC (%) vor',
+      'FEV/FVC (%) nach',
+      'RV/TLC (%) vor',
+      'RV/TLC (%) nach',
+      'Distanz Meter (m) vor',
+      'Distanz Meter (m) nach',
+      'Distanz Meter (%Soll) vor',
+      'Distanz Meter (%Soll) nach',
+      'SaO2min (%) vor',
+      'SaO2min (%) nach',
+      'Max. Leistung (W) vor',
+      'Max. Leistung (W) nach',
+      'Max. Leistung (%Soll) vor',
+      'Max. Leistung (%Soll) nach',
+      'VO2max (l/m/kg) vor',
+      'VO2max (l/m/kg) nach',
+      'HFmax (/min) vor',
+      'HFmax (/min) nach',
+      'RR Syst. vor',
+      'RR Syst. nach',
+      'RR Diast. vor',
+      'RR Diast. nach',
+      'Dyspnoe (0-4) vor',
+      'Dyspnoe (0-4) nach',
+      'BODE-Score vor',
+      'BODE-Score nach',
+      'Dosis (l/min) vor',
+      'Dosis (l/min) nach',
+      'SaO2 (%) vor',
+      'SaO2 (%) nach',
+      'pH vor',
+      'pH nach',
+      'pO2 (mmHg) vor',
+      'pO2 (mmHg) nach',
+      'pCO2 (mmHg) vor',
+      'pCO2 (mmHg) nach',
+      'Bicarbonat (mmol/l) vor',
+      'Bicarbonat (mmol/l) nach',
+      'CAT vor',
+      'CAT nach',
+      'Dyspnoe vor',
+      'Müdigkeit vor',
+      'Gefühlslage vor',
+      'Bewältigung vor',
+      'Dyspnoe nach',
+      'Müdigkeit nach',
+      'Gefühlslage nach',
+      'Bewältigung nach',
+    
+    ])
+
+
+
+    //loop over each array and creat a row
+    for (var i = 0; i<data.length;i++){
+
+
+      //create row with data
+      let Pgebdatum = new Date(data[i].geburtsdatum)
+      let gebdate = Pgebdatum.getDate() + "." + (Pgebdatum.getMonth()+1) + "." + Pgebdatum.getFullYear()
+      let diagnosen = "";
+  
+      if(data[i].chronisch_obstruktive_Lungenkrankheit){
+        diagnosen = diagnosen  + "COPD " +data[i].copdgold + "/" + data[i].copdletter + ", "
+      }
+      if(data[i].zystische_fibrose){
+        diagnosen = diagnosen + "Zystische Fibrose" + ", "
+      }
+      if(data[i].asthma_bronchiale){
+        diagnosen = diagnosen + "Asthma bronchiale" + ", "
+      }
+      if(data[i].interstitielle_lungenkrankheit){
+        diagnosen = diagnosen +  "Interstitielle Lungenkrankheit" + ", "
+      }
+      if(data[i].thoraxwand_thoraxmuskelerkrankung){
+        diagnosen = diagnosen +  "Thorwaxwand- und Thoraxmuskelerkrankung" + ", "
+      }
+      if(data[i].andere_lungenkrankheit){
+        diagnosen = diagnosen + + "Andere Lungenkrankheit" + ", "
+      }
+      if(data[i].postoperative_lungenoperation){
+        diagnosen = diagnosen +  "Prä- und postoperative Lungenoperation" + ", "
+      }
+      if(data[i].funktionelle_atemstoerung){
+        diagnosen = diagnosen + "Funktionelle Atemstörung" + ", "
+      }
+
+      //Data für Blatt eins
+      wsPage.addRow([
+        data[i].training,
+        data[i].vorname,
+        data[i].name, 
+        gebdate,
+        data[i].geschlecht,
+        data[i].strasse,
+        data[i].plz,
+        data[i].wohnort,
+        data[i].telefon,
+        data[i].email,
+        diagnosen,
+        data[i].rauchstatus,
+        data[i].status,
+        data[i].pneumologe,
+        messwerte[i].groesse_vor,
+        messwerte[i].groesse_nach,
+        messwerte[i].gewicht_vor,
+        messwerte[i].gewicht_nach,
+        messwerte[i].bmi_vor,
+        messwerte[i].bmi_nach,
+        messwerte[i].fev1l_vor,
+        messwerte[i].fev1l_nach,
+        messwerte[i].fev1soll_vor,
+        messwerte[i].fev1soll_nach,
+        messwerte[i].fvc_vor,
+        messwerte[i].fvc_nach,
+        messwerte[i].fvc_soll_vor,
+        messwerte[i].fvc_soll_nach,
+        messwerte[i].rv_vor,
+        messwerte[i].rv_nach,
+        messwerte[i].tlc_vor,
+        messwerte[i].tlc_nach,
+        messwerte[i].fev1_fvc_vor,
+        messwerte[i].fev1_fvc_nach,
+        messwerte[i].rv_tlc_vor,
+        messwerte[i].rv_tlc_nach,
+        messwerte[i].distanzM_vor,
+        messwerte[i].distanzM_nach,
+        messwerte[i].distanzS_vor,
+        messwerte[i].distanzS_nach,
+        messwerte[i].saO2min_vor,
+        messwerte[i].saO2min_nach,
+        messwerte[i].max_leistungW_vor,
+        messwerte[i].max_leistungW_nach,
+        messwerte[i].max_leistungS_vor,
+        messwerte[i].max_leistungS_nach,
+        messwerte[i].vO2max_vor,
+        messwerte[i].vO2max_nach,
+        messwerte[i].hfmax_vor,
+        messwerte[i].hfmax_nach,
+        messwerte[i].rr_syst_vor,
+        messwerte[i].rr_syst_nach,
+        messwerte[i].rr_diast_vor,
+        messwerte[i].rr_diast_nach,
+        messwerte[i].dyspnoe_vor,
+        messwerte[i].dyspnoe_nach,
+        messwerte[i].bodescore_vor,
+        messwerte[i].bodescore_nach,
+        messwerte[i].O2_Dosis_vor,
+        messwerte[i].O2_Dosis_nach,
+        messwerte[i].saO2_vor,
+        messwerte[i].saO2_nach,
+        messwerte[i].phwert_vor,
+        messwerte[i].phwert_nach,
+        messwerte[i].pO2_vor,
+        messwerte[i].pO2_nach,
+        messwerte[i].pC02_vor,
+        messwerte[i].pC02_nach,
+        messwerte[i].bicarbonat_vor,
+        messwerte[i].bicarbonat_nach,
+   
+        cat_vor[i].gesamtpunktzahl,
+        cat_nach[i].gesamtpunktzahl,
+        
+        crq_vor[i].dyspnoe,
+        crq_vor[i].fatique,
+        crq_vor[i].emotion,
+        crq_vor[i].mastery,
+        crq_nach[i].dyspnoe,
+        crq_nach[i].fatique,
+        crq_nach[i].emotion,
+        crq_nach[i].mastery
+        
+      ])
+
+
+
+    }
+
+    let buf = await wb.xlsx.writeBuffer()
+    
+    //saveAs(new Blob([buf]), 'abc.xlsx');
+    return buf;
+
+
+  }
+
   async createExcelStatistic(data: any[], cat_vor: any[], cat_nach: any[], crq_vor: any[], crq_nach: any[]){
 
     let wb = new Excel.Workbook()

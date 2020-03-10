@@ -8,9 +8,12 @@ import { EditTrainingComponent } from './edit/edit_training.component';
 import { IndexTrainingComponent } from './index/index_training.component';
 import { ShowTrainingComponent } from './show/show_training.component';
 import { TrainingsService } from "../../services/trainings.service";
+import { ExcelService } from "../../services/excel.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { FilterTitlePipe } from "../../pipes/titleFilter";
+import { MesswerteService } from 'app/services/messwerte.service';
+import { ClientsService } from 'app/services/clients.service';
 
 
 @NgModule({
@@ -30,6 +33,6 @@ import { FilterTitlePipe } from "../../pipes/titleFilter";
         FilterTitlePipe
         
     ],
-  providers:[AuthGuard, TrainingsService]
+  providers:[AuthGuard, TrainingsService, MesswerteService, ClientsService, ExcelService]
 })
 export class TrainingsModule { }
