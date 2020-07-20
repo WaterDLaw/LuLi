@@ -34,6 +34,7 @@ import { MesswerteService } from 'app/services/messwerte.service';
 
 import { ChartsModule } from 'ng2-charts';
 import { ExcelService } from 'app/services/Excel.service';
+import { MailService } from 'app/services/mail.service';
 @NgModule({
   imports: [
     FeedbackModule,
@@ -60,6 +61,6 @@ import { ExcelService } from 'app/services/Excel.service';
       EntryComponent,
       EditEntryComponent
     ],
-  providers:[AuthGuard, ClientsService, TrainingsService, DatePipe, EntryService, PdfService, PneumologistService, MesswerteService, ExcelService]
+  providers:[AuthGuard, ClientsService, TrainingsService, DatePipe, EntryService, PdfService, PneumologistService, MesswerteService, ExcelService, MailService]
 })
 export class ClientsModule { }

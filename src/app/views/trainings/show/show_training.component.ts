@@ -6,7 +6,7 @@ import { Client } from '../../../models/Client';
 import { ActivatedRoute } from '@angular/router';
 import { Angular5Csv } from 'angular5-csv/dist/Angular5-csv';
 import { ClientsService } from 'app/services/clients.service';
-import { ExcelService } from 'app/services/excel.service';
+import { ExcelService } from 'app/services/Excel.service';
 import { saveAs } from 'file-saver';
 
 @Component({
@@ -18,7 +18,7 @@ export class ShowTrainingComponent implements OnInit {
 
   
   training = {} as Training;
-  patients: Array<Client>;
+  patients: Client[] = [];
   messwerte: any[] = [];
   arrCrqsasBefore: any[] = [];
   arrCrqsasAfter: any[] = []
@@ -37,9 +37,16 @@ export class ShowTrainingComponent implements OnInit {
   ngOnInit() {
     // Load Trainings
     this.getTraining(this.route.snapshot.params['id']);
+    this.getParticipants(this.route.snapshot.params['id']);
+    //this.getParticipants(Number(this.route.snapshot.params['id']) + 1);
+    //this.getParticipants(Number(this.route.snapshot.params['id']) + 2);
+  }
 
+  getParticipants(id){
     // Load Patients of this training
-    this._trainingsService.getParticipants(this.route.snapshot.params['id'])
+    console.log("correct id");
+    console.log(id);
+    this._trainingsService.getParticipants(id)
       .subscribe(data =>{
         console.log(data);
         data.sort(function(a,b){
@@ -51,18 +58,18 @@ export class ShowTrainingComponent implements OnInit {
           // get the crqsas results
           console.log(entry);
           const promise = this._messwerteService.getMesswerte(entry.id).toPromise()
-            promise.then((data)=>{
-              console.log(data);
-              this.messwerte.push(data[0]);
+            promise.then((mess)=>{
+              console.log(mess);
+              this.messwerte.push(mess[0]);
             })
           }
-        this.patients = data;
+        // add the data to the array
+        this.patients.push(...data);
         console.log(this.patients);
         console.log(this.messwerte);
       });
-
-  
   }
+
 
   getTraining(id){
     this._trainingsService.getTraining(id)

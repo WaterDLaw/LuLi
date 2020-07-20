@@ -7,6 +7,7 @@ import { Pneumologist } from '../../../models/pneumologist';
 import { PneumologistService } from '../../../services/pneumologist.service';
 import { TrainingsService } from '../../../services/trainings.service';
 import { MesswerteService } from 'app/services/messwerte.service';
+import { MailService } from 'app/services/mail.service';
 @Component({
   selector: 'app-create-clients',
   templateUrl: './create_clients.component.html',
@@ -27,7 +28,8 @@ export class CreateClientsComponent implements OnInit {
     private _messwerteService: MesswerteService,
     private _trainingService: TrainingsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _mailService: MailService
   ) { }
 
   ngOnInit() {
@@ -68,6 +70,9 @@ export class CreateClientsComponent implements OnInit {
           // create an empty messwerte table
           this._messwerteService.createMesswerte(data.id)
             .then( result =>{
+
+              //send email if everyhting worked out
+
 
               this.router.navigate(['clients'])
             })

@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Pneumologist } from '../models/pneumologist';
 import { ActionHistoryService } from './ActionHistory.service';
+import { Client } from 'app/models/Client';
 
 @Injectable()
 export class PneumologistService {
@@ -110,7 +111,7 @@ export class PneumologistService {
   getPatients(pneumologist_id:number){
     console.log("pneumo pateints");
     const token = this._authService.getToken();
-    return this.http.get<Array<Pneumologist>>(this.apiurl + `/api/pneumologist/${pneumologist_id}/getPatients?token=` + token);
+    return this.http.get<Array<Client>>(this.apiurl + `/api/pneumologist/${pneumologist_id}/getPatients?token=` + token);
   }
 
   // Update image link to database

@@ -33,7 +33,14 @@
             <input type="file" (change)="onFileSelected($event)" accept=".png,.jpg" />
             <button type="button"(click)="uploadSignature()">Upload</button>
         </div>
-        <img [src]="signature" height="200" *ngIf="signature">
+        <div>
+          <img [src]="signature" height="200" *ngIf="signature">
+          <p>Unterschrift anpassen:</p>
+          <label class="col-sm-2" for="unterschrift"></label>
+          <input type="file" (change)="onFileSelected($event)" accept=".png,.jpg" />
+          <button type="button"(click)="uploadSignature()">Upload</button>
+        </div>
+
         
       </div>
   

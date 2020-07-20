@@ -79,7 +79,7 @@ export class TrainingsService {
     console.log("Get participations");
     const token = this._authService.getToken();
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.get<Array<Client>>(this.apiurl + `/api/trainings/${training_id}/getParticipants?token=` + token);
+    return this.http.get<Client[]>(this.apiurl + `/api/trainings/${training_id}/getParticipants?token=` + token);
   }
 
   getParticipantsCalendar(){

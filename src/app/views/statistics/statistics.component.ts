@@ -8,7 +8,7 @@ import { StatistikPipe } from "../../pipes/statistikFilter";
 import { MesswerteService } from "../../services/messwerte.service";
 import { CatService } from "../../services/cat.service";
 import { CrqsasService } from "../../services/crqsas.service";
-import { ExcelService } from 'app/services/Excel.service';
+import { ExcelService } from 'app/services/excel.service';
 import { Crqsas } from 'app/models/Crqsas';
 import { saveAs } from 'file-saver';
 @Component({
