@@ -24,7 +24,8 @@ export class ShowTrainingComponent implements OnInit {
   arrCrqsasAfter: any[] = []
   arrCatBefore: any[] = [];
   arrCatAfter: any[] = [];
-
+  strTraining2: string;
+  strTraining3: string;
 
   constructor(
     private _trainingsService: TrainingsService,
@@ -76,6 +77,25 @@ export class ShowTrainingComponent implements OnInit {
     .subscribe(data => {
       this.training = data;
       console.log(this.training);
+
+      //create training str:
+      let training2Split = this.training.title.split(" ");
+      let training2Num = Number(training2Split[2]) -1;
+      //check if number is 0
+      if(training2Num == 0){
+        training2Num = 12;
+        training2Split[1] = String(Number(training2Split[1]) -1);
+      }
+      this.strTraining2 = training2Split[0] + " " + training2Split[1] + " " + training2Num;
+      training2Num = Number(training2Split[2]) -1;
+      if(training2Num == 0){
+        training2Num = 12;
+        training2Split[1] = String(Number(training2Split[1]) -1);
+      }
+      this.strTraining3 = training2Split[0] + " " + training2Split[1] + " " + (training2Num -1)
+
+      console.log(this.strTraining2);
+      console.log(this.strTraining3);
     })
   }
 

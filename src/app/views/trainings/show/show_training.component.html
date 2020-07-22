@@ -52,7 +52,7 @@
           </tr>
         </thead>
         <tbody *ngFor="let patient of patients">
-          <tr [style.background-color]="getBackgroundColor(patient.status)">
+          <tr [style.background-color]="getBackgroundColor(patient.status)" *ngIf="patient?.title == training?.title">
           
             <td>{{patient?.vorname}}</td>
             <td>{{patient?.name}}</td>
@@ -67,5 +67,78 @@
           </tr>
         </tbody>
       </table>
+  </div>
+</div>
+  <div class="card">
+    <div class="card-body">
+      <h2>{{strTraining2}}
+      </h2>
+      <hr />
+      <table class="table">
+          <thead>
+            <tr>
+              <th>Vorname</th>
+              <th>Nachname</th>
+              <th>Pneumologe</th>
+              <th>Geburtsdatum</th>
+              <th>Status</th>
+              <th style="text-align: center;">Entbindung Schweigepflicht</th>
+              <th></th>
+      
+            </tr>
+          </thead>
+          <tbody *ngFor="let patient of patients">
+            <tr [style.background-color]="getBackgroundColor(patient.status)" *ngIf="patient?.title == strTraining2">
+            
+              <td>{{patient?.vorname}}</td>
+              <td>{{patient?.name}}</td>
+              <td>{{patient?.pneumologistVorname}} {{patient?.pneumologistName}}</td>
+              <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
+              <td>{{patient?.status}}</td>
+              <td style="text-align: center;">
+                <input [(ngModel)]="patient.schweigepflicht" class="form-check-input" type="checkbox" value="" id="schweigepflicht" name="schweigepflicht" disabled>
+              </td>
+              <td><a routerLink="../../../clients/show/{{patient.id}}"class="btn btn-primary" ngbTooltip="Patient betrachten"><i class="icon-eye white"></i></a>
+              <a class="btn btn-danger"><i class="icon-trash white" ngbTooltip="Patient entfernen"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h2>{{strTraining3}}
+    </h2>
+        <hr />
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Pneumologe</th>
+                <th>Geburtsdatum</th>
+                <th>Status</th>
+                <th style="text-align: center;">Entbindung Schweigepflicht</th>
+                <th></th>
+        
+              </tr>
+            </thead>
+            <tbody *ngFor="let patient of patients">
+              <tr [style.background-color]="getBackgroundColor(patient.status)" *ngIf="patient?.title == strTraining3">
+              
+                <td>{{patient?.vorname}}</td>
+                <td>{{patient?.name}}</td>
+                <td>{{patient?.pneumologistVorname}} {{patient?.pneumologistName}}</td>
+                <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
+                <td>{{patient?.status}}</td>
+                <td style="text-align: center;">
+                  <input [(ngModel)]="patient.schweigepflicht" class="form-check-input" type="checkbox" value="" id="schweigepflicht" name="schweigepflicht" disabled>
+                </td>
+                <td><a routerLink="../../../clients/show/{{patient.id}}"class="btn btn-primary" ngbTooltip="Patient betrachten"><i class="icon-eye white"></i></a>
+                <a class="btn btn-danger"><i class="icon-trash white" ngbTooltip="Patient entfernen"></i></a></td>
+              </tr>
+            </tbody>
+          </table>
+
   </div>
 </div>  
