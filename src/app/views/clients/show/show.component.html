@@ -115,18 +115,23 @@
             <p>{{schweigepflicht}}</p>
             <hr />
             <h4>Schulung</h4>
-            <form name="demo">
-              <label>
+            <div class="row margin-bot">
+  
+              <div class="col-md-3" >
+              <label style="margin-right: 20px;">
                 1
-                <input type="radio" value="mario" name="characters">
+                <input type="checkbox" [(ngModel)]="patient.schulung1" value="" name="schulung1">
               </label>
-              &nbsp;&nbsp;&nbsp;&nbsp;
               <label>
                 2
-                <input type="radio" value="luigi" name="characters">
+                <input type="checkbox" [(ngModel)]="patient.schulung2" value="" name="schulung2">
               </label>
-            </form>
-            
+            </div>
+              <div class="col-md-9">
+                <a (click)="saveSchulung()" class="btn btn-primary white">Schulung speichern</a>
+              </div>
+  
+          </div>
           </div>
         </div>
         

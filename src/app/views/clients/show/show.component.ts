@@ -226,6 +226,18 @@ export class ShowComponent implements OnInit {
       })
   }
 
+  saveSchulung(){
+    console.log("schulung updated")
+    console.log(this.patient);
+    this._clientService.updateClient(this.patient)
+    .then(
+      data => {
+        console.log(data);
+      }
+    )
+    .catch(error => console.log(error));
+  }
+
 
   getPneumoname(id:number){
     let hispneumo =  this.pneumos.find(e => e.id == id);
