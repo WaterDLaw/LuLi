@@ -26,6 +26,10 @@ export class ShowTrainingComponent implements OnInit {
   arrCatAfter: any[] = [];
   strTraining2: string;
   strTraining3: string;
+  arrTraining1:any[]=[];
+  arrTraining2:any[]=[];
+  arrTraining3:any[]=[];
+
 
   constructor(
     private _trainingsService: TrainingsService,
@@ -54,6 +58,11 @@ export class ShowTrainingComponent implements OnInit {
           return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
         });
 
+        //create array for each
+        let priority = [ "Starter", "Nichtstarter", "Dropout"];
+        // Sort status
+        data.sort( ( a, b ) => priority.indexOf( a.status ) - priority.indexOf( b.status ) );
+ 
         // For each patient get the messwerte
         for (let entry of data){
           // get the crqsas results
@@ -70,6 +79,7 @@ export class ShowTrainingComponent implements OnInit {
         console.log(this.messwerte);
       });
   }
+
 
 
   getTraining(id){

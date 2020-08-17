@@ -1,8 +1,7 @@
 <div class="card">
   <div class="card-body">
-      <a class="btn btn-primary" ngbTooltip="Training als PDF downloaden" style="float:right;"><i class="icon-doc white"></i></a>
       <a routerLink="../../edit/{{training.id}}" ngbTooltip="Training bearbeiten" class="btn btn-primary" style="float:right;margin-right: 5px;"><i class="icon-pencil white"></i></a>
-      <span style="float:right;"><button (click)="excelExport()" ngbTooltip="Download als CSV Datei" class="btn btn-primary" style="float:right;margin-right: 5px; color:white"><i class="icon-cloud-download"></i></button></span>
+      <span style="float:right;"><button (click)="excelExport()" ngbTooltip="Download als Excel Datei" class="btn btn-primary" style="float:right;margin-right: 5px; color:white"><i class="icon-cloud-download"></i></button></span>
       <h2>Kursinformationen</h2>
       <hr />
       <table class="table table-sm">
@@ -56,8 +55,8 @@
           
             <td>{{patient?.vorname}}</td>
             <td>{{patient?.name}}</td>
-            <td>{{patient?.pneumologistVorname}} {{patient?.pneumologistName}}</td>
             <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
+            <td>{{patient?.pneumologistName}}</td>
             <td>{{patient?.status}}</td>
             <td style="text-align: center;">
               <input [(ngModel)]="patient.schweigepflicht" class="form-check-input" type="checkbox" value="" id="schweigepflicht" name="schweigepflicht" disabled>
@@ -92,8 +91,8 @@
             
               <td>{{patient?.vorname}}</td>
               <td>{{patient?.name}}</td>
-              <td>{{patient?.pneumologistVorname}} {{patient?.pneumologistName}}</td>
               <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
+              <td>{{patient?.pneumologistName}}</td>
               <td>{{patient?.status}}</td>
               <td style="text-align: center;">
                 <input [(ngModel)]="patient.schweigepflicht" class="form-check-input" type="checkbox" value="" id="schweigepflicht" name="schweigepflicht" disabled>
@@ -128,8 +127,8 @@
               
                 <td>{{patient?.vorname}}</td>
                 <td>{{patient?.name}}</td>
-                <td>{{patient?.pneumologistVorname}} {{patient?.pneumologistName}}</td>
                 <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
+                <td>{{patient?.pneumologistName}}</td>
                 <td>{{patient?.status}}</td>
                 <td style="text-align: center;">
                   <input [(ngModel)]="patient.schweigepflicht" class="form-check-input" type="checkbox" value="" id="schweigepflicht" name="schweigepflicht" disabled>

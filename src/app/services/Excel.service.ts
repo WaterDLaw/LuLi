@@ -61,6 +61,7 @@ export class ExcelService {
       'Pneumolog/in',
       'Rauchstatus',
       'Status',
+      /*
       'Grösse (m) vor',
       'Grösse (m) nach',
       'Gewicht (kg) vor',
@@ -127,7 +128,7 @@ export class ExcelService {
       'Müdigkeit nach',
       'Gefühlslage nach',
       'Bewältigung nach',
-    
+    */
     ])
 
 
@@ -168,7 +169,7 @@ export class ExcelService {
 
       //Data für Blatt eins
       wsPage.addRow([
-        data[i].training,
+        data[i].title,
         data[i].vorname,
         data[i].name, 
         gebdate,
@@ -179,9 +180,10 @@ export class ExcelService {
         data[i].telefon,
         data[i].email,
         diagnosen,
+        data[i].pneumologe,
         data[i].rauchstatus,
         data[i].status,
-        data[i].pneumologe,
+        /*
         messwerte[i].groesse_vor,
         messwerte[i].groesse_nach,
         messwerte[i].gewicht_vor,
@@ -250,7 +252,7 @@ export class ExcelService {
         crq_nach[i].fatique,
         crq_nach[i].emotion,
         crq_nach[i].mastery
-        
+        */
       ])
 
 
