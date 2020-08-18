@@ -226,8 +226,8 @@ export class ShowComponent implements OnInit {
       })
   }
 
-  saveSchulung(){
-    console.log("schulung updated")
+  saveInfo(){
+
     console.log(this.patient);
     this._clientService.updateClient(this.patient)
     .then(

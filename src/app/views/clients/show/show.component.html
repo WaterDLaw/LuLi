@@ -69,7 +69,20 @@
                 
               </div>
             </div>
+            <div class="row" style="margin-top:30px;">
+            <div class="col-md-12">
 
+              
+                Def. Kursabschluss: 
+                <input [(ngModel)]="patient.abschlussDate" type="date" id="abschlussDate" name="abschlussDate" style="width:200px; margin-left: 5px; margin-right: 5px;">
+                <a (click)="saveInfo()" class="btn btn-primary white">Speichern</a>
+              
+                
+          
+                
+              
+            </div>
+          </div>
           </div>
           <div class="col-md-6">
 
@@ -128,7 +141,7 @@
               </label>
             </div>
               <div class="col-md-9">
-                <a (click)="saveSchulung()" class="btn btn-primary white">Schulung speichern</a>
+                <a (click)="saveInfo()" class="btn btn-primary white">Schulung speichern</a>
               </div>
   
           </div>

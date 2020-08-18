@@ -100,11 +100,12 @@ export class ShowTrainingComponent implements OnInit {
       training2Num = Number(training2Split[2]) -2;
       console.log(training2Num);
       if(training2Num == 0){
-        training2Num = 13;
+        training2Num = 12;
         training2Split[1] = String(Number(training2Split[1]) -1);
+        training2Num -1
       }
       console.log(training2Num);
-      this.strTraining3 = training2Split[0] + " " + training2Split[1] + " " + (training2Num -1)
+      this.strTraining3 = training2Split[0] + " " + training2Split[1] + " " + (training2Num)
 
       console.log(this.strTraining2);
       console.log(this.strTraining3);

@@ -53,6 +53,7 @@ export interface Client{
     sao2?:number,
     trainingspuls?:string,
     Intervalttraining?:boolean,
-    schweigepflicht?:boolean
+    schweigepflicht?:boolean,
+    abschlussDate?:Date
 
 }
