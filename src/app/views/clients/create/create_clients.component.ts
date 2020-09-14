@@ -76,12 +76,13 @@ export class CreateClientsComponent implements OnInit {
 
               this.router.navigate(['clients'])
             })
-            .catch(error => console.log(error));
+            .catch(error => 
+              console.log(error));
 
           
         }
       )
-      .catch(error => console.log(error));
+      .catch(error => alert("Bitte überprüfen Sie das alle Pflichtfelder ausgefüllt sind."));
       
 
   }

@@ -390,6 +390,7 @@ export class ShowComponent implements OnInit {
   getMesswerte(patient_id:number){
     this._messwerteService.getMesswerte(patient_id)
       .subscribe(data => {
+        console.log(data);
         this.messwerte = data;
         // Gewicht has apperantly no comma
         this.messwerte[0].gewicht_vor = Math.round((this.messwerte[0].gewicht_vor))
