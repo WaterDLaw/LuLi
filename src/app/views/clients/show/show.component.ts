@@ -311,6 +311,7 @@ export class ShowComponent implements OnInit {
     // send the doc to the temporary Signature folder
     this._pdfService.uploadTempSignature(fd).subscribe(data =>{
       console.log(data);
+      console.log("DonwloadVerordnung")
       this.downloadVerordnung();
     })
 

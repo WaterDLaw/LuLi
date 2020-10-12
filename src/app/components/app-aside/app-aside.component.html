@@ -1,3 +1,25 @@
 <aside class="aside-menu">
-  
+    <div class="row">
+        <div class="col-sm-12" style="margin-top: 30px; margin-left: 20px;">
+            <button class="btn btn-primary" (click)="openModal(content)">Sende Error</button>
+        </div>
+
+    </div>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Error melden</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>Bitte das Problem so gut es geht beschreiben und Email hinterlassen:</p>
+            <textarea [(ngModel)]="message"  class="form-control" id="message" placeholder="message" name="message"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="sendError()" class="btn btn-outline-dark">Senden</button>
+        </div>
+        
+      </ng-template>
 </aside>
+

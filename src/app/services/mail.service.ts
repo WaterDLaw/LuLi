@@ -24,5 +24,12 @@ export class MailService {
     return this.http.get(this.apiurl + `/api/mail/newPatient?token=` + token);
   }
 
+  sendNewError(message:any){
+    console.log(message);
+    const token = this._authService.getToken();
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.get(this.apiurl + `/api/mail/newError/${message}?token=` + token);
+  }
+
 
 }
