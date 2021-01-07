@@ -66,18 +66,34 @@ export class CreateClientsComponent implements OnInit {
         data =>{
           console.log(data);
           console.log(data.id);
+          console.log(data[0]);
           console.log(this.trainingAdd);
+          let messagemax="";
+          let messagenew="";
+          // check if patient was created or if there is an error
+          if(data[0]=="false"){
+            messagemax= "Die maximale Anzahl Patienten für diesen Kurs wurde erreicht. ";
+          }
+          if(data[1]=="false"){
+            messagenew = "Die maximale Anzahl neuer Patienten für diesen Kurs wurde erreicht. ";
+          }
+          if(messagemax=="" && messagenew==""){
+            console.log("create MESSWERT");
           // create an empty messwerte table
           this._messwerteService.createMesswerte(data.id)
-            .then( result =>{
+          .then( result =>{
 
-              //send email if everyhting worked out
+            //send email if everyhting worked out
 
 
-              this.router.navigate(['clients'])
-            })
-            .catch(error => 
-              console.log(error));
+            this.router.navigate(['clients'])
+          })
+          .catch(error => 
+            console.log(error));
+          }else{
+            alert(messagemax + messagenew);
+          }
+          
 
           
         }

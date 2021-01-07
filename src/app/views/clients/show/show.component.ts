@@ -1049,13 +1049,34 @@ export class ShowComponent implements OnInit {
     return trainingName;
   }
 
+  //Adds the client to a training and returns maxanzahl, maxnew check
   addTraining(training: Training){
     // adds the training to the patient
     this._clientService.addTraining(this.patient, training)
       .then(data =>{
-        //relaod the patients if succesful updated
-        this.getPatient(this.route.snapshot.params['id']);
-        this.modalReference.close();
+        let messageMax="";
+        let messageNew="";
+        console.log("return");
+        console.log(data);
+
+        //max total check
+        if(!data[0]){
+          messageMax = "Die maximale Anzahl Patienten für diesne Kurs wurde erreicht. "
+        }
+        //max new check
+        if(!data[1]){
+          messageNew = "Die maximale Anzahl neuer Patienten für diesen Kurs wurde erreicht. "
+        }
+
+        if(!data[0] || !data[1]){
+          alert(messageMax + messageNew);
+        }else{
+          //relaod the patients if succesful updated
+          this.getPatient(this.route.snapshot.params['id']);
+          this.modalReference.close();
+        }
+
+
       })
       .catch(error => {
         console.log(error);
