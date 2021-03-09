@@ -21,6 +21,19 @@ export class CalendarComponent implements OnInit {
 
   trainings: Training[];
   arrTraining: any[] = [null,null,null,null,null,null,null,null,null,null,null,null];
+
+  arrTrainingThisYear: any[] = [null,null,null,null,null,null,null,null,null,null,null,null];
+  arrTrainingLastYear: any[] = [null,null,null,null,null,null,null,null,null,null,null,null];
+
+  arrNumberThisYear: any[] = [null,null,null,null,null,null,null,null,null,null,null,null];
+  arrNumberLastYear: any[] = [null,null,null,null,null,null,null,null,null,null,null,null];
+  
+  arrMaxNumberThisYear: any[] = [null,null,null,null,null,null,null,null,null,null,null,null];
+
+  arrNewNumberThisYear: any[] = [null,null,null,null,null,null,null,null,null,null,null,null];
+
+  arrAvailable: any[] = [null,null,null,null,null,null,null,null,null,null,null,null];
+
   arrCount: any[];
   loaded: boolean = false;
   maxNumber = 12;
@@ -78,8 +91,9 @@ export class CalendarComponent implements OnInit {
         .subscribe(data =>{
           this.trainings = data;
           console.log(this.trainings);
-          this.calculatePatients(participants);
-
+          //this.calculatePatients(participants);
+          this.checkPatients(participants);
+          this.calculateAvailabilty();
         })
         
       }).catch(err => {
@@ -175,6 +189,113 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  checkPatients(arr: any[]){
+
+    // Filter by location
+    let arrClients: any[];
+    arrClients = this.filterArrayLocation(arr);
+
+    let currentYear = (new Date()).getFullYear();
+    console.log(currentYear);
+
+    // Sort and check by this year and last year
+    arrClients.forEach((client)=>{
+
+      console.log(client.title);
+      // split the string (Location, year, month)
+      var splitTitle = client.title.split(" ");
+      console.log(splitTitle)
+      if(splitTitle[1] == currentYear){
+
+        this.arrTrainingThisYear[splitTitle[2]-1] = this.arrTrainingThisYear[splitTitle[2]-1] +1
+        console.log(this.arrTrainingThisYear);
+
+      }
+      if(splitTitle[1] == currentYear-1){
+
+        this.arrTrainingLastYear[splitTitle[2]-1] = this.arrTrainingLastYear[splitTitle[2]-1] +1
+        console.log(this.arrTrainingLastYear);
+      }
+    })
+
+    // Create the shown number based on 2 rules Max Training and Max new per month
+    // The number can never succeed the max training while also not the per month
+    // The amount of people participate is based on this month + the last 2    
+
+    // Calculate the number Total Number
+
+    // calculate for each of the training this Year
+
+    this.arrNumberThisYear[0] = this.arrTrainingThisYear[0] +this.arrTrainingLastYear[10] +this.arrTrainingLastYear[11];
+    this.arrNumberThisYear[1] = this.arrTrainingThisYear[0] +this.arrTrainingThisYear[1] +this.arrTrainingLastYear[11];
+    this.arrNumberThisYear[2] = this.arrTrainingThisYear[0] +this.arrTrainingThisYear[1] +this.arrTrainingThisYear[2];
+    this.arrNumberThisYear[3] = this.arrTrainingThisYear[1] +this.arrTrainingThisYear[2] +this.arrTrainingThisYear[3];
+    this.arrNumberThisYear[4] = this.arrTrainingThisYear[2] +this.arrTrainingThisYear[3] +this.arrTrainingThisYear[4];
+    this.arrNumberThisYear[5] = this.arrTrainingThisYear[3] +this.arrTrainingThisYear[4] +this.arrTrainingThisYear[5];
+    this.arrNumberThisYear[6] = this.arrTrainingThisYear[4] +this.arrTrainingThisYear[5] +this.arrTrainingThisYear[6];
+    this.arrNumberThisYear[7] = this.arrTrainingThisYear[5] +this.arrTrainingThisYear[6] +this.arrTrainingThisYear[7];
+    this.arrNumberThisYear[8] = this.arrTrainingThisYear[6] +this.arrTrainingThisYear[7] +this.arrTrainingThisYear[8];
+    this.arrNumberThisYear[9] = this.arrTrainingThisYear[7] +this.arrTrainingThisYear[8] +this.arrTrainingThisYear[9];
+    this.arrNumberThisYear[10] = this.arrTrainingThisYear[8] +this.arrTrainingThisYear[9] +this.arrTrainingThisYear[10];
+    this.arrNumberThisYear[11] = this.arrTrainingThisYear[9] +this.arrTrainingThisYear[10] +this.arrTrainingThisYear[11];
+
+    console.log(this.arrNumberThisYear);
+
+
+    // Calculate how much clients are still availabel for this month
+    
+
+  }
+
+  calculateAvailabilty(){
+
+    let currentYear = (new Date()).getFullYear();
+
+    // For each month of the year we have to check the max amount and max new people
+    this.trainings.forEach((training)=>{
+      if(this.location == "Olten"){
+        if(training.ort =="KSO"){
+      // Check if the Training is from this year
+      // training / place / year / month
+      let trainingtitle = training.title.split(" ")
+
+      if(Number(trainingtitle[1]) == currentYear){
+        this.arrMaxNumberThisYear[Number(trainingtitle[2])-1] = training.max_anzahl;
+        this.arrNewNumberThisYear[Number(trainingtitle[2])-1] = training.max_new;
+      } 
+    }
+  }
+    })
+
+    console.log(this.arrMaxNumberThisYear);
+    console.log(this.arrNewNumberThisYear);
+
+    // Check if they can get new people this year and then how much is left in total
+    for(let i = 0;i<this.arrTrainingThisYear.length; i++){
+
+      let spotleftNew = this.arrNewNumberThisYear[i] - this.arrTrainingThisYear[i];
+      console.log(spotleftNew);
+
+      let spotleftMax = this.arrMaxNumberThisYear[i] - this.arrNumberThisYear[i];
+      console.log(this.arrMaxNumberThisYear[i])
+      console.log(this.arrNumberThisYear[i])
+      console.log(spotleftMax);
+
+      // If the spots per training are more than 0 check if that many spots are available if yes take that number if not take the max number
+
+
+
+        if(spotleftMax >= spotleftNew){
+          this.arrAvailable[i] = spotleftNew;
+        }else{
+          this.arrAvailable[i] = spotleftMax;
+        }
+
+
+    }
+
+  }
+
   calculatePatients(arr: any[]){
 
     let arrClients: any[];
@@ -194,51 +315,51 @@ export class CalendarComponent implements OnInit {
             case 0:
                 console.log("JANUAR");
               this.jan = training.max_anzahl
-              console.log(this.jan)
+              
               break;
             case 1:
               this.feb = training.max_anzahl
-              console.log(this.feb)
+              
               break;
             case 2:
               this.marz = training.max_anzahl
-              console.log(this.marz)
+              
               break;
             case 3:
               this.apr = training.max_anzahl
-              console.log(this.apr)
+              
               break;
             case 4:
               this.mai = training.max_anzahl
-              console.log(this.mai)
+              
               break;
             case 5:
               this.jun = training.max_anzahl
-              console.log(this.jun)
+              
               break;
             case 6:
               this.jul = training.max_anzahl
-              console.log(this.jul)
+              
               break;
             case 7:
               this.aug = training.max_anzahl
-              console.log(this.aug)
+              
               break;
             case 8:
               this.sep = training.max_anzahl
-              console.log(this.sep)
+              
               break;
             case 9:
               this.okt = training.max_anzahl
-              console.log(this.okt)
+             
               break;
             case 10:
               this.nov = training.max_anzahl
-              console.log(this.nov)
+            
               break;
             case 11:
               this.dez = training.max_anzahl
-              console.log(this.dez)
+            
               break;
           }
   
@@ -256,37 +377,37 @@ export class CalendarComponent implements OnInit {
               console.log(this.jan)
             case 1:
               this.feb = training.max_anzahl
-              console.log(this.feb)
+            
             case 2:
               this.marz = training.max_anzahl
-              console.log(this.marz)
+            
             case 3:
               this.apr = training.max_anzahl
-              console.log(this.apr)
+             
             case 4:
               this.mai = training.max_anzahl
-              console.log(this.mai)
+            
             case 5:
               this.jun = training.max_anzahl
-              console.log(this.jun)
+           
             case 6:
               this.jul = training.max_anzahl
-              console.log(this.jul)
+           
             case 7:
               this.aug = training.max_anzahl
-              console.log(this.aug)
+           
             case 8:
               this.sep = training.max_anzahl
-              console.log(this.sep)
+             
             case 9:
               this.okt = training.max_anzahl
-              console.log(this.okt)
+         
             case 10:
               this.nov = training.max_anzahl
-              console.log(this.nov)
+         
             case 11:
               this.dez = training.max_anzahl
-              console.log(this.dez)
+            
           }
         }
       }

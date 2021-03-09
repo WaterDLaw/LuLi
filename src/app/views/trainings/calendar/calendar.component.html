@@ -24,18 +24,18 @@
     <tbody>
       <tr>
         <th scope="row"> Freie Plätze</th>
-        <td (click)="routeTraining(0)"  class="align-center" [ngClass]="{'low': isLow(jan),'medium': isMedium(jan), 'high': isHigh(jan)}">{{jan}}</td>
-        <td (click)="routeTraining(1)"  class="align-center" [ngClass]="{'low': isLow(feb),'medium': isMedium(feb), 'high': isHigh(feb)}">{{feb}}</td>
-        <td (click)="routeTraining(2)"  class="align-center" [ngClass]="{'low': isLow(marz),'medium': isMedium(marz), 'high': isHigh(marz)}">{{marz}}</td>
-        <td (click)="routeTraining(3)"  class="align-center" [ngClass]="{'low': isLow(apr),'medium': isMedium(apr), 'high': isHigh(apr)}">{{apr}}</td>
-        <td (click)="routeTraining(4)"  class="align-center" [ngClass]="{'low': isLow(mai),'medium': isMedium(mai), 'high': isHigh(mai)}">{{mai}}</td>
-        <td (click)="routeTraining(5)"  class="align-center" [ngClass]="{'low': isLow(jun),'medium': isMedium(jun), 'high': isHigh(jun)}">{{jun}}</td>
-        <td (click)="routeTraining(6)"  class="align-center" [ngClass]="{'low': isLow(jul),'medium': isMedium(jul), 'high': isHigh(jul)}">{{jul}}</td>
-        <td (click)="routeTraining(7)"  class="align-center" [ngClass]="{'low': isLow(aug),'medium': isMedium(aug), 'high': isHigh(aug)}">{{aug}}</td>
-        <td (click)="routeTraining(8)"  class="align-center" [ngClass]="{'low': isLow(sep),'medium': isMedium(sep), 'high': isHigh(sep)}">{{sep}}</td>
-        <td (click)="routeTraining(9)"  class="align-center" [ngClass]="{'low': isLow(okt),'medium': isMedium(okt), 'high': isHigh(okt)}">{{okt}}</td>
-        <td (click)="routeTraining(10)"  class="align-center" [ngClass]="{'low': isLow(nov),'medium': isMedium(nov), 'high': isHigh(nov)}">{{nov}}</td>
-        <td (click)="routeTraining(11)"  class="align-center" [ngClass]="{'low': isLow(dez),'medium': isMedium(dez), 'high': isHigh(dez)}">{{dez}}</td>
+        <td (click)="routeTraining(0)"  class="align-center" [ngClass]="{'low': isLow(jan),'medium': isMedium(jan), 'high': isHigh(jan)}">{{arrAvailable[0]}}</td>
+        <td (click)="routeTraining(1)"  class="align-center" [ngClass]="{'low': isLow(feb),'medium': isMedium(feb), 'high': isHigh(feb)}">{{arrAvailable[1]}}</td>
+        <td (click)="routeTraining(2)"  class="align-center" [ngClass]="{'low': isLow(marz),'medium': isMedium(marz), 'high': isHigh(marz)}">{{arrAvailable[2]}}</td>
+        <td (click)="routeTraining(3)"  class="align-center" [ngClass]="{'low': isLow(apr),'medium': isMedium(apr), 'high': isHigh(apr)}">{{arrAvailable[3]}}</td>
+        <td (click)="routeTraining(4)"  class="align-center" [ngClass]="{'low': isLow(mai),'medium': isMedium(mai), 'high': isHigh(mai)}">{{arrAvailable[4]}}</td>
+        <td (click)="routeTraining(5)"  class="align-center" [ngClass]="{'low': isLow(jun),'medium': isMedium(jun), 'high': isHigh(jun)}">{{arrAvailable[5]}}</td>
+        <td (click)="routeTraining(6)"  class="align-center" [ngClass]="{'low': isLow(jul),'medium': isMedium(jul), 'high': isHigh(jul)}">{{arrAvailable[6]}}</td>
+        <td (click)="routeTraining(7)"  class="align-center" [ngClass]="{'low': isLow(aug),'medium': isMedium(aug), 'high': isHigh(aug)}">{{arrAvailable[7]}}</td>
+        <td (click)="routeTraining(8)"  class="align-center" [ngClass]="{'low': isLow(sep),'medium': isMedium(sep), 'high': isHigh(sep)}">{{arrAvailable[8]}}</td>
+        <td (click)="routeTraining(9)"  class="align-center" [ngClass]="{'low': isLow(okt),'medium': isMedium(okt), 'high': isHigh(okt)}">{{arrAvailable[9]}}</td>
+        <td (click)="routeTraining(10)"  class="align-center" [ngClass]="{'low': isLow(nov),'medium': isMedium(nov), 'high': isHigh(nov)}">{{arrAvailable[10]}}</td>
+        <td (click)="routeTraining(11)"  class="align-center" [ngClass]="{'low': isLow(dez),'medium': isMedium(dez), 'high': isHigh(dez)}">{{arrAvailable[11]}}</td>
       </tr>
 
     </tbody>

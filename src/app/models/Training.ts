@@ -30,5 +30,6 @@ export interface Training{
     feedback_bogen: boolean,
     COPD_bogen: boolean,
     belegt: boolean,
-    max_anzahl: number
+    max_anzahl: number,
+    max_new: number
 }
