@@ -36,8 +36,8 @@ export class CreateTrainingComponent implements OnInit {
   ngOnInit() {
 
     this.training = {} as Training;
-    this.training.max_anzahl = 10;
-    this.training.max_new = 4;
+    //this.training.max_anzahl = 10;
+    //this.training.max_new = 4;
 
   }
 
