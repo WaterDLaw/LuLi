@@ -18,13 +18,13 @@
   <div class="form-group row">
     <label class="col-sm-2" for="status">Maximale Anzahl</label>
     <div class="col-sm-10">
-      <input [(ngModel)]="training.max_anzahl" class="form-control" value="" id="max_anzahl" value="10" name="max_anzahl">
+      <input [(ngModel)]="training.max_anzahl" class="form-control" id="max_anzahl"  name="max_anzahl">
     </div>
   </div>
-  <div class="form-group row">
+  <div *ngIf="training.ort=='KSO'" class="form-group row">
     <label class="col-sm-2" for="status">Maximale neue Patienten</label>
     <div class="col-sm-10">
-      <input [(ngModel)]="training.max_new" class="form-control" value="" id="max_new" name="max_new">
+      <input [(ngModel)]="training.max_new" class="form-control"  id="max_new" name="max_new">
     </div>
   </div>
 

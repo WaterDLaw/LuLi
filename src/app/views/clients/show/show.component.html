@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
 
-        <span style="float:right;"><button (click)="downloadExcel()" ngbTooltip="Download als CSV Datei" class="btn btn-primary" style="float:right;margin-right: 5px; color:white"><i class="icon-cloud-download"></i></button></span>
+        <span style="float:right;"><button (click)="downloadExcel()" ngbTooltip="Download als Excel Datei" class="btn btn-primary" style="float:right;margin-right: 5px; color:white"><i class="icon-cloud-download"></i></button></span>
         <a (click)="downloadpdf()"class="btn btn-primary" style="float:right;margin-right: 5px;" ngbTooltip="Zusammenfassung Werte als PDF downloaden"><i class="icon-doc white"></i></a>
         <a (click)="getTrainingFormular()"class="btn btn-primary" style="float:right;margin-right: 5px;" ngbTooltip="Trainingsinfos für Physio als PDF downloaden"><i class="icon-doc white"></i></a>
         <a (click)="openModal(selectPneumo)" class="btn btn-primary" style="float:right;margin-right: 5px;" ngbTooltip="Verordnung Physiotherapie"><i class="icon-event white"></i></a>
@@ -326,12 +326,12 @@
               <!-- Distanz Meter -->
               <tr>
                 <th>Distanz Meter (m)/(%Soll)</th>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.distanzM_vor}} ( {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_vor, messwerte[0]?.gewicht_vor, status_vor)}}%)</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.distanzM_vor}} ({{calcDistanzMeter(patient?.geschlecht,messwerte[0]?.groesse_vor, messwerte[0]?.gewicht_vor,messwerte[0]?.distanzM_vor, status_vor)}}m)( {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_vor, messwerte[0]?.gewicht_vor, status_vor)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].distanzM_vor" tabindex="7" type="text" style="width:200px;"class="form-control" id="distanzM_vor" placeholder="" name="distanzM_vor">
                   {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_vor, messwerte[0]?.gewicht_vor,status_vor)}}%
                 </td>
-                <td *ngIf="!measurmentEdit">{{messwerte[0]?.distanzM_nach}} ({{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_nach, messwerte[0]?.gewicht_nach, status_nach)}}%)</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0]?.distanzM_nach}} ({{calcDistanzMeter(patient?.geschlecht,messwerte[0]?.groesse_nach, messwerte[0]?.gewicht_nach,messwerte[0]?.distanzM_nach, status_nach)}}m) ({{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_nach, messwerte[0]?.gewicht_nach, status_nach)}}%)</td>
                 <td *ngIf="measurmentEdit">
                   <input [(ngModel)]="messwerte[0].distanzM_nach" tabindex="26" type="text" style="width:200px;"class="form-control" id="distanzM_nach" placeholder="" name="distanzM_nach">
                   {{calcDistanzSoll(patient?.geschlecht,messwerte[0]?.groesse_nach, messwerte[0]?.gewicht_nach, status_nach)}}%
@@ -340,9 +340,9 @@
               <!-- SaO2min -->
               <tr>
                 <th>SaO2min (%) </th>
-                <td *ngIf="!measurmentEdit">{{messwerte[0].saO2min_vor | percent}}</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0].saO2min_vor |percent}}</td>
                 <td *ngIf="measurmentEdit"><input  [(ngModel)]="messwerte[0].saO2min_vor" (change)="messwerte[0].saO2min_vor = $event.target.value / 100" tabindex="8" style="width:200px;"class="form-control" id="saO2min_vor" placeholder="" name="saO2min_vor"></td>
-                <td *ngIf="!measurmentEdit">{{messwerte[0].saO2min_nach | percent}}</td>
+                <td *ngIf="!measurmentEdit">{{messwerte[0].saO2min_nach| percent }}</td>
                 <td *ngIf="measurmentEdit"><input [(ngModel)]="messwerte[0].saO2min_nach"  (change)="messwerte[0].saO2min_nach = $event.target.value / 100" tabindex="27"  style="width:200px;"class="form-control" id="saO2min_nach" placeholder="" name="saO2min_nach"></td>
               </tr>
             </tbody>

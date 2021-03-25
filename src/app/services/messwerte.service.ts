@@ -113,6 +113,30 @@ export class MesswerteService {
     return gehtestSoll.toFixed(0) ;
   }
 
+  calcDistanzMeter(geschlecht, groesse, alter, gewicht,meter){
+     let gehtestMeter = 0;
+     let gehtestSoll = 0;
+     
+     console.log("METER")
+     console.log(meter);
+     
+
+     if(geschlecht == "m"){
+
+      gehtestSoll = 218+((5.14*groesse*100)-(5.32*alter))-(1.8*gewicht);
+      gehtestMeter = meter / gehtestSoll * 100
+
+      console.log(gehtestMeter)
+      console.log(gehtestSoll)
+     }
+
+     if(geschlecht == "w"){
+      gehtestSoll = 218+((5.14*groesse*100)-5.32*alter)-(1.8*gewicht+51.31);
+      gehtestMeter = meter / gehtestSoll * 100
+     }
+     return gehtestSoll.toFixed(0);
+  }
+
   calcMaxLeistung(geschlecht, groesse,alter){
 
     let maxLeistungSoll= 0;

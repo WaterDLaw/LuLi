@@ -14,8 +14,8 @@
     <thead>
       <tr>
         <th>Anrede</th>
-        <th>Vorname</th>
         <th>Nachname</th>
+        <th>Vorname</th>
         <th></th>
 
       </tr>
@@ -24,8 +24,8 @@
       <tr>
       
         <td>{{pneumologist?.anrede}}</td>
-        <td>{{pneumologist?.vorname}}</td>
         <td>{{pneumologist?.name}}</td>
+        <td>{{pneumologist?.vorname}}</td>
         <td>
         <a routerLink="show/{{pneumologist.id}}" ngbTooltip="Pneumologen betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
         <a routerLink="edit/{{pneumologist.id}}"class="btn btn-primary" ngbTooltip="Pneumologen bearbeiten" ><i class="icon-pencil white"></i></a>

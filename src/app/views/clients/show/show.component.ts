@@ -850,6 +850,18 @@ export class ShowComponent implements OnInit {
     }
     return dsoll;
   }
+  calcDistanzMeter(geschlecht,groesse,gewicht,meter, status?:string,){
+    let age;
+    var diff_ms = Date.now() - new Date(this.patient.geburtsdatum).getTime();
+    var age_dt = new Date(diff_ms); 
+
+    age = Math.abs(age_dt.getUTCFullYear() - 1970);
+
+    let dsoll = this._messwerteService.calcDistanzMeter(geschlecht,groesse,age,gewicht,meter);
+
+    return dsoll;
+  }
+
 
   calcMaxLeistung(geschlecht,groesse, status?:string){
     let age;

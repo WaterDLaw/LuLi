@@ -93,7 +93,13 @@ export class CalendarComponent implements OnInit {
           console.log(this.trainings);
           //this.calculatePatients(participants);
           this.checkPatients(participants);
-          this.calculateAvailabilty();
+          if(this.location=="Olten"){
+            this.calculateAvailabiltyOlten();
+          }
+          if(this.location=="Solothurn"){
+            this.calculateAvailabiltySolothurn();
+          }
+          
         })
         
       }).catch(err => {
@@ -247,7 +253,7 @@ export class CalendarComponent implements OnInit {
 
   }
 
-  calculateAvailabilty(){
+  calculateAvailabiltyOlten(){
 
     let currentYear = (new Date()).getFullYear();
 
@@ -294,6 +300,47 @@ export class CalendarComponent implements OnInit {
 
     }
 
+  }
+
+  calculateAvailabiltySolothurn(){
+    let currentYear = (new Date()).getFullYear();
+
+    // For each month of the year we have to check the max amount and max new people
+    this.trainings.forEach((training)=>{
+      if(this.location == "Solothurn"){
+        if(training.ort =="BSS"){
+      // Check if the Training is from this year
+      // training / place / year / month
+      let trainingtitle = training.title.split(" ")
+
+      if(Number(trainingtitle[1]) == currentYear){
+        this.arrMaxNumberThisYear[Number(trainingtitle[2])-1] = training.max_anzahl;
+      } 
+    }
+  }
+    })
+
+    console.log(this.arrMaxNumberThisYear);
+  
+
+    // Check if they can get new people this year and then how much is left in total
+    for(let i = 0;i<this.arrTrainingThisYear.length; i++){
+
+      let spotleftMax = this.arrMaxNumberThisYear[i] - this.arrNumberThisYear[i];
+      console.log(this.arrMaxNumberThisYear[i])
+      console.log(this.arrNumberThisYear[i])
+      console.log(spotleftMax);
+
+      // If the spots per training are more than 0 check if that many spots are available if yes take that number if not take the max number
+
+
+
+
+      this.arrAvailable[i] = spotleftMax;
+
+
+
+    }
   }
 
   calculatePatients(arr: any[]){

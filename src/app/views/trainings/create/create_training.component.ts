@@ -10,7 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CreateTrainingComponent implements OnInit {
 
   training: Training;
-
+  location: string;
+  olten = false;
   // Time
   /*
   private montag_start;

@@ -4,14 +4,7 @@
     <hr />
 
     <form  #patientForm="ngForm" (ngSubmit)="patientForm.form.valid && onSubmit()" novalidate>
-        <div class="form-group row">
-            <label class="col-sm-2" for="vorname">Vorname*</label>
-            <div class="col-sm-10">
-                <input [(ngModel)]="patient.vorname" type="text" class="form-control" id="vorname"  placeholder="Vorname" name="vorname" required>
-       
-            </div>
-            
-        </div>
+      
         <div class="form-group row">
             <label class="col-sm-2" for="name">Name*</label>
             <div class="col-sm-10">
@@ -20,9 +13,10 @@
             
         </div>
         <div class="form-group row">
-            <label class="col-sm-2" for="email">Email</label>
+            <label class="col-sm-2" for="vorname">Vorname*</label>
             <div class="col-sm-10">
-                <input [(ngModel)]="patient.email" type="text" class="form-control" id="email" placeholder="Email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <input [(ngModel)]="patient.vorname" type="text" class="form-control" id="vorname"  placeholder="Vorname" name="vorname" required>
+       
             </div>
             
         </div>
@@ -33,6 +27,57 @@
             </div>
             
         </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="groesse">Geschlecht*</label>
+            <div class="col-sm-10">
+            <div class="form-check">
+                <input [(ngModel)]="patient.geschlecht" class="form-check-input" type="radio" name="geschlecht" id="maennlich" value="m" name="maennlich" required>
+                <label class="form-check-label" for="maennlich">
+                    M
+                </label>
+      
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="patient.geschlecht" class="form-check-input" type="radio" name="geschlecht" id="weiblich" value="w" name="weiblich" required>
+                <label class="form-check-label" for="weiblich">
+                    W
+                </label>
+            </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="strasse">Strasse + Nr.</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.strasse" type="text" class="form-control" id="strasse" placeholder="Strasse und Hausnummer" name="strasse" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="plz">PLZ</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.plz" type="text" class="form-control" id="plz" placeholder="PLZ" name="plz" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="wohnort">Wohnort</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.wohnort" type="text" class="form-control" id="wohnort" placeholder="Wohnort" name="wohnort" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="telefon">Telefon*</label>
+            <div class="col-sm-10">
+                    <input [(ngModel)]="patient.telefon" type="text" class="form-control" id="telefon" placeholder="Telefon" name="telefon" required>
+            </div>
+            
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2" for="email">Email</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="patient.email" type="text" class="form-control" id="email" placeholder="Email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+            </div>
+            
+        </div>
+
         <!--
         <div class="form-group row">
             <label class="col-sm-2" for="groesse">Grösse in m</label>
@@ -42,24 +87,7 @@
             
         </div>
         -->
-        <div class="form-group row">
-                <label class="col-sm-2" for="groesse">Geschlecht*</label>
-                <div class="col-sm-10">
-                <div class="form-check">
-                    <input [(ngModel)]="patient.geschlecht" class="form-check-input" type="radio" name="geschlecht" id="maennlich" value="m" name="maennlich" required>
-                    <label class="form-check-label" for="maennlich">
-                        M
-                    </label>
-          
-                </div>
-                <div class="form-check">
-                    <input [(ngModel)]="patient.geschlecht" class="form-check-input" type="radio" name="geschlecht" id="weiblich" value="w" name="weiblich" required>
-                    <label class="form-check-label" for="weiblich">
-                        W
-                    </label>
-                </div>
-                </div>
-        </div>
+        
         <!--
         <div class="form-group row">
                 <label class="col-sm-2" for="groesse">Sprache</label>
@@ -92,31 +120,8 @@
                 </div>
         </div>
         -->
-        <div class="form-group row">
-            <label class="col-sm-2" for="telefon">Telefon*</label>
-            <div class="col-sm-10">
-                    <input [(ngModel)]="patient.telefon" type="text" class="form-control" id="telefon" placeholder="Telefon" name="telefon" required>
-            </div>
-            
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2" for="strasse">Strasse + Nr.</label>
-            <div class="col-sm-10">
-                <input [(ngModel)]="patient.strasse" type="text" class="form-control" id="strasse" placeholder="Strasse und Hausnummer" name="strasse" >
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2" for="plz">PLZ</label>
-            <div class="col-sm-10">
-                <input [(ngModel)]="patient.plz" type="text" class="form-control" id="plz" placeholder="PLZ" name="plz" >
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2" for="wohnort">Wohnort</label>
-            <div class="col-sm-10">
-                <input [(ngModel)]="patient.wohnort" type="text" class="form-control" id="wohnort" placeholder="Wohnort" name="wohnort" >
-            </div>
-        </div>
+
+       
         <div class="form-group row">
             <label class="col-sm-2" for="status">Status*</label>
             <div class="col-sm-10">

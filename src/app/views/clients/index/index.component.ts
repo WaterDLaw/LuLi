@@ -50,6 +50,11 @@ export class IndexComponent implements OnInit {
     this._clientService.getClients()
       .subscribe(data => {
         // Get the body of the response
+        //sort patients by dates
+        data.sort(function(a,b) { 
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime() 
+        });
+
         this.patients = data;
       
       })

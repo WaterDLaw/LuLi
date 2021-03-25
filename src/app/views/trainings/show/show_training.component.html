@@ -45,8 +45,8 @@
     <table class="table">
         <thead>
           <tr>
-            <th>Vorname</th>
             <th>Nachname</th>
+            <th>Vorname</th>
             <th>Pneumologe</th>
             <th>Geburtsdatum</th>
             <th>Status</th>
@@ -57,9 +57,8 @@
         </thead>
         <tbody *ngFor="let patient of patients">
           <tr [style.background-color]="getBackgroundColor(patient.status)" *ngIf="patient?.title == training?.title">
-          
-            <td>{{patient?.vorname}}</td>
             <td>{{patient?.name}}</td>
+            <td>{{patient?.vorname}}</td>
             <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
             <td>{{patient?.pneumologistName}}</td>
             <td>{{patient?.status}}</td>

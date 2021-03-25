@@ -12,8 +12,8 @@
   <table class="table" style="margin-top:10px;">
     <thead>
       <tr>
-        <th>Vorname</th>
         <th>Nachname</th>
+        <th>Vorname</th>
         <th>Geburtsdatum</th>
         <th>Wohnort</th>
         <th></th>
@@ -22,9 +22,8 @@
     </thead>
     <tbody *ngFor="let patient of patients | filter : 'name' : searchString;">
       <tr>
-      
-        <td>{{patient?.vorname}}</td>
         <td>{{patient?.name}}</td>
+        <td>{{patient?.vorname}}</td>
         <td>{{patient?.geburtsdatum | date: 'dd. MMMM yyyy'}}</td>
         <td>{{patient?.wohnort}}</td>
         <td><a routerLink="show/{{patient.id}}" ngbTooltip="Patient betrachten" class="btn btn-primary"><i class="icon-eye white"></i></a>
