@@ -96,6 +96,19 @@ export class ClientsService {
     .toPromise();
   }
 
+  // Removes Client from Training
+  removeFromTraining(patient: Client, training: Training){
+    this._actionHistoryService.createHistoryEntry("Patient", "Vom Training entfernt");
+
+    console.log("remove from training")
+    const token = this._authService.getToken();
+    console.log(patient);
+    console.log(training.id);
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post(this.apiurl + `/api/patients/removeFromTraining?token=` + token, {patient, training}, {headers: headers} )
+    .toPromise();
+  }
+
   //Check if a feedback exists
   hasFeedback(patient_id: number){
     const token = this._authService.getToken();

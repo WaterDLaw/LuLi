@@ -41,6 +41,7 @@ export class ShowTrainingComponent implements OnInit {
 
   ngOnInit() {
     // Load Trainings
+    this.patients = [];
     this.getTraining(this.route.snapshot.params['id']);
     this.getParticipants(this.route.snapshot.params['id']);
     //this.getParticipants(Number(this.route.snapshot.params['id']) + 1);
@@ -80,7 +81,22 @@ export class ShowTrainingComponent implements OnInit {
       });
   }
 
+  // removes the Client from the training
+  removeClient(id){
+    console.log(id);
+    console.log(this.route.snapshot.params['id']);
+    this._clientService.removeFromTraining(id, this.training)
+    .then(data =>{
+      console.log("succesful remove")
+      console.log(data)
+      
+      this.ngOnInit();
+    })
+    .catch(error => {
+      console.log(error);
+    })
 
+  }
 
   getTraining(id){
     this._trainingsService.getTraining(id)
