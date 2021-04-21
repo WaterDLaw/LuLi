@@ -213,17 +213,17 @@ export class ExcelService {
       //Data für Blatt eins
       wsPage.addRow([
         data[i].title,
-        vorname,
-        name, 
+        data[i].vorname,
+        data[i].name, 
         gebdate,
         data[i].geschlecht,
-        strasse,
+        data[i].strasse,
         data[i].plz,
-        wohnort,
+        data[i].wohnort,
         data[i].telefon,
         data[i].email,
         diagnosen,
-        pneumologe,
+        data[i].pneumologe,
         data[i].rauchstatus,
         data[i].status,
         /*
