@@ -24,6 +24,29 @@ export class ExcelService {
   }
 
 
+  replaceUmlaute(str) {
+
+        // define the umlaute
+        const umlautMap = {
+          '\u00dc': 'UE',
+          '\u00c4': 'AE',
+          '\u00d6': 'OE',
+          '\u00fc': 'ue',
+          '\u00e4': 'ae',
+          '\u00f6': 'oe',
+          '\u00df': 'ss',
+        }
+
+    return str
+      .replace(/[\u00dc|\u00c4|\u00d6][a-z]/g, (a) => {
+        const big = umlautMap[a.slice(0, 1)];
+        return big.charAt(0) + big.charAt(1).toLowerCase() + a.slice(1);
+      })
+      .replace(new RegExp('['+Object.keys(umlautMap).join('|')+']',"g"),
+        (a) => umlautMap[a]
+      );
+  }
+
   async createExcelTrainings(data: any[], messwerte: any[], cat_vor: any[], cat_nach: any[], crq_vor: any[], crq_nach: any[]){
 
     console.log("INSIDE EXCEL TRIAING")
@@ -39,6 +62,9 @@ export class ExcelService {
 
     let wsPage = wb.addWorksheet('Patienteninformationen');
 
+
+
+   
 
     // Headers
     wsPage.addRow(['Patienteninformationen']);
@@ -136,7 +162,24 @@ export class ExcelService {
     //loop over each array and creat a row
     for (var i = 0; i<data.length;i++){
 
-
+      // strings that could containt umlaute
+      
+      if (data[i].name !== null) {
+        var name = this.replaceUmlaute(data[i].name)
+      }
+      if (data[i].vorname !== null) {
+        var vorname = this.replaceUmlaute(data[i].vorname)
+      }
+      if (data[i].strasse !== null) {
+        var strasse = this.replaceUmlaute(data[i].strasse)
+      }
+      if (data[i].wohnort !== null) {
+        var wohnort = this.replaceUmlaute(data[i].wohnort)
+      }
+      if (data[i].pneumologe !== null) {
+        var pneumologe = this.replaceUmlaute(data[i].pneumologe)
+      }
+  
       //create row with data
       let Pgebdatum = new Date(data[i].geburtsdatum)
       let gebdate = Pgebdatum.getDate() + "." + (Pgebdatum.getMonth()+1) + "." + Pgebdatum.getFullYear()
@@ -170,17 +213,17 @@ export class ExcelService {
       //Data für Blatt eins
       wsPage.addRow([
         data[i].title,
-        data[i].vorname,
-        data[i].name, 
+        vorname,
+        name, 
         gebdate,
         data[i].geschlecht,
-        data[i].strasse,
+        strasse,
         data[i].plz,
-        data[i].wohnort,
+        wohnort,
         data[i].telefon,
         data[i].email,
         diagnosen,
-        data[i].pneumologe,
+        pneumologe,
         data[i].rauchstatus,
         data[i].status,
         /*
@@ -375,6 +418,24 @@ export class ExcelService {
       let gebdate = Pgebdatum.getDate() + "." + (Pgebdatum.getMonth()+1) + "." + Pgebdatum.getFullYear()
       let diagnosen = "";
   
+      // strings that could containt umlaute
+      if (data[i].name !== null) {
+        var name = this.replaceUmlaute(data[i].name)
+      }
+      if (data[i].vorname !== null) {
+        var vorname = this.replaceUmlaute(data[i].vorname)
+      }
+      if (data[i].strasse !== null) {
+        var strasse = this.replaceUmlaute(data[i].strasse)
+      }
+      if (data[i].wohnort !== null) {
+        var wohnort = this.replaceUmlaute(data[i].wohnort)
+      }
+      if (data[i].pneumologe !== null) {
+        var pneumologe = this.replaceUmlaute(data[i].pneumologe)
+      }
+
+
       if(data[i].chronisch_obstruktive_Lungenkrankheit){
         diagnosen = diagnosen  + "COPD " +data[i].copdgold + "/" + data[i].copdletter + ", "
       }
@@ -403,19 +464,19 @@ export class ExcelService {
       //Data für Blatt eins
       wsPage.addRow([
         data[i].training,
-        data[i].vorname,
-        data[i].name, 
+        vorname,
+        name, 
         gebdate,
         data[i].geschlecht,
-        data[i].strasse,
+        strasse,
         data[i].plz,
-        data[i].wohnort,
+        wohnort,
         data[i].telefon,
         data[i].email,
         diagnosen,
         data[i].rauchstatus,
         data[i].status,
-        data[i].pneumologe,
+        pneumologe,
         data[i].groesse_vor,
         data[i].groesse_nach,
         data[i].gewicht_vor,
@@ -630,6 +691,59 @@ export class ExcelService {
     
     ])
 
+    // Have to check if it is 0 or not cat
+    var cat_vor_gesamt
+    if (cat_vor !== null){
+      console.log("CAT NULLLLL")
+      cat_vor_gesamt = ""
+    }else{
+      cat_vor_gesamt = cat_vor.gesamtpunktzahl
+    }
+
+    var cat_nach_gesamt
+    if (cat_nach !== null){
+      console.log("CAT NULLLLL")
+      cat_nach_gesamt = ""
+    }else{
+      cat_nach_gesamt = cat_nach.gesamtpunktzahl
+    }
+
+    // Have to check if it is 0 or not crq
+
+
+    var crq_vor_dyspnoe
+    var crq_vor_fatique
+    var crq_vor_emotion
+    var crq_vor_mastery
+    if(crq_vor !== null){
+      crq_vor_dyspnoe = ""
+      crq_vor_fatique = ""
+      crq_vor_emotion = ""
+      crq_vor_mastery = ""
+    }else{
+      crq_vor_dyspnoe = crq_vor.dyspnoe
+      crq_vor_fatique = crq_vor.fatique
+      crq_vor_emotion = crq_vor.emotion
+      crq_vor_mastery = crq_vor.mastery
+    }
+
+
+    var crq_nach_dyspnoe
+    var crq_nach_fatique
+    var crq_nach_emotion
+    var crq_nach_mastery
+    if(crq_nach !== null){
+      crq_nach_dyspnoe = ""
+      crq_nach_fatique = ""
+      crq_nach_emotion = ""
+      crq_nach_mastery = ""
+    }else{
+      crq_nach_dyspnoe = crq_nach.dyspnoe
+      crq_nach_fatique = crq_nach.fatique
+      crq_nach_emotion = crq_nach.emotion
+      crq_nach_mastery = crq_nach.mastery
+    }
+
     //Data für Blatt eins
     wsPatient.addRow([
       training,
@@ -702,16 +816,16 @@ export class ExcelService {
       messwerte.pC02_nach,
       messwerte.bicarbonat_vor,
       messwerte.bicarbonat_nach,
-      cat_vor.gesamtpunktzahl,
-      cat_nach.gesamtpunktzahl,
-      crq_vor.dyspnoe,
-      crq_vor.fatique,
-      crq_vor.emotion,
-      crq_vor.mastery,
-      crq_nach.dyspnoe,
-      crq_nach.fatique,
-      crq_nach.emotion,
-      crq_nach.mastery
+      cat_vor_gesamt,
+      cat_nach_gesamt,
+      crq_vor_dyspnoe,
+      crq_vor_fatique,
+      crq_vor_emotion,
+      crq_vor_mastery,
+      crq_nach_dyspnoe,
+      crq_nach_fatique,
+      crq_nach_emotion,
+      crq_nach_mastery
     ])
 
     /*
