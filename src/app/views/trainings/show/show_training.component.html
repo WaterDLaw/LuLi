@@ -102,7 +102,7 @@
                 <input [(ngModel)]="patient.schweigepflicht" class="form-check-input" type="checkbox" value="" id="schweigepflicht" name="schweigepflicht" disabled>
               </td>
               <td><a routerLink="../../../clients/show/{{patient.id}}"class="btn btn-primary" ngbTooltip="Patient betrachten"><i class="icon-eye white"></i></a>
-              <a class="btn btn-danger" (click)="removeClient(patient.id)"><i class="icon-trash white" ngbTooltip="Patient entfernen"></i></a></td>
+              <a class="btn btn-danger" (click)="removeClient(patient.id)"><i class="icon-trash white" ngbTooltip="Patient aus Kurs entfernen"></i></a></td>
             </tr>
           </tbody>
         </table>

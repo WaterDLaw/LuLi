@@ -476,7 +476,7 @@ export class ExcelService {
         diagnosen,
         data[i].rauchstatus,
         data[i].status,
-        pneumologe,
+        data[i].pneumologe,
         data[i].groesse_vor,
         data[i].groesse_nach,
         data[i].gewicht_vor,
