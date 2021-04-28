@@ -44,6 +44,11 @@ export class CreateClientsComponent implements OnInit {
     this._trainingService.getTrainings()
       .subscribe(data => {
         console.log(data);
+
+        //sort training by date
+        data.sort(function(a,b){
+          return new Date(b.start).getTime() - new Date(a.start).getTime();
+        });
         this.trainings = data;
       })
 

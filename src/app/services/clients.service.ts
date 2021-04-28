@@ -83,7 +83,7 @@ export class ClientsService {
   }
  
   // Add Training to the Client
-  addTraining(patient: Client, training: Training){
+  addTraining(patient: any, training: Training){
 
     this._actionHistoryService.createHistoryEntry("Patient", "Training zugewiesen");
 
