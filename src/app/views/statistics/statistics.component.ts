@@ -73,7 +73,7 @@ export class StatisticsComponent implements OnInit {
     let currentYear = date.getFullYear();
 
     years.push("alle");
-    for(let i = 0; i <= 20; i++){
+    for(let i = -2; i <= 20; i++){
 
       years.push((currentYear +i).toString());
       
