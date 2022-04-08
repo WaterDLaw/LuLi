@@ -44,7 +44,7 @@
     "font-awesome": "^4.7.0",
     "jspdf": "^1.4.1",
     "jspdf-autotable": "^2.3.4",
-    "moment": "2.20.1",
+    "moment": "2.29.2",
     "ng2-charts": "^1.6.0",
     "ngx-bootstrap": "2.0.2",
     "rxjs": "6.5.2",
